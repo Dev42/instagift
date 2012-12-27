@@ -1,0 +1,143 @@
+/* 
+    Document   : style
+    Created on : Aug 17, 2012, 12:07:27 PM
+    Author     : andre
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    font-family: Arial;
+    color: #666;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Header */
+#hd-geral{
+    width: 960px;
+    margin: 0 auto;
+    height: 100px;
+    padding: 30px 0px 0px 50px;
+}
+
+#hd-geral-logo h1{
+    margin: 0px;
+    float: left;
+    width: 500px;
+}
+
+#hd-geral div {
+    float: left;
+}
+
+#hd-geral div ul {
+    list-style: none;
+    margin: 0px;
+}
+/* /Header */
+
+/* Body */
+#bd-geral{
+    width: 930px;
+    margin: 0 auto;
+    height: auto;
+    border: 4px solid #ccc;
+    border-radius: 9px;
+    padding: 15px;
+}
+
+/* User Info */
+.myuser{
+    width: 300px;
+    border-right: 2px solid gray;
+    float: left;
+    height: 100%;
+}
+
+.myuser-photo img{
+    display: block;
+    margin: 0 auto;
+}
+
+.myuser strong{
+    display: block;
+    text-align: center;
+}
+
+.myuser-info{
+    margin-top: 10px;
+}
+.myuser-info-line{
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.myuser-info-line .myuser-info-line-ico, .myuser-info-line .myuser-info-line-text {
+    margin-right: 10px;
+    float: left;
+}
+.myuser-info-line .myuser-info-line-text {
+    margin-top: 7px;
+}
+
+/* /User Info */
+
+/* /Body */
+
+/* InstaLogin */
+div.btnInstaLogin {
+    background: #3C6C91;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #35658B;
+    border-right: 3px solid #35658B;
+}
+
+div.btnInstaLogin a{
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial;
+    font-weight: 700;
+}
+
+.instaBlockGallery{
+    width: 180px;
+    height: 260px;
+    float: left;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin: 11px;
+}
+
+.instaBlockPhoto{
+    padding: 10px;
+    text-align: center;
+}
+
+.instaBlockPhoto img{
+    margin: 10px auto; 
+    display: block;
+}
+
+.instaBlockPhotoinfo{
+    margin-top: 10px;
+}
+
+.userPhotos{
+    float: left;
+}
+/* /InstaLogin */
+
+/* Tools */
+.lineClear{
+    clear: both;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+/* /Tools */
