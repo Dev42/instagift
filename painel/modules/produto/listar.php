@@ -1,12 +1,12 @@
 <?php
 $menuCurrent = "user-listar";
-include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 ?>
                 <div id="wrapper">
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/topbar.php' ?>
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/sidebar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-                                    <?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/navigation.php'; ?>
+                                    <?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php'; ?>
                                         <div class="flat_area grid_16">
                                             <?php
                                             if (isset($_GET['type']) && isset($_GET['case'])){
@@ -105,4 +105,4 @@ include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/header.php';
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_datatables.js"></script>
                 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/closing_items.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>

@@ -4,7 +4,7 @@ class FotoProdutoController {
 
     public function insertAction(FotoProduto $fotoProduto) {
 			
-		if ($fotoProduto->getIdProduto() != "" && $fotoProduto->getUrl() != ""){
+        if ($fotoProduto->getIdProduto() != "" && $fotoProduto->getUrl() != ""){
 
             $fotoProdutoAr = $fotoProduto->assocEntity();
 
@@ -74,7 +74,6 @@ class FotoProdutoController {
 
         $retArr = array();
         $i = 1;
-
         if (mysql_num_rows($result) > 0) {
 
             while ($row = mysql_fetch_assoc($result)) {

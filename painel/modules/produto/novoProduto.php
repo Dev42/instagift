@@ -1,13 +1,13 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 
 $userController = new UserController();
 ?>
                 <div id="wrapper">
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/topbar.php' ?>
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/sidebar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-				<?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/navigation.php';?>
+				<?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
                                     <div class="grid_16">
                                             <div class="indented round_all clearfix send_left">
                                                     <ul class="breadcrumb clearfix">
@@ -74,6 +74,12 @@ $userController = new UserController();
                                                                             </td>
                                                                         </tr>
                                                                     </table>
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side" style="height: 50px;">
+                                                                <label for="nome">Banner</label>
+                                                                <div class="banner">
+                                                                    <input type="file" class="uniform" name="prd_banner">
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
@@ -179,4 +185,4 @@ $userController = new UserController();
 		</div>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/painel/includes/closing_items.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
