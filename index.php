@@ -11,7 +11,10 @@
 		$(function(){
 			$('#slides').slides({
 				preload: true,
-				preloadImage: 'images/site/loading.gif'
+				preloadImage: 'images/site/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true
 			});
 		});
 	</script>
@@ -49,7 +52,24 @@
         	<div class="span12">
             	<div class="instrucoes"><img src="images/site/passo-a-passo.png" alt="Passo a passo"></div>
             </div>
-        </div>                 
+        </div>
+        <div class="row quemja">
+        	<div class="span12">
+            	<div class="titquemja"><img src="images/site/quem-ja.png" alt="Quem já presenteou ou colou e curtiu"></div>
+                <div class="imgsquemja">
+                	<img src="images/site/quemjamodelo.png" alt="1">
+                    <img src="images/site/quemjamodelo.png" alt="2">
+                    <img src="images/site/quemjamodelo.png" alt="3">
+                    <img src="images/site/quemjamodelo.png" alt="4">
+                    <img src="images/site/quemjamodelo.png" alt="5">
+                    <img src="images/site/quemjamodelo.png" alt="6">
+                    <img src="images/site/quemjamodelo.png" alt="7">
+                    <img src="images/site/quemjamodelo.png" alt="8">
+                    <img src="images/site/quemjamodelo.png" alt="9">
+                    <img src="images/site/quemjamodelo.png" alt="10">
+                </div>
+            </div>
+        </div>                  
 	</div> 
 </body>
 </html>

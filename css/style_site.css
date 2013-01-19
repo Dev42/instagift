@@ -81,3 +81,23 @@
 	.instrucoes{
 		margin-left:20px;
 	}
+	
+	.quemja{
+		height:350px;
+		border-bottom:1px solid #9a9d9a;
+		background-color:#d9e4e4;
+		background-image:url(../images/site/bg-quemja.png);
+	}
+	
+	.titquemja{
+		margin:60px 0 0 40px;
+		float:left;
+	}
+	
+	.imgsquemja{
+		margin:60px 0 0 20px;
+	}
+	
+	.imgsquemja img{
+		margin:0 0 20px 20px;
+	}
