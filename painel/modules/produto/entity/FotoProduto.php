@@ -64,7 +64,13 @@ class FotoProduto {
     }
 
     public function getWebPath() {
-        return null === $this->image ? null : "/images/".$this->getUploadDir() . $this->image;
+        $ext = "";
+        
+        if($_SERVER['SERVER_ADDR'] == "127.0.0.1"){
+            $ext = "/instagift";
+        }
+        
+        return null === $this->image ? null : $ext."/images/".$this->getUploadDir() . $this->image;
     }
 
     protected function getUploadRootDir() {
@@ -144,7 +150,7 @@ class FotoProduto {
 		// Gera um nome único para a imagem
 		$nomeUnico = uniqid(time()) . "." . $ext[1];
 		
-		$caminho = $_SERVER['DOCUMENT_ROOT'].'/painel/modules/produto/images';
+		$caminho = $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/modules/produto/images';
 		
 		$caminhoFoto = $caminho.$nomeUnico;
 		

@@ -1,8 +1,8 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/painel/conf/connection.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/painel/conf/config.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/painel/conf/classLoader.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/conf/connection.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/conf/config.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/conf/classLoader.php';
 
 $op = isset($_GET['op']) ? $_GET['op'] : "listar";
 
@@ -29,9 +29,6 @@ switch ($op) {
                     }
                 }
             }
-            echo "<pre>";
-            var_dump($arrayImgs);
-            echo "</pre>";
 
             if ($nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"][0] != "") {
 
@@ -48,6 +45,20 @@ switch ($op) {
                 $produtoClass->setAlturaMinima($alturaMinima);
                 $produtoClass->setMinimoFotos($minimoFotos);
 
+                var_dump($prd_banner);
+                
+                if (array_key_exists("name", $prd_banner)) {
+                    echo "<pre>";
+                    var_dump($prd_banner);
+                    echo "</pre>";
+                    $produtoClass->setUrl($prd_banner);
+                    if ($produtoClass->uploadImage()) {
+                        echo "Inseriu e fez upload! ";
+                    } else {
+                        echo "Deu erro adicionando as imagens!";
+                    }
+                }
+                
                 $produtoId = $produtoController->insertAction($produtoClass);
 
                 if ($produtoId != 0) {
