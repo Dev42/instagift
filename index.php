@@ -11,16 +11,26 @@
 		$(function(){
 			$('#slides').slides({
 				preload: true,
-				preloadImage: 'images/site/loading.gif'
+				preloadImage: 'images/site/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true
 			});
 		});
 	</script>
 </head>
 <body>
 	<div class="container">
-        <div class="row">
+        <div class="row topo">
         	<div class="span12">
             	<div class="logo"><img src="images/site/logo-header.png" alt="Instagift - Suas fotos viram presentes"></div>
+                <div class="menu">
+                	<ul id="nav">
+                        <li><a href="produtos.php"><span>PRODUTOS</span></a></li>
+                        <li><a href="#"><span>COMO COMPRAR</span></a></li>
+                        <li><a href="#" class="last"><span>CONTATO</span></a></li> 
+                    </ul>
+                </div>
             </div>
         </div> 
         <div class="row slider">
@@ -49,7 +59,56 @@
         	<div class="span12">
             	<div class="instrucoes"><img src="images/site/passo-a-passo.png" alt="Passo a passo"></div>
             </div>
-        </div>                 
+        </div>
+        <div class="row quemja">
+        	<div class="span12">
+            	<div class="titquemja"></div>
+                <div class="imgsquemja">
+                	<img src="images/site/quemjamodelo.png" alt="1">
+                    <img src="images/site/quemjamodelo.png" alt="2">
+                    <img src="images/site/quemjamodelo.png" alt="3">
+                    <img src="images/site/quemjamodelo.png" alt="4">
+                    <img src="images/site/quemjamodelo.png" alt="5">
+                    <img src="images/site/quemjamodelo.png" alt="6">
+                    <img src="images/site/quemjamodelo.png" alt="7">
+                    <img src="images/site/quemjamodelo.png" alt="8">
+                    <img src="images/site/quemjamodelo.png" alt="9">
+                    <img src="images/site/quemjamodelo.png" alt="10">
+                </div>
+            </div>
+        </div>
+        <div class="row footer">
+        	<div class="fatiafooter"></div>
+        	<div class="span11">
+                <div class="logofooter">
+                	<span>Suas fotos viram presentes</span>
+                </div>
+                <div class="menu">
+                	<ul id="nav">
+                        <li><a href="produtos.php"><span>PRODUTOS</span></a></li>
+                        <li><a href="#"><span>COMO COMPRAR</span></a></li> 
+                        <li><a href="#"><span>QUEM SOMOS</span></a></li>
+                        <li><a href="#"><span>CONTATO</span></a></li> 
+                        <li><a href="#"><span>VIDA SOCIAL</span></a></li>  
+                    </ul>
+                </div>
+                <div class="menuSocial">
+                	<ul id="nav">
+                        <li><a href="#" class="facebook"></a></li>
+                        <li><a href="#" class="twitter"></a></li>
+                        <li><a href="#" class="instagram"></a></li>
+                        <li><a href="#" class="pinterest"></a></li>
+                        <li><a href="#" class="mail"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span11">
+                <div class="frasefooter"><img src="images/site/frase-footer.png" alt="Frase Footer"></div>
+            </div>
+            <div class="span11">
+                <span class="copyrights">© 2012 Instagift - All rights reserved</span>
+            </div>
+        </div>                   
 	</div> 
 </body>
 </html>
