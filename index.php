@@ -23,7 +23,7 @@
 	<div class="container">
         <div class="row topo">
         	<div class="span12">
-            	<div class="logo"><img src="images/site/logo-header.png" alt="Instagift - Suas fotos viram presentes"></div>
+            	<div class="logo"><a href="index.php"><img src="images/site/logo-header.png" alt="Instagift - Suas fotos viram presentes"></a></div>
                 <div class="menu">
                 	<ul id="nav">
                         <li><a href="produtos.php"><span>PRODUTOS</span></a></li>

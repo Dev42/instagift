@@ -74,7 +74,7 @@
 	
 	#slides .next,#slides .prev {
 		position:absolute;
-		top:150px;
+		top:210px;
 		width:88px;
 		height:44px;
 		display:block;
@@ -82,23 +82,29 @@
 	}
 	
 	#slides .next {
-		left:893px;
+		left:873px;
 	}
 	
 	.slider{
 		height:338px;
 		position:relative;
-		top:-43px;
 	}
 	
 	.slider .span12{
 		height:338px;
 	}
 	
+	.produtos{
+		position:relative;
+	}
+	
 	.passoapasso{
-		height:357px;
 		border-bottom:1px solid #9a9d9a;
 		background-color:#f9f9f9;
+	}
+	
+	.passoapasso .span12{
+		padding:20px 0;
 	}
 	
 	.instrucoes{
@@ -149,7 +155,7 @@
 	}
 	
 	.logofooter{
-		margin:10px 0 0 20px;
+		margin:10px 0 0 30px;
 		width:153px;
 		padding:40px 0 0 3px;
 		float:left;
@@ -160,7 +166,7 @@
 		color:#FFF;
 		font-size:10px;
 		font-family: Arial, Helvetica, sans-serif;
-		margin-left:20px;
+		margin-left:30px;
 	}
 	
 	.logofooter span{
@@ -172,6 +178,11 @@
 	
 	.logo{
 		margin:0;
+		float:left;
+	}
+	
+	.topo{
+		margin:0 0 -43px 0;
 		float:left;
 	}
 	
@@ -216,8 +227,7 @@
 		border-right:1px solid #304948;
 	}
 	.menu #nav li a.active {
-		background:#C4972C;
-		color:#323132;
+		background:url(../images/site/bg-btn-menu.png);
 	}
 	.menu #nav li a span{
 		font-family:'UniversLTStd-BoldCn', Arial, Helvetica, sans-serif !important;
