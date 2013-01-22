@@ -22,6 +22,11 @@ class User {
     
     protected $senha;
     
+    /* User Type List:
+     * 1: Usuário normal
+     * 2: Administrador
+     * 3: Fornecedor
+     */
     protected $type;
     
     protected $active;

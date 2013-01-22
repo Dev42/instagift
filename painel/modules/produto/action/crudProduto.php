@@ -30,7 +30,7 @@ switch ($op) {
                 }
             }
 
-            if ($nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"][0] != "") {
+            if ($nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"] != "") {
 
                 $produtoClass = new Produto();
                 $produtoController = new ProdutoController();
