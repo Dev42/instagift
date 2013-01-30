@@ -200,7 +200,9 @@
 	.menu #nav {
     	list-style: none outside none;
     	position: relative;
-    	z-index: 2;
+    	float: left;
+        margin-left: 3px;
+        z-index: 2;
 	}
 	
 	.topo .menu #nav li a {
