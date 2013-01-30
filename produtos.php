@@ -4,7 +4,7 @@ include_once 'painel/conf/classLoader.php';
 
 $prdFront = new ProdutoFrontController();
 
-if ($_GET['id']){
+if (isset($_GET['id'])){
     $prdList = $prdFront->listAction($_GET['id'], "produto_12_active = 1");
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
@@ -30,12 +30,12 @@ $uploadPath = $geralUrl . "images/uploads/";
         <script type="text/javascript" src="js/scripts.js"></script>
     </head>
     <body>
-            <div class="container">
+        <div class="container">
             <div class="row topo">
-                    <div class="span12">
+                <div class="span12">
                     <div class="logo"><a href="index.php"><img src="images/site/logo-header.png" alt="Instagift - Suas fotos viram presentes"></a></div>
                     <div class="menu">
-                            <ul id="nav">
+                        <ul id="nav">
                             <li><a href="produtos.php" class="active"><span>PRODUTOS</span></a></li>
                             <li><a href="#"><span>COMO COMPRAR</span></a></li>
                             <li><a href="#" class="last"><span>CONTATO</span></a></li> 
@@ -43,18 +43,22 @@ $uploadPath = $geralUrl . "images/uploads/";
                     </div>
                 </div>
             </div> 
+            <?php
+            foreach ($prdList as $k => $v){
+            ?>
             <div class="row produtos">
-                <?php
-                foreach ($prdList as $k => $v){
+            <?php
                     $lineBanner = '<div class="span12">';
                     $uploadPathBanner = $uploadPath."produtos/banners/".$v->getBanner(true);
                     $bannerImg = '<img src="'.$uploadPathBanner.'" width="960" height="338" alt="'.$v->getNome().'" />';
                     $lineBanner .= '<a href="'.$geralUrl.'produtos.php?id='.$v->getId().'">'.$bannerImg.'</a>';
                     $lineBanner .= '</div>';
                     echo $lineBanner;
-                }
-                ?>
+            ?>
             </div>
+            <?php
+                }
+            ?>
             <div class="row footer">
                     <div class="fatiafooter"></div>
                     <div class="span11">
@@ -87,6 +91,6 @@ $uploadPath = $geralUrl . "images/uploads/";
                     <span class="copyrights">© 2012 Instagift - All rights reserved</span>
                 </div>
             </div>                   
-            </div> 
+        </div> 
     </body>
 </html>
