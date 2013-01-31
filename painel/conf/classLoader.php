@@ -1,6 +1,6 @@
 <?php
 
-$geralClass = "/painel/modules";
+$geralClass = "/instagift/painel/modules";
 
 // Configuração dos módulos
 
@@ -41,6 +41,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/entity/FotoProduto.php';
 
 # Controller
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoFrontController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoFornecedorController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/FotoProdutoController.php';
 # /Controller
