@@ -17,7 +17,6 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
 }
 
 $uploadPath = $geralUrl . "images/uploads/";
-
 ?>
 
 <html>
@@ -55,7 +54,8 @@ $uploadPath = $geralUrl . "images/uploads/";
                     $lineBanner .= '</div>';
                     echo $lineBanner;
 					$boxBanner = '<div class="span12 boxprodutos" id="box_'.$v->getId().'" style="display:none;">';
-						$boxBanner .= '<img src="images/site/modelo-box.jpg" alt="Modelo Box Produtos" />';
+					$boxBanner .= '<img src="images/site/btn-fechar.jpg" alt="Fechar" onClick="hideBox('.$v->getId().')" style="float:right; margin-right:20px; cursor:pointer;" />';
+					$boxBanner .= '<img src="images/site/modelo-box.jpg" alt="Modelo Box Produtos" />';
 					$boxBanner .= '</div>';
 					echo $boxBanner;
             ?>
