@@ -51,9 +51,13 @@ $uploadPath = $geralUrl . "images/uploads/";
                     $lineBanner = '<div class="span12">';
                     $uploadPathBanner = $uploadPath."produtos/banners/".$v->getBanner(true);
                     $bannerImg = '<img src="'.$uploadPathBanner.'" width="960" height="338" alt="'.$v->getNome().'" />';
-                    $lineBanner .= '<a href="'.$geralUrl.'produtos.php?id='.$v->getId().'">'.$bannerImg.'</a>';
+					$lineBanner .= '<a href="#" onClick="showBox('.$v->getId().')">'.$bannerImg.'</a>';
                     $lineBanner .= '</div>';
                     echo $lineBanner;
+					$boxBanner = '<div class="span12 boxprodutos" id="box_'.$v->getId().'" style="display:none;">';
+						$boxBanner .= '<img src="images/site/modelo-box.jpg" alt="Modelo Box Produtos" />';
+					$boxBanner .= '</div>';
+					echo $boxBanner;
             ?>
             </div>
             <?php
