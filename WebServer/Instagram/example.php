@@ -25,7 +25,7 @@ $config = array(
         'client_id' => '6dee7c0ead4a4ddab8d7575228ae619c',
         'client_secret' => '8268b1b5d8034ae6aba4ff733a4307e3',
         'grant_type' => 'authorization_code',
-        'redirect_uri' => 'http://instagift.com.br/index.php',
+        'redirect_uri' => 'index_old.php',
      );
 
 /**
