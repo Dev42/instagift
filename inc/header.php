@@ -9,7 +9,7 @@
     <body>
         <div id="hd-geral">
             <div id="hd-geral-logo">
-                <h1>Insta Gift</h1>
+                <h1>Instagift</h1>
             </div>
             <div>
                 <ul>
