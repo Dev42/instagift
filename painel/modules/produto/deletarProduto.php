@@ -4,12 +4,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 
 if (isset($_GET['id']) && $_GET['id'] > 0){
     
-    $produtoController = new UserController();
+    $produtoController = new ProdutoController();
     $produto = $produtoController->listAction($_GET['id']);
     
     if (count($produto) == 0){
         
-        header("Location: $urlProdutos/listar.php?type=error&case=deletar&erron=3");
+        header("Location: $urlProdutos/listarProduto.php?type=error&case=deletar&erron=3");
         
     }
     
@@ -20,7 +20,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-				<?php $keyphrase = '2'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
+				<?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
                                     <div class="grid_16">
                                             <div class="indented round_all clearfix send_left">
                                                     <ul class="breadcrumb clearfix">
@@ -39,7 +39,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                     <h2 class="section">
                                                         Tem certeza que deseja deletar o produto <b><?php echo $produto[1]["produto_30_nome"]; ?></b>?
                                                     </h2>
-                                                    <form action="<?php echo $urlProduto;?>/action/crudProduto.php?op=deletar" method="post">
+                                                    <form action="<?php echo $urlProdutos;?>/action/crudProduto.php?op=deletar" method="post">
                                                         <div style="display: none;">
                                                             <input type="hidden" name="produto_10_id" value="<?php echo $produto[1]["produto_10_id"]; ?>" />
                                                         </div>

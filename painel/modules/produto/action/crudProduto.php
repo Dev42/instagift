@@ -227,7 +227,7 @@ switch ($op) {
 
                 $produtoController = new ProdutoController();
 
-                if ($userController->deleteAction($produtoClass)) {
+                if ($produtoController->deleteAction($produtoClass)) {
                     header("Location: $urlProdutos/listarProduto.php?type=success&case=deletar");
                 } else {
                     header("Location: $urlProdutos/listarProduto.php?type=error&case=deletar&&erron=1");
