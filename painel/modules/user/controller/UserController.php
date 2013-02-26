@@ -58,7 +58,7 @@ class UserController {
         
         if ($user->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `quup_painel`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;

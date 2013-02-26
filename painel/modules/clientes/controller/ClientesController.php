@@ -11,7 +11,7 @@ class ClientesController {
             $fields = implode("`, `", array_keys($clienteAr));
             $values = implode("', '", $clienteAr);
 
-            $strQuery = "INSERT INTO `quup_painel`.`" . $cliente->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `instagift`.`" . $cliente->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -36,7 +36,7 @@ class ClientesController {
             
             $setQuery = implode($setQuery, ", ");
 
-            $sqlQuery = "UPDATE `quup_painel`.`".$cliente->tableName()."` SET $setQuery WHERE `cli_10_id` = ". $cliente->getId();
+            $sqlQuery = "UPDATE `instagift`.`".$cliente->tableName()."` SET $setQuery WHERE `cli_10_id` = ". $cliente->getId();
             
             mysql_query($sqlQuery);
 
@@ -49,7 +49,7 @@ class ClientesController {
     
     public function countChilds(Clientes $cli, $from = "contato"){
         
-        $sqlQuery = "SELECT COUNT(*) as total FROM `quup_painel`.`".$from."` WHERE `cli_10_id` = ". $cli->getId();
+        $sqlQuery = "SELECT COUNT(*) as total FROM `instagift`.`".$from."` WHERE `cli_10_id` = ". $cli->getId();
         
         $res = mysql_query($sqlQuery);
         
@@ -61,7 +61,7 @@ class ClientesController {
         
         if ($user->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `quup_painel`.`".$user->tableName()."` WHERE `cli_10_id` = ". $user->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`".$user->tableName()."` WHERE `cli_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;
