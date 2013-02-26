@@ -15,7 +15,7 @@ include 'includes/header.php';
 								<div class="section">
 									<div class="alert dismissible alert_light">
 										<img width="24" height="24" src="images/icons/small/grey/locked.png">
-										<strong>Welcome to Adminica.</strong> Please enter your details to login.
+										<strong>Bem-vindo ao Instagift.</strong> Por favor informe suas credencias para acesso.
 									</div>
 								</div>	
                                                             <form action="<?php echo $urlGeral; ?>/conf/security.php" class="validate_form" method="post">

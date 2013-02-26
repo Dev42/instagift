@@ -13,7 +13,7 @@ class ContatoController {
                 $fields = implode("`, `", array_keys($contatoAr));
                 $values = implode("', '", $contatoAr);
 
-                $strQuery = "INSERT INTO `quup_painel`.`" . $contato->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+                $strQuery = "INSERT INTO `instagift`.`" . $contato->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
                 mysql_query($strQuery);
 
@@ -42,7 +42,7 @@ class ContatoController {
 
                 $setQuery = implode($setQuery, ", ");
 
-                $sqlQuery = "UPDATE `quup_painel`.`".$contato->tableName()."` SET $setQuery WHERE `cnt_10_id` = ". $contato->getId();
+                $sqlQuery = "UPDATE `instagift`.`".$contato->tableName()."` SET $setQuery WHERE `cnt_10_id` = ". $contato->getId();
 
                 echo $sqlQuery;
                 
@@ -64,7 +64,7 @@ class ContatoController {
 
         if ($contato->getId() != "") {
 
-            $sqlQuery = "DELETE FROM `quup_painel`.`" . $contato->tableName() . "` WHERE `cnt_10_id` = " . $contato->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`" . $contato->tableName() . "` WHERE `cnt_10_id` = " . $contato->getId();
             mysql_query($sqlQuery);
 
             return true;

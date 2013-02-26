@@ -53,7 +53,7 @@ class ProdutoController {
         
         if ($produto->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `quup_painel`.`".$produto->tableName()."` WHERE `produto_10_id` = ". $produto->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`".$produto->tableName()."` WHERE `produto_10_id` = ". $produto->getId();
             mysql_query($sqlQuery);
             
             return true;
