@@ -111,6 +111,15 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
+                                                                <label for="nome">Foto Principal</label>
+                                                                <div class="listImages">
+                                                                    <input type="file" class="uniform" name="prd_foto">
+                                                                </div>
+                                                                <div class="listImages">
+                                                                    <?php echo '<img src="'.$prdClass->getWebPath('foto').'" width="240" style="vertical-align: middle;"/>'; ?>
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side">
                                                                 <label for="nome">Banner</label>
                                                                 <div class="listImages">
                                                                     <input type="file" class="uniform" name="prd_banner">

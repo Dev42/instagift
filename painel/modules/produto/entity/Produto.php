@@ -16,7 +16,11 @@ class Produto {
     
     protected $banner;
     
+    protected $foto;
+    
     protected $url;
+    
+    protected $url2;
     
     protected $prazoProducao;
     
@@ -83,6 +87,14 @@ class Produto {
     public function setUrl($url) {
         $this->url = $url;
     }
+
+    public function getUrl2() {
+        return $this->url2;
+    }
+
+    public function setUrl2($url2) {
+        $this->url2 = $url2;
+    }
     
     public function getPrazoProducao() {
         return $this->prazoProducao;
@@ -138,6 +150,7 @@ class Produto {
             "produto_20_valor" 		=> $this->getValor(),
             "produto_20_peso"           => $this->getPeso(),
             "produto_30_banner"   	=> $this->getBanner(true),
+            "produto_30_foto"   	=> $this->getFoto(true),
             "produto_10_prazo_producao" => $this->getPrazoProducao(),
             "produto_10_largura_minima" => $this->getLarguraMinima(),
             "produto_10_altura_minima" 	=> $this->getAlturaMinima(),
@@ -158,6 +171,7 @@ class Produto {
         $this->setValor($row['produto_20_valor']);
         $this->setPeso($row['produto_20_peso']);
         $this->setBanner($row['produto_30_banner']);
+        $this->setFoto($row['produto_30_foto']);
         $this->setPrazoProducao($row['produto_10_prazo_producao']);
         $this->setLarguraMinima($row['produto_10_largura_minima']);
         $this->setAlturaMinima($row['produto_10_altura_minima']);
@@ -175,23 +189,37 @@ class Produto {
         return null === $this->banner ? null : $this->getUploadRootDir() . $this->banner;
     }
 
-    public function getWebPath() {
+    public function getWebPath($type = 'banner') {
         $ext = "";
         
         if($_SERVER['SERVER_ADDR'] == "127.0.0.1"){
             $ext = "/instagift";
         }
-        return null === $this->banner ? null : $ext."/images/".$this->getUploadDir() . $this->banner;
+        if ($type == 'banner'){
+            return null === $this->banner ? null : $ext."/images/".$this->getUploadBannerDir() . $this->banner;
+        }else {
+            return null === $this->foto ? null : $ext."/images/".$this->getUploadFotoDir() . $this->foto;
+        }
     }
 
-    protected function getUploadRootDir() {
+    protected function getUploadRootDir($type = 'banner') {
         // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../images/' . $this->getUploadDir();
+        
+        if ($type == "banner"){
+            return __DIR__ . '/../../../../images/' . $this->getUploadBannerDir();
+        }else {
+            return __DIR__ . '/../../../../images/' . $this->getUploadFotoDir();
+        }
     }
 
-    protected function getUploadDir() {
+    protected function getUploadBannerDir() {
         // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
         return 'uploads/produtos/banners/';
+    }
+
+    protected function getUploadFotoDir() {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/produtos/produto/';
     }
     
     public function getBanner($edit = false){
@@ -209,59 +237,103 @@ class Produto {
     public function setBanner($banner) {
         $this->banner = $banner;
     }
-
     
-    public function uploadImage() {
-
-        if (null !== $this->url) {
-            
-            $imgEdit = new SimpleImage();
-            
-            if ($this->getBanner(true) != ""){
-                unlink($this->getBanner());
+    public function getFoto($edit = false){
+        if ($this->foto == ""){
+            return "";
+        }else {
+            if ($edit){
+                return $this->foto;
+            }else {
+                return $this->getUploadRootDir('foto').$this->foto;
             }
-            
-            $this->setBanner(uniqid() . "-" . $this->getId() . $this->url["name"]);
+        }
+    }
 
-            move_uploaded_file($this->url['tmp_name'], $this->getUploadRootDir().$this->getBanner(true));
+    public function setFoto($foto) {
+        $this->foto = $foto;
+    }
+    
+    public function uploadImage($type = 'banner') {
+
+        if ($type == 'banner'){
+        
+            if (null !== $this->url) {
             
-            $imgEdit->load($this->getUploadRootDir().$this->getBanner(true));
-            $imgEdit->resize(960,338);
-            $imgEdit->save($this->getUploadRootDir().$this->getBanner(true));
+                $imgEdit = new SimpleImage();
             
-            return true;
+                if ($this->getBanner(true) != ""){
+                    unlink($this->getBanner());
+                }
+
+                $this->setBanner(uniqid() . "-" . $this->getId() . $this->url["name"]);
+
+                move_uploaded_file($this->url['tmp_name'], $this->getUploadRootDir().$this->getBanner(true));
+
+                $imgEdit->load($this->getUploadRootDir().$this->getBanner(true));
+                $imgEdit->resize(960,338);
+                $imgEdit->save($this->getUploadRootDir().$this->getBanner(true));
+
+                return true;
+                
+            }
+        }else {
+        
+            if (null !== $this->url2) {
             
+                $imgEdit = new SimpleImage();
+            
+                if ($this->getFoto(true) != ""){
+                    unlink($this->getFoto());
+                }
+
+                $this->setFoto(uniqid() . "-" . $this->getId() . $this->url2["name"]);
+
+                move_uploaded_file($this->url2['tmp_name'], $this->getUploadRootDir('foto').$this->getFoto(true));
+
+                $imgEdit->load($this->getUploadRootDir('foto').$this->getFoto(true));
+                $imgEdit->resize(240,180);
+                $imgEdit->save($this->getUploadRootDir('foto').$this->getFoto(true));
+                
+                return true;
+            
+            }
         }
     }
     
-    public function removeImage(){
-        $fotoProduto = $this->getUploadRootDir().$this->getBanner(true);
-        unlink($fotoProduto);
+    public function removeImage($type = 'banner'){
+        if ($type == 'banner'){
+            $fotoProduto = $this->getUploadRootDir().$this->getBanner(true);
+            unlink($fotoProduto);
+        }else {
+            $fotoProduto = $this->getUploadRootDir('foto').$this->getFoto(true);
+            unlink($fotoProduto);
+        }
     }
 	
     public function uploadFoto($foto){
-		$nomeFoto    = $foto['name'];
-		$tamanhoFoto = $foto['size'];
-		$tipoFoto    = $foto['type'];
-		$tmpnameFoto = $foto['tmp_name'];
-		
-		$obj = new SimpleImage;
-		$obj->load($tmpnameFoto);
-		if($obj->getWidth() != 400){
-			$obj->resizeToWidth(400);
-			$obj->output();
-		}
-		
-		preg_match("/\.(gif|png|jpg|jpeg){1}$/i", $nomeFoto, $ext);
-		
-		// Gera um nome único para a imagem
-		$nomeUnico = uniqid(time()) . "." . $ext[1];
-		
-		$caminho = $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/modules/produto/images';
-		
-		$caminhoFoto = $caminho.$nomeUnico;
-		
-		$moverFoto = move_uploaded_file($nomeFoto, $caminhoFoto);
+        $nomeFoto    = $foto['name'];
+        $tamanhoFoto = $foto['size'];
+        $tipoFoto    = $foto['type'];
+        $tmpnameFoto = $foto['tmp_name'];
+
+        $obj = new SimpleImage;
+        $obj->load($tmpnameFoto);
+        if($obj->getWidth() != 400){
+                $obj->resizeToWidth(400);
+                $obj->output();
+        }
+
+        preg_match("/\.(gif|png|jpg|jpeg){1}$/i", $nomeFoto, $ext);
+
+        // Gera um nome único para a imagem
+        $nomeUnico = uniqid(time()) . "." . $ext[1];
+
+        $caminho = $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/modules/produto/images';
+
+        $caminhoFoto = $caminho.$nomeUnico;
+
+        $moverFoto = move_uploaded_file($nomeFoto, $caminhoFoto);
 		
         return $nomeUnico;
     }
