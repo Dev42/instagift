@@ -106,8 +106,6 @@ class ProdutoController {
 
         return $retArr;
     }
-
-    
     
 }
 

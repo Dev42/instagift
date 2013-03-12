@@ -77,6 +77,12 @@ $userController = new UserController();
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side" style="height: 50px;">
+                                                                <label for="nome">Foto Principal</label>
+                                                                <div class="foto">
+                                                                    <input type="file" class="uniform" name="prd_foto">
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side" style="height: 50px;">
                                                                 <label for="nome">Banner</label>
                                                                 <div class="banner">
                                                                     <input type="file" class="uniform" name="prd_banner">
