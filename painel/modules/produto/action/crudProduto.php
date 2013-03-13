@@ -48,18 +48,18 @@ switch ($op) {
                 if (array_key_exists("name", $prd_banner)) {
                     $produtoClass->setUrl($prd_banner);
                     if ($produtoClass->uploadImage()) {
-                        echo "Inseriu e fez upload! ";
+                        //echo "Inseriu e fez upload! ";
                     } else {
-                        echo "Deu erro adicionando as imagens!";
+                        //echo "Deu erro adicionando as imagens!";
                     }
                 }
 
                 if (array_key_exists("name", $prd_foto)) {
                     $produtoClass->setUrl2($prd_foto);
                     if ($produtoClass->uploadImage('foto')) {
-                        echo "Inseriu e fez upload! ";
+                       // echo "Inseriu e fez upload! ";
                     } else {
-                        echo "Deu erro adicionando as imagens!";
+                        //echo "Deu erro adicionando as imagens!";
                     }
                 }
                 
@@ -79,12 +79,12 @@ switch ($op) {
                             $prdFornClass->setIdProduto($produtoId);
 
                             if ($prdFornController->insertAction($prdFornClass)) {
-                                echo "Inseriu!";
+                                //echo "Inseriu!";
                             } else {
-                                echo "Deu erro!";
+                                //echo "Deu erro!";
                             }
                         } else {
-                            echo "Registro já existe!";
+                            //echo "Registro já existe!";
                         }
                     }
 
@@ -95,14 +95,14 @@ switch ($op) {
                         if (array_key_exists("name", $valueImagem)) {
                             $imgProdutoClass = new FotoProduto();
                             $imgProdutoClass->setIdProduto($produtoId);
-                            echo "<pre>";
-                            var_dump($valueImagem);
-                            echo "</pre>";
+                            //echo "<pre>";
+                            //var_dump($valueImagem);
+                            //echo "</pre>";
                             $imgProdutoClass->setUrl($valueImagem);
                             if ($imgProdutoClass->uploadImage() && $prdImageController->insertAction($imgProdutoClass)) {
-                                echo "Inseriu e fez upload! ";
+                               // echo "Inseriu e fez upload! ";
                             } else {
-                                echo "Deu erro adicionando as imagens!";
+                                //echo "Deu erro adicionando as imagens!";
                             }
                         }
                     }
