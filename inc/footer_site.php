@@ -7,10 +7,9 @@
                 <div class="menu">
                 	<ul id="nav">
                         <li><a href="produtos.php" class="<?=$menuClass[0]?>"><span>PRODUTOS</span></a></li>
-                        <li><a href="#" class="<?=$menuClass[1]?>"><span>COMO COMPRAR</span></a></li> 
-                        <li><a href="#" class="<?=$menuClass[2]?>"><span>QUEM SOMOS</span></a></li>
-                        <li><a href="#" class="<?=$menuClass[3]?>"><span>CONTATO</span></a></li> 
-                        <li><a href="#"><span>VIDA SOCIAL</span></a></li>  
+                        <li><a href="#" class="<?=$menuClass[1]?>"><span>COMO COMPRAR</span></a></li>\
+                        <li><a href="#" class="<?=$menuClass[2]?>"><span>CONTATO</span></a></li> 
+                        <li><a href="#"><span>SIGA-NOS AQUI</span></a></li>  
                     </ul>
                 </div>
                 <div class="menuSocial">
