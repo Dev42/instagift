@@ -248,8 +248,18 @@
 	}
 	
 	.topo .menu{
-		margin:0 0 0 455px;
+		margin:0 0 0 405px;
 		float:left;
+	}
+	
+	.topo .menu.login{
+		margin:0 0 0 370px;
+		float:left;
+	}
+	
+	.topo .menu.login u{
+		float:right;
+		font-size:10px;
 	}
 	
 	.footer .menu{
