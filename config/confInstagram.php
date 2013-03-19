@@ -1,8 +1,8 @@
 <?php
 
 
-$clientId = "6dee7c0ead4a4ddab8d7575228ae619c";
-$secretId = "8268b1b5d8034ae6aba4ff733a4307e3";
-$redirectResponse = "http://instagift.com.br/index.php";
+$clientId = "a7d78226833e45078e1fc9b1a279abb0";
+$secretId = "96d3f1fdf0474d11ba37984e87aeda16";
+$redirectResponse = "http://instagift.com.br/instagift/produtos.php";
 
 ?>

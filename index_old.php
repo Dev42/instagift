@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 
 include 'config/config.php';
 include_once 'inc/header.php';
@@ -12,14 +13,9 @@ $access_token_parameters = array(
 );
 
 session_start();
-/*if (isset($_SESSION['InstagramAccessToken']) && !empty($_SESSION['InstagramAccessToken'])) {
-    header('Location: /index.php');
-    die();
-}*/
 
 // Instantiate the API handler object
 $instagram = new Instagram($access_token_parameters);
-//$instagram->openAuthorizationUrl();
 
 $accessToken = $instagram->getAccessToken();
 $_SESSION['InstagramAccessToken'] = $accessToken;

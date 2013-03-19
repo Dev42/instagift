@@ -9,8 +9,8 @@ if ($_SERVER['SERVER_ADDR'] == "127.0.0.1"){
 }else if($_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
 	$dataBase = "instagift";
     $host = "localhost";
-    $user = "root";
-    $pass = "gilu92";
+    $user = "instagift";
+    $pass = "instaDB";
     
 }else {
     $dataBase = "instagift";
