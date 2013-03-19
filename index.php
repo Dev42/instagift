@@ -1,5 +1,5 @@
 <?php
-$menuClass = array("","","","");
+$menuClass = array("","","");
 $title = "Suas fotos viram presentes";
 
 include("inc/header_site.php");

@@ -5,7 +5,7 @@ include_once 'WebServer/Instagram/Instagram.php';
 
 $instagram = new Instagram($access_token_parameters);
 
-$menuClass = array("active","","","");
+$menuClass = array("active","","");
 
 $prdFront = new ProdutoFrontController();
 
