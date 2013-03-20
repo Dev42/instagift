@@ -1,4 +1,6 @@
 <?php
+unset($_SESSION['LogadoInstagift']);
+
 include_once 'config/connection.php';
 include_once 'painel/conf/classLoader.php';
 include_once 'WebServer/Instagram/Instagram.php';
