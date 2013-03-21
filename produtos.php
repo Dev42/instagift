@@ -1,11 +1,6 @@
 <?php
-unset($_SESSION['LogadoInstagift']);
-
 include_once 'config/connection.php';
 include_once 'painel/conf/classLoader.php';
-include_once 'WebServer/Instagram/Instagram.php';
-
-$instagram = new Instagram($access_token_parameters);
 
 $menuClass = array("active","","");
 
@@ -16,37 +11,9 @@ if (isset($_GET['id'])){
 	foreach ($prdList as $k => $v){
 		$title = "Produto - ".$v->getNome();
 	}
-	if(isset($_SESSION['InstagramAccessToken'])){
-		$instagram->setAccessToken($_SESSION['InstagramAccessToken']);
-		$userinfo = $instagram->getUser($_SESSION['InstagramAccessToken']);
-		
-		$ures = json_decode($userinfo, true);
-		
-		$mostRecent = $instagram->getUserRecent($ures['data']['id']);
-		$mediasUser = json_decode($mostRecent, true);
-	}
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
 	$title = "Produtos";
-	
-	$access_token_parameters = array(
-        'client_id'                =>     'a7d78226833e45078e1fc9b1a279abb0',
-        'client_secret'                =>     '96d3f1fdf0474d11ba37984e87aeda16',
-        'grant_type'                =>     'authorization_code',
-        'redirect_uri'                =>     'http://instagift.com.br/instagift/produtos.php',
-        'code'                        =>     $_GET['code']
-	);
-	
-	session_start();
-	
-	$accessToken = $instagram->getAccessToken();
-	$_SESSION['InstagramAccessToken'] = $accessToken;
-	
-	if(isset($_SESSION['InstagramAccessToken'])){
-		$link = 'produtos.php?id=';
-	}else{
-		$link = 'https://api.instagram.com/oauth/authorize/?client_id=a7d78226833e45078e1fc9b1a279abb0&redirect_uri=http://instagift.com.br/instagift/produtos.php&response_type=code&other=';
-	}
 }
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {

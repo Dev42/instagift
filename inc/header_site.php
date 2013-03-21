@@ -19,7 +19,7 @@
 				?>
                  <div class="menu login">
                 	<ul id="nav">
-                    	<li><a href="perfil.php" class="active"><span><?php echo $_SESSION['NomeInstagift'] ?><br><u>Perfil</u></span></a></li>
+                    	<li><a href="perfil.php" class="active"><span><?php echo $_SESSION['NomeInstagift'] ?><br><u>PERFIL</u></span></a></li>
                 <?php }else{ ?>
                 <div class="menu">
                 	<ul id="nav">
@@ -28,6 +28,12 @@
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
                         <li><a href="#" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
                         <li><a href="#" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
+                <?php 
+					session_start();
+					if (isset($_SESSION['LogadoInstagift'])){
+				?>
+                		<li><a href="process/processLogout.php"><span>SAIR</span></a></li>
+                <?php } ?>
                     </ul>
                 </div>
             </div>
