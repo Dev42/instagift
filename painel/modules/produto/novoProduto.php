@@ -115,6 +115,14 @@ $userController = new UserController();
                                                                     </table>
                                                                 </div>
                                                         </fieldset>
+                                                        <fieldset class="label_side"style="height: 50px;">
+                                                                <label for="nome">Cores</label>
+                                                                <div class="listImages">
+                                                                    <div>
+                                                                        <div id="colorSelector" class="colorpicker"><div style="background-color: #0000ff"></div></div>
+                                                                    </div>
+                                                                </div>
+                                                        </fieldset>
                                                         <fieldset class="label_side">
                                                                 <label for="descCurta">Descrição Curta</label>
                                                                 <div>
@@ -191,4 +199,14 @@ $userController = new UserController();
 		</div>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
+<script>
+$(document).ready(function(){
+    $('#colorSelector').jPicker({
+          window:
+          {
+            expandable: true
+          }
+    });
+});
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
