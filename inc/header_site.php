@@ -26,8 +26,8 @@
                     	<li><a href="login.php"><span>LOGIN</span></a></li>
                 <?php } ?>
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
-                        <li><a href="#" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
-                        <li><a href="#" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
+                        <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
+                        <li><a href="contato.php" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
                 <?php 
 					session_start();
 					if (isset($_SESSION['LogadoInstagift'])){
