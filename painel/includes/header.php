@@ -36,6 +36,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/fancybox/jquery.fancybox-1.3.4.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/tinyeditor/style.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/jpicker/css/jPicker-1.1.6.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/slidernav/slidernav.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/syntax_highlighter/styles/shCore.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/syntax_highlighter/styles/shThemeDefault.css">
@@ -48,7 +49,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/uniform/css/uniform.aristo.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/multiselect/css/ui.multiselect.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/selectbox/jquery.selectBox.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/colorpicker/css/colorpicker.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/uistars/jquery.ui.stars.min.css">
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/themeroller/Aristo.css">
@@ -57,7 +57,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/styles/grid.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/styles/main.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/styles/theme/theme_base.css">
-
+                
 		<!-- Style Switcher  
 		
 		The following stylesheet links are used by the styleswitcher to allow for dynamically changing how Adminica looks and acts.
@@ -100,6 +100,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		<script src="<?php echo $urlGeral; ?>/scripts/selectbox/jquery.selectBox.min.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/timepicker/jquery.timepicker.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/colorpicker/js/colorpicker.js"></script>
+		<script src="<?php echo $urlGeral; ?>/scripts/jpicker/jpicker-1.1.6.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/uistars/jquery.ui.stars.min.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/tiptip/jquery.tipTip.minified.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
@@ -111,6 +112,5 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		
 		<!-- Live Load (remove after development) -->
 		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-
 	</head>
 	<body>
