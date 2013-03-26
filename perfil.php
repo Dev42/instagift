@@ -4,6 +4,8 @@ $title = "Suas fotos viram presentes";
 session_start();
 include("inc/header_site.php");
 include("WebServer/Instagram/Instagram.php");
+include("WebServer/Facebook/facebook.php");
+
 $mError = "";
 if (isset($_GET['access_denied'])){
     $mError .= "Acesso Negado!";
@@ -59,6 +61,44 @@ if (isset($_SESSION['instaAccess'])){
 }
 
 echo "https://api.instagram.com/v1/users/".$_SESSION["instaAccess"]["user"]['id']."/?access_token=".$_SESSION["instaAccess"]['access_token'];
+ 
+//Instanciando o Objeto da classe do facebook
+$facebook = new Facebook(array(
+        'appId'  => '619446894748617',
+        'secret' => 'e36eb608b47d070353394814c9541b10'
+));
+ 
+//Pegando Id do usuário Logado
+$o_user = $facebook->getUser();
+ 
+/*
+* Verificando se está conectado
+*/
+if($o_user == 0)
+{
+    //Envia para a página de permissão do facebook, nela voce irá dar permissão ao aplicativo
+    //acessar dados da sua conta
+    $urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
+}
+else
+{
+    //Verificando se o comando de logout foi enviado
+    if($_GET['action'] == 'finish' )
+    {
+        //Retirando a permissão do Aplicativo à sua conta no facebook
+        session_destroy();
+        header('Location: '.$facebook->getLogoutUrl());
+    }
+    else
+    {
+        $me = $facebook->api('/me');
+		$photos = $facebook->api('/me/photos');
+		echo "<pre>";
+		var_dump($me);
+		var_dump($photos);
+    	echo "</pre>";
+    }
+}
 
 ?>
         <script>
@@ -74,7 +114,6 @@ echo "https://api.instagram.com/v1/users/".$_SESSION["instaAccess"]["user"]['id'
         </script>
         <div class="clearfix"></div>
         <div class="row" style="margin: 30px 0px;">
-            <h2>Login with one of your social network account.</h2>
             <?php
             if ($mError != ""){
                 echo "<div>";
@@ -84,6 +123,11 @@ echo "https://api.instagram.com/v1/users/".$_SESSION["instaAccess"]["user"]['id'
             ?>
             <div>
                 <a href="https://api.instagram.com/oauth/authorize/?client_id=097713367ef9406db262c4b7592b43bc&redirect_uri=http://localhost/instagift/perfil.php&response_type=code" class="btn large info">Login with Instagram</a>
+            </div>
+        </div>
+        <div class="row" style="margin: 30px 0px;">
+            <div>
+                <a href="<?php echo $urlFacebook ?>" class="btn large info">Login with Facebook</a>
             </div>
         </div>
         <div class="row quemja">

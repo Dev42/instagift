@@ -7,8 +7,8 @@
                 <div class="menu">
                 	<ul id="nav">
                         <li><a href="produtos.php" class="<?=$menuClass[0]?>"><span>PRODUTOS</span></a></li>
-                        <li><a href="#" class="<?=$menuClass[1]?>"><span>COMO COMPRAR</span></a></li>\
-                        <li><a href="#" class="<?=$menuClass[2]?>"><span>CONTATO</span></a></li> 
+                        <li><a href="comocomprar.php" class="<?=$menuClass[1]?>"><span>COMO COMPRAR</span></a></li>\
+                        <li><a href="contato.php" class="<?=$menuClass[2]?>"><span>CONTATO</span></a></li> 
                         <li><a href="#"><span>SIGA-NOS AQUI</span></a></li>  
                     </ul>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="frasefooter"><img src="images/site/frase-footer.png" alt="Frase Footer"></div>
             </div>
             <div class="span11">
-                <span class="copyrights">© 2012 Instagift - All rights reserved</span>
+                <span class="copyrights">© 2013 Instagift - All rights reserved</span>
             </div>
         </div>                   
 	</div> 
