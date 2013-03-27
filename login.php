@@ -10,7 +10,7 @@ include("inc/header_site.php");
 	<div class="row login">
     	<div class="span12"><h1>Faça login para adicionar suas fotos!</h1></div>
     	<div class="span8">
-        	<form name="login" class="form-stacked" method="post" action="process/processLogin.php">
+        	<form name="loginForm" class="form-stacked" method="post" action="process/processLogin.php">
         	<?php
             if(isset($_GET['err'])){
                 $msgErro = "- Dados Incorretos";
