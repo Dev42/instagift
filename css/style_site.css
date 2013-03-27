@@ -115,6 +115,65 @@
 		padding-top:60px;
 	}
 	
+	.row.login{
+		position:relative;
+		background-color:#e1e1e1;
+		margin-top:77px;
+		padding-top:60px;
+	}
+	
+	.row.login label{
+		font-family:'UniversLTStd-BoldCn', Arial, Helvetica, sans-serif !important;
+		font-size:16px;
+		color:#2e4544;
+		text-shadow:2px 2px #CCC;
+	}
+	
+	.row.login h1{
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		margin-left:20px;
+		font-size:24px;
+		color:#2e4544;
+		text-shadow:2px 2px #CCC;
+	}
+	
+	.row.login .span8{
+		margin-left:20px;
+	}
+	
+	.row.login input[type="text"], .row.login input[type="password"]{
+		width:250px;
+		height:25px;
+		border:1px solid #2e4544;
+		border-radius:0 !important;
+	}
+	
+	.row.login textarea{
+		width:250px;
+		height:100px;
+		border:1px solid #2e4544;
+		border-radius:0 !important;
+	}
+	
+	.row.login input[type="submit"]{
+		width:150px;
+		height:52px;
+		text-align:center;
+		background-image:url(../images/site/btn-login.png);
+		background-color:transparent;
+		position:relative;
+		top:-10px;
+		left:100px;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		border:none !important;
+		border-radius:0 !important;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+	}
+	
 	.produtoInfo .span4{
 		width:255px !important;
 		margin:0 15px 15px 15px;
@@ -143,6 +202,12 @@
 		font-weight:lighter;
 		font-size:14px;
 		color:#2e4544;
+	}
+	
+	.comocomprar{
+		background-color:#f9f9f9;
+		position:relative;
+		margin-top:130px;
 	}
 	
 	.passoapasso{
