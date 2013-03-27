@@ -36,7 +36,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/fancybox/jquery.fancybox-1.3.4.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/tinyeditor/style.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/jpicker/css/jPicker-1.1.6.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/slidernav/slidernav.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/syntax_highlighter/styles/shCore.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $urlGeral; ?>/scripts/syntax_highlighter/styles/shThemeDefault.css">
@@ -88,6 +87,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 
 		<!-- Load JQuery UI -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js" type="text/javascript"></script>
+		<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
 		
 		<!-- Global -->
 		<script src="<?php echo $urlGeral; ?>/scripts/touchPunch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
@@ -100,7 +100,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		<script src="<?php echo $urlGeral; ?>/scripts/selectbox/jquery.selectBox.min.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/timepicker/jquery.timepicker.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/colorpicker/js/colorpicker.js"></script>
-		<script src="<?php echo $urlGeral; ?>/scripts/jpicker/jpicker-1.1.6.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/uistars/jquery.ui.stars.min.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/tiptip/jquery.tipTip.minified.js"></script>
 		<script src="<?php echo $urlGeral; ?>/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
@@ -109,6 +108,11 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 		<script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_ui.js"></script>
 		<script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_forms.js"></script>
 		<script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_mobile.js"></script>
+                <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/livequery/jquery.livequery.min.js"></script>
+                <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/colorpicker-master/jquery.colorpicker.js"></script>
+		<link href="<?php echo $urlGeral; ?>/scripts/colorpicker-master/jquery.colorpicker.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/colorpicker-master/i18n/jquery.ui.colorpicker-nl.js"></script>
+		<script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/colorpicker-master/swatches/jquery.ui.colorpicker-pantone.js"></script>
 		
 		<!-- Live Load (remove after development) -->
 		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>

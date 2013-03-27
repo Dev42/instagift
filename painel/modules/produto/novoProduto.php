@@ -115,12 +115,34 @@ $userController = new UserController();
                                                                     </table>
                                                                 </div>
                                                         </fieldset>
-                                                        <fieldset class="label_side"style="height: 50px;">
+                                                        <fieldset class="label_side"style="height: auto;">
                                                                 <label for="nome">Cores</label>
                                                                 <div class="listImages">
-                                                                    <div>
-                                                                        <div id="colorSelector" class="colorpicker"><div style="background-color: #0000ff"></div></div>
-                                                                    </div>
+                                                                    <table id="tbody_tr_color">
+                                                                        <tr id="2" style="height: 25px;">
+                                                                            <td>
+                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div style="padding-top: 5px;">
+                                                                                    <img id="tr_color" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr id="tr_color_inv" style="display: none; height: 25px;">
+                                                                            <td>
+                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <img style="cursor: pointer;" class="lineRemove" src="<?php echo $urlGeral; ?>/images/icons/personal/minus.png" alt="Remover Image"/>
+                                                                            </td>
+                                                                            <td>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <div style="clear: both;"></div>
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
@@ -141,6 +163,13 @@ $userController = new UserController();
                                                                 <label for="valor">Valor</label>
                                                                 <div>
                                                                     <input title="Valor do produto em reais." name="valor" id="valor" class="tooltip right" type="text">
+                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side">
+                                                                <label for="valor">Frete</label>
+                                                                <div>
+                                                                    <input title="Frete do produto em reais." name="frete" id="frete" class="tooltip right" type="text">
                                                                     <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
                                                                 </div>
                                                         </fieldset>
@@ -201,12 +230,15 @@ $userController = new UserController();
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
 <script>
 $(document).ready(function(){
-    $('#colorSelector').jPicker({
-          window:
-          {
-            expandable: true
-          }
-    });
+    $(".cp-full").livequery(function(){ 
+        $(this).colorpicker({
+            parts: 'full',
+            showOn: 'both',
+            buttonColorize: true,
+            showNoneButton: true,
+            alpha: true
+        });
+    });    
 });
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>

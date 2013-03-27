@@ -23,8 +23,9 @@ $(document).ready(function(){
         newLine.attr("style","");
         newLine.attr("class","");
         newLine.attr("id",newLineId);
-        newLine.attr("style", "height: 30px");
         newLine.appendTo("#tbody_"+$(this).attr("id"));
+        $("#"+newLineId+">td").children().eq(1).remove();
+        newLine.attr("style", "height: 30px");
         
         imgEle = newLine.find("img").attr("id","rm_"+newLineId+"_"+$(this).attr("id"));
         

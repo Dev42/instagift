@@ -12,6 +12,10 @@ class Produto {
     
     protected $valor;
     
+    protected $frete;
+    
+    protected $cores;
+    
     protected $peso;
     
     protected $banner;
@@ -70,6 +74,22 @@ class Produto {
 
     public function setValor($valor) {
         $this->valor = $valor;
+    }
+    
+    public function getFrete() {
+        return $this->frete;
+    }
+
+    public function setFrete($frete) {
+        $this->frete = $frete;
+    }
+
+    public function getCores() {
+        return $this->cores;
+    }
+
+    public function setCores($cores) {
+        $this->cores = $cores;
     }
 
     public function getPeso() {
@@ -148,6 +168,8 @@ class Produto {
             "produto_30_desc_curta"  	=> $this->getDescCurta(),
             "produto_60_desc_completa"  => $this->getDescCompleta(),
             "produto_20_valor" 		=> $this->getValor(),
+            "produto_20_frete" 		=> $this->getFrete(),
+            "produto_40_cores" 		=> $this->getCores(),
             "produto_20_peso"           => $this->getPeso(),
             "produto_30_banner"   	=> $this->getBanner(true),
             "produto_30_foto"   	=> $this->getFoto(true),
@@ -169,6 +191,8 @@ class Produto {
         $this->setDescCurta($row['produto_30_desc_curta']);
         $this->setDescCompleta($row['produto_60_desc_completa']);
         $this->setValor($row['produto_20_valor']);
+        $this->setFrete($row['produto_20_frete']);
+        $this->setCores($row['produto_40_cores']);
         $this->setPeso($row['produto_20_peso']);
         $this->setBanner($row['produto_30_banner']);
         $this->setFoto($row['produto_30_foto']);
