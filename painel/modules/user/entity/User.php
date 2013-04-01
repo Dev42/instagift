@@ -7,6 +7,10 @@ class User {
     protected $nome;
     
     protected $contato;
+	
+	protected $doc1;
+	
+	protected $doc2;
     
     protected $ddd;
     
@@ -53,6 +57,22 @@ class User {
 
     public function setContato($contato) {
         $this->contato = $contato;
+    }
+	
+	public function getDoc1() {
+        return $this->doc1;
+    }
+
+    public function setDoc1($doc1) {
+        $this->doc1 = $doc1;
+    }
+	
+	public function getDoc2() {
+        return $this->doc2;
+    }
+
+    public function setDoc2($doc2) {
+        $this->doc2 = $doc2;
     }
 
     public function getDdd() {
@@ -138,6 +158,8 @@ class User {
             "user_10_id"       => $this->getId(),
             "user_30_nome"     => $this->getNome(),
             "user_30_contato"  => $this->getContato(),
+			"user_30_doc1"  => $this->getDoc1(),
+			"user_30_doc2"  => $this->getDoc2(),
             "user_10_tel_ddd"  => $this->getDdd(),
             "user_10_tel"      => $this->getTelefone(),
             "user_30_endereco" => $this->getEndereco(),
@@ -158,6 +180,8 @@ class User {
         $this->setId($row['user_10_id']);
         $this->setNome($row['user_30_nome']);
         $this->setContato($row['user_30_contato']);
+		$this->setDoc1($row['user_30_doc1']);
+		$this->setDoc2($row['user_30_doc2']);
         $this->setDdd($row['user_10_tel_ddd']);
         $this->setTelefone($row['user_10_tel']);
         $this->setEndereco($row['user_30_endereco']);
