@@ -33,6 +33,5 @@ include("inc/header_site.php");
     </div>
 <?php
 include("inc/footer_site.php");
-session_destroy();
 }
 ?>

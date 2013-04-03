@@ -1,4 +1,5 @@
 <?php
+session_start();
 $menuClass = array("","","");
 $title = "Suas fotos viram presentes";
 

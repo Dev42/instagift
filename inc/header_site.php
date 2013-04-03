@@ -13,8 +13,7 @@
         <div class="row topo">
         	<div class="span12">
             	<div class="logo"><a href="index.php"><img src="images/site/logo-header.png" alt="Instagift - Suas fotos viram presentes"></a></div>
-                <?php 
-					session_start();
+                <?php
 					if (isset($_SESSION['LogadoInstagift'])){
 				?>
                  <div class="menu login">
@@ -28,8 +27,7 @@
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
                         <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
                         <li><a href="contato.php" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
-                <?php 
-					session_start();
+                <?php
 					if (isset($_SESSION['LogadoInstagift'])){
 				?>
                 		<li><a href="process/processLogout.php"><span>SAIR</span></a></li>
