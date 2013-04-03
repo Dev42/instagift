@@ -1,4 +1,5 @@
 <?php
+session_start();
 $menuClass = array("","active","");
 $title = "Como Comprar";
 
