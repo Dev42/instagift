@@ -143,7 +143,7 @@ class User {
             "user_30_endereco" => $this->getEndereco(),
             "user_30_obs"      => $this->getObs(),
             "user_30_username" => $this->getLogin(),
-            "user_30_password" => $this->getSenha(),
+            "user_30_password" => $this->encriptPassword(),
             "user_30_email"    => $this->getEmail(),
             "user_12_type"     => $this->getType(),
             "user_12_active"   => $this->getActive()
