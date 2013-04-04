@@ -234,6 +234,13 @@
 		background-image:url(../images/site/bg-quemja.png);
 	}
 	
+	.fotos{
+		height:300px;
+		width:700px;
+		overflow-y:visible;
+		overflow-x:hidden;
+	}
+	
 	.titquemja{
 		width:135px;
 		height:240;
