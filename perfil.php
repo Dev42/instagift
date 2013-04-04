@@ -58,6 +58,8 @@ if (isset($_SESSION['instaAccess'])){
     var_dump($response);
     echo "</pre>";
     
+    var_dump($Instagram->getUserRecent($_SESSION["instaAccess"]["user"]["id"], 0, 999));
+    
 }
 
 echo "https://api.instagram.com/v1/users/".$_SESSION["instaAccess"]["user"]['id']."/?access_token=".$_SESSION["instaAccess"]['access_token'];

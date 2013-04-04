@@ -4,11 +4,7 @@ class Pedidos {
     
     protected $id;
     
-    protected $cliId;
-    
-    protected $prdId;
-    
-    protected $quantidade;
+    protected $chartId;
     
     protected $status;
     
@@ -25,29 +21,13 @@ class Pedidos {
     public function setId($id) {
         $this->id = $id;
     }
-
-    public function getCliId() {
-        return $this->cliId;
+    
+    public function getChartId() {
+        return $this->chartId;
     }
 
-    public function setCliId($cliId) {
-        $this->cliId = $cliId;
-    }
-
-    public function getPrdId() {
-        return $this->prdId;
-    }
-
-    public function setPrdId($prdId) {
-        $this->prdId = $prdId;
-    }
-
-    public function getQuantidade() {
-        return $this->quantidade;
-    }
-
-    public function setQuantidade($quantidade) {
-        $this->quantidade = $quantidade;
+    public function setChartId($chartId) {
+        $this->chartId = $chartId;
     }
 
     public function getStatus() {
@@ -81,14 +61,12 @@ class Pedidos {
     public function setCreatedAt($createdAt) {
         $this->createdAt = $createdAt;
     }
-
+    
     public function assocEntity(){
         
         $fields = array(
             "ped_10_id"       		=> $this->getId(),
-            "user_10_id"     		=> $this->getCliId(),
-            "produto_10_id"             => $this->getPrdId(),
-            "ped_10_quantidade"         => $this->getQuantidade(),
+            "cht_10_id"     		=> $this->getChartId(),
             "ped_10_status"             => $this->getStatus(),
             "ped_10_pag_status"         => $this->getStatusPag(),
             "ped_10_paymode"            => $this->getPayMode(),
@@ -102,9 +80,7 @@ class Pedidos {
     public function fetchEntity($row){
         
         $this->setId($row['ped_10_id']);
-        $this->setCliId($row['user_10_id']);
-        $this->setPrdId($row['produto_10_id']);
-        $this->setQuantidade($row['ped_10_quantidade']);
+        $this->setChartId($row['cht_10_id']);
         $this->setStatus($row['ped_10_status']);
         $this->setStatusPag($row['ped_10_pag_status']);
         $this->setPayMode($row['ped_10_paymode']);

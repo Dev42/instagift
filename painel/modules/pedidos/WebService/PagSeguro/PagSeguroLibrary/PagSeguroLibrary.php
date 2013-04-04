@@ -19,26 +19,27 @@ limitations under the License.
 
 /*
  * PagSeguro Library Class
- * Version: 2.1.0
- * Date: 19/01/2012
+ * Version: 2.1.3
+ * Date: 29/01/2013
  */
 define('PAGSEGURO_LIBRARY', TRUE);
 require_once "loader".DIRECTORY_SEPARATOR."PagSeguroAutoLoader.class.php";
 class PagSeguroLibrary {
 	
-	const VERSION = "2.1.1";
+	const VERSION = "2.1.3";
 	private static $library;
 	private static $path;
 	public static $resources;
 	public static $config;
 	public static $log;
+	private static $module_version;
 	
 	private function __construct() {
 		self::$path 	 = (dirname(__FILE__));
 		PagSeguroAutoloader::init();
 		self::$resources = PagSeguroResources::init();
 		self::$config 	 = PagSeguroConfig::init();
-		self::$log 	 	 = LogPagSeguro::init();
+		self::$log 	 = LogPagSeguro::init();
 	}
 	
 	public static function init() {
@@ -64,7 +65,7 @@ class PagSeguroLibrary {
 		}
 		
 		if (!class_exists('DOMDocument')) {
-			throw new Exception('PagSeguroLibrary: DOM XML extention is required.');
+			throw new Exception('PagSeguroLibrary: DOM XML extension is required.');
 			$dependencies = false;
 		}
 		
@@ -80,6 +81,13 @@ class PagSeguroLibrary {
 		return self::$path;
 	}
 	
+        public final static function getModuleVersion() {
+		return self::$module_version;
+	}
+        
+        public static function setModuleVersion($version) {
+		return self::$module_version = $version;
+	}
 }
 PagSeguroLibrary::init();
 ?>
