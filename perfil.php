@@ -92,11 +92,11 @@ else
     else
     {
         $me = $facebook->api('/me');
-		$photos = $facebook->api('/me/photos');
-		echo "<pre>";
+		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+		/*echo "<pre>";
 		var_dump($me);
 		var_dump($photos);
-    	echo "</pre>";
+    	echo "</pre>";*/
     }
 }
 
@@ -130,21 +130,15 @@ else
                 <a href="<?php echo $urlFacebook ?>" class="btn large info">Login with Facebook</a>
             </div>
         </div>
-        <div class="row quemja">
-        	<div class="span12">
-            	<div class="titquemja"></div>
-                <div class="imgsquemja">
-                	<img src="images/site/quemjamodelo.png" alt="1">
-                    <img src="images/site/quemjamodelo.png" alt="2">
-                    <img src="images/site/quemjamodelo.png" alt="3">
-                    <img src="images/site/quemjamodelo.png" alt="4">
-                    <img src="images/site/quemjamodelo.png" alt="5">
-                    <img src="images/site/quemjamodelo.png" alt="6">
-                    <img src="images/site/quemjamodelo.png" alt="7">
-                    <img src="images/site/quemjamodelo.png" alt="8">
-                    <img src="images/site/quemjamodelo.png" alt="9">
-                    <img src="images/site/quemjamodelo.png" alt="10">
-                </div>
+        <div class="row fotos clearfix">
+        	<div class="span8 clearfix">
+            	<?php
+					foreach ($photos['data'] as $photo){
+				?>
+                	<img src="<?php echo $photo['picture']; ?>" alt="">
+                <?php
+					}
+				?>
             </div>
         </div>
 <?php
