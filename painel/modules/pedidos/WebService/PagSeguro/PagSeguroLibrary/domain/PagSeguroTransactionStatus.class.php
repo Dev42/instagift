@@ -74,7 +74,14 @@ class PagSeguroTransactionStatus {
 		$value = ($value == null ? $this->value : $value);
 		return array_search($this->value, self::$statusList);
 	}
-	
+
+	/**
+	 * Get status list
+	 * @return array
+	 */
+	public static function getStatusList(){
+		return self::$statusList;
+	}
 }
 
 ?>

@@ -44,12 +44,12 @@ class createPaymentRequest {
 		// Sets shipping information for this payment request
 		$CODIGO_SEDEX = PagSeguroShippingType::getCodeByType('SEDEX');
 		$paymentRequest->setShippingType($CODIGO_SEDEX);
-		$paymentRequest->setShippingAddress('01452002',  'Av. Brig. Faria Lima',  '1384', 'apto. 114', 'Jardim Paulistano', 'São Paulo', 'SP', 'BRA');
+		$paymentRequest->setShippingAddress('01452002',  'Av. Brig. Faria Lima',  '1384', 'apto. 114', 'Jardim Paulistano', 'Sï¿½o Paulo', 'SP', 'BRA');
 		
 		// Sets your customer information.
-		$paymentRequest->setSender('João Comprador', 'comprador@uol.com.br', '11', '56273440');
+		$paymentRequest->setSender('Joï¿½o Comprador', 'comprador@uol.com.br', '11', '56273440');
 		
-		$paymentRequest->setRedirectUrl("http://www.lojamodelo.com.br");
+		$paymentRequest->setRedirectUrl("http://www.instagift.com.br");
 		
 		try {
 			
@@ -59,7 +59,7 @@ class createPaymentRequest {
 			* You can also get your credentails from a config file. See an example:
 			* $credentials = PagSeguroConfig::getAccountCredentials();
 			*/			
-			$credentials = new PagSeguroAccountCredentials("your@email.com", "your_token_here");
+			$credentials = new PagSeguroAccountCredentials("giftinsta@gmail.com", "F5163FDBEEA34F01B6911BB1E642E73E");
 			
 			
 			// Register this payment request in PagSeguro, to obtain the payment URL for redirect your customer.
@@ -75,7 +75,7 @@ class createPaymentRequest {
 	
 	public static function printPaymentUrl($url) {
 		if ($url) {
-			echo "<h2>Criando requisição de pagamento</h2>";
+			echo "<h2>Criando requisiï¿½ï¿½o de pagamento</h2>";
 			echo "<p>URL do pagamento: <strong>$url</strong></p>";
 			echo "<p><a title=\"URL do pagamento\" href=\"$url\">Ir para URL do pagamento.</a></p>";
 		}

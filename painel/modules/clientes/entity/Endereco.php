@@ -13,6 +13,8 @@ class Endereco {
     
     protected $complemento;
     
+    protected $bairro;
+    
     protected $cidade;
     
     protected $estado;
@@ -54,6 +56,14 @@ class Endereco {
     public function getComplemento() {
         return $this->complemento;
     }
+    
+    public function getBairro() {
+        return $this->bairro;
+    }
+
+    public function setBairro($bairro) {
+        $this->bairro = $bairro;
+    }
 
     public function setComplemento($complemento) {
         $this->complemento = $complemento;
@@ -88,6 +98,7 @@ class Endereco {
         $this->setId($row['end_10_id']);
         $this->setClienteId($row['cli_10_id']);
         $this->setEndereco($row['end_30_logradouro']);
+        $this->setBairro($row['end_30_bairro']);
         $this->setNumero($row['end_10_numero']);
         $this->setComplemento($row['end_30_complemento']);
         $this->setCidade($row['end_30_cidade']);
@@ -103,6 +114,7 @@ class Endereco {
             'end_10_id' => $this->getId(),
             'cli_10_id' => $this->getClienteId(),
             'end_30_logradouro' => $this->getEndereco(),
+            'end_30_bairro' => $this->getBairro(),
             'end_10_numero' => $this->getNumero(),
             'end_30_complemento' => $this->getComplemento(),
             'end_30_cidade' => $this->getCidade(),
