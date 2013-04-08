@@ -1,7 +1,7 @@
 <?php
+session_start();
 $menuClass = array("","","");
 $title = "Suas fotos viram presentes";
-session_start();
 include("inc/header_site.php");
 include("WebServer/Instagram/Instagram.php");
 include("WebServer/Facebook/facebook.php");
@@ -17,7 +17,7 @@ $access_token_parameters = array(
         'client_id'                =>     '097713367ef9406db262c4b7592b43bc',
         'client_secret'            =>     '171763c7c85e456e82b23f42ac3682f1',
         'grant_type'               =>     'authorization_code',
-        'redirect_uri'             =>     'http://localhost/instagift/perfil.php'
+        'redirect_uri'             =>     'http://instagift.com.br/instagift/perfil.php'
 );
 if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])) {
     $code = $_GET['code'];
@@ -109,11 +109,11 @@ else
     else
     {
         $me = $facebook->api('/me');
-		$photos = $facebook->api('/me/photos');
-		echo "<pre>";
+		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+		/*echo "<pre>";
 		var_dump($me);
 		var_dump($photos);
-    	echo "</pre>";
+    	echo "</pre>";*/
     }
 }
 
@@ -139,7 +139,7 @@ else
             }
             ?>
             <div>
-                <a href="https://api.instagram.com/oauth/authorize/?client_id=097713367ef9406db262c4b7592b43bc&redirect_uri=http://localhost/instagift/perfil.php&response_type=code" class="btn large info">Login with Instagram</a>
+                <a href="https://api.instagram.com/oauth/authorize/?client_id=097713367ef9406db262c4b7592b43bc&redirect_uri=http://instagift.com.br/instagift/perfil.php&response_type=code" class="btn large info">Login with Instagram</a>
             </div>
         </div>
         <div class="row" style="margin: 30px 0px;">
@@ -147,21 +147,15 @@ else
                 <a href="<?php echo $urlFacebook ?>" class="btn large info">Login with Facebook</a>
             </div>
         </div>
-        <div class="row quemja">
-        	<div class="span12">
-            	<div class="titquemja"></div>
-                <div class="imgsquemja">
-                	<img src="images/site/quemjamodelo.png" alt="1">
-                    <img src="images/site/quemjamodelo.png" alt="2">
-                    <img src="images/site/quemjamodelo.png" alt="3">
-                    <img src="images/site/quemjamodelo.png" alt="4">
-                    <img src="images/site/quemjamodelo.png" alt="5">
-                    <img src="images/site/quemjamodelo.png" alt="6">
-                    <img src="images/site/quemjamodelo.png" alt="7">
-                    <img src="images/site/quemjamodelo.png" alt="8">
-                    <img src="images/site/quemjamodelo.png" alt="9">
-                    <img src="images/site/quemjamodelo.png" alt="10">
-                </div>
+        <div class="row fotos clearfix">
+        	<div class="span8 clearfix">
+            	<?php
+					foreach ($photos['data'] as $photo){
+				?>
+                	<img src="<?php echo $photo['picture']; ?>" alt="">
+                <?php
+					}
+				?>
             </div>
         </div>
 <?php

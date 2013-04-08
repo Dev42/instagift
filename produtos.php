@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'config/connection.php';
 include_once 'painel/conf/classLoader.php';
 
@@ -78,7 +79,7 @@ if (isset($_GET['id'])){
 		$lineBanner = '<div class="span12">';
 		$uploadPathBanner = $uploadPath."produtos/banners/".$v->getBanner(true);
 		$bannerImg = '<img src="'.$uploadPathBanner.'" width="960" height="338" alt="'.$v->getNome().'" />';
-		$lineBanner .= '<a href="#" onClick="showBox('.$v->getId().')">'.$bannerImg.'</a>';
+		$lineBanner .= '<a onClick="showBox('.$v->getId().')">'.$bannerImg.'</a>';
 		$lineBanner .= '</div>';
 		echo $lineBanner;
 		

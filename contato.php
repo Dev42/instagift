@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['LogadoInstagift'])){
-	header("Location: painel.php");
-}else{
-$menuClass = array("","","");
+$menuClass = array("","","active");
 $title = "Login";
 include("inc/header_site.php");
 ?>
@@ -29,6 +26,4 @@ include("inc/header_site.php");
     </div>
 <?php
 include("inc/footer_site.php");
-session_destroy();
-}
 ?>
