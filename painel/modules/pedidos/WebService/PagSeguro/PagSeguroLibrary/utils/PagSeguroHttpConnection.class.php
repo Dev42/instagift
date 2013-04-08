@@ -72,7 +72,8 @@ class PagSeguroHttpConnection{
 		$options = Array(
 			CURLOPT_HTTPHEADER => Array(
 				"Content-Type: application/x-www-form-urlencoded; charset=".$charset,
-				$contentLength
+				$contentLength,
+				'lib-description=php-v'.PagSeguroLibrary::getVersion()
 			),	
 			CURLOPT_URL => $url,
 			CURLOPT_RETURNTRANSFER => true,
@@ -81,8 +82,13 @@ class PagSeguroHttpConnection{
 			CURLOPT_CONNECTTIMEOUT => $timeout,
 			//CURLOPT_TIMEOUT => $timeout
 		); 
+                
+		// adding module version
+		if (!is_null(PagSeguroLibrary::getModuleVersion()))
+			array_push($options[CURLOPT_HTTPHEADER], 'module-description='.PagSeguroLibrary::getModuleVersion());
+                
 		$options = ($options + $methodOptions);
-		
+                
 		$curl = curl_init();
 		curl_setopt_array($curl, $options);			
 		$resp  = curl_exec($curl);

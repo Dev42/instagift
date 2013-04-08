@@ -58,6 +58,23 @@ if (isset($_SESSION['instaAccess'])){
     var_dump($response);
     echo "</pre>";
     
+    $totalMedia = $response["data"]["counts"]["media"];
+    
+    $fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
+    $fotoResp = json_decode($fotosUser, true);
+    
+    var_dump($fotoResp);
+    
+    echo "<div id='fotoInstaThumb>";
+
+    foreach($fotoResp as $k => $v){
+        echo "<pre>";
+        var_dump($v);
+        echo "</pre>";
+    }
+
+    echo "</div>";
+    
 }
 
 echo "https://api.instagram.com/v1/users/".$_SESSION["instaAccess"]["user"]['id']."/?access_token=".$_SESSION["instaAccess"]['access_token'];
