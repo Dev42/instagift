@@ -1,7 +1,21 @@
 <?php
 session_start();
+include_once 'config/connection.php';
+include_once 'painel/conf/classLoader.php';
+
 $menuClass = array("","","");
 $title = "Suas fotos viram presentes";
+
+$prdFront = new ProdutoFrontController();
+$prdList = $prdFront->listAction(false, "produto_12_active = 1");
+
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+    $geralUrl = "http://localhost/instagift/";
+} else {
+    $geralUrl = "http://instagift.com.br/instagift/";
+}
+
+$uploadPath = $geralUrl . "images/uploads/";
 
 include("inc/header_site.php");
 ?>
@@ -20,18 +34,12 @@ include("inc/header_site.php");
         	<div class="span12">
 				<div id="slides">
                     <div class="slides_container">
-                        <a href="produtos.php"><img src="images/banners/imas.jpg" width="960" height="338" alt="Imãs"></a>
-                        <a href="produtos.php"><img src="images/banners/minibook.jpg" width="960" height="338" alt="Minibook"></a>
-                        <a href="produtos.php"><img src="images/banners/squares.jpg" width="960" height="338" alt="Squares"></a>
-                        <a href="produtos.php"><img src="images/banners/caixamdf.jpg" width="960" height="338" alt="Caixa MDF"></a>
-                        <a href="produtos.php"><img src="images/banners/minibox.jpg" width="960" height="338" alt="Minibox"></a>
-                        <a href="produtos.php"><img src="images/banners/cards.jpg" width="960" height="338" alt="Cards"></a>
-                        <a href="produtos.php"><img src="images/banners/canvas.jpg" width="960" height="338" alt="Canvas"></a>
-                        <a href="produtos.php"><img src="images/banners/postais.jpg" width="960" height="338" alt="Postais"></a>
-                        <a href="produtos.php"><img src="images/banners/sticker.jpg" width="960" height="338" alt="Sticker"></a>
-                        <a href="produtos.php"><img src="images/banners/album.jpg" width="960" height="338" alt="Álbum"></a>
-                        <a href="produtos.php"><img src="images/banners/quadro.jpg" width="960" height="338" alt="Quadro"></a>
-                        <a href="produtos.php"><img src="images/banners/portaretrato.jpg" width="960" height="338" alt="Porta-Retrato"></a>
+                    	<?php
+                    		foreach ($prdList as $k => $v){
+								$uploadPathBanner = $uploadPath."produtos/banners/".$v->getBanner(true);
+                        		echo '<a href="produtos.php?id='.$v->getId().'"><img src="'.$uploadPathBanner.'" width="960" height="338" alt="'.$v->getNome().'"></a>';
+							}
+                        ?>
                     </div>
                     <a href="#" class="prev"><img src="images/site/btn-anterior.png" width="87" height="44" alt="Anterior"></a>
 					<a href="#" class="next"><img src="images/site/btn-seguinte.png" width="87" height="44" alt="Próxima"></a>

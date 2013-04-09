@@ -3,10 +3,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Instagift - <?php echo $title; ?></title> 
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />  
-    <link href="css/style_site.css" rel="stylesheet" type="text/css" />  
+    <link href="css/style_site.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-lightbox.css" rel="stylesheet" type="text/css" />   
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/slides.jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap-lightbox.js"></script>
 </head>
 <body>
 	<div class="container">

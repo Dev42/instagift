@@ -15,6 +15,7 @@ if (isset($_GET['id'])){
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
 	$title = "Produtos";
+	$link = "produtos.php?id=";
 }
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
@@ -76,7 +77,7 @@ if (isset($_GET['id'])){
 	?>
 	<div class="row produtos">
 	<?php
-		$lineBanner = '<div class="span12">';
+		$lineBanner = '<div class="span12 produto">';
 		$uploadPathBanner = $uploadPath."produtos/banners/".$v->getBanner(true);
 		$bannerImg = '<img src="'.$uploadPathBanner.'" width="960" height="338" alt="'.$v->getNome().'" />';
 		$lineBanner .= '<a onClick="showBox('.$v->getId().')">'.$bannerImg.'</a>';
@@ -84,8 +85,20 @@ if (isset($_GET['id'])){
 		echo $lineBanner;
 		
 		$boxBanner = '<div class="span12 boxprodutos" id="box_'.$v->getId().'" style="display:none;">';
-		$boxBanner .= '<img src="images/site/btn-fechar.jpg" alt="Fechar" onClick="hideBox('.$v->getId().')" style="float:right; margin-right:20px; cursor:pointer;" />';
-		$boxBanner .= '<a href="'.$link.$v->getId().'"><img src="images/site/modelo-box.jpg" alt="Modelo Box Produtos" border="0" /></a>';
+		$boxBanner .= 	'<div class="span4">';
+		$boxBanner .= 	'</div>';
+		$boxBanner .= 	'<div class="span4 descricaobox">';
+		$boxBanner .= 		'<span>'.$v->getDescCompleta().'</span>';
+		$boxBanner .= 	'</div>';
+		$boxBanner .= 	'<div class="span4">';
+		$boxBanner .= 		'<div class="fechar" onClick="hideBox('.$v->getId().')"></div>';
+		$boxBanner .= 		'<div class="txtbox">';
+		$boxBanner .= 			'<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Instagift para selecionar suas fotos.</span>';
+		$boxBanner .= 		'</div>';
+		$boxBanner .= 		'<div class="comprar">';
+		$boxBanner .= 			'<a href="'.$link.$v->getId().'">Comprar</a>';
+		$boxBanner .= 		'</div>';
+		$boxBanner .= 	'</div>';
 		$boxBanner .= '</div>';
 		echo $boxBanner;
 	?>
