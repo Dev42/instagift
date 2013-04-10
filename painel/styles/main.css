@@ -91,8 +91,7 @@ Sidebar and Topbar
 }
 
 #sidebar a.logo {
-	margin-bottom: 5px;
-	margin-left: -7px;
+	margin:0 0 10px 10px !important;
 }
 
 a.logo span {
@@ -100,12 +99,12 @@ a.logo span {
 }
 
 a.logo {
-	background: url(../images/adminica_logo_black-trans.png) no-repeat;
+	background: url(../../images/site/logo-footer.png) no-repeat;
 	display: block;
-	height: 87px;
-	width: 180px;
+	height: 42px;
+	width: 153px;
 	z-index: 10;
-	margin-top: -15px;
+	margin-top: 15px;
 }
 
 /*------User Box --------*/
@@ -2511,11 +2510,12 @@ Login Box
 }
 
 #login_box a#login_logo {
-	background: transparent url("../images/adminica_logo_black-trans.png") 0 -15px no-repeat;
+	background: transparent url("../../../images/site/logo-footer.png") 0 no-repeat;
 	position: relative;
 	display: block;
-	height: 67px;
-	width: 253px;
+	height: 42px;
+	width: 153px;
+	margin:15px 0 0 15px !important;
 }
 
 #login_box a#login_logo span {
