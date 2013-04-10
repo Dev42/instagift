@@ -2,7 +2,7 @@
 if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
     $urlGeral = "http://localhost/instagift/painel";
 }else {
-    $urlGeral = "http://instagift.com.br/painel";
+    $urlGeral = "http://instagift.com.br/instagift/painel";
 }
 include 'includes/header.php';
 ?>

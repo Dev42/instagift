@@ -73,7 +73,7 @@
                 ?>
 		<li><a href="<?php echo $urlGeral; ?>/logout.php" class="dialog_button" data-dialog="logout"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/locked_2.png"/></a></li>
 	</ul>
-	<?php include $_SERVER['DOCUMENT_ROOT'].'/painel/includes/dialog_logout.php'?>		
+	<?php include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/includes/dialog_logout.php'?>		
 
 	
 	
