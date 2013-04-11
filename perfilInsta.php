@@ -13,18 +13,43 @@ if (isset($_SESSION['LogadoInstagift'])){
 			'grant_type'               =>     'authorization_code',
 			'redirect_uri'             =>     'http://localhost/instagift/perfilInsta.php'
 	);
+	if($_GET['action'] == 'logout'){
+		unset($_SESSION['instaAccess']);
+	}else{
+		if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])) {
+			$code = $_GET['code'];
 		
-	if (isset($_SESSION['instaAccess'])){
+			$url = "https://api.instagram.com/oauth/access_token";
 		
-		$Instagram = new Instagram($access_token_parameters);
-		$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
+			$access_token_parameters['code'] = $code;
+			
+			$curl = curl_init($url);    // we init curl by passing the url
+			curl_setopt($curl,CURLOPT_POST,true);   // to send a POST request
+			curl_setopt($curl,CURLOPT_POSTFIELDS,$access_token_parameters);   // indicate the data to send
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			$result = curl_exec($curl);   // to perform the curl session
+			curl_close($curl);   // to close the curl session
 		
-		$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
+			$arr = json_decode($result,true);
+			
+			if (!isset($arr['OAuthException'])){
+				$_SESSION['instaAccess'] = $arr;
+			}
 		
-		$response = json_decode($userInfo, true);
+		}
 		
-		$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
-		$instaPhotos = json_decode($fotosUser, true);
+		if (isset($_SESSION['instaAccess'])){
+			
+			$Instagram = new Instagram($access_token_parameters);
+			$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
+			
+			$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
+			
+			$response = json_decode($userInfo, true);
+			
+			$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
+			$instaPhotos = json_decode($fotosUser, true);
+		}
 	}
 	
 	$facebook = new Facebook(array(
@@ -37,7 +62,7 @@ if (isset($_SESSION['LogadoInstagift'])){
 	if($o_user == 0)
 	{
 		$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
-		$urlFacebook = str_replace('perfil.php','perfilFb.php', $urlFacebook);
+		$urlFacebook = str_replace('perfilInsta.php','perfilFb.php', $urlFacebook);
 	}
 	else
 	{
@@ -45,7 +70,6 @@ if (isset($_SESSION['LogadoInstagift'])){
 		$picture = $facebook->api('/me?fields=picture');
 		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
 	}
-	
 	?>
 			<div class="clearfix"></div>
 			<div class="row" style="margin: 30px 0px;">

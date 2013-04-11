@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['LogadoInstagift'])){
-	header("Location: painel.php");
+	header("Location: perfil.php");
 }else{
 $menuClass = array("","","");
 $title = "Cadastre-se";

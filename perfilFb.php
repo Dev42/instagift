@@ -37,15 +37,27 @@ if (isset($_SESSION['LogadoInstagift'])){
 	if($o_user == 0)
 	{
 		$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
-		$urlFacebook = str_replace('perfil.php','perfilFb.php', $urlFacebook);
 	}
 	else
 	{
-		$me = $facebook->api('/me');
-		$picture = $facebook->api('/me?fields=picture');
-		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+		if($_GET['action'] == 'finish' )
+		{
+		   foreach($_SESSION as $kSession => $vSession){
+				$pos = strpos($kSession, "fb_");
+				if($pos !== false){
+					unset($_SESSION[$kSession]);
+				}
+			}
+			$o_user = 0;
+			header("Location: perfil.php");
+		}
+		else
+		{
+			$me = $facebook->api('/me');
+			$picture = $facebook->api('/me?fields=picture');
+			$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+		}
 	}
-	
 	?>
 			<div class="clearfix"></div>
 			<div class="row" style="margin: 30px 0px;">
