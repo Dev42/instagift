@@ -2,6 +2,8 @@
 session_start();
 include_once 'config/connection.php';
 include_once 'painel/conf/classLoader.php';
+include("WebServer/Instagram/Instagram.php");
+include("WebServer/Facebook/facebook.php");
 
 $menuClass = array("active","","");
 
@@ -12,6 +14,46 @@ if (isset($_GET['id'])){
 	foreach ($prdList as $k => $v){
 		$title = "Produto - ".$v->getNome();
 	}
+	
+	$access_token_parameters = array(
+			'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6', //'097713367ef9406db262c4b7592b43bc',
+			'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b', //'171763c7c85e456e82b23f42ac3682f1',
+			'grant_type'               =>     'authorization_code',
+			'redirect_uri'             =>     'http://localhost/instagift/perfilInsta.php'
+	);
+		
+	if (isset($_SESSION['instaAccess'])){
+		
+		$Instagram = new Instagram($access_token_parameters);
+		$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
+		
+		$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
+		
+		$response = json_decode($userInfo, true);
+		
+		$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
+		$instaPhotos = json_decode($fotosUser, true);
+	}
+	
+	$facebook = new Facebook(array(
+			'appId'  => '619446894748617',
+			'secret' => 'e36eb608b47d070353394814c9541b10'
+	));
+	 
+	$o_user = $facebook->getUser();
+	 
+	if($o_user == 0)
+	{
+		$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
+		$urlFacebook = str_replace('perfilInsta.php','perfilFb.php', $urlFacebook);
+	}
+	else
+	{
+		$me = $facebook->api('/me');
+		$picture = $facebook->api('/me?fields=picture');
+		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+	}
+	
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
 	$title = "Produtos";
@@ -33,7 +75,7 @@ if (isset($_GET['id'])){
 	<div class="row produtoInfo">
     	<div class="span4">
         	<div class="row">
-            	<span class="nomeProduto">
+            	<span class="titProduto">
                 <?php
 					echo $v->getNome();
 				?>
@@ -54,20 +96,28 @@ if (isset($_GET['id'])){
                 </span>
             </div>
             <div class="row dica">
-            	<span class="nomeProduto">Dica</span>
+            	<span class="titProduto">Dica</span>
                 <br />
                 <span class="descProduto">Escolha a imagem desejada e clique para selecionar. Caso você queira remover uma imagem selecionada, basta clicar nela na lista de imagens selecionadas.</span>
             </div>
         </div>
         <div class="span8">
         	<div class="row">
-            	<?php
-            		$fotosGeral = $mediasUser['data'];
-					foreach($fotosGeral as $l => $u){
-						echo "<img src='".$u['images']['thumbnail']['url']."' />";
-					}
-				?>
+            	<span class="titProduto">Escolha suas fotos</span>
             </div>
+            <div class="row">
+                <div class="fotos">
+                    <?php
+                        foreach ($instaPhotos['data'] as $instaPhoto){
+                            echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" class="fotoInstagram">';
+                        }
+        
+                        foreach ($photos['data'] as $photo){
+                            echo '<img src="'.$photo['picture'].'" alt="" class="fotoFacebook">';
+                        }
+                    ?>
+                </div>
+        	</div>
         </div>
     </div>
 <?php
