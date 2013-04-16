@@ -56,6 +56,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/FotoProdutoCo
 /* Pedido Module */
 # Entity
 include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/entity/Pedidos.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/entity/Chart.php';
 # /Entity
 
 # Controller

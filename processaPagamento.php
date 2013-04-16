@@ -50,7 +50,8 @@ class processaPagamento {
         $CODIGO_ENTREGA = PagSeguroShippingType::getCodeByType('NOT_SPECIFIED');
         $paymentRequest->setShippingType($CODIGO_ENTREGA);
         
-        $paymentRequest->setShippingAddress(
+        /*
+         * $paymentRequest->setShippingAddress(
                 $endInfo[1]->getCep(),
                 $endInfo[1]->getEndereco(),
                 $endInfo[1]->getNumero(), 
@@ -60,12 +61,29 @@ class processaPagamento {
                 $endInfo[1]->getEstado(),
                 'BRA'
                 );
+         */
+        $paymentRequest->setShippingAddress(
+                "02420-001",
+                "Avenida Zumkeller",
+                "792", 
+                "apto. 53",
+                "Mandaqui", 
+                "São Paulo",
+                "SP",
+                'BRA'
+                );
         // Sets your customer information.
-        $paymentRequest->setSender(
+        /*$paymentRequest->setSender(
                 $cntInfo[1]->getNome(),
                 $cntInfo[1]->getEmail(), 
                 $cntInfo[1]->getDdd(),
                 $cntInfo[1]->getTel()
+                );*/
+        $paymentRequest->setSender(
+                "André Simões",
+                "andre.simoes@quup.com.br", 
+                "11",
+                "98214-3776"
                 );
 
         $paymentRequest->setRedirectUrl("http://www.instagift.com.br");

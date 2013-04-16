@@ -111,19 +111,25 @@ if (isset($_GET['id'])){
             </div>
         </div>
         <div class="span8">
-        	<form name="comprarForm" method="post" action="#">
+            <form name="comprarForm" method="post" action="process/processNovoCarrinho.php">
+                <input type="hidden" value="<?php echo $_GET['id']; ?>" name="prdId" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
             </div>
             <div class="row listaFotos">
                 <div class="fotos">
                     <?php
-                        foreach ($instaPhotos['data'] as $instaPhoto){
-                            echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\''.$v->getMinimoFotos().'\')">';
+                    
+                        if (isset($instaPhotos['data'])){
+                            foreach ($instaPhotos['data'] as $instaPhoto){
+                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\''.$v->getMinimoFotos().'\')">';
+                            }
                         }
         
-                        foreach ($photos['data'] as $photo){
-                            echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\''.$v->getMinimoFotos().'\')">';
+                        if (isset($photos['data'])){
+                            foreach ($photos['data'] as $photo){
+                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\''.$v->getMinimoFotos().'\')">';
+                            }
                         }
                     ?>
                 </div>
@@ -157,7 +163,7 @@ if (isset($_GET['id'])){
 		$lineBanner .= '<a onClick="showBox('.$v->getId().')">'.$bannerImg.'</a>';
 		$lineBanner .= '</div>';
 		echo $lineBanner;
-		
+
 		$boxBanner = '<div class="span12 boxprodutos" id="box_'.$v->getId().'" style="display:none;">';
 		$boxBanner .= 	'<div class="span4">';
 		$boxBanner .= 		'<div class="thumbs">';
