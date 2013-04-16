@@ -179,6 +179,24 @@
 		font-weight:lighter;
 	}
 	
+	.btn-comprar #comprar{
+		width:150px;
+		height:52px;
+		text-align:center;
+		background-image:url(../images/site/btn-login.png);
+		background-color:transparent;
+		position:relative;
+		border:none !important;
+		border-radius:0 !important;
+		display:block;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		text-decoration:none;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+	}
+	
 	.boxprodutos .comprar a{
 		width:150px;
 		height:37px;
@@ -247,6 +265,11 @@
 		margin:130px 0 20px 0;
 	}
 	
+	.row.comprar{
+		float:right;
+		margin:0 20px 40px 0;
+	}
+	
 	.passoapasso{
 		border-bottom:1px solid #9a9d9a;
 		background-color:#f9f9f9;
@@ -260,7 +283,7 @@
 		padding:20px 0;
 	}
 	
-	.fotos{
+	.listaFotos .fotos{
 		margin-bottom:40px;
 	}
 	

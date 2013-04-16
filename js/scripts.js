@@ -17,6 +17,9 @@ function adicionarFoto(urlExibicao, urlImpressao, nrFotos){
 		var idFoto = new Date().getTime();
 		$('#selecaoFotos').prepend('<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\')" id="foto_'+idFoto+'">');
 		$('#count').html(fotosEscolhidas+1);
+		if(fotosEscolhidas+1 == parseInt(nrFotos)){
+			$('#btn-comprar').show();
+		}
 	}else{
 		alert("Número máximo de fotos para este produto já foi atingido");
 	}
@@ -41,6 +44,7 @@ function removerFoto(idFoto, urlImpressao){
 	}
 	$('#foto_'+idFoto).remove();
 	$('#count').html(fotosEscolhidas-1);
+	$('#btn-comprar').hide();
 }
 
 function verificaNrFotosEscolhidas(){
