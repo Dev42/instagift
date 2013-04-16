@@ -231,7 +231,6 @@
 	
 	.produtoInfo .fotoProduto{
 		border:2px solid #2e4544;
-		margin: 10px 0;
 	}
 	
 	.produtoInfo .descProduto{
@@ -239,6 +238,7 @@
 		font-weight:lighter;
 		font-size:14px;
 		color:#2e4544;
+		margin: 10px 0;
 	}
 	
 	.comocomprar{
@@ -258,6 +258,10 @@
 	
 	.dica{
 		padding:20px 0;
+	}
+	
+	.fotos{
+		margin-bottom:40px;
 	}
 	
 	.instrucoes{

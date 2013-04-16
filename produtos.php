@@ -109,13 +109,21 @@ if (isset($_GET['id'])){
                 <div class="fotos">
                     <?php
                         foreach ($instaPhotos['data'] as $instaPhoto){
-                            echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" class="fotoInstagram">';
+                            echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\''.$v->getMinimoFotos().'\')">';
                         }
         
                         foreach ($photos['data'] as $photo){
-                            echo '<img src="'.$photo['picture'].'" alt="" class="fotoFacebook">';
+                            echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\''.$v->getMinimoFotos().'\')">';
                         }
                     ?>
+                </div>
+        	</div>
+            <div class="row fotosSelecionadas">
+            	<span class="titProduto">Fotos Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto" id="count"> de <?php echo $v->getMinimoFotos(); ?> fotos selecionadas</span>
+            </div>
+            <div class="row">
+                <div class="fotos" id="selecaoFotos">
+                    <input type="hidden" name="urlFotos" id="urlFotos" />
                 </div>
         	</div>
         </div>
