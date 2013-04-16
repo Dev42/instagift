@@ -39,20 +39,20 @@ if (isset($_SESSION['LogadoInstagift'])){
 		if($_GET['action'] == 'finish' )
 		{
 		   foreach($_SESSION as $kSession => $vSession){
-				$pos = strpos($kSession, "fb_");
-				if($pos !== false){
-					unset($_SESSION[$kSession]);
-				}
-			}
-			$o_user = 0;
-			header("Location: perfil.php");
+                        $pos = strpos($kSession, "fb_");
+                        if($pos !== false){
+                                unset($_SESSION[$kSession]);
+                        }
+                    }
+                    $o_user = 0;
+                    header("Location: perfil.php");
 		}
 		else
 		{
-			include("process/processLastAccess.php");
-			gravarUltimoAcesso($o_user,2);
-			$me = $facebook->api('/me');
-			$picture = $facebook->api('/me?fields=picture');
+                    include("process/processLastAccess.php");
+                    gravarUltimoAcesso($o_user,2);
+                    $me = $facebook->api('/me');
+                    $picture = $facebook->api('/me?fields=picture');
 		}
 	}
 	
