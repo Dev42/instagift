@@ -44,10 +44,10 @@ if (isset($_SESSION['LogadoInstagift'])){
 			
 			$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
 			
-			$response = json_decode($userInfo, true);
+			include("process/processLastAccess.php");
+			gravarUltimoAcesso($_SESSION["instaAccess"]["user"]["id"],1);
 			
-			$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
-			$instaPhotos = json_decode($fotosUser, true);
+			$response = json_decode($userInfo, true);
 		}
 	}
 	
@@ -67,7 +67,6 @@ if (isset($_SESSION['LogadoInstagift'])){
 	{
 		$me = $facebook->api('/me');
 		$picture = $facebook->api('/me?fields=picture');
-		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
 	}
 	
 	include("inc/header_site.php");
