@@ -1,5 +1,5 @@
 <?php 
-	include_once '../config/connection.php';
+	include_once 'config/connection.php';
 	
 	function gravarUltimoAcesso($idConta,$tipoConta){
 		$idUser = $_SESSION['IdInstagift'];
