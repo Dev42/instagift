@@ -21,9 +21,6 @@ if (isset($_SESSION['LogadoInstagift'])){
 		$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
 		
 		$response = json_decode($userInfo, true);
-		
-		$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
-		$instaPhotos = json_decode($fotosUser, true);
 	}
 	
 	$facebook = new Facebook(array(
@@ -42,7 +39,6 @@ if (isset($_SESSION['LogadoInstagift'])){
 	{
 		$me = $facebook->api('/me');
 		$picture = $facebook->api('/me?fields=picture');
-		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
 	}
 
 	include("inc/header_site.php");
