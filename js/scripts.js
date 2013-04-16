@@ -30,7 +30,14 @@ function removerFoto(idFoto, urlImpressao){
 	if(fotosEscolhidas == 1){
 		inputFotos.value = '';
 	}else{
-		inputFotos.value = inputFotos.value.replace(";"+urlImpressao,"");
+		var arrFotos = inputFotos.value.split(";");
+		for(i=0;i<=arrFotos.length-1;i++){
+			if(arrFotos[i] == urlImpressao){
+				arrFotos.splice(i, 1);
+				break;
+			}
+		}
+		inputFotos.value = arrFotos.join(";");
 	}
 	$('#foto_'+idFoto).remove();
 	$('#count').html(fotosEscolhidas-1);
@@ -44,6 +51,5 @@ function verificaNrFotosEscolhidas(){
 		var arrFotos = fotos.split(";");
 		nrFotos =  arrFotos.length;
 	}
-	alert(nrFotos);
 	return nrFotos;
 }
