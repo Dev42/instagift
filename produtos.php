@@ -110,10 +110,11 @@ if (isset($_GET['id'])){
             </div>
         </div>
         <div class="span8">
+        	<form name="comprarForm" method="post" action="#">
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
             </div>
-            <div class="row">
+            <div class="row listaFotos">
                 <div class="fotos">
                     <?php
                         foreach ($instaPhotos['data'] as $instaPhoto){
@@ -134,6 +135,12 @@ if (isset($_GET['id'])){
                     <input type="hidden" name="urlFotos" id="urlFotos" />
                 </div>
         	</div>
+            <div class="row comprar">
+                <div class="btn-comprar" id="btn-comprar" style="display:none;">
+                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                </div>
+            </div>
+            </form>
         </div>
     </div>
 <?php
