@@ -8,6 +8,7 @@ include("WebServer/Facebook/facebook.php");
 $menuClass = array("active","","");
 
 $prdFront = new ProdutoFrontController();
+$fotoPrd = new FotoProdutoController();
 
 if (isset($_GET['id'])){
     $prdList = $prdFront->listAction($_GET['id'], "produto_12_active = 1");
@@ -152,6 +153,13 @@ if (isset($_GET['id'])){
 		
 		$boxBanner = '<div class="span12 boxprodutos" id="box_'.$v->getId().'" style="display:none;">';
 		$boxBanner .= 	'<div class="span4">';
+                $listaFotos = $fotoPrd->listAction(false,$v->getId());
+                foreach($listaFotos as $kFotoPrd => $vFotoPrd){
+                    $boxBanner .= "<div>";
+                    $fotoUrl = $vFotoPrd['foto_produto_30_url'];
+                    $boxBanner .= "<img src='images/uploads/produtos/".$fotoUrl."' width='75px' height='75px' />";
+                    $boxBanner .= "</div>";
+                }
 		$boxBanner .= 	'</div>';
 		$boxBanner .= 	'<div class="span4 descricaobox">';
 		$boxBanner .= 		'<span>'.$v->getDescCompleta().'</span>';
