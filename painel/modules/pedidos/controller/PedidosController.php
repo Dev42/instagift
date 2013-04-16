@@ -4,7 +4,7 @@ class PedidosController {
 
     public function insertAction(Pedidos $pedido) {
         
-        if ($pedido->getPayMode() != "" && $pedido->getPrdId() && $pedido->getCliId() != "" && $pedido->getQuantidade()){
+        if ($pedido->getPayMode() != "" && $pedido->getChartId()){
             
             $pedidoAr = $pedido->assocEntity(); 
 			
