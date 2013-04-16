@@ -33,7 +33,7 @@ function removerFoto(idFoto, urlImpressao){
 		var arrFotos = inputFotos.value.split(";");
 		for(i=0;i<=arrFotos.length-1;i++){
 			if(arrFotos[i] == urlImpressao){
-				delete arrFotos[i];
+				arrFotos.splice(i, 1);
 				break;
 			}
 		}
@@ -51,6 +51,5 @@ function verificaNrFotosEscolhidas(){
 		var arrFotos = fotos.split(";");
 		nrFotos =  arrFotos.length;
 	}
-	alert(nrFotos);
 	return nrFotos;
 }
