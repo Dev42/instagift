@@ -247,7 +247,7 @@
 	
 	.produtoInfo .span4{
 		width:255px !important;
-		margin:0;
+		margin:0 0 0 15px;
 	}
 	
 	.produtoInfo .span8{
