@@ -6,7 +6,7 @@ include_once '../config/connection.php';
 include_once '../processaPagamento.php';
 
 $chart = new Chart();
-$ped = new Pedido();
+$ped = new Pedidos();
 $pedController = new PedidosController();
 
 echo "<pre>";
@@ -19,8 +19,7 @@ $chart->setPrdConfig("");
 $chart->setQuantidade(1);
 $chart->setCreatedAt(time());
 
-$qry = "INSERT INTO `instagift`.`pedidos_chart` (`cht_10_id`, `user_10_id`, `produto_10_id`, `cht_35_config`, `cht_10_quantidade`, `cht_22_created_at`) VALUES ('1', '".$chart->getCliId()."', '".$chart->getPrdId()."', '', '1', '".$chart->getCreatedAt()."');";
-echo $qry;
+$qry = "INSERT INTO `instagift`.`pedidos_chart` (`cht_10_id`, `user_10_id`, `produto_10_id`, `cht_35_config`, `cht_10_quantidade`, `cht_22_created_at`) VALUES ('', '".$chart->getCliId()."', '".$chart->getPrdId()."', '', '1', '".$chart->getCreatedAt()."');";
 mysql_query($qry);
 $chartId = mysql_insert_id();
 
@@ -34,6 +33,7 @@ if ($pedController->insertAction($ped)){
     echo "Pedido Criado Com Sucesso!";
 }
 
-$procPag = new processaPagamento($chart);
+$procPag = new processaPagamento();
+$procPag->main($chart);
 
 ?>

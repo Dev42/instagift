@@ -17,12 +17,7 @@ require_once '../painel/modules/clientes/entity/Contato.php';
 
 class processaPagamento {
     
-    public function __construct(Chart $chart) {
-        
-        return $this;
-    }
-     
-    public static function main () {
+    public static function main (Chart $chart) {
         $prdController = new ProdutoController();
         $prdInfo = $prdController->listAction($chart->getPrdId());
         $prd = new Produto();
@@ -39,13 +34,15 @@ class processaPagamento {
         $paymentRequest->setCurrency("BRL");
         
         $valTotal = $chart->getQuantidade()*$prd->getValor();
+        echo "VALOR TOTAL: ".$valTotal;
+        echo "QUANTIDADE: " . $chart->getQuantidade();
         
         $paymentRequest->addItem(
                 $prd->getId(), 
                 $prd->getNome(), 
-                $valTotal, 
                 $chart->getQuantidade(), 
-                $prd->getPeso(), 
+                $valTotal, 
+                $prd->getPeso()*1000, 
                 $prd->getFrete()
                 );
         
@@ -87,7 +84,7 @@ class processaPagamento {
                 "André Simões",
                 "andre.simoes@quup.com.br", 
                 "11",
-                "98214-3776"
+                "982143776"
                 );
 
         $paymentRequest->setRedirectUrl("http://www.instagift.com.br");
@@ -114,7 +111,5 @@ class processaPagamento {
     }
 	
 }
-
-processaPagamento::main();
 
 ?>
