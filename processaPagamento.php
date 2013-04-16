@@ -1,15 +1,15 @@
 <?php
 
-require_once "painel/modules/pedidos/WebService/PagSeguro/PagSeguroLibrary/PagSeguroLibrary.php";
-require_once 'painel/modules/pedidos/entity/Chart.php';
+require_once "../painel/modules/pedidos/WebService/PagSeguro/PagSeguroLibrary/PagSeguroLibrary.php";
+require_once '../painel/modules/pedidos/entity/Chart.php';
 
-require_once 'painel/modules/produto/controller/ProdutoController.php';
-require_once 'painel/modules/produto/entity/Produto.php';
+require_once '../painel/modules/produto/controller/ProdutoController.php';
+require_once '../painel/modules/produto/entity/Produto.php';
 
-require_once 'painel/modules/clientes/controller/EnderecoController.php';
-require_once 'painel/modules/clientes/controller/ContatoController.php';
-require_once 'painel/modules/clientes/entity/Endereco.php';
-require_once 'painel/modules/clientes/entity/Contato.php';
+require_once '../painel/modules/clientes/controller/EnderecoController.php';
+require_once '../painel/modules/clientes/controller/ContatoController.php';
+require_once '../painel/modules/clientes/entity/Endereco.php';
+require_once '../painel/modules/clientes/entity/Contato.php';
 
 /* 
  * Classe para solicitar o pagamento do item carrinho
@@ -19,6 +19,10 @@ class processaPagamento {
     
     public function __construct(Chart $chart) {
         
+        return $this;
+    }
+     
+    public static function main () {
         $prdController = new ProdutoController();
         $prdInfo = $prdController->listAction($chart->getPrdId());
         $prd = new Produto();
@@ -111,6 +115,6 @@ class processaPagamento {
 	
 }
 
-createPaymentRequest::main();
+processaPagamento::main();
 
 ?>
