@@ -22,6 +22,7 @@ if (isset($_GET['id'])){
 			'redirect_uri'             =>     'http://localhost/instagift/perfilInsta.php'
 	);
 		
+        $error = false;
 	if (isset($_SESSION['instaAccess'])){
 		
 		$Instagram = new Instagram($access_token_parameters);
@@ -33,7 +34,9 @@ if (isset($_GET['id'])){
 		
 		$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
 		$instaPhotos = json_decode($fotosUser, true);
-	}
+	}else {
+            $error = true;
+        }
 	
 	$facebook = new Facebook(array(
 			'appId'  => '619446894748617',
@@ -49,10 +52,15 @@ if (isset($_GET['id'])){
 	}
 	else
 	{
-		$me = $facebook->api('/me');
-		$picture = $facebook->api('/me?fields=picture');
-		$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+            $error = false;
+            $me = $facebook->api('/me');
+            $picture = $facebook->api('/me?fields=picture');
+            $photos = $facebook->api('/me/photos?limit=9000&offset=0');
 	}
+        
+        if($error == true){
+            header("Location: http://www.instagift.com.br/instagift/login.php");
+        }
 	
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
@@ -60,7 +68,7 @@ if (isset($_GET['id'])){
 	$link = "produtos.php?id=";
 }
 
-if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+if ($_SERVER["REMOTE_ADDR"] != "127.0.0.1") {
     $geralUrl = "http://localhost/instagift/";
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
