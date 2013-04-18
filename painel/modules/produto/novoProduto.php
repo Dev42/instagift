@@ -167,7 +167,7 @@ $userController = new UserController();
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
-                                                                <label for="valor">Frete</label>
+                                                                <label for="frete">Frete</label>
                                                                 <div>
                                                                     <input title="Frete do produto em reais." name="frete" id="frete" class="tooltip right" type="text">
                                                                     <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>

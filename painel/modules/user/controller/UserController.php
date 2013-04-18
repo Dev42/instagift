@@ -6,7 +6,7 @@ class UserController {
 
         if ($user->getLogin() != "" && $user->getNome() != "" && $user->getContato() != "" && $user->getTelefone() != "" && $user->getSenha() != "" && $user->getEmail() != "") {
 
-            $user->setSenha($user->encriptPassword());
+            $user->encriptPassword();
             $userAr = $user->assocEntity();
 
             $fields = implode("`, `", array_keys($userAr));

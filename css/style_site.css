@@ -147,9 +147,9 @@
 		margin-left:20px;
 	}
 	
-	.row.login input[type="text"], .row.login input[type="password"]{
+	.row.login input[type="text"], .row.login input[type="password"], .row.login select{
 		width:250px;
-		height:25px;
+		height:30px;
 		border:1px solid #2e4544;
 		border-radius:0 !important;
 	}
@@ -243,6 +243,14 @@
 		border:1px solid #059692;
 		float:left;
 		margin:10px 0 0 10px;
+	}
+	
+	.boxprodutos .thumbs .thumbProduto img{
+		display:block;
+	}
+	
+	.boxprodutos .descricaobox{
+		margin:20px 10px 0 0;
 	}
 	
 	.produtoInfo .span4{
@@ -353,7 +361,6 @@
 		background-image:url(../images/site/bg-box-produtos.jpg);
 		background-repeat:no-repeat;
 		position:relative;
-		margin-top:-338px;
 	}
 	
 	.boxprodutos .fechar{
@@ -419,13 +426,8 @@
 	}
 	
 	.topo .menu{
-		margin:0 0 0 400px;
-		float:left;
-	}
-	
-	.topo .menu.login{
-		margin:0 0 0 370px;
-		float:left;
+		margin:0;
+		float:right;
 	}
 	
 	.topo .menu.login u{
@@ -485,6 +487,10 @@
 	.footer .menu{
 		margin:0;
 		float:left;
+	}
+	
+	#fecharPedido label{
+		width:130px;
 	}
 	
 	/*Classes para o menu*/

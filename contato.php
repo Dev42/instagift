@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ERROR);
 $menuClass = array("","","active");
 $title = "Login";
 include("inc/header_site.php");

@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ERROR);
 include_once 'config/connection.php';
 include_once 'painel/conf/classLoader.php';
 include("WebServer/Instagram/Instagram.php");
@@ -20,7 +21,7 @@ if (isset($_GET['id'])){
 			'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6', //'097713367ef9406db262c4b7592b43bc',
 			'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b', //'171763c7c85e456e82b23f42ac3682f1',
 			'grant_type'               =>     'authorization_code',
-			'redirect_uri'             =>     'http://localhost/instagift/perfilInsta.php'
+			'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
 	);
 		
         $error = false;
@@ -69,7 +70,7 @@ if (isset($_GET['id'])){
 	$link = "produtos.php?id=";
 }
 
-if ($_SERVER["REMOTE_ADDR"] != "127.0.0.1") {
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
     $geralUrl = "http://localhost/instagift/";
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
@@ -109,9 +110,16 @@ if (isset($_GET['id'])){
                 <br />
                 <span class="descProduto">Escolha a imagem desejada e clique para selecionar. Caso você queira remover uma imagem selecionada, basta clicar nela na lista de imagens selecionadas.</span>
             </div>
+            <div class="row dica">
+            	<span class="titProduto">Preço</span>
+                <br />
+                <span class="descProduto"><strong>Produto(unidade):</strong> R$ <?php echo $v->getValor(); ?></span>
+                <br />
+                <span class="descProduto"><strong>Frete(unidade):</strong> R$ <?php echo $v->getFrete(); ?></span>
+            </div>
         </div>
         <div class="span8">
-            <form name="comprarForm" method="post" action="process/processNovoCarrinho.php">
+            <form name="comprarForm" method="post" action="fechaPedido.php">
                 <input type="hidden" value="<?php echo $_GET['id']; ?>" name="prdId" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
@@ -171,10 +179,11 @@ if (isset($_GET['id'])){
 					foreach($listaFotos as $kFotoPrd => $vFotoPrd){
 						$boxBanner .= "<div class='thumbProduto'>";
 						$fotoUrl = $vFotoPrd['foto_produto_30_url'];
-						$boxBanner .= "<img src='images/uploads/produtos/".$fotoUrl."' width='75px' height='75px' />";
+						$boxBanner .= "<a rel='prettyPhoto[prod_".$v->getId()."]' href='images/uploads/produtos/".$fotoUrl."'><img src='images/uploads/produtos/".$fotoUrl."' width='75px' height='75px' /></a>";
 						$boxBanner .= "</div>";
 					}
 		$boxBanner .= 		'</div>';
+		$boxBanner .=	'<img src="images/site/label-ampliar.jpg" style="margin-left:27px;" />';
 		$boxBanner .= 	'</div>';
 		$boxBanner .= 	'<div class="span4 descricaobox">';
 		$boxBanner .= 		'<span>'.$v->getDescCompleta().'</span>';
@@ -194,6 +203,11 @@ if (isset($_GET['id'])){
 	</div>
 <?php
 	}
+	echo '<script>
+	$(document).ready(function(){
+    	$("a[rel^=\'prettyPhoto\']").prettyPhoto();
+  	});
+  	</script>';
 }
 include("inc/footer_site.php");
 ?>

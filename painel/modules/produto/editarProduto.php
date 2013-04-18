@@ -199,6 +199,13 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
+                                                                <label for="frete">Frete</label>
+                                                                <div>
+                                                                    <input title="Frete do produto em reais." name="frete" id="frete" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_frete"]); ?>">
+                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side">
                                                                 <label for="peso">Peso</label>
                                                                 <div>
                                                                     <input title="Peso do pacote que será enviado ao cliente em kg." name="peso" id="peso" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_peso"]); ?>">
