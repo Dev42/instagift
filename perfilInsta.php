@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ERROR);
 if (isset($_SESSION['LogadoInstagift'])){
 	$menuClass = array("","","");
 	$title = "Suas fotos viram presentes";
@@ -10,7 +11,7 @@ if (isset($_SESSION['LogadoInstagift'])){
 			'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6', //'097713367ef9406db262c4b7592b43bc',
 			'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b', //'171763c7c85e456e82b23f42ac3682f1',
 			'grant_type'               =>     'authorization_code',
-			'redirect_uri'             =>     'http://localhost/instagift/perfilInsta.php'
+			'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
 	);
 	if($_GET['action'] == 'logout'){
 		unset($_SESSION['instaAccess']);
@@ -85,7 +86,7 @@ if (isset($_SESSION['LogadoInstagift'])){
                                   	<a href="perfilInsta.php?action=logout">Sair</a>
 								  </div>';
                         }else{
-                            echo '<a href="https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://localhost/instagift/perfilInsta.php&response_type=code">Conectar ao Instagram</a>';
+                            echo '<a href="https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://instagift.com.br/instagift/perfilInsta.php&response_type=code">Conectar ao Instagram</a>';
                         }
                     ?>
                 </div>

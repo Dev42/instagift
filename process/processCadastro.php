@@ -1,5 +1,4 @@
 <?php
-
 include_once '../painel/conf/classLoader.php';
 include_once '../config/connection.php';
 

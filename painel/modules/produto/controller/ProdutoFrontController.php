@@ -7,7 +7,7 @@ class ProdutoFrontController {
         $whereQuery[] = (!$id) ? "1 = 1" : "produto_10_id = " . $id;
         $whereQuery[] = ($where != "") ? $where : "1 = 1";
 
-        $strQuery = "SELECT * FROM produto WHERE ".implode(" AND ", $whereQuery);
+        $strQuery = "SELECT * FROM produto WHERE ".implode(" AND ", $whereQuery)." ORDER BY produto_10_id DESC";
         $result = mysql_query($strQuery);
 
         $retArr = array();
