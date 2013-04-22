@@ -177,6 +177,66 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                     </ul>
                                                                 </div>
                                                         </fieldset>
+                                                        <fieldset class="label_side"style="height: auto;">
+                                                                <label for="nome">Cores</label>
+                                                                <div class="listImages">
+                                                                    <?php
+                                                                    $colorObj = json_decode($produto[1]['produto_40_cores']);
+                                                                    ?>
+                                                                    <table id="tbody_tr_color">
+                                                                        <?php
+                                                                        if (count($colorObj)>0){
+                                                                            $corControle = 1;
+                                                                            foreach($colorObj as $kCor => $vCor){
+                                                                                echo '<tr id="'.$kCor.'" style="height: 25px;">';
+                                                                                echo '<td>';
+                                                                                echo '<input type="hidden" class="cp-full" value="'.$vCor->cor.'" name="prd_color[]"/><input type="text" value="'.$vCor->nome.'" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>';
+                                                                                echo '</td>';
+                                                                                echo '<td>';
+                                                                                echo '<div style="padding-top: 5px;">';
+                                                                                if ($corControle == 1){
+                                                                                    echo '<img id="tr_color" class="lineClone" style="cursor: pointer;" src="'.$urlGeral.'/images/icons/personal/plus.png" alt="Adicionar Imagem"/>';
+                                                                                }else{
+                                                                                    echo '<img style="cursor: pointer;" id="rm_'.$kCor.'_tr_color" class="lineRemove" src="'.$urlGeral.'/images/icons/personal/minus.png" alt="Remover Image"/>';
+                                                                                }
+                                                                                echo '</div>';
+                                                                                echo '</td>';
+                                                                                echo '<td>';
+                                                                                echo '</td>';
+                                                                                echo "</tr>";
+                                                                                $corControle++;
+                                                                            }
+                                                                        }else{
+                                                                        ?>
+                                                                            <tr id="2" style="height: 25px;">
+                                                                                <td>
+                                                                                    <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div style="padding-top: 5px;">
+                                                                                        <img id="tr_color" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <tr id="tr_color_inv" style="display: none; height: 25px;">
+                                                                            <td>
+                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <img style="cursor: pointer;" class="lineRemove" src="<?php echo $urlGeral; ?>/images/icons/personal/minus.png" alt="Remover Image"/>
+                                                                            </td>
+                                                                            <td>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <div style="clear: both;"></div>
+                                                                </div>
+                                                        </fieldset>
                                                         <fieldset class="label_side">
                                                                 <label for="descCurta">Descrição Curta</label>
                                                                 <div>
@@ -268,4 +328,17 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_gallery.js"></script>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
+<script>
+$(document).ready(function(){
+    $(".cp-full").livequery(function(){ 
+        $(this).colorpicker({
+            parts: 'full',
+            showOn: 'both',
+            buttonColorize: true,
+            showNoneButton: true,
+            alpha: true
+        });
+    });    
+});
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
