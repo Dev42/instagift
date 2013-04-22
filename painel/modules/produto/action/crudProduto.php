@@ -165,7 +165,20 @@ switch ($op) {
                 $produtoClass->setDescCurta($descCurta);
                 $produtoClass->setDescCompleta($descCompleta);
                 $produtoClass->setValor(str_replace(",", ".", $valor));
-				$produtoClass->setFrete(str_replace(",", ".", $frete));
+                
+                $arColor = array();
+                $controleCor = 0;
+                foreach($prd_color_name as $kColor => $vColor){
+                    if ($vColor != ""){
+                        $arColor[$controleCor]["cor"] = $prd_color[$kColor];
+                        $arColor[$controleCor]["nome"] = $vColor;
+                        $controleCor++;
+                    }
+                }
+                $enc = json_encode($arColor);
+                
+                $produtoClass->setCores($enc);
+                $produtoClass->setFrete(str_replace(",", ".", $frete));
                 $produtoClass->setPeso(str_replace(",", ".", $peso));
                 $produtoClass->setPrazoProducao($prazoProducao);
                 $produtoClass->setLarguraMinima($larguraMinima);
