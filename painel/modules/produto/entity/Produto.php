@@ -34,6 +34,8 @@ class Produto {
     
     protected $minimoFotos;
     
+    protected $tipo;
+    
     protected $active;
     
     public function getId() {
@@ -147,6 +149,14 @@ class Produto {
     public function setMinimoFotos($minimoFotos) {
         $this->minimoFotos = $minimoFotos;
     }
+    
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
 
     public function getActive() {
         return $this->active;
@@ -177,6 +187,7 @@ class Produto {
             "produto_10_largura_minima" => $this->getLarguraMinima(),
             "produto_10_altura_minima" 	=> $this->getAlturaMinima(),
             "produto_10_minimo_fotos"   => $this->getMinimoFotos(),
+            "produto_12_tipo"   	=> $this->getTipo(),
             "produto_12_active"   	=> $this->getActive()
         );
         
@@ -200,6 +211,7 @@ class Produto {
         $this->setLarguraMinima($row['produto_10_largura_minima']);
         $this->setAlturaMinima($row['produto_10_altura_minima']);
         $this->setMinimoFotos($row['produto_10_minimo_fotos']);
+        $this->setTipo($row['produto_12_tipo']);
         $this->setActive($row['produto_12_active']);
         
         return $this;

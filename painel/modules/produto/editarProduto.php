@@ -300,6 +300,27 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                     <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
                                                                 </div>
                                                         </fieldset>
+                                                        <fieldset class="label_side">
+                                                                <label>Modelo de tela de compra</label>
+                                                                <div class="uniform inline clearfix">
+                                                                    <label for="yes3b">
+                                                                        <div class="radio" id="uniform-yes3b">
+                                                                            <span class="">
+                                                                                <input class="radTipo" type="radio" id="yes3b" value="1" <?php echo ($produto[1]["produto_12_tipo"] == 1)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
+                                                                            </span>
+                                                                        </div>
+                                                                        Compra normal
+                                                                    </label>
+                                                                    <label for="no3b">
+                                                                        <div class="radio" id="uniform-no3b">
+                                                                            <span class="checked">
+                                                                                <input class="radTipo" type="radio" id="no3b" value="0"  <?php echo ($produto[1]["produto_12_tipo"] == 0)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
+                                                                            </span>
+                                                                        </div>
+                                                                        Compra de caixa
+                                                                    </label>
+                                                                </div>
+                                                        </fieldset>
                                                        
                                                         <div style="display: none;">
                                                             <input type="hidden" name="produto_10_id" value="<?php echo $produto[1]["produto_10_id"]; ?>" />

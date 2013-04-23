@@ -208,7 +208,27 @@ $userController = new UserController();
                                                                     <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
                                                                 </div>
                                                         </fieldset>
-                                                        
+                                                        <fieldset class="label_side">
+                                                                <label>Modelo de tela de compra</label>
+                                                                <div class="uniform inline clearfix">
+                                                                    <label for="yes3b">
+                                                                        <div class="radio" id="uniform-yes3b">
+                                                                            <span class="">
+                                                                                <input class="radTipo" type="radio" id="yes3b" value="1" checked="checked" name="prd_tipo" style="opacity: 0;">
+                                                                            </span>
+                                                                        </div>
+                                                                        Compra normal
+                                                                    </label>
+                                                                    <label for="no3b">
+                                                                        <div class="radio" id="uniform-no3b">
+                                                                            <span class="checked">
+                                                                                <input class="radTipo" type="radio" id="no3b" value="0" name="prd_tipo" style="opacity: 0;">
+                                                                            </span>
+                                                                        </div>
+                                                                        Compra de caixa
+                                                                    </label>
+                                                                </div>
+                                                        </fieldset>
 
                                                         <div class="button_bar clearfix">
                                                             <button class="green" type="submit">
