@@ -26,7 +26,6 @@
                 <?php }else{ ?>
                 <div class="menu">
                 	<ul id="nav">
-                    	<li><a href="login.php"><span>LOGIN</span></a></li>
                 <?php } ?>
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
                         <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>

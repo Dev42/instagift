@@ -11,8 +11,11 @@ $menuClass = array("active","","");
 $prdFront = new ProdutoFrontController();
 $fotoPrd = new FotoProdutoController();
 
-if (isset($_GET['id'])){
-    $prdList = $prdFront->listAction($_GET['id'], "produto_12_active = 1");
+if (isset($_SESSION['InstagiftProdId'])){
+	$idProd = $_SESSION['InstagiftProdId'];
+	unset($_SESSION['InstagiftProdId']);
+	
+    $prdList = $prdFront->listAction($idProd, "produto_12_active = 1");
 	foreach ($prdList as $k => $v){
 		$title = "Produto - ".$v->getNome();
 	}
@@ -23,22 +26,6 @@ if (isset($_GET['id'])){
 			'grant_type'               =>     'authorization_code',
 			'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
 	);
-		
-        $error = false;
-	if (isset($_SESSION['instaAccess'])){
-		
-		$Instagram = new Instagram($access_token_parameters);
-		$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
-		
-		$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
-		
-		$response = json_decode($userInfo, true);
-		
-		$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
-		$instaPhotos = json_decode($fotosUser, true);
-	}else {
-            $error = true;
-        }
 	
 	$facebook = new Facebook(array(
 			'appId'  => '619446894748617',
@@ -47,23 +34,26 @@ if (isset($_GET['id'])){
 	 
 	$o_user = $facebook->getUser();
 	 
-	if($o_user == 0)
-	{
-		$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
-		$urlFacebook = str_replace('perfilInsta.php','perfilFb.php', $urlFacebook);
+	if($o_user != 0 || isset($_SESSION['instaAccess'])){
+		
+		if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+			$Instagram = new Instagram($access_token_parameters);
+			$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
+			
+			$response = $_SESSION['InstagiftDadosInsta'];
+			
+			$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
+			$instaPhotos = json_decode($fotosUser, true);
+		}else if($_SESSION['InstagiftTipoLogin'] == 'Fb'){
+			$me = $_SESSION['InstagiftDadosUserFb'];
+			$picture = $_SESSION['InstagiftFotoUserFb'];
+			$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+		}else{
+			header("Location:produtos.php");
+		}
+	}else{
+		header("Location:produtos.php");	
 	}
-	else
-	{
-            $error = false;
-            $me = $facebook->api('/me');
-            $picture = $facebook->api('/me?fields=picture');
-            $photos = $facebook->api('/me/photos?limit=9000&offset=0');
-	}
-        
-        if($error == true){
-            header("Location: http://www.instagift.com.br/instagift/login.php");
-        }
-	
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
 	$title = "Produtos";
@@ -79,7 +69,7 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
 $uploadPath = $geralUrl . "images/uploads/";
 
 include("inc/header_site.php");
-if (isset($_GET['id'])){
+if ($idProd){
 	foreach ($prdList as $k => $v){
 ?>
 	<div class="row produtoInfo">
@@ -120,7 +110,7 @@ if (isset($_GET['id'])){
         </div>
         <div class="span8">
             <form name="comprarForm" method="post" action="fechaPedido.php">
-                <input type="hidden" value="<?php echo $_GET['id']; ?>" name="prdId" />
+                <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
             </div>
@@ -194,7 +184,8 @@ if (isset($_GET['id'])){
 		$boxBanner .= 			'<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Instagift para selecionar suas fotos.</span>';
 		$boxBanner .= 		'</div>';
 		$boxBanner .= 		'<div class="comprar">';
-		$boxBanner .= 			'<a href="'.$link.$v->getId().'">Comprar</a>';
+		$boxBanner .= 			'<a href="process/processRedirectInsta.php?id='.$v->getId().'" class="loginInsta"><img src="images/site/ico-instagram.png" alt="Login - Instagram"></a>';
+		$boxBanner .= 			'<a href="process/processRedirectFace.php?id='.$v->getId().'" class="loginFace"><img src="images/site/ico-facebook.png" alt="Login - Facebook"></a>';
 		$boxBanner .= 		'</div>';
 		$boxBanner .= 	'</div>';
 		$boxBanner .= '</div>';

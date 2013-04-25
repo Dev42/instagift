@@ -197,24 +197,23 @@
 		font-weight:lighter;
 	}
 	
-	.boxprodutos .comprar a{
-		width:150px;
-		height:37px;
-		padding-top:15px;
-		text-align:center;
-		background-image:url(../images/site/btn-login.png);
-		background-color:transparent;
+	.boxprodutos .comprar{
+		width:319px;
+		height:132px;
+		background-image:url(../images/site/bg-btn-conectar.png);
 		position:relative;
-		left:135px;
-		border:none !important;
-		border-radius:0 !important;
-		display:block;
-		color:#FFF;
-		text-transform:uppercase;
-		font-size:14px;
-		text-decoration:none;
-		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
-		font-weight:lighter;
+	}
+	
+	.boxprodutos .comprar .loginInsta{
+		float:left;
+		margin-top:28px;
+		margin-left:215px;
+	}
+	
+	.boxprodutos .comprar .loginFace{
+		float:left;
+		margin-top:28px;
+		margin-left:10px;
 	}
 	
 	.boxprodutos .txtbox{
