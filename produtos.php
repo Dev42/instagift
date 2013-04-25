@@ -40,7 +40,8 @@ if (isset($_SESSION['InstagiftProdId'])){
 			$Instagram = new Instagram($access_token_parameters);
 			$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
 			
-			$response = $_SESSION['InstagiftDadosInsta'];
+			$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
+			$response = json_decode($userInfo, true);
 			
 			$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
 			$instaPhotos = json_decode($fotosUser, true);

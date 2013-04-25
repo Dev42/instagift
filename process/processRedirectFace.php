@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+//Coloca o Id do produto desejado em Session
+if(isset($_GET['id'])){
+	$_SESSION['InstagiftProdId'] = $_GET['id'];
+}
+
 include("../WebServer/Instagram/Instagram.php");
 include("../WebServer/Facebook/facebook.php");
 
@@ -29,6 +34,8 @@ if($o_user == 0){
 	$_SESSION['InstagiftTipoLogin'] = 'Fb';
 	$_SESSION['InstagiftDadosUserFb'] = $facebook->api('/me');
 	$_SESSION['InstagiftFotoUserFb'] = $facebook->api('/me?fields=picture');
+	$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+	$_SESSION['InstagiftNrFotos'] = count($photos['data']);
 	header("Location: ../produtos.php");
 }
 

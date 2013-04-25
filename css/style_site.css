@@ -506,6 +506,17 @@
 		padding:30px 10px;
 	}
 	
+	.topo .menu #nav li a.logado {
+		height:20px;
+		padding:26px 15px 29px;
+	}
+	
+	.topo .menu #nav li a.contador {
+		height:20px;
+		padding:26px 10px 29px;
+		text-align:center;
+	}
+	
 	.footer .menu #nav li a {
 		height:20px;
 		padding:20px 10px;
