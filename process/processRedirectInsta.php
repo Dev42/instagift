@@ -65,8 +65,12 @@ if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
 	
 	$response = json_decode($userInfo, true);
 	
+	$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
+	$instaPhotos = json_decode($fotosUser, true);
+	
 	$_SESSION['InstagiftTipoLogin'] = 'Insta';
 	$_SESSION['InstagiftDadosInsta'] = $response;
+	$_SESSION['InstagiftNrFotos'] = count($instaPhotos['data']);
 	
 	header("Location: ../produtos.php");
 	
