@@ -2,7 +2,9 @@
 session_start();
 
 //Coloca o Id do produto desejado em Session
-$_SESSION['InstagiftProdId'] = $_GET['id'];
+if(isset($_GET['id'])){
+	$_SESSION['InstagiftProdId'] = $_GET['id'];
+}
 
 include("../WebServer/Instagram/Instagram.php");
 include("../WebServer/Facebook/facebook.php");
@@ -32,14 +34,12 @@ $access_token_parameters = array(
 		'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6',
 		'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b',
 		'grant_type'               =>     'authorization_code',
-		'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
+		'redirect_uri'             =>     'http://localhost/instagift/process/processRedirectInsta.php'
 );
 
-if(!isset($_SESSION['instaAccess'])){
-	header("Location:https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://localhost/instagift/process/processRedirectInsta.php&response_type=code");
-}else{
+if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
 	$code = $_GET['code'];
-
+		
 	$url = "https://api.instagram.com/oauth/access_token";
 
 	$access_token_parameters['code'] = $code;
@@ -55,17 +55,22 @@ if(!isset($_SESSION['instaAccess'])){
 	
 	if (!isset($arr['OAuthException'])){
 		$_SESSION['instaAccess'] = $arr;
-		
-		$Instagram = new Instagram($access_token_parameters);
-		$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
-		
-		$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
-		
-		$response = json_decode($userInfo, true);
-		
-		$_SESSION['InstagiftTipoLogin'] = 'Insta';
-		$_SESSION['InstagiftDadosInsta'] = $response;
 	}
+	header("Location:processRedirectInsta.php");
+}else if(isset($_SESSION['instaAccess'])){
+	$Instagram = new Instagram($access_token_parameters);
+	$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
+	
+	$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
+	
+	$response = json_decode($userInfo, true);
+	
+	$_SESSION['InstagiftTipoLogin'] = 'Insta';
+	$_SESSION['InstagiftDadosInsta'] = $response;
+	
+	header("Location: ../produtos.php");
+	
+}else{
+	header("Location:https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://localhost/instagift/process/processRedirectInsta.php&response_type=code");
 }
-
 ?>

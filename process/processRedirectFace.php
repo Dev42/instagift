@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+//Coloca o Id do produto desejado em Session
+if(isset($_GET['id'])){
+	$_SESSION['InstagiftProdId'] = $_GET['id'];
+}
+
 include("../WebServer/Instagram/Instagram.php");
 include("../WebServer/Facebook/facebook.php");
 
