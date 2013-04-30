@@ -13,7 +13,7 @@ $fotoPrd = new FotoProdutoController();
 
 if (isset($_SESSION['InstagiftProdId'])){
 	$idProd = $_SESSION['InstagiftProdId'];
-	unset($_SESSION['InstagiftProdId']);
+	//unset($_SESSION['InstagiftProdId']);
 	
     $prdList = $prdFront->listAction($idProd, "produto_12_active = 1");
 	foreach ($prdList as $k => $v){
@@ -61,7 +61,7 @@ if (isset($_SESSION['InstagiftProdId'])){
 	$link = "produtos.php?id=";
 }
 
-if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
     $geralUrl = "http://localhost/instagift/";
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
@@ -72,6 +72,13 @@ $uploadPath = $geralUrl . "images/uploads/";
 include("inc/header_site.php");
 if ($idProd){
 	foreach ($prdList as $k => $v){
+		if($v->getCores() == '[]'){
+			$jsonCores = '[{"cor":"ffffff","nome":"Única"}]';
+		}else{
+			//$jsonCores = $v->getCores();
+			$jsonCores = '[{"cor":"ffffff","nome":"Única"}]';
+		}
+		$arCores = json_decode($jsonCores);
 ?>
 	<div class="row produtoInfo">
     	<div class="span4">
@@ -97,21 +104,41 @@ if ($idProd){
                 </span>
             </div>
             <div class="row dica">
+            	<span class="titProduto">Opção de Compra</span>
+            </div>
+            <div class="row dica">
+            	<span class="titProduto">Opções de Cores</span>
+                <div class="contCorModelo clearfix">
+                <?php
+					$contCores = 0;
+					foreach($arCores as $corProd){
+						if($contCores == 0){
+							$corPadrao = $corProd->nome;
+							echo "<div class='corProd'>
+									<div class='boxCorProd active' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
+									<span>".$corProd->nome."</span>
+								  </div>";
+						}else{
+							echo "<div class='corProd'>
+									<div class='boxCorProd' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
+									<span>".$corProd->nome."</span>
+								  </div>";
+						}
+						$contCores++;
+					}
+				?>
+                </div>
+            </div>
+            <div class="row dica">
             	<span class="titProduto">Dica</span>
                 <br />
                 <span class="descProduto">Escolha a imagem desejada e clique para selecionar. Caso você queira remover uma imagem selecionada, basta clicar nela na lista de imagens selecionadas.</span>
-            </div>
-            <div class="row dica">
-            	<span class="titProduto">Preço</span>
-                <br />
-                <span class="descProduto"><strong>Produto(unidade):</strong> R$ <?php echo $v->getValor(); ?></span>
-                <br />
-                <span class="descProduto"><strong>Frete(unidade):</strong> R$ <?php echo $v->getFrete(); ?></span>
             </div>
         </div>
         <div class="span8">
             <form name="comprarForm" method="post" action="fechaPedido.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
+                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
             </div>
