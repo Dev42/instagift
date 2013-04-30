@@ -58,3 +58,9 @@ function verificaNrFotosEscolhidas(){
 	}
 	return nrFotos;
 }
+
+function selecionaCor(elemento,corEscolhida){
+	$('.boxCorProd').removeClass('active');
+	elemento.className += " active";
+	document.getElementById("selCor").value = corEscolhida;
+}

@@ -492,6 +492,37 @@
 		width:130px;
 	}
 	
+	.contCorModelo{
+		background-color:#dce7e7;
+		width:220px;
+		padding:10px;
+		border:2px solid #069f9b;
+		margin-top:5px;
+	}
+	
+	.contCorModelo .corProd{
+		float:left;
+		text-align:center;
+		margin-right:5px;
+	}
+	
+	.contCorModelo .corProd span{
+		font-size:12px;
+		color:#2e4544;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+	}
+	
+	.contCorModelo .boxCorProd{
+		width:36px;
+		height:36px;
+		border:2px solid #bebebe;
+		cursor:pointer;
+	}
+	
+	.contCorModelo .boxCorProd.active{
+		border:2px solid #069f9b;
+	}
+	
 	/*Classes para o menu*/
 	.menu #nav {
     	list-style: none outside none;
