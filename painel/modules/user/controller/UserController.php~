@@ -6,7 +6,7 @@ class UserController {
 
         if ($user->getLogin() != "" && $user->getNome() != "" && $user->getContato() != "" && $user->getTelefone() != "" && $user->getSenha() != "" && $user->getEmail() != "") {
 
-	    $user->encriptPassword();
+            $user->setSenha($user->encriptPassword());
             $userAr = $user->assocEntity();
 
             $fields = implode("`, `", array_keys($userAr));
@@ -14,6 +14,7 @@ class UserController {
 
             $strQuery = "INSERT INTO `instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
+echo $strQuery;exit();
             mysql_query($strQuery);
 
             return true;

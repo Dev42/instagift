@@ -25,6 +25,10 @@ if (mysql_num_rows($logar) > 0) {
 }
 
 if ($cliController->insertAction($user)){
+echo $user->getSenha();
+echo "<br />";
+echo $user->encriptPassword();
+exit();
     $logar = mysql_query("SELECT user_10_id,user_30_nome FROM user WHERE user_30_username='".$user->getLogin()."' AND user_30_password='".$user->encriptPassword()."' AND user_12_active = '1'");
     if(mysql_num_rows($logar) > 0)
     {
