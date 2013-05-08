@@ -30,7 +30,7 @@ switch ($op) {
                 }
             }
 
-            if ($nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"] != "") {
+            if ($nome != "" && $descCurta != "" && $descCompleta != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"] != "") {
 
                 $produtoClass = new Produto();
                 $produtoController = new ProdutoController();
@@ -38,8 +38,6 @@ switch ($op) {
                 $produtoClass->setNome($nome);
                 $produtoClass->setDescCurta($descCurta);
                 $produtoClass->setDescCompleta($descCompleta);
-                $produtoClass->setValor(str_replace(",", ".", $valor));
-                $produtoClass->setPeso(str_replace(",", ".", $peso));
                 $produtoClass->setPrazoProducao($prazoProducao);
                 $produtoClass->setLarguraMinima($larguraMinima);
                 $produtoClass->setAlturaMinima($alturaMinima);
@@ -57,7 +55,6 @@ switch ($op) {
                 $enc = json_encode($arColor);
                 
                 $produtoClass->setCores($enc);
-                $produtoClass->setFrete(str_replace(",", ".", $frete));
                 
                 if (array_key_exists("name", $prd_banner)) {
                     $produtoClass->setUrl($prd_banner);
@@ -155,7 +152,7 @@ switch ($op) {
                     }
                 }
             }
-            if ($produto_10_id != "" && $nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $frete != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0) {
+            if ($produto_10_id != "" && $nome != "" && $descCurta != "" && $descCompleta != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0) {
 
                 $produtoClass = new Produto();
                 $produtoController = new ProdutoController();
@@ -164,7 +161,6 @@ switch ($op) {
                 $produtoClass->setNome($nome);
                 $produtoClass->setDescCurta($descCurta);
                 $produtoClass->setDescCompleta($descCompleta);
-                $produtoClass->setValor(str_replace(",", ".", $valor));
                 
                 $arColor = array();
                 $controleCor = 0;
@@ -178,8 +174,6 @@ switch ($op) {
                 $enc = json_encode($arColor);
                 
                 $produtoClass->setCores($enc);
-                $produtoClass->setFrete(str_replace(",", ".", $frete));
-                $produtoClass->setPeso(str_replace(",", ".", $peso));
                 $produtoClass->setPrazoProducao($prazoProducao);
                 $produtoClass->setLarguraMinima($larguraMinima);
                 $produtoClass->setAlturaMinima($alturaMinima);
