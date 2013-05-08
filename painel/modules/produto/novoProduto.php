@@ -160,24 +160,26 @@ $userController = new UserController();
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
-                                                                <label for="valor">Valor</label>
+                                                                <label for="valor">
+                                                                    Produto Tipo
+                                                                    <br />
+                                                                    <img id="tr_color" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
+                                                                </label>
                                                                 <div>
-                                                                    <input title="Valor do produto em reais." name="valor" id="valor" class="tooltip right" type="text">
-                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                    <label for="produto_info_nome">Nome</label>
+                                                                    <input title="Nome do produto." name="produto_info_nome[]" id="produto_info_nome" class="tooltip right" type="text">
                                                                 </div>
-                                                        </fieldset>
-                                                        <fieldset class="label_side">
-                                                                <label for="frete">Frete</label>
                                                                 <div>
-                                                                    <input title="Frete do produto em reais." name="frete" id="frete" class="tooltip right" type="text">
-                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                    <label for="produto_info_desc">Descrição</label>
+                                                                    <input title="Descrição do produto." name="produto_info_desc[]" id="produto_info_desc" class="tooltip right" type="text">
                                                                 </div>
-                                                        </fieldset>
-                                                        <fieldset class="label_side">
-                                                                <label for="peso">Peso</label>
-                                                                <div>
-                                                                    <input title="Peso do pacote que será enviado ao cliente em kg." name="peso" id="peso" class="tooltip right" type="text">
-                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                <div style="float: left; width: 100px !important;">
+                                                                    <label for="produto_info_valor">Valor</label>
+                                                                    <input title="Valor do produto." style="100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="tooltip right" type="text">
+                                                                </div>
+                                                                <div style="float: left; width: 100px !important; margin-left: 100px;">
+                                                                    <label for="produto_info_peso">Peso</label>
+                                                                    <input title="Peso do produto." style="100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="tooltip right" type="text">
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">

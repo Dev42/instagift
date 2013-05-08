@@ -10,13 +10,7 @@ class Produto {
     
     protected $descCompleta;
     
-    protected $valor;
-    
-    protected $frete;
-    
     protected $cores;
-    
-    protected $peso;
     
     protected $banner;
     
@@ -70,36 +64,12 @@ class Produto {
         $this->descCompleta = $descCompleta;
     }
 
-    public function getValor() {
-        return $this->valor;
-    }
-
-    public function setValor($valor) {
-        $this->valor = $valor;
-    }
-    
-    public function getFrete() {
-        return $this->frete;
-    }
-
-    public function setFrete($frete) {
-        $this->frete = $frete;
-    }
-
     public function getCores() {
         return $this->cores;
     }
 
     public function setCores($cores) {
         $this->cores = $cores;
-    }
-
-    public function getPeso() {
-        return $this->peso;
-    }
-
-    public function setPeso($peso) {
-        $this->peso = $peso;
     }
 
     public function getUrl() {
@@ -177,10 +147,7 @@ class Produto {
             "produto_30_nome"     	=> $this->getNome(),
             "produto_30_desc_curta"  	=> $this->getDescCurta(),
             "produto_60_desc_completa"  => $this->getDescCompleta(),
-            "produto_20_valor" 		=> $this->getValor(),
-            "produto_20_frete" 		=> $this->getFrete(),
             "produto_40_cores" 		=> $this->getCores(),
-            "produto_20_peso"           => $this->getPeso(),
             "produto_30_banner"   	=> $this->getBanner(true),
             "produto_30_foto"   	=> $this->getFoto(true),
             "produto_10_prazo_producao" => $this->getPrazoProducao(),
@@ -201,10 +168,7 @@ class Produto {
         $this->setNome($row['produto_30_nome']);
         $this->setDescCurta($row['produto_30_desc_curta']);
         $this->setDescCompleta($row['produto_60_desc_completa']);
-        $this->setValor($row['produto_20_valor']);
-        $this->setFrete($row['produto_20_frete']);
         $this->setCores($row['produto_40_cores']);
-        $this->setPeso($row['produto_20_peso']);
         $this->setBanner($row['produto_30_banner']);
         $this->setFoto($row['produto_30_foto']);
         $this->setPrazoProducao($row['produto_10_prazo_producao']);
