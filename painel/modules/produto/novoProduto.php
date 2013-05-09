@@ -121,7 +121,7 @@ $userController = new UserController();
                                                                     <table id="tbody_tr_color">
                                                                         <tr id="2" style="height: 25px;">
                                                                             <td>
-                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input title="Nome da Cor" type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px; float:left; width:150px !important;" class="text"/>
                                                                             </td>
                                                                             <td>
                                                                                 <div style="padding-top: 5px;">
@@ -133,7 +133,7 @@ $userController = new UserController();
                                                                         </tr>
                                                                         <tr id="tr_color_inv" style="display: none; height: 25px;">
                                                                             <td>
-                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input title="Nome da Cor" type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px; float:left; width:150px !important;" class="text"/>
                                                                             </td>
                                                                             <td>
                                                                                 <img style="cursor: pointer;" class="lineRemove" src="<?php echo $urlGeral; ?>/images/icons/personal/minus.png" alt="Remover Image"/>
@@ -160,26 +160,59 @@ $userController = new UserController();
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
-                                                                <label for="valor">
-                                                                    Produto Tipo
+                                                                <label for="opcoesCompra">
+                                                                    Opções de Compra
                                                                     <br />
-                                                                    <img id="tr_color" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
+                                                                    <img id="tr_opcaoCompra" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
                                                                 </label>
-                                                                <div>
-                                                                    <label for="produto_info_nome">Nome</label>
-                                                                    <input title="Nome do produto." name="produto_info_nome[]" id="produto_info_nome" class="tooltip right" type="text">
-                                                                </div>
-                                                                <div>
-                                                                    <label for="produto_info_desc">Descrição</label>
-                                                                    <input title="Descrição do produto." name="produto_info_desc[]" id="produto_info_desc" class="tooltip right" type="text">
-                                                                </div>
-                                                                <div style="float: left; width: 100px !important;">
-                                                                    <label for="produto_info_valor">Valor</label>
-                                                                    <input title="Valor do produto." style="100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="tooltip right" type="text">
-                                                                </div>
-                                                                <div style="float: left; width: 100px !important; margin-left: 100px;">
-                                                                    <label for="produto_info_peso">Peso</label>
-                                                                    <input title="Peso do produto." style="100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="tooltip right" type="text">
+                                                                <div class="listImages">
+                                                                <table id="tbody_tr_opcaoCompra">
+                                                                        <tr id="2">
+                                                                        	<td>
+                                                                                <div>
+                                                                                    <label for="produto_info_nome">Nome da Opção</label>
+                                                                                    <input title="Nome da opção de compra." name="produto_info_nome[]" id="produto_info_nome" class="text" type="text">
+                                                                                </div>
+                                                                                <br />
+                                                                                <div>
+                                                                                    <label for="produto_info_desc">Descrição da Opção</label>
+                                                                                    <input title="Descrição da opção de compra." name="produto_info_desc[]" id="produto_info_desc" class="text" type="text">
+                                                                                </div>
+                                                                                <br />
+                                                                                <div style="float: left; width: 100px !important;">
+                                                                                    <label for="produto_info_valor">Valor da Opção</label>
+                                                                                    <input title="Valor da Opção (em reais)" style="width: 100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="text" type="text">
+                                                                                </div>
+                                                                            	<div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                    <label for="produto_info_peso">Peso da Opção</label>
+                                                                                    <input title="Peso da Opção (em quilos)" style="width: 100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="text" type="text">
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr id="tr_opcaoCompra_inv" style="display: none;">
+                                                                        	<td>
+                                                                                <div>
+                                                                                    <label for="produto_info_nome">Nome da Opção</label>
+                                                                                    <input title="Nome da opção de compra." name="produto_info_nome[]" id="produto_info_nome" class="text" type="text">
+                                                                                </div>
+                                                                                <br />
+                                                                                <div>
+                                                                                    <label for="produto_info_desc">Descrição da Opção</label>
+                                                                                    <input title="Descrição da opção de compra." name="produto_info_desc[]" id="produto_info_desc" class="text" type="text">
+                                                                                </div>
+                                                                                <br />
+                                                                                <div style="float: left; width: 100px !important;">
+                                                                                    <label for="produto_info_valor">Valor da Opção</label>
+                                                                                    <input title="Valor da Opção (em reais)" style="width: 100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="text" type="text">
+                                                                                </div>
+                                                                            	<div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                    <label for="produto_info_peso">Peso da Opção</label>
+                                                                                    <input title="Peso da Opção (em quilos)" style="width: 100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="text" type="text">
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                            	</table>
+                                                                <div style="clear: both;"></div>
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
