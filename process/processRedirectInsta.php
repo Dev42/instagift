@@ -6,13 +6,27 @@ if(isset($_GET['id'])){
 	$_SESSION['InstagiftProdId'] = $_GET['id'];
 }
 
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
+	$appIdFace = "379620018818263";
+	$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
+	$clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
+	$clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
+	$redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
+}else{
+	$appIdFace = "619446894748617";
+	$appSecretFace = "e36eb608b47d070353394814c9541b10";
+	$clientIdInsta = "fc50d2f7eb9b49f384280a3cc32af0d6";
+	$clientSecretInsta = "8a7f1b5af57040ee97f89092cf63b21b";
+	$redirectUrlInsta = "http://instagift.com.br/instagift/process/processRedirectInsta.php";
+}
+
 include("../WebServer/Instagram/Instagram.php");
 include("../WebServer/Facebook/facebook.php");
 
 //Inicio da conexao com o Facebook para verificar se existe login
 $facebook = new Facebook(array(
-		'appId'  => '619446894748617',
-		'secret' => 'e36eb608b47d070353394814c9541b10'
+		'appId'  => $appIdFace,
+		'secret' => $appSecretFace
 ));
  
 $o_user = $facebook->getUser();
@@ -31,10 +45,10 @@ if($o_user != 0){
 
 //Inicio da conexao com o Instagram
 $access_token_parameters = array(
-		'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6',
-		'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b',
+		'client_id'                =>     $clientIdInsta,
+		'client_secret'            =>     $clientSecretInsta,
 		'grant_type'               =>     'authorization_code',
-		'redirect_uri'             =>     'http://localhost/instagift/process/processRedirectInsta.php'
+		'redirect_uri'             =>     $redirectUrlInsta 
 );
 
 if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
@@ -75,6 +89,6 @@ if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
 	header("Location: ../produtos.php");
 	
 }else{
-	header("Location:https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://localhost/instagift/process/processRedirectInsta.php&response_type=code");
+	header("Location:https://api.instagram.com/oauth/authorize/?client_id=".$clientIdInsta."&redirect_uri=".$redirectUrlInsta."&response_type=code");
 }
 ?>

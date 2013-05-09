@@ -33,7 +33,7 @@ include("inc/header_site.php");
 		$(document).ready(function() {
 			var clientId = 'fc50d2f7eb9b49f384280a3cc32af0d6';
 			$(".imgsquemja").instagram({
-			hash: 'friends',
+			hash: 'instagiftbr',
 			show: 10,
 			clientId: clientId
 			});

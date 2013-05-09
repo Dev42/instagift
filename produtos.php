@@ -13,7 +13,21 @@ $fotoPrd = new FotoProdutoController();
 
 if (isset($_SESSION['InstagiftProdId'])){
 	$idProd = $_SESSION['InstagiftProdId'];
-	//unset($_SESSION['InstagiftProdId']);
+	unset($_SESSION['InstagiftProdId']);
+	
+	if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
+		$appIdFace = "379620018818263";
+		$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
+		$clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
+		$clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
+		$redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
+	}else{
+		$appIdFace = "619446894748617";
+		$appSecretFace = "e36eb608b47d070353394814c9541b10";
+		$clientIdInsta = "fc50d2f7eb9b49f384280a3cc32af0d6";
+		$clientSecretInsta = "8a7f1b5af57040ee97f89092cf63b21b";
+		$redirectUrlInsta = "http://instagift.com.br/instagift/process/processRedirectInsta.php";
+	}
 	
     $prdList = $prdFront->listAction($idProd, "produto_12_active = 1");
 	foreach ($prdList as $k => $v){
@@ -21,15 +35,15 @@ if (isset($_SESSION['InstagiftProdId'])){
 	}
 	
 	$access_token_parameters = array(
-			'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6', //'097713367ef9406db262c4b7592b43bc',
-			'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b', //'171763c7c85e456e82b23f42ac3682f1',
+			'client_id'                =>     $clientIdInsta,
+			'client_secret'            =>     $clientSecretInsta,
 			'grant_type'               =>     'authorization_code',
-			'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
+			'redirect_uri'             =>     $redirectUrlInsta 
 	);
 	
 	$facebook = new Facebook(array(
-			'appId'  => '619446894748617',
-			'secret' => 'e36eb608b47d070353394814c9541b10'
+			'appId'  => $appIdFace,
+			'secret' => $appSecretFace
 	));
 	 
 	$o_user = $facebook->getUser();
@@ -75,8 +89,7 @@ if ($idProd){
 		if($v->getCores() == '[]'){
 			$jsonCores = '[{"cor":"ffffff","nome":"Única"}]';
 		}else{
-			//$jsonCores = $v->getCores();
-			$jsonCores = '[{"cor":"ffffff","nome":"Única"}]';
+			$jsonCores = $v->getCores();
 		}
 		$arCores = json_decode($jsonCores);
 ?>
@@ -135,10 +148,17 @@ if ($idProd){
                 <span class="descProduto">Escolha a imagem desejada e clique para selecionar. Caso você queira remover uma imagem selecionada, basta clicar nela na lista de imagens selecionadas.</span>
             </div>
         </div>
+        <?php
+			if($v->getTipo() == '1'){
+		?>
         <div class="span8">
             <form name="comprarForm" method="post" action="fechaPedido.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
                 <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="1" name="nrFotosTampa" id="nrFotosTampa" />
+                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" name="urlFotosTampa" id="urlFotosTampa" />
+                <input type="hidden" name="urlFotos" id="urlFotos" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
             </div>
@@ -148,24 +168,88 @@ if ($idProd){
                     
                         if (isset($instaPhotos['data'])){
                             foreach ($instaPhotos['data'] as $instaPhoto){
-                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\''.$v->getMinimoFotos().'\')">';
+                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFotoCaixa(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\')">';
                             }
                         }
         
                         if (isset($photos['data'])){
                             foreach ($photos['data'] as $photo){
-                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\''.$v->getMinimoFotos().'\')">';
+                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['picture'].'\',\''.$photo['source'].'\')">';
+                            }
+                        }
+                    ?>
+                </div>
+        	</div>
+            
+            <div class="row fotosSelecionadas">
+            	<span class="titProduto tampa">Imagens Selecionadas - Tampa</span>
+                
+                <div class="boxNrFotosTampa active" onclick="selecionaNrFotosTampa(this,'1')">
+                    <span>Modelo 1 Foto</span>
+                </div>
+                
+                <div class="boxNrFotosTampa" onclick="selecionaNrFotosTampa(this,'4')">
+                    <span>Modelo 4 Fotos</span>
+                </div>
+            </div>
+            <div class="row listaFotos">
+                <div class="fotos" id="selecaoFotosTampa">
+                    
+                </div>
+        	</div>
+            
+            <div class="row fotosSelecionadas">
+            	<span class="titProduto">Imagens Selecionadas - Laterais </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
+            </div>
+            <div class="row">
+                <div class="fotos" id="selecaoFotos">
+                    
+                </div>
+        	</div>
+            
+            <div class="row comprar">
+                <div class="btn-comprar" id="btn-comprar" style="display:none;">
+                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                </div>
+            </div>
+            </form>
+        </div>
+        <?php
+			}else{
+		?>
+        <div class="span8">
+            <form name="comprarForm" method="post" action="fechaPedido.php">
+                <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
+                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" name="urlFotos" id="urlFotos" />
+        	<div class="row">
+            	<span class="titProduto">Escolha suas fotos</span>
+            </div>
+            <div class="row listaFotos">
+                <div class="fotos">
+                    <?php
+                    
+                        if (isset($instaPhotos['data'])){
+                            foreach ($instaPhotos['data'] as $instaPhoto){
+                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'padrao\')">';
+                            }
+                        }
+        
+                        if (isset($photos['data'])){
+                            foreach ($photos['data'] as $photo){
+                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\'padrao\')">';
                             }
                         }
                     ?>
                 </div>
         	</div>
             <div class="row fotosSelecionadas">
-            	<span class="titProduto">Fotos Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto" id="count"> de <?php echo $v->getMinimoFotos(); ?> fotos selecionadas</span>
+            	<span class="titProduto">Imagens Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
-                    <input type="hidden" name="urlFotos" id="urlFotos" />
+                    
                 </div>
         	</div>
             <div class="row comprar">
@@ -175,6 +259,9 @@ if ($idProd){
             </div>
             </form>
         </div>
+        <?php
+			}
+		?>
     </div>
 <?php
 	}
