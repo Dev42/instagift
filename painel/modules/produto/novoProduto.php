@@ -163,6 +163,8 @@ $userController = new UserController();
                                                                 <label for="opcoesCompra">
                                                                     Opções de Compra
                                                                     <br />
+                                                                    <small style="font-size: 10px;font-weight: normal; color: red;">(todos os campos na opção de compra são obrigatórios)</small>
+                                                                    <br /><br />
                                                                     <img id="tr_opcaoCompra" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
                                                                 </label>
                                                                 <div class="listImages">
