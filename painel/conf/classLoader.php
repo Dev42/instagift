@@ -43,6 +43,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . $clientesClass . '/util/SimpleImage.php
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/entity/Produto.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/entity/ProdutoFornecedor.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/entity/FotoProduto.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/entity/ProdutoInfo.php';
 # /Entity
 
 # Controller
@@ -50,6 +51,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoContro
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoFrontController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoFornecedorController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/FotoProdutoController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$produtosClass.'/controller/ProdutoInfoController.php';
 # /Controller
 /* /Produto Module */
 

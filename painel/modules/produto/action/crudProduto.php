@@ -117,6 +117,9 @@ switch ($op) {
                             }
                         }
                     }
+					
+					// Inserção das opcoes de Compra (Ajuda ae dé!)
+
 
                     header("Location: $urlProdutos/listarProduto.php?type=success&case=novo");
                 } else {
