@@ -29,7 +29,7 @@ switch ($op) {
                     }
                 }
             }
-
+            
             if ($nome != "" && $descCurta != "" && $descCompleta != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"] != "") {
 
                 $produtoClass = new Produto();
@@ -78,6 +78,28 @@ switch ($op) {
 
                 if ($produtoId != 0) {
 
+                    // Inserção das opções
+                    $prdInfoController = new ProdutoInfoController();
+                    foreach($produto_info_nome as $kPrdOpt => $vPrdOpt){
+                        if ($produto_info_nome[$kPrdOpt] != "" && $produto_info_desc[$kPrdOpt] != "" && 
+                                $produto_info_valor[$kPrdOpt] != "" && $produto_info_peso[$kPrdOpt] != ""){
+
+                            $prdInfoClass = new ProdutoInfo();
+                            $prdInfoClass->setIdProduto($produtoId);
+                            $prdInfoClass->setNome($produto_info_nome[$kPrdOpt]);
+                            $prdInfoClass->setDesc($produto_info_desc[$kPrdOpt]);
+                            $prdInfoClass->setPeso($produto_info_peso[$kPrdOpt]);
+                            $prdInfoClass->setValor($produto_info_valor[$kPrdOpt]);
+                            
+                            if ($prdInfoController->insertAction($prdInfoClass)){
+                                echo "Funfou";
+                            }else {
+                                echo "Deu erro inserindo a opção!";
+                            }
+
+                        }
+                    }
+                    
                     // Inserção de fornecedores
 
                     $prdFornController = new ProdutoFornecedorController();
