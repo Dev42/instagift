@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ALL);
 include_once 'config/connection.php';
 include_once 'painel/conf/classLoader.php';
 
@@ -29,6 +30,14 @@ include("inc/header_site.php");
 				hoverPause: true
 			});
 		});
+		$(document).ready(function() {
+			var clientId = 'fc50d2f7eb9b49f384280a3cc32af0d6';
+			$(".imgsquemja").instagram({
+			hash: 'friends',
+			show: 10,
+			clientId: clientId
+			});
+		});
 		</script>
         <div class="row slider">
         	<div class="span12">
@@ -55,16 +64,6 @@ include("inc/header_site.php");
         	<div class="span12">
             	<div class="titquemja"></div>
                 <div class="imgsquemja">
-                	<img src="images/site/quemjamodelo.png" alt="1">
-                    <img src="images/site/quemjamodelo.png" alt="2">
-                    <img src="images/site/quemjamodelo.png" alt="3">
-                    <img src="images/site/quemjamodelo.png" alt="4">
-                    <img src="images/site/quemjamodelo.png" alt="5">
-                    <img src="images/site/quemjamodelo.png" alt="6">
-                    <img src="images/site/quemjamodelo.png" alt="7">
-                    <img src="images/site/quemjamodelo.png" alt="8">
-                    <img src="images/site/quemjamodelo.png" alt="9">
-                    <img src="images/site/quemjamodelo.png" alt="10">
                 </div>
             </div>
         </div>

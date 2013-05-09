@@ -1,4 +1,5 @@
 function showBox(idProduto){
+	 $('.boxProdutos').slideUp('slow');
 	 $('#box_'+idProduto).slideDown('slow');
 }
 function hideBox(idProduto){
@@ -56,4 +57,10 @@ function verificaNrFotosEscolhidas(){
 		nrFotos =  arrFotos.length;
 	}
 	return nrFotos;
+}
+
+function selecionaCor(elemento,corEscolhida){
+	$('.boxCorProd').removeClass('active');
+	elemento.className += " active";
+	document.getElementById("selCor").value = corEscolhida;
 }

@@ -13,10 +13,10 @@
     $pass = "instaDB";
     
 }else {
-    $dataBase = "instagift";
-    $host = "mysql.instagift.com.br";
-    $user = "instagift";
-    $pass = "instaDB";
+    $dataBase = "insta892_instagift";
+    $host = "localhost";
+    $user = "insta892_insta";
+    $pass = "instaDB13";
 	
 }*/
 

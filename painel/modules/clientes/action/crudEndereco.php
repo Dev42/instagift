@@ -12,10 +12,6 @@ switch ($op) {
         if (isset($_POST)) {
             // Se o POST estiver setado
 
-            echo "<pre>";
-            print_r($_POST);
-            echo "</pre>";
-
             foreach ($_POST as $k => $v) {
                 $$k = $v;
             }
@@ -51,10 +47,6 @@ switch ($op) {
 
         if (isset($_POST)) {
             // Se o POST estiver setado
-
-            echo "<pre>";
-            print_r($_POST);
-            echo "</pre>";
 
             foreach ($_POST as $k => $v) {
                 $$k = $v;

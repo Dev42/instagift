@@ -155,7 +155,7 @@ switch ($op) {
                     }
                 }
             }
-            if ($produto_10_id != "" && $nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0) {
+            if ($produto_10_id != "" && $nome != "" && $descCurta != "" && $descCompleta != "" && $valor != "" && $frete != "" && $peso != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0) {
 
                 $produtoClass = new Produto();
                 $produtoController = new ProdutoController();
@@ -165,6 +165,20 @@ switch ($op) {
                 $produtoClass->setDescCurta($descCurta);
                 $produtoClass->setDescCompleta($descCompleta);
                 $produtoClass->setValor(str_replace(",", ".", $valor));
+                
+                $arColor = array();
+                $controleCor = 0;
+                foreach($prd_color_name as $kColor => $vColor){
+                    if ($vColor != ""){
+                        $arColor[$controleCor]["cor"] = $prd_color[$kColor];
+                        $arColor[$controleCor]["nome"] = $vColor;
+                        $controleCor++;
+                    }
+                }
+                $enc = json_encode($arColor);
+                
+                $produtoClass->setCores($enc);
+                $produtoClass->setFrete(str_replace(",", ".", $frete));
                 $produtoClass->setPeso(str_replace(",", ".", $peso));
                 $produtoClass->setPrazoProducao($prazoProducao);
                 $produtoClass->setLarguraMinima($larguraMinima);
@@ -186,12 +200,12 @@ switch ($op) {
                             $prdFornClass->setIdProduto($produtoClass->getId());
 
                             if ($prdFornController->insertAction($prdFornClass)) {
-                                echo "Inseriu!";
+                                //echo "Inseriu!";
                             } else {
-                                echo "Deu erro!";
+                                //echo "Deu erro!";
                             }
                         } else {
-                            echo "Registro já existe!";
+                            //echo "Registro já existe!";
                         }
                     }
 
@@ -203,14 +217,11 @@ switch ($op) {
                             if (array_key_exists("name", $valueImagem)) {
                                 $imgProdutoClass = new FotoProduto();
                                 $imgProdutoClass->setIdProduto($produtoClass->getId());
-                                echo "<pre>";
-                                var_dump($valueImagem);
-                                echo "</pre>";
                                 $imgProdutoClass->setUrl($valueImagem);
                                 if ($imgProdutoClass->uploadImage() && $prdImageController->insertAction($imgProdutoClass)) {
-                                    echo "Inseriu e fez upload! ";
+                                    //echo "Inseriu e fez upload! ";
                                 } else {
-                                    echo "Deu erro adicionando as imagens!";
+                                    //echo "Deu erro adicionando as imagens!";
                                 }
                             }
                         }

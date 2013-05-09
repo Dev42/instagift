@@ -165,7 +165,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                             $fotoEnt->fetchEntity($vFoto);
                                                                             echo '
                                                                             <li id="imgId_'.$fotoEnt->getId().'" style="float: left; list-style: none; border-radius: 3px; border: 2px solid #ccc; padding: 5px; margin: 5px 10px 10px 0px; line-height: 150px; display: block; width: 150px; height: 150px; cursor: pointer;" class="imageRemove">
-                                                                                <img src="'.$fotoEnt->getWebPath().'" width="150" style="vertical-align: middle;"/>
+                                                                                <img src="../../../'.$fotoEnt->getWebPath().'" width="150" style="vertical-align: middle;"/>
                                                                             </li>
                                                                             ';
                                                                             if ($i%3 == 0 && $i != 1){
@@ -175,6 +175,66 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                         }
                                                                     ?>
                                                                     </ul>
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side"style="height: auto;">
+                                                                <label for="nome">Cores</label>
+                                                                <div class="listImages">
+                                                                    <?php
+                                                                    $colorObj = json_decode($produto[1]['produto_40_cores']);
+                                                                    ?>
+                                                                    <table id="tbody_tr_color">
+                                                                        <?php
+                                                                        if (count($colorObj)>0){
+                                                                            $corControle = 1;
+                                                                            foreach($colorObj as $kCor => $vCor){
+                                                                                echo '<tr id="'.$kCor.'" style="height: 25px;">';
+                                                                                echo '<td>';
+                                                                                echo '<input type="hidden" class="cp-full" value="'.$vCor->cor.'" name="prd_color[]"/><input type="text" value="'.$vCor->nome.'" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>';
+                                                                                echo '</td>';
+                                                                                echo '<td>';
+                                                                                echo '<div style="padding-top: 5px;">';
+                                                                                if ($corControle == 1){
+                                                                                    echo '<img id="tr_color" class="lineClone" style="cursor: pointer;" src="'.$urlGeral.'/images/icons/personal/plus.png" alt="Adicionar Imagem"/>';
+                                                                                }else{
+                                                                                    echo '<img style="cursor: pointer;" id="rm_'.$kCor.'_tr_color" class="lineRemove" src="'.$urlGeral.'/images/icons/personal/minus.png" alt="Remover Image"/>';
+                                                                                }
+                                                                                echo '</div>';
+                                                                                echo '</td>';
+                                                                                echo '<td>';
+                                                                                echo '</td>';
+                                                                                echo "</tr>";
+                                                                                $corControle++;
+                                                                            }
+                                                                        }else{
+                                                                        ?>
+                                                                            <tr id="2" style="height: 25px;">
+                                                                                <td>
+                                                                                    <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div style="padding-top: 5px;">
+                                                                                        <img id="tr_color" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <tr id="tr_color_inv" style="display: none; height: 25px;">
+                                                                            <td>
+                                                                                <input type="hidden" class="cp-full" value="186aa7" name="prd_color[]"/><input type="text" name="prd_color_name[]" style="padding: 10px 0px 5px 6px; border-radius: 4px; border: #ccc solid 1px;"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <img style="cursor: pointer;" class="lineRemove" src="<?php echo $urlGeral; ?>/images/icons/personal/minus.png" alt="Remover Image"/>
+                                                                            </td>
+                                                                            <td>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <div style="clear: both;"></div>
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
@@ -195,6 +255,13 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                 <label for="valor">Valor</label>
                                                                 <div>
                                                                     <input title="Valor do produto em reais." name="valor" id="valor" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_valor"]); ?>">
+                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                </div>
+                                                        </fieldset>
+                                                        <fieldset class="label_side">
+                                                                <label for="frete">Frete</label>
+                                                                <div>
+                                                                    <input title="Frete do produto em reais." name="frete" id="frete" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_frete"]); ?>">
                                                                     <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
                                                                 </div>
                                                         </fieldset>
@@ -233,6 +300,27 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                     <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
                                                                 </div>
                                                         </fieldset>
+                                                        <fieldset class="label_side">
+                                                                <label>Modelo de tela de compra</label>
+                                                                <div class="uniform inline clearfix">
+                                                                    <label for="yes3b">
+                                                                        <div class="radio" id="uniform-yes3b">
+                                                                            <span class="">
+                                                                                <input class="radTipo" type="radio" id="yes3b" value="1" <?php echo ($produto[1]["produto_12_tipo"] == 1)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
+                                                                            </span>
+                                                                        </div>
+                                                                        Compra normal
+                                                                    </label>
+                                                                    <label for="no3b">
+                                                                        <div class="radio" id="uniform-no3b">
+                                                                            <span class="checked">
+                                                                                <input class="radTipo" type="radio" id="no3b" value="0"  <?php echo ($produto[1]["produto_12_tipo"] == 0)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
+                                                                            </span>
+                                                                        </div>
+                                                                        Compra de caixa
+                                                                    </label>
+                                                                </div>
+                                                        </fieldset>
                                                        
                                                         <div style="display: none;">
                                                             <input type="hidden" name="produto_10_id" value="<?php echo $produto[1]["produto_10_id"]; ?>" />
@@ -261,4 +349,17 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_gallery.js"></script>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
+<script>
+$(document).ready(function(){
+    $(".cp-full").livequery(function(){ 
+        $(this).colorpicker({
+            parts: 'full',
+            showOn: 'both',
+            buttonColorize: true,
+            showNoneButton: true,
+            alpha: true
+        });
+    });    
+});
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>

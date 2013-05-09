@@ -147,9 +147,9 @@
 		margin-left:20px;
 	}
 	
-	.row.login input[type="text"], .row.login input[type="password"]{
+	.row.login input[type="text"], .row.login input[type="password"], .row.login select{
 		width:250px;
-		height:25px;
+		height:30px;
 		border:1px solid #2e4544;
 		border-radius:0 !important;
 	}
@@ -197,24 +197,23 @@
 		font-weight:lighter;
 	}
 	
-	.boxprodutos .comprar a{
-		width:150px;
-		height:37px;
-		padding-top:15px;
-		text-align:center;
-		background-image:url(../images/site/btn-login.png);
-		background-color:transparent;
+	.boxprodutos .comprar{
+		width:319px;
+		height:132px;
+		background-image:url(../images/site/bg-btn-conectar.png);
 		position:relative;
-		left:135px;
-		border:none !important;
-		border-radius:0 !important;
-		display:block;
-		color:#FFF;
-		text-transform:uppercase;
-		font-size:14px;
-		text-decoration:none;
-		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
-		font-weight:lighter;
+	}
+	
+	.boxprodutos .comprar .loginInsta{
+		float:left;
+		margin-top:28px;
+		margin-left:215px;
+	}
+	
+	.boxprodutos .comprar .loginFace{
+		float:left;
+		margin-top:28px;
+		margin-left:10px;
 	}
 	
 	.boxprodutos .txtbox{
@@ -243,6 +242,14 @@
 		border:1px solid #059692;
 		float:left;
 		margin:10px 0 0 10px;
+	}
+	
+	.boxprodutos .thumbs .thumbProduto img{
+		display:block;
+	}
+	
+	.boxprodutos .descricaobox{
+		margin:20px 10px 0 0;
 	}
 	
 	.produtoInfo .span4{
@@ -353,7 +360,6 @@
 		background-image:url(../images/site/bg-box-produtos.jpg);
 		background-repeat:no-repeat;
 		position:relative;
-		margin-top:-338px;
 	}
 	
 	.boxprodutos .fechar{
@@ -419,13 +425,8 @@
 	}
 	
 	.topo .menu{
-		margin:0 0 0 400px;
-		float:left;
-	}
-	
-	.topo .menu.login{
-		margin:0 0 0 370px;
-		float:left;
+		margin:0;
+		float:right;
 	}
 	
 	.topo .menu.login u{
@@ -487,6 +488,41 @@
 		float:left;
 	}
 	
+	#fecharPedido label{
+		width:130px;
+	}
+	
+	.contCorModelo{
+		background-color:#dce7e7;
+		width:220px;
+		padding:10px;
+		border:2px solid #069f9b;
+		margin-top:5px;
+	}
+	
+	.contCorModelo .corProd{
+		float:left;
+		text-align:center;
+		margin-right:5px;
+	}
+	
+	.contCorModelo .corProd span{
+		font-size:12px;
+		color:#2e4544;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+	}
+	
+	.contCorModelo .boxCorProd{
+		width:36px;
+		height:36px;
+		border:2px solid #bebebe;
+		cursor:pointer;
+	}
+	
+	.contCorModelo .boxCorProd.active{
+		border:2px solid #069f9b;
+	}
+	
 	/*Classes para o menu*/
 	.menu #nav {
     	list-style: none outside none;
@@ -499,6 +535,17 @@
 	.topo .menu #nav li a {
 		height:15px;
 		padding:30px 10px;
+	}
+	
+	.topo .menu #nav li a.logado {
+		height:20px;
+		padding:26px 15px 29px;
+	}
+	
+	.topo .menu #nav li a.contador {
+		height:20px;
+		padding:26px 10px 29px;
+		text-align:center;
 	}
 	
 	.footer .menu #nav li a {

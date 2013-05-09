@@ -25,17 +25,18 @@ class processaPagamento {
         
         $endController = new EnderecoController();
         $endInfo = $endController->listAction(false, $chart->getCliId());
-        
+        $countEnd = count($endInfo);
+		
         $cntController = new ContatoController();
         $cntInfo = $cntController->listAction(false,$chart->getCliId());
-        $cntInfo = new Contato();
-        
+        $countCnt = count($cntInfo);
+		
         $paymentRequest = new PagSeguroPaymentRequest();
         $paymentRequest->setCurrency("BRL");
         
-        $valTotal = $chart->getQuantidade()*$prd->getValor();
-        echo "VALOR TOTAL: ".$valTotal;
-        echo "QUANTIDADE: " . $chart->getQuantidade();
+        $prodTotal = $chart->getQuantidade()*$prd->getValor();
+		$freteTotal = $chart->getQuantidade()*$prd->getFrete();
+		$valTotal = $prodTotal + $freteTotal;
         
         $paymentRequest->addItem(
                 $prd->getId(), 
@@ -43,7 +44,7 @@ class processaPagamento {
                 $chart->getQuantidade(), 
                 $valTotal, 
                 $prd->getPeso()*1000, 
-                $prd->getFrete()
+                0
                 );
         
         $paymentRequest->setReference("REF00".$chart->getId());
@@ -51,42 +52,24 @@ class processaPagamento {
         $CODIGO_ENTREGA = PagSeguroShippingType::getCodeByType('NOT_SPECIFIED');
         $paymentRequest->setShippingType($CODIGO_ENTREGA);
         
-        /*
-         * $paymentRequest->setShippingAddress(
-                $endInfo[1]->getCep(),
-                $endInfo[1]->getEndereco(),
-                $endInfo[1]->getNumero(), 
-                $endInfo[1]->getComplemento(),
-                $endInfo[1]->getBairro(), 
-                $endInfo[1]->getCidade(),
-                $endInfo[1]->getEstado(),
-                'BRA'
-                );
-         */
         $paymentRequest->setShippingAddress(
-                "02420-001",
-                "Avenida Zumkeller",
-                "792", 
-                "apto. 53",
-                "Mandaqui", 
-                "São Paulo",
-                "SP",
+                $endInfo[$countEnd]->getCep(),
+                $endInfo[$countEnd]->getEndereco(),
+                $endInfo[$countEnd]->getNumero(), 
+                $endInfo[$countEnd]->getComplemento(),
+                $endInfo[$countEnd]->getBairro(), 
+                $endInfo[$countEnd]->getCidade(),
+                $endInfo[$countEnd]->getEstado(),
                 'BRA'
                 );
-        // Sets your customer information.
-        /*$paymentRequest->setSender(
-                $cntInfo[1]->getNome(),
-                $cntInfo[1]->getEmail(), 
-                $cntInfo[1]->getDdd(),
-                $cntInfo[1]->getTel()
-                );*/
-        $paymentRequest->setSender(
-                "André Simões",
-                "andre.simoes@quup.com.br", 
-                "11",
-                "982143776"
+         
+		$paymentRequest->setSender(
+                $cntInfo[$countCnt]->getNome(),
+                $cntInfo[$countCnt]->getEmail(), 
+                $cntInfo[$countCnt]->getDdd(),
+                $cntInfo[$countCnt]->getTel()
                 );
-
+       
         $paymentRequest->setRedirectUrl("http://www.instagift.com.br");
         
         try {
@@ -104,9 +87,7 @@ class processaPagamento {
 
     public static function printPaymentUrl($url) {
         if ($url) {
-            echo "<h2>Criando requisi��o de pagamento</h2>";
-            echo "<p>URL do pagamento: <strong>$url</strong></p>";
-            echo "<p><a title=\"URL do pagamento\" href=\"$url\">Ir para URL do pagamento.</a></p>";
+            header("Location: ../pagamento.php?url=".$url);
         }
     }
 	
