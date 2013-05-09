@@ -6,6 +6,14 @@ if(isset($_GET['id'])){
 	$_SESSION['InstagiftProdId'] = $_GET['id'];
 }
 
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
+	$appIdFace = "379620018818263";
+	$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";	
+}else{
+	$appIdFace = "619446894748617";
+	$appSecretFace = "e36eb608b47d070353394814c9541b10";	
+}
+
 include("../WebServer/Instagram/Instagram.php");
 include("../WebServer/Facebook/facebook.php");
 
@@ -18,8 +26,8 @@ if (isset($_SESSION['instaAccess'])){
 
 //Inicio da conexao com o Instagram
 $facebook = new Facebook(array(
-		'appId'  => '619446894748617',
-		'secret' => 'e36eb608b47d070353394814c9541b10'
+		'appId'  => $appIdFace,
+		'secret' => $appSecretFace
 ));
 
 $o_user = $facebook->getUser();
