@@ -117,7 +117,7 @@ if ($idProd){
                 </span>
             </div>
             <div class="row dica">
-            	<span class="titProduto">Opção de Compra</span>
+            	<span class="titProduto">Opções de Compra</span>
             </div>
             <div class="row dica">
             	<span class="titProduto">Opções de Cores</span>

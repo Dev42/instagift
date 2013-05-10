@@ -29,7 +29,6 @@ switch ($op) {
                     }
                 }
             }
-            
             if ($nome != "" && $descCurta != "" && $descCompleta != "" && $prazoProducao != "" && $larguraMinima != "" && $alturaMinima != "" && $minimoFotos != "" && count($prd_forn) > 0 && $prd_image["name"] != "") {
 
                 $produtoClass = new Produto();
@@ -42,6 +41,7 @@ switch ($op) {
                 $produtoClass->setLarguraMinima($larguraMinima);
                 $produtoClass->setAlturaMinima($alturaMinima);
                 $produtoClass->setMinimoFotos($minimoFotos);
+                $produtoClass->setTipo($prd_tipo);
                 
                 $arColor = array();
                 $controleCor = 0;
@@ -186,6 +186,11 @@ switch ($op) {
                 $produtoClass->setNome($nome);
                 $produtoClass->setDescCurta($descCurta);
                 $produtoClass->setDescCompleta($descCompleta);
+                $produtoClass->setPrazoProducao($prazoProducao);
+                $produtoClass->setLarguraMinima($larguraMinima);
+                $produtoClass->setAlturaMinima($alturaMinima);
+                $produtoClass->setMinimoFotos($minimoFotos);
+                $produtoClass->setTipo($prd_tipo);
                 
                 $arColor = array();
                 $controleCor = 0;
@@ -206,8 +211,29 @@ switch ($op) {
 
                 if ($produtoController->editAction($produtoClass)) {
 
-                    // Inserção de fornecedores
+                    // Inserção das opções
+                    $prdInfoController = new ProdutoInfoController();
+                    $prdInfoController->deleteByProdutoAction($produtoClass->getId());
+                    foreach($produto_info_nome as $kPrdOpt => $vPrdOpt){
+                        if ($produto_info_nome[$kPrdOpt] != "" && $produto_info_desc[$kPrdOpt] != "" && 
+                                $produto_info_valor[$kPrdOpt] != "" && $produto_info_peso[$kPrdOpt] != ""){
 
+                            $prdInfoClass = new ProdutoInfo();
+                            $prdInfoClass->setIdProduto($produtoClass->getId());
+                            $prdInfoClass->setNome($produto_info_nome[$kPrdOpt]);
+                            $prdInfoClass->setDesc($produto_info_desc[$kPrdOpt]);
+                            $prdInfoClass->setPeso($produto_info_peso[$kPrdOpt]);
+                            $prdInfoClass->setValor($produto_info_valor[$kPrdOpt]);
+                            
+                            if ($prdInfoController->insertAction($prdInfoClass)){
+                                echo "Funfou";
+                            }else {
+                                echo "Deu erro inserindo a opção!";
+                            }
+
+                        }
+                    }
+                    // Inserção de fornecedores
                     $prdFornController = new ProdutoFornecedorController();
                     $prdFornController->deleteAllAction($produtoClass->getId());
                     foreach ($prd_forn as $kForn => $vForn) {

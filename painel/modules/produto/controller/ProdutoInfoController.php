@@ -49,6 +49,21 @@ class ProdutoInfoController {
         
     }
 
+    public function deleteByProdutoAction($produtoId){
+        
+        if ($produtoId != "") {
+            
+            $sqlQuery = "DELETE FROM `instagift`.`produto_info` WHERE `produto_10_id` = ". $produtoId;
+            mysql_query($sqlQuery);
+            
+            return true;
+            
+        }else {
+            return false;
+        }
+        
+    }
+    
     public function deleteAction(ProdutoInfo $produto){
         
         if ($produto->getId() != "") {
@@ -69,7 +84,7 @@ class ProdutoInfoController {
         $field = addslashes($field);
         $value = addslashes($value);
         
-        $strQuery = "SELECT * FROM produto WHERE ".$field . " = '" . $value."'";
+        $strQuery = "SELECT * FROM produto_info WHERE ".$field . " = '" . $value."'";
         $result = mysql_query($strQuery);
 
         $retArr = array();
