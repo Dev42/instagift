@@ -1,9 +1,6 @@
 <?php
 session_start();
 error_reporting(E_ERROR);
-if (!isset($_SESSION['LogadoInstagift'])){
-	header("Location: produtos.php");
-}else{
 $menuClass = array("active","","");
 $title = "Fechar pedido";
 include("inc/header_site.php");
@@ -96,5 +93,4 @@ include("inc/header_site.php");
     </div>
 <?php
 include("inc/footer_site.php");
-}
 ?>

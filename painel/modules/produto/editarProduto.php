@@ -165,7 +165,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                             $fotoEnt->fetchEntity($vFoto);
                                                                             echo '
                                                                             <li id="imgId_'.$fotoEnt->getId().'" style="float: left; list-style: none; border-radius: 3px; border: 2px solid #ccc; padding: 5px; margin: 5px 10px 10px 0px; line-height: 150px; display: block; width: 150px; height: 150px; cursor: pointer;" class="imageRemove">
-                                                                                <img src="'.$fotoEnt->getWebPath().'" width="150" style="vertical-align: middle;"/>
+                                                                                <img src="../../../'.$fotoEnt->getWebPath().'" width="150" style="vertical-align: middle;"/>
                                                                             </li>
                                                                             ';
                                                                             if ($i%3 == 0 && $i != 1){

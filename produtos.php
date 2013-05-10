@@ -11,66 +11,71 @@ $menuClass = array("active","","");
 $prdFront = new ProdutoFrontController();
 $fotoPrd = new FotoProdutoController();
 
-if (isset($_GET['id'])){
-    $prdList = $prdFront->listAction($_GET['id'], "produto_12_active = 1");
+if (isset($_SESSION['InstagiftProdId'])){
+	$idProd = $_SESSION['InstagiftProdId'];
+	unset($_SESSION['InstagiftProdId']);
+	
+	if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
+		$appIdFace = "379620018818263";
+		$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
+		$clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
+		$clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
+		$redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
+	}else{
+		$appIdFace = "619446894748617";
+		$appSecretFace = "e36eb608b47d070353394814c9541b10";
+		$clientIdInsta = "fc50d2f7eb9b49f384280a3cc32af0d6";
+		$clientSecretInsta = "8a7f1b5af57040ee97f89092cf63b21b";
+		$redirectUrlInsta = "http://instagift.com.br/instagift/process/processRedirectInsta.php";
+	}
+	
+    $prdList = $prdFront->listAction($idProd, "produto_12_active = 1");
 	foreach ($prdList as $k => $v){
 		$title = "Produto - ".$v->getNome();
 	}
 	
 	$access_token_parameters = array(
-			'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6', //'097713367ef9406db262c4b7592b43bc',
-			'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b', //'171763c7c85e456e82b23f42ac3682f1',
+			'client_id'                =>     $clientIdInsta,
+			'client_secret'            =>     $clientSecretInsta,
 			'grant_type'               =>     'authorization_code',
-			'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
+			'redirect_uri'             =>     $redirectUrlInsta 
 	);
-		
-        $error = false;
-	if (isset($_SESSION['instaAccess'])){
-		
-		$Instagram = new Instagram($access_token_parameters);
-		$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
-		
-		$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
-		
-		$response = json_decode($userInfo, true);
-		
-		$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
-		$instaPhotos = json_decode($fotosUser, true);
-	}else {
-            $error = true;
-        }
 	
 	$facebook = new Facebook(array(
-			'appId'  => '619446894748617',
-			'secret' => 'e36eb608b47d070353394814c9541b10'
+			'appId'  => $appIdFace,
+			'secret' => $appSecretFace
 	));
 	 
 	$o_user = $facebook->getUser();
 	 
-	if($o_user == 0)
-	{
-		$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
-		$urlFacebook = str_replace('perfilInsta.php','perfilFb.php', $urlFacebook);
+	if($o_user != 0 || isset($_SESSION['instaAccess'])){
+		
+		if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+			$Instagram = new Instagram($access_token_parameters);
+			$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
+			
+			$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
+			$response = json_decode($userInfo, true);
+			
+			$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
+			$instaPhotos = json_decode($fotosUser, true);
+		}else if($_SESSION['InstagiftTipoLogin'] == 'Fb'){
+			$me = $_SESSION['InstagiftDadosUserFb'];
+			$picture = $_SESSION['InstagiftFotoUserFb'];
+			$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+		}else{
+			header("Location:produtos.php");
+		}
+	}else{
+		header("Location:produtos.php");	
 	}
-	else
-	{
-            $error = false;
-            $me = $facebook->api('/me');
-            $picture = $facebook->api('/me?fields=picture');
-            $photos = $facebook->api('/me/photos?limit=9000&offset=0');
-	}
-        
-        if($error == true){
-            header("Location: http://www.instagift.com.br/instagift/login.php");
-        }
-	
 }else{
     $prdList = $prdFront->listAction(false, "produto_12_active = 1");
 	$title = "Produtos";
 	$link = "produtos.php?id=";
 }
 
-if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
     $geralUrl = "http://localhost/instagift/";
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
@@ -79,8 +84,14 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
 $uploadPath = $geralUrl . "images/uploads/";
 
 include("inc/header_site.php");
-if (isset($_GET['id'])){
+if ($idProd){
 	foreach ($prdList as $k => $v){
+		if($v->getCores() == '[]'){
+			$jsonCores = '[{"cor":"ffffff","nome":"Única"}]';
+		}else{
+			$jsonCores = $v->getCores();
+		}
+		$arCores = json_decode($jsonCores);
 ?>
 	<div class="row produtoInfo">
     	<div class="span4">
@@ -106,21 +117,48 @@ if (isset($_GET['id'])){
                 </span>
             </div>
             <div class="row dica">
+            	<span class="titProduto">Opção de Compra</span>
+            </div>
+            <div class="row dica">
+            	<span class="titProduto">Opções de Cores</span>
+                <div class="contCorModelo clearfix">
+                <?php
+					$contCores = 0;
+					foreach($arCores as $corProd){
+						if($contCores == 0){
+							$corPadrao = $corProd->nome;
+							echo "<div class='corProd'>
+									<div class='boxCorProd active' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
+									<span>".$corProd->nome."</span>
+								  </div>";
+						}else{
+							echo "<div class='corProd'>
+									<div class='boxCorProd' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
+									<span>".$corProd->nome."</span>
+								  </div>";
+						}
+						$contCores++;
+					}
+				?>
+                </div>
+            </div>
+            <div class="row dica">
             	<span class="titProduto">Dica</span>
                 <br />
                 <span class="descProduto">Escolha a imagem desejada e clique para selecionar. Caso você queira remover uma imagem selecionada, basta clicar nela na lista de imagens selecionadas.</span>
             </div>
-            <div class="row dica">
-            	<span class="titProduto">Preço</span>
-                <br />
-                <span class="descProduto"><strong>Produto(unidade):</strong> R$ <?php echo $v->getValor(); ?></span>
-                <br />
-                <span class="descProduto"><strong>Frete(unidade):</strong> R$ <?php echo $v->getFrete(); ?></span>
-            </div>
         </div>
+        <?php
+			if($v->getTipo() == '1'){
+		?>
         <div class="span8">
             <form name="comprarForm" method="post" action="fechaPedido.php">
-                <input type="hidden" value="<?php echo $_GET['id']; ?>" name="prdId" />
+                <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
+                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="1" name="nrFotosTampa" id="nrFotosTampa" />
+                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" name="urlFotosTampa" id="urlFotosTampa" />
+                <input type="hidden" name="urlFotos" id="urlFotos" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
             </div>
@@ -130,24 +168,88 @@ if (isset($_GET['id'])){
                     
                         if (isset($instaPhotos['data'])){
                             foreach ($instaPhotos['data'] as $instaPhoto){
-                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\''.$v->getMinimoFotos().'\')">';
+                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFotoCaixa(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\')">';
                             }
                         }
         
                         if (isset($photos['data'])){
                             foreach ($photos['data'] as $photo){
-                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\''.$v->getMinimoFotos().'\')">';
+                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['picture'].'\',\''.$photo['source'].'\')">';
+                            }
+                        }
+                    ?>
+                </div>
+        	</div>
+            
+            <div class="row fotosSelecionadas">
+            	<span class="titProduto tampa">Imagens Selecionadas - Tampa</span>
+                
+                <div class="boxNrFotosTampa active" onclick="selecionaNrFotosTampa(this,'1')">
+                    <span>Modelo 1 Foto</span>
+                </div>
+                
+                <div class="boxNrFotosTampa" onclick="selecionaNrFotosTampa(this,'4')">
+                    <span>Modelo 4 Fotos</span>
+                </div>
+            </div>
+            <div class="row listaFotos">
+                <div class="fotos" id="selecaoFotosTampa">
+                    
+                </div>
+        	</div>
+            
+            <div class="row fotosSelecionadas">
+            	<span class="titProduto">Imagens Selecionadas - Laterais </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
+            </div>
+            <div class="row">
+                <div class="fotos" id="selecaoFotos">
+                    
+                </div>
+        	</div>
+            
+            <div class="row comprar">
+                <div class="btn-comprar" id="btn-comprar" style="display:none;">
+                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                </div>
+            </div>
+            </form>
+        </div>
+        <?php
+			}else{
+		?>
+        <div class="span8">
+            <form name="comprarForm" method="post" action="fechaPedido.php">
+                <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
+                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" name="urlFotos" id="urlFotos" />
+        	<div class="row">
+            	<span class="titProduto">Escolha suas fotos</span>
+            </div>
+            <div class="row listaFotos">
+                <div class="fotos">
+                    <?php
+                    
+                        if (isset($instaPhotos['data'])){
+                            foreach ($instaPhotos['data'] as $instaPhoto){
+                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'padrao\')">';
+                            }
+                        }
+        
+                        if (isset($photos['data'])){
+                            foreach ($photos['data'] as $photo){
+                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\'padrao\')">';
                             }
                         }
                     ?>
                 </div>
         	</div>
             <div class="row fotosSelecionadas">
-            	<span class="titProduto">Fotos Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto" id="count"> de <?php echo $v->getMinimoFotos(); ?> fotos selecionadas</span>
+            	<span class="titProduto">Imagens Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
-                    <input type="hidden" name="urlFotos" id="urlFotos" />
+                    
                 </div>
         	</div>
             <div class="row comprar">
@@ -157,6 +259,9 @@ if (isset($_GET['id'])){
             </div>
             </form>
         </div>
+        <?php
+			}
+		?>
     </div>
 <?php
 	}
@@ -194,7 +299,8 @@ if (isset($_GET['id'])){
 		$boxBanner .= 			'<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Instagift para selecionar suas fotos.</span>';
 		$boxBanner .= 		'</div>';
 		$boxBanner .= 		'<div class="comprar">';
-		$boxBanner .= 			'<a href="'.$link.$v->getId().'">Comprar</a>';
+		$boxBanner .= 			'<a href="process/processRedirectInsta.php?id='.$v->getId().'" class="loginInsta"><img src="images/site/ico-instagram.png" alt="Login - Instagram"></a>';
+		$boxBanner .= 			'<a href="process/processRedirectFace.php?id='.$v->getId().'" class="loginFace"><img src="images/site/ico-facebook.png" alt="Login - Facebook"></a>';
 		$boxBanner .= 		'</div>';
 		$boxBanner .= 	'</div>';
 		$boxBanner .= '</div>';

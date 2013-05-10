@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 16/04/2013 às 18:56:04
+-- Tempo de Geração: 08/05/2013 às 22:54:22
 -- Versão do Servidor: 5.5.25
 -- Versão do PHP: 5.4.4
 
@@ -88,7 +88,7 @@ CREATE TABLE `foto_produto` (
   `foto_produto_30_url` varchar(255) NOT NULL,
   PRIMARY KEY (`foto_produto_10_id`),
   KEY `foto_produto_ibfk_1` (`foto_produto_10_id_produto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `foto_produto`
@@ -98,7 +98,11 @@ INSERT INTO `foto_produto` (`foto_produto_10_id`, `foto_produto_10_id_produto`, 
 (9, 31, '516cd11af36ac-31adidas (4).gif'),
 (10, 31, '516cd11b25674-31nike.png'),
 (11, 31, '516cd11b48ce1-312 lix 50 L-20120126-195530.JPG'),
-(12, 31, '516cd11b64164-31azul 13 litros pequena-20111118-153424.png');
+(12, 31, '516cd11b64164-31azul 13 litros pequena-20111118-153424.png'),
+(13, 32, '517eab405da81-32516cd11af36ac-31adidas (4).gif'),
+(14, 32, '517eab4070083-32516cd11b48ce1-312 lix 50 L-20120126-195530.JPG'),
+(15, 32, '517eab407d926-32516cd11b25674-31nike.png'),
+(16, 32, '517eab408ee6e-32516cd11b64164-31azul 13 litros pequena-20111118-153424.png');
 
 -- --------------------------------------------------------
 
@@ -197,16 +201,18 @@ CREATE TABLE `produto` (
   `produto_10_largura_minima` int(10) NOT NULL,
   `produto_10_altura_minima` int(10) NOT NULL,
   `produto_10_minimo_fotos` int(10) NOT NULL,
+  `produto_12_tipo` int(1) NOT NULL,
   `produto_12_active` int(1) NOT NULL,
   PRIMARY KEY (`produto_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`produto_10_id`, `produto_30_nome`, `produto_30_desc_curta`, `produto_60_desc_completa`, `produto_20_valor`, `produto_20_frete`, `produto_40_cores`, `produto_20_peso`, `produto_30_banner`, `produto_30_foto`, `produto_10_prazo_producao`, `produto_10_largura_minima`, `produto_10_altura_minima`, `produto_10_minimo_fotos`, `produto_12_active`) VALUES
-(31, 'Teste', 'teste', 'teste', 1.00, 1.00, '', 1.000, '510a5f0c691ee-cards.jpg', 'foto-teste.jpg', 5, 400, 400, 10, 1);
+INSERT INTO `produto` (`produto_10_id`, `produto_30_nome`, `produto_30_desc_curta`, `produto_60_desc_completa`, `produto_20_valor`, `produto_20_frete`, `produto_40_cores`, `produto_20_peso`, `produto_30_banner`, `produto_30_foto`, `produto_10_prazo_producao`, `produto_10_largura_minima`, `produto_10_altura_minima`, `produto_10_minimo_fotos`, `produto_12_tipo`, `produto_12_active`) VALUES
+(31, 'Teste', 'teste', 'teste', 1.00, 1.00, '[]', 1.000, '510a5f0c691ee-cards.jpg', 'foto-teste.jpg', 5, 400, 400, 10, 0, 1),
+(32, 'Caixa', 'Um segundo teste de produto', 'Teste de produto com layout da caixa', 20.00, 10.00, '[{"cor":"008000","nome":"Verde"},{"cor":"ff0000","nome":"Vermelho"}]', 0.350, '517eab401cc54-caixa.jpg', '517eab40389c9-caixa.jpg', 5, 600, 600, 7, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -219,7 +225,7 @@ CREATE TABLE `produto_fornecedor` (
   `produto_fornecedor_10_id_produto` int(11) NOT NULL,
   `produto_fornecedor_10_id_fornecedor` int(11) NOT NULL,
   PRIMARY KEY (`produto_fornecedor_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Extraindo dados da tabela `produto_fornecedor`
@@ -241,7 +247,24 @@ INSERT INTO `produto_fornecedor` (`produto_fornecedor_10_id`, `produto_fornecedo
 (42, 20, 12),
 (43, 20, 10),
 (44, 24, 12),
-(46, 31, 10);
+(48, 32, 10),
+(49, 31, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produto_info`
+--
+
+CREATE TABLE `produto_info` (
+  `produto_info_10_id` int(11) NOT NULL AUTO_INCREMENT,
+  `produto_10_id` int(11) NOT NULL,
+  `produto_info_30_nome` varchar(255) NOT NULL,
+  `produto_info_20_valor` decimal(10,2) NOT NULL,
+  `produto_info_35_desc` text NOT NULL,
+  `produto_info_12_peso` decimal(10,3) NOT NULL,
+  PRIMARY KEY (`produto_info_10_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -289,7 +312,7 @@ CREATE TABLE `user` (
   `user_12_type` int(2) NOT NULL,
   `user_12_active` int(1) NOT NULL,
   PRIMARY KEY (`user_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `user`
@@ -302,8 +325,8 @@ INSERT INTO `user` (`user_10_id`, `user_30_nome`, `user_30_contato`, `user_30_do
 (10, 'Empresa de venda', 'Contato', '', '', 11, 22223333, 'Rua VoluntÃ¡rios da PÃ¡tria, 2820, sala 58', 'observaÃ§Ã£o', 'fornecedor1', 'YWJiOGU4OTBiZjZiMTMwMWU0YTIxMDZkNGM1NDhmNzM=', 'andre.simoes@quup.com.br', 3, 1),
 (11, 'administrador', 'Gerente de vendas', '', '', 11, 544234532, '', '', 'administrador', 'MTE1MmQ4NTNhNGFkMDc1MjA3NmM0YTNhYzcyNjgyNjE=', 'administrador@administrador.com.br', 2, 1),
 (12, 'Empresa de venda 2', 'JosÃ©', '', '', 11, 33322342, 'EndereÃ§o da empresa', 'ObservaÃ§Ãµes', 'fornecedor2', 'YTJjYTBmYTQxZjQ4ZmIwNmEzYmE5MjJmMjYyMTJmZDI=', 'zezim@vendaempresa2.com.br', 3, 1),
-(13, 'Giovanni Giannichi', 'Giovanni Giannichi', '111111111-11', '22222222-2', 11, 11111111, 'Rua Teste, 11', '', 'giovanni', 'ZDIyMmQwY2E2YTJhY2EwNTVmYjkxZDliNWVkOGNiYTg=', 'giogiannichi@gmail.com', 2, 1),
-(14, 'Reinaldo', 'Reinaldo', '111111111-11', '11111111-11', 11, 11, 'Rua Teste, 11', '', 'reinaldo', 'YmMxZjY1MGUzMDAzYWU3YzRlYzc1ODUxNWY4YmEyNjM=', 'silotto.reinaldo@gmail.com', 2, 1);
+(15, 'Giovanni Giannichi', 'Giovanni Giannichi', '111111111-11', '22222222-2', 11, 11111111, 'Rua Francisco Lipi', '', 'giovanni', 'ZTIyZWFhMWQxZTFlNGY3N2NkZTc5MTYzM2QyYjhhMDk=', 'giogiannichi@gmail.com', 2, 1),
+(16, 'Giovanni Giannichi', 'Giovanni Giannichi', '111111111-11', '22222222-2', 11, 11111111, 'Rua Francisco Lipi,88', '', 'giovanni2', 'MTRhMjUyMjRhNzRlMDNmZTVhNTJhMGM3MTg5OGYxYmE=', 'giogiannichi@gmail.com', 2, 1);
 
 --
 -- Restrições para as tabelas dumpadas
