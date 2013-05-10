@@ -252,24 +252,72 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">
-                                                                <label for="valor">Valor</label>
-                                                                <div>
-                                                                    <input title="Valor do produto em reais." name="valor" id="valor" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_valor"]); ?>">
-                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
-                                                                </div>
-                                                        </fieldset>
-                                                        <fieldset class="label_side">
-                                                                <label for="frete">Frete</label>
-                                                                <div>
-                                                                    <input title="Frete do produto em reais." name="frete" id="frete" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_frete"]); ?>">
-                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
-                                                                </div>
-                                                        </fieldset>
-                                                        <fieldset class="label_side">
-                                                                <label for="peso">Peso</label>
-                                                                <div>
-                                                                    <input title="Peso do pacote que será enviado ao cliente em kg." name="peso" id="peso" class="tooltip right" type="text" value="<?php echo str_replace(".", ",", $produto[1]["produto_20_peso"]); ?>">
-                                                                    <div class="required_tag tooltip hover left" title="Esse campo é obrigatório"></div>
+                                                                <label for="opcoesCompra">
+                                                                    Opções de Compra
+                                                                    <br />
+                                                                    <small style="font-size: 10px;font-weight: normal; color: red;">(todos os campos na opção de compra são obrigatórios)</small>
+                                                                    <br /><br />
+                                                                    <img id="tr_opcaoCompra" class="lineClone" style="cursor: pointer;" src="<?php echo $urlGeral; ?>/images/icons/personal/plus.png" alt="Adicionar Imagem"/>
+                                                                </label>
+                                                                <div class="listImages">
+                                                                    <?php
+                                                                    $prdInfo = new ProdutoInfoController();
+                                                                    $prdListInfo = $prdInfo->getProdutoAction("produto_10_id", $_GET['id']);
+                                                                    
+                                                                    ?>
+                                                                <table id="tbody_tr_opcaoCompra">
+                                                                    <?php
+                                                                        foreach($prdListInfo as $kListInfo => $vListInfo){
+                                                                    ?>
+                                                                            <tr id="<?php echo $vListInfo['produto_info_10_id']; ?>">
+                                                                                <td>
+                                                                                    <div>
+                                                                                        <label for="produto_info_nome">Nome da Opção</label>
+                                                                                        <input title="Nome da opção de compra." value="<?php echo $vListInfo['produto_info_30_nome']; ?>" name="produto_info_nome[]" id="produto_info_nome_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                    </div>
+                                                                                    <br />
+                                                                                    <div>
+                                                                                        <label for="produto_info_desc">Descrição da Opção</label>
+                                                                                        <input title="Descrição da opção de compra." value="<?php echo $vListInfo['produto_info_35_desc']; ?>" name="produto_info_desc[]" id="produto_info_desc_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                    </div>
+                                                                                    <br />
+                                                                                    <div style="float: left; width: 100px !important;">
+                                                                                        <label for="produto_info_valor">Valor da Opção</label>
+                                                                                        <input title="Valor da Opção (em reais)" style="width: 100px !important;" value="<?php echo $vListInfo['produto_info_20_valor']; ?>" name="produto_info_valor[]" id="produto_info_valor_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                    </div>
+                                                                                    <div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                        <label for="produto_info_peso">Peso da Opção</label>
+                                                                                        <input title="Peso da Opção (em quilos)" style="width: 100px !important;" value="<?php echo $vListInfo['produto_info_12_peso']; ?>" name="produto_info_peso[]" id="produto_info_peso_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                    <?php
+                                                                        }
+                                                                    ?>
+                                                                        <tr id="tr_opcaoCompra_inv" style="display: none;">
+                                                                        	<td>
+                                                                                <div>
+                                                                                    <label for="produto_info_nome">Nome da Opção</label>
+                                                                                    <input title="Nome da opção de compra." name="produto_info_nome[]" id="produto_info_nome" class="text" type="text">
+                                                                                </div>
+                                                                                <br />
+                                                                                <div>
+                                                                                    <label for="produto_info_desc">Descrição da Opção</label>
+                                                                                    <input title="Descrição da opção de compra." name="produto_info_desc[]" id="produto_info_desc" class="text" type="text">
+                                                                                </div>
+                                                                                <br />
+                                                                                <div style="float: left; width: 100px !important;">
+                                                                                    <label for="produto_info_valor">Valor da Opção</label>
+                                                                                    <input title="Valor da Opção (em reais)" style="width: 100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="text" type="text">
+                                                                                </div>
+                                                                            	<div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                    <label for="produto_info_peso">Peso da Opção</label>
+                                                                                    <input title="Peso da Opção (em quilos)" style="width: 100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="text" type="text">
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                            	</table>
+                                                                <div style="clear: both;"></div>
                                                                 </div>
                                                         </fieldset>
                                                         <fieldset class="label_side">

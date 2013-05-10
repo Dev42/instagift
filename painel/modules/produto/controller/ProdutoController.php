@@ -4,7 +4,7 @@ class ProdutoController {
 
     public function insertAction(Produto $produto) {
 			
-        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getValor() != "" && $produto->getPeso() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
+        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
 
             $produtoAr = $produto->assocEntity();
 
@@ -25,7 +25,7 @@ class ProdutoController {
 
     public function editAction(Produto $produto){
         
-        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getValor() != "" && $produto->getPeso() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
+        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
             $produtoAr = $produto->assocEntity();
             
             $setQuery = array();

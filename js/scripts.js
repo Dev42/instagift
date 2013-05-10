@@ -127,12 +127,16 @@ function selecionaCor(elemento,corEscolhida){
 }
 
 function selecionaNrFotosTampa(elemento,opcaoEscolhida){
-	$('#selecaoFotosTampa').empty();
-	$('#urlFotosTampa').val('');
-	
-	$('.boxNrFotosTampa').removeClass('active');
-	elemento.className += " active";
-	$('#nrFotosTampa').val(opcaoEscolhida);
-	
-	$('#btn-comprar').hide();
+        if(opcaoEscolhida != $('#nrFotosTampa').val()){
+                if(opcaoEscolhida == 1){
+                        $('#selecaoFotosTampa').empty();
+                        $('#urlFotosTampa').val('');
+                }
+                
+                $('.boxNrFotosTampa').removeClass('active');
+                elemento.className += " active";
+                $('#nrFotosTampa').val(opcaoEscolhida);
+                
+                $('#btn-comprar').hide();
+        }
 }

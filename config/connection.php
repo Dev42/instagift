@@ -4,7 +4,7 @@
     $dataBase = "instagift";
     $host = "localhost";
     $user = "root";
-    $pass = "root";
+    $pass = "";
 	
 /*}else if($_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
 	$dataBase = "instagift";
