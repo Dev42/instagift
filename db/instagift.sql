@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 08/05/2013 às 22:54:22
+-- Tempo de Geração: 10/05/2013 às 22:16:32
 -- Versão do Servidor: 5.5.25
 -- Versão do PHP: 5.4.4
 
@@ -23,62 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `contato`
---
-
-CREATE TABLE `contato` (
-  `cnt_10_id` int(11) NOT NULL AUTO_INCREMENT,
-  `cli_10_id` int(11) NOT NULL,
-  `cnt_30_nome` text NOT NULL,
-  `cnt_10_tipo` int(11) NOT NULL,
-  `cnt_10_ddd` int(11) NOT NULL,
-  `cnt_10_tel` int(11) NOT NULL,
-  `cnt_30_email` text NOT NULL,
-  PRIMARY KEY (`cnt_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
-
---
--- Extraindo dados da tabela `contato`
---
-
-INSERT INTO `contato` (`cnt_10_id`, `cli_10_id`, `cnt_30_nome`, `cnt_10_tipo`, `cnt_10_ddd`, `cnt_10_tel`, `cnt_30_email`) VALUES
-(16, 14, 'Giovanni Giannichi', 1, 11, 11111111, 'giogiannichi@gmail.com'),
-(17, 14, 'Giovanni Giannichi', 1, 11, 11111111, 'giogiannichi@gmail.com'),
-(18, 14, 'Giovanni Giannichi', 1, 11, 11111111, 'giovanni@labssj.com.br'),
-(19, 14, 'Giovanni Giannichi', 1, 11, 11111111, 'giovanni@labssj.com.br');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `endereco`
---
-
-CREATE TABLE `endereco` (
-  `end_10_id` int(11) NOT NULL AUTO_INCREMENT,
-  `cli_10_id` int(11) NOT NULL,
-  `end_30_logradouro` text NOT NULL,
-  `end_30_bairro` text NOT NULL,
-  `end_10_numero` text NOT NULL,
-  `end_30_complemento` text NOT NULL,
-  `end_30_cidade` text NOT NULL,
-  `end_30_estado` text NOT NULL,
-  `end_30_cep` text NOT NULL,
-  PRIMARY KEY (`end_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
-
---
--- Extraindo dados da tabela `endereco`
---
-
-INSERT INTO `endereco` (`end_10_id`, `cli_10_id`, `end_30_logradouro`, `end_30_bairro`, `end_10_numero`, `end_30_complemento`, `end_30_cidade`, `end_30_estado`, `end_30_cep`) VALUES
-(22, 14, 'Rua Francisco Lipi', 'Parada Inglesa', '88', '', 'SAO PAULO', 'SP', '02243-000'),
-(23, 14, 'Rua Francisco Lipi', 'Parada Inglesa', '88', 'Complemento teste', 'SAO PAULO', 'SP', '02243-000'),
-(24, 14, 'Rua Francisco Lipi', 'Parada Inglesa', '88', 'Complemento teste', 'SAO PAULO', 'SP', '02243-000'),
-(25, 14, 'Rua Francisco Lipi', 'Parada Inglesa', '88', 'Complemento teste', 'SAO PAULO', 'SP', '02243-000');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `foto_produto`
 --
 
@@ -88,7 +32,7 @@ CREATE TABLE `foto_produto` (
   `foto_produto_30_url` varchar(255) NOT NULL,
   PRIMARY KEY (`foto_produto_10_id`),
   KEY `foto_produto_ibfk_1` (`foto_produto_10_id_produto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Extraindo dados da tabela `foto_produto`
@@ -102,7 +46,11 @@ INSERT INTO `foto_produto` (`foto_produto_10_id`, `foto_produto_10_id_produto`, 
 (13, 32, '517eab405da81-32516cd11af36ac-31adidas (4).gif'),
 (14, 32, '517eab4070083-32516cd11b48ce1-312 lix 50 L-20120126-195530.JPG'),
 (15, 32, '517eab407d926-32516cd11b25674-31nike.png'),
-(16, 32, '517eab408ee6e-32516cd11b64164-31azul 13 litros pequena-20111118-153424.png');
+(16, 32, '517eab408ee6e-32516cd11b64164-31azul 13 litros pequena-20111118-153424.png'),
+(17, 33, '518cecae4cf3d-33517eab401cc54-caixa.jpg'),
+(18, 33, '518cecae5d359-33517eab401cc54-caixa.jpg'),
+(19, 33, '518cecae71b97-33517eab401cc54-caixa.jpg'),
+(20, 33, '518cecae8233a-33517eab401cc54-caixa.jpg');
 
 -- --------------------------------------------------------
 
@@ -112,16 +60,22 @@ INSERT INTO `foto_produto` (`foto_produto_10_id`, `foto_produto_10_id_produto`, 
 
 CREATE TABLE `pedidos` (
   `ped_10_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_10_id` int(10) NOT NULL,
-  `produto_10_id` int(10) NOT NULL,
-  `ped_10_quantidade` int(10) NOT NULL,
+  `ped_35_nome` text NOT NULL,
+  `ped_35_email` text NOT NULL,
+  `ped_35_ddd` text NOT NULL,
+  `ped_35_telefone` text NOT NULL,
+  `ped_35_logradouro` text NOT NULL,
+  `ped_35_numero` text NOT NULL,
+  `ped_35_complemento` text NOT NULL,
+  `ped_35_cep` text NOT NULL,
+  `ped_35_bairro` text NOT NULL,
+  `ped_35_cidade` text NOT NULL,
+  `ped_35_estado` text NOT NULL,
+  `ped_20_valorFrete` decimal(10,2) NOT NULL,
+  `ped_12_frete` int(1) NOT NULL,
   `ped_10_status` int(10) NOT NULL,
-  `ped_10_pag_status` int(10) NOT NULL,
-  `ped_10_paymode` int(10) NOT NULL,
-  `ped_22_created_at` int(11) NOT NULL,
-  PRIMARY KEY (`ped_10_id`),
-  KEY `user_10_id` (`user_10_id`,`produto_10_id`),
-  KEY `produto_10_id` (`produto_10_id`)
+  `ped_22_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ped_10_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -132,11 +86,16 @@ CREATE TABLE `pedidos` (
 
 CREATE TABLE `pedidos_chart` (
   `cht_10_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_10_id` int(11) NOT NULL,
   `produto_10_id` int(11) NOT NULL,
-  `cht_35_config` text NOT NULL,
+  `ped_10_id` int(11) NOT NULL,
+  `cht_30_nome` varchar(255) NOT NULL,
+  `cht_20_valor` decimal(10,2) NOT NULL,
+  `cht_10_nrFotos` int(11) NOT NULL,
+  `cht_12_peso` decimal(10,3) NOT NULL,
+  `cht_35_urlFotos` text NOT NULL,
+  `cht_35_urlFotosTampa` text NOT NULL,
   `cht_10_quantidade` int(11) NOT NULL,
-  `cht_22_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `cht_30_cor` varchar(255) NOT NULL,
   PRIMARY KEY (`cht_10_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
@@ -144,41 +103,41 @@ CREATE TABLE `pedidos_chart` (
 -- Extraindo dados da tabela `pedidos_chart`
 --
 
-INSERT INTO `pedidos_chart` (`cht_10_id`, `user_10_id`, `produto_10_id`, `cht_35_config`, `cht_10_quantidade`, `cht_22_created_at`) VALUES
-(1, 14, 31, '', 1, '0000-00-00 00:00:00'),
-(2, 14, 0, '', 1, '0000-00-00 00:00:00'),
-(3, 14, 0, '', 1, '0000-00-00 00:00:00'),
-(4, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(5, 14, 31, 'http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg', 1, '0000-00-00 00:00:00'),
-(6, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(7, 14, 31, 'http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg', 2, '0000-00-00 00:00:00'),
-(8, 14, 31, 'http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg;http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg', 2, '0000-00-00 00:00:00'),
-(9, 14, 0, '', 4, '0000-00-00 00:00:00'),
-(10, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 1, '0000-00-00 00:00:00'),
-(11, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 3, '0000-00-00 00:00:00'),
-(12, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(13, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(14, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(15, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(16, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(17, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(18, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 2, '0000-00-00 00:00:00'),
-(19, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 1, '0000-00-00 00:00:00'),
-(20, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 1, '0000-00-00 00:00:00'),
-(21, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(22, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(23, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(24, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(25, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 3, '0000-00-00 00:00:00'),
-(26, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 3, '0000-00-00 00:00:00'),
-(27, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(28, 14, 0, '', 0, '0000-00-00 00:00:00'),
-(29, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 2, '0000-00-00 00:00:00'),
-(30, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 2, '0000-00-00 00:00:00'),
-(31, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/65807_512862942070292_529770085_n.jpg', 2, '0000-00-00 00:00:00'),
-(32, 14, 31, 'https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg', 1, '0000-00-00 00:00:00'),
-(33, 14, 31, 'https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/s720x720/600041_537886352901284_1825963265_n.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg', 1, '0000-00-00 00:00:00'),
-(34, 14, 31, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-prn1/48080_10200661576292983_427752318_n.jpg;https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/s720x720/299922_4697166510400_1259030800_n.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg;http://distilleryimage3.s3.amazonaws.com/811926b43bf211e2ace922000a1f90f6_7.jpg', 1, '0000-00-00 00:00:00');
+INSERT INTO `pedidos_chart` (`cht_10_id`, `produto_10_id`, `ped_10_id`, `cht_30_nome`, `cht_20_valor`, `cht_10_nrFotos`, `cht_12_peso`, `cht_35_urlFotos`, `cht_35_urlFotosTampa`, `cht_10_quantidade`, `cht_30_cor`) VALUES
+(1, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(2, 0, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(3, 0, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(4, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(5, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(6, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(7, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(8, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(9, 0, 0, '', 0.00, 0, 0.000, '', '', 4, ''),
+(10, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(11, 31, 0, '', 0.00, 0, 0.000, '', '', 3, ''),
+(12, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(13, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(14, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(15, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(16, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(17, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(18, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(19, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(20, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(21, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(22, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(23, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(24, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(25, 31, 0, '', 0.00, 0, 0.000, '', '', 3, ''),
+(26, 31, 0, '', 0.00, 0, 0.000, '', '', 3, ''),
+(27, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(28, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
+(29, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(30, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(31, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
+(32, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(33, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
+(34, 31, 0, '', 0.00, 0, 0.000, '', '', 1, '');
 
 -- --------------------------------------------------------
 
@@ -204,7 +163,7 @@ CREATE TABLE `produto` (
   `produto_12_tipo` int(1) NOT NULL,
   `produto_12_active` int(1) NOT NULL,
   PRIMARY KEY (`produto_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -212,7 +171,8 @@ CREATE TABLE `produto` (
 
 INSERT INTO `produto` (`produto_10_id`, `produto_30_nome`, `produto_30_desc_curta`, `produto_60_desc_completa`, `produto_20_valor`, `produto_20_frete`, `produto_40_cores`, `produto_20_peso`, `produto_30_banner`, `produto_30_foto`, `produto_10_prazo_producao`, `produto_10_largura_minima`, `produto_10_altura_minima`, `produto_10_minimo_fotos`, `produto_12_tipo`, `produto_12_active`) VALUES
 (31, 'Teste', 'teste', 'teste', 1.00, 1.00, '[]', 1.000, '510a5f0c691ee-cards.jpg', 'foto-teste.jpg', 5, 400, 400, 10, 0, 1),
-(32, 'Caixa', 'Um segundo teste de produto', 'Teste de produto com layout da caixa', 20.00, 10.00, '[{"cor":"008000","nome":"Verde"},{"cor":"ff0000","nome":"Vermelho"}]', 0.350, '517eab401cc54-caixa.jpg', '517eab40389c9-caixa.jpg', 5, 600, 600, 7, 0, 1);
+(32, 'Caixa', 'Um segundo teste de produto', 'Teste de produto com layout da caixa', 20.00, 10.00, '[{"cor":"008000","nome":"Verde"},{"cor":"ff0000","nome":"Vermelho"}]', 0.350, '517eab401cc54-caixa.jpg', '517eab40389c9-caixa.jpg', 5, 600, 600, 25, 1, 1),
+(33, 'Outra Caixa', 'Outro teste de caixa', 'Outro teste de cadastro de caixa', 0.00, 0.00, '[{"cor":"ffffff","nome":"Branco"},{"cor":"a0522d","nome":"Marrom"}]', 0.000, '518cecae128c4-517eab401cc54-caixa.jpg', '518cecae31b43-517eab401cc54-caixa.jpg', 5, 500, 500, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -225,7 +185,7 @@ CREATE TABLE `produto_fornecedor` (
   `produto_fornecedor_10_id_produto` int(11) NOT NULL,
   `produto_fornecedor_10_id_fornecedor` int(11) NOT NULL,
   PRIMARY KEY (`produto_fornecedor_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Extraindo dados da tabela `produto_fornecedor`
@@ -248,7 +208,8 @@ INSERT INTO `produto_fornecedor` (`produto_fornecedor_10_id`, `produto_fornecedo
 (43, 20, 10),
 (44, 24, 12),
 (48, 32, 10),
-(49, 31, 10);
+(49, 31, 10),
+(53, 33, 10);
 
 -- --------------------------------------------------------
 
@@ -262,33 +223,18 @@ CREATE TABLE `produto_info` (
   `produto_info_30_nome` varchar(255) NOT NULL,
   `produto_info_20_valor` decimal(10,2) NOT NULL,
   `produto_info_35_desc` text NOT NULL,
+  `produto_info_10_nrFotos` int(11) NOT NULL,
   `produto_info_12_peso` decimal(10,3) NOT NULL,
   PRIMARY KEY (`produto_info_10_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Estrutura da tabela `ultimos_logados`
+-- Extraindo dados da tabela `produto_info`
 --
 
-CREATE TABLE `ultimos_logados` (
-  `ultimo_10_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ultimo_30_id_conta` varchar(255) NOT NULL,
-  `ultimo_10_tipo_conta` int(11) NOT NULL,
-  `user_10_id` int(11) NOT NULL,
-  PRIMARY KEY (`ultimo_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Extraindo dados da tabela `ultimos_logados`
---
-
-INSERT INTO `ultimos_logados` (`ultimo_10_id`, `ultimo_30_id_conta`, `ultimo_10_tipo_conta`, `user_10_id`) VALUES
-(1, '16910256', 1, 13),
-(2, '100001472313325', 2, 13),
-(3, '16910256', 1, 14),
-(4, '100001472313325', 2, 14);
+INSERT INTO `produto_info` (`produto_info_10_id`, `produto_10_id`, `produto_info_30_nome`, `produto_info_20_valor`, `produto_info_35_desc`, `produto_info_10_nrFotos`, `produto_info_12_peso`) VALUES
+(6, 33, 'Caixa Pequena', 19.90, '8 Fotos laterais', 8, 0.200),
+(7, 33, 'Caixa Grande', 24.90, '12 Fotos Laterais', 12, 0.500);
 
 -- --------------------------------------------------------
 
@@ -337,13 +283,6 @@ INSERT INTO `user` (`user_10_id`, `user_30_nome`, `user_30_contato`, `user_30_do
 --
 ALTER TABLE `foto_produto`
   ADD CONSTRAINT `foto_produto_ibfk_1` FOREIGN KEY (`foto_produto_10_id_produto`) REFERENCES `produto` (`produto_10_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Restrições para a tabela `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`user_10_id`) REFERENCES `user` (`user_10_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `pedidos_ibfk_3` FOREIGN KEY (`produto_10_id`) REFERENCES `produto` (`produto_10_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
