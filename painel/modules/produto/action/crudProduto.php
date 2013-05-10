@@ -82,19 +82,27 @@ switch ($op) {
                     $prdInfoController = new ProdutoInfoController();
                     foreach($produto_info_nome as $kPrdOpt => $vPrdOpt){
                         if ($produto_info_nome[$kPrdOpt] != "" && $produto_info_desc[$kPrdOpt] != "" && 
-                                $produto_info_valor[$kPrdOpt] != "" && $produto_info_peso[$kPrdOpt] != ""){
+                                $produto_info_valor[$kPrdOpt] != "" && $produto_info_nrFotos[$kPrdOpt] != "" && $produto_info_peso[$kPrdOpt] != ""){
 
                             $prdInfoClass = new ProdutoInfo();
                             $prdInfoClass->setIdProduto($produtoId);
                             $prdInfoClass->setNome($produto_info_nome[$kPrdOpt]);
                             $prdInfoClass->setDesc($produto_info_desc[$kPrdOpt]);
+							
+							$produto_info_peso[$kPrdOpt] = str_replace('.','',$produto_info_peso[$kPrdOpt]);
+							$produto_info_peso[$kPrdOpt] = str_replace(',','.',$produto_info_peso[$kPrdOpt]);
                             $prdInfoClass->setPeso($produto_info_peso[$kPrdOpt]);
+							
+							$prdInfoClass->setNrFotos($produto_info_nrFotos[$kPrdOpt]);
+							
+							$produto_info_valor[$kPrdOpt] = str_replace('.','',$produto_info_valor[$kPrdOpt]);
+							$produto_info_valor[$kPrdOpt] = str_replace(',','.',$produto_info_valor[$kPrdOpt]);
                             $prdInfoClass->setValor($produto_info_valor[$kPrdOpt]);
                             
                             if ($prdInfoController->insertAction($prdInfoClass)){
-                                echo "Funfou";
+                                //echo "Funfou";
                             }else {
-                                echo "Deu erro inserindo a opção!";
+                                //echo "Deu erro inserindo a opção!";
                             }
 
                         }
@@ -216,19 +224,27 @@ switch ($op) {
                     $prdInfoController->deleteByProdutoAction($produtoClass->getId());
                     foreach($produto_info_nome as $kPrdOpt => $vPrdOpt){
                         if ($produto_info_nome[$kPrdOpt] != "" && $produto_info_desc[$kPrdOpt] != "" && 
-                                $produto_info_valor[$kPrdOpt] != "" && $produto_info_peso[$kPrdOpt] != ""){
+                                $produto_info_valor[$kPrdOpt] != "" && $produto_info_nrFotos[$kPrdOpt] != "" && $produto_info_peso[$kPrdOpt] != ""){
 
                             $prdInfoClass = new ProdutoInfo();
                             $prdInfoClass->setIdProduto($produtoClass->getId());
                             $prdInfoClass->setNome($produto_info_nome[$kPrdOpt]);
                             $prdInfoClass->setDesc($produto_info_desc[$kPrdOpt]);
+							
+							$produto_info_peso[$kPrdOpt] = str_replace('.','',$produto_info_peso[$kPrdOpt]);
+							$produto_info_peso[$kPrdOpt] = str_replace(',','.',$produto_info_peso[$kPrdOpt]);
                             $prdInfoClass->setPeso($produto_info_peso[$kPrdOpt]);
+							
+							$prdInfoClass->setNrFotos($produto_info_nrFotos[$kPrdOpt]);
+							
+							$produto_info_valor[$kPrdOpt] = str_replace('.','',$produto_info_valor[$kPrdOpt]);
+							$produto_info_valor[$kPrdOpt] = str_replace(',','.',$produto_info_valor[$kPrdOpt]);
                             $prdInfoClass->setValor($produto_info_valor[$kPrdOpt]);
                             
                             if ($prdInfoController->insertAction($prdInfoClass)){
-                                echo "Funfou";
+                                //echo "Funfou";
                             }else {
-                                echo "Deu erro inserindo a opção!";
+                                //echo "Deu erro inserindo a opção!";
                             }
 
                         }

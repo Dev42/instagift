@@ -185,7 +185,11 @@ $userController = new UserController();
                                                                                     <label for="produto_info_valor">Valor da Opção</label>
                                                                                     <input title="Valor da Opção (em reais)" style="width: 100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="text" type="text">
                                                                                 </div>
-                                                                            	<div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                <div style="float: left; width: 100px !important; margin-left: 10px;">
+                                                                                    <label for="produto_info_nrFotos">Qtde Fotos</label>
+                                                                                    <input title="Número de Fotos para o produto" style="width: 100px !important;" name="produto_info_nrFotos[]" id="produto_info_nrFotos" class="text" type="text">
+                                                                                </div>
+                                                                            	<div style="float: left; width: 100px !important; margin-left: 10px; margin-bottom:20px;">
                                                                                     <label for="produto_info_peso">Peso da Opção</label>
                                                                                     <input title="Peso da Opção (em quilos)" style="width: 100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="text" type="text">
                                                                                 </div>
@@ -207,7 +211,11 @@ $userController = new UserController();
                                                                                     <label for="produto_info_valor">Valor da Opção</label>
                                                                                     <input title="Valor da Opção (em reais)" style="width: 100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="text" type="text">
                                                                                 </div>
-                                                                            	<div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                 <div style="float: left; width: 100px !important; margin-left: 10px;">
+                                                                                    <label for="produto_info_nrFotos">Qtde Fotos</label>
+                                                                                    <input title="Número de Fotos para o produto" style="width: 100px !important;" name="produto_info_nrFotos[]" id="produto_info_nrFotos" class="text" type="text">
+                                                                                </div>
+                                                                            	<div style="float: left; width: 100px !important; margin-left: 10px; margin-bottom:20px;">
                                                                                     <label for="produto_info_peso">Peso da Opção</label>
                                                                                     <input title="Peso da Opção (em quilos)" style="width: 100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="text" type="text">
                                                                                 </div>
@@ -251,7 +259,7 @@ $userController = new UserController();
                                                                     <label for="yes3b">
                                                                         <div class="radio" id="uniform-yes3b">
                                                                             <span class="">
-                                                                                <input class="radTipo" type="radio" id="yes3b" value="1" checked="checked" name="prd_tipo" style="opacity: 0;">
+                                                                                <input class="radTipo" type="radio" id="yes3b" value="0" checked="checked" name="prd_tipo" style="opacity: 0;">
                                                                             </span>
                                                                         </div>
                                                                         Compra normal
@@ -259,7 +267,7 @@ $userController = new UserController();
                                                                     <label for="no3b">
                                                                         <div class="radio" id="uniform-no3b">
                                                                             <span class="checked">
-                                                                                <input class="radTipo" type="radio" id="no3b" value="0" name="prd_tipo" style="opacity: 0;">
+                                                                                <input class="radTipo" type="radio" id="no3b" value="1" name="prd_tipo" style="opacity: 0;">
                                                                             </span>
                                                                         </div>
                                                                         Compra de caixa

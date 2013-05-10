@@ -6,11 +6,6 @@ require_once '../painel/modules/pedidos/entity/Chart.php';
 require_once '../painel/modules/produto/controller/ProdutoController.php';
 require_once '../painel/modules/produto/entity/Produto.php';
 
-require_once '../painel/modules/clientes/controller/EnderecoController.php';
-require_once '../painel/modules/clientes/controller/ContatoController.php';
-require_once '../painel/modules/clientes/entity/Endereco.php';
-require_once '../painel/modules/clientes/entity/Contato.php';
-
 /* 
  * Classe para solicitar o pagamento do item carrinho
  */

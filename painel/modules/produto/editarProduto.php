@@ -268,6 +268,8 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                 <table id="tbody_tr_opcaoCompra">
                                                                     <?php
                                                                         foreach($prdListInfo as $kListInfo => $vListInfo){
+																			$produto_info_20_valor = str_replace('.',',',$vListInfo['produto_info_20_valor']);
+																			$produto_info_12_peso = str_replace('.',',',$vListInfo['produto_info_12_peso']);
                                                                     ?>
                                                                             <tr id="<?php echo $vListInfo['produto_info_10_id']; ?>">
                                                                                 <td>
@@ -283,11 +285,15 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                                     <br />
                                                                                     <div style="float: left; width: 100px !important;">
                                                                                         <label for="produto_info_valor">Valor da Opção</label>
-                                                                                        <input title="Valor da Opção (em reais)" style="width: 100px !important;" value="<?php echo $vListInfo['produto_info_20_valor']; ?>" name="produto_info_valor[]" id="produto_info_valor_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                        <input title="Valor da Opção (em reais)" style="width: 100px !important;" value="<?php echo $produto_info_20_valor; ?>" name="produto_info_valor[]" id="produto_info_valor_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
                                                                                     </div>
-                                                                                    <div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                    <div style="float: left; width: 100px !important; margin-left: 10px;">
+                                                                                        <label for="produto_info_nrFotos">Qtde Fotos</label>
+                                                                                        <input title="Número de Fotos para o produto" style="width: 100px !important;" value="<?php echo $vListInfo['produto_info_10_nrFotos']; ?>" name="produto_info_nrFotos[]" id="produto_info_nrFotos_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                    </div>
+                                                                                    <div style="float: left; width: 100px !important; margin-left: 10px; margin-bottom:20px;">
                                                                                         <label for="produto_info_peso">Peso da Opção</label>
-                                                                                        <input title="Peso da Opção (em quilos)" style="width: 100px !important;" value="<?php echo $vListInfo['produto_info_12_peso']; ?>" name="produto_info_peso[]" id="produto_info_peso_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
+                                                                                        <input title="Peso da Opção (em quilos)" style="width: 100px !important;" value="<?php echo $produto_info_12_peso; ?>" name="produto_info_peso[]" id="produto_info_peso_<?php echo $vListInfo['produto_info_10_id']; ?>" class="text" type="text">
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -310,7 +316,11 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                                     <label for="produto_info_valor">Valor da Opção</label>
                                                                                     <input title="Valor da Opção (em reais)" style="width: 100px !important;" name="produto_info_valor[]" id="produto_info_valor" class="text" type="text">
                                                                                 </div>
-                                                                            	<div style="float: left; width: 100px !important; margin-left: 100px; margin-bottom:20px;">
+                                                                                <div style="float: left; width: 100px !important; margin-left: 10px;">
+                                                                                    <label for="produto_info_nrFotos">Qtde Fotos</label>
+                                                                                    <input title="Número de Fotos para o produto" style="width: 100px !important;" name="produto_info_nrFotos[]" id="produto_info_nrFotos" class="text" type="text">
+                                                                                </div>
+                                                                            	<div style="float: left; width: 100px !important; margin-left: 10px; margin-bottom:20px;">
                                                                                     <label for="produto_info_peso">Peso da Opção</label>
                                                                                     <input title="Peso da Opção (em quilos)" style="width: 100px !important;" name="produto_info_peso[]" id="produto_info_peso" class="text" type="text">
                                                                                 </div>
@@ -354,7 +364,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                     <label for="yes3b">
                                                                         <div class="radio" id="uniform-yes3b">
                                                                             <span class="">
-                                                                                <input class="radTipo" type="radio" id="yes3b" value="1" <?php echo ($produto[1]["produto_12_tipo"] == 1)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
+                                                                                <input class="radTipo" type="radio" id="yes3b" value="0" <?php echo ($produto[1]["produto_12_tipo"] == 0)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
                                                                             </span>
                                                                         </div>
                                                                         Compra normal
@@ -362,7 +372,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                                                     <label for="no3b">
                                                                         <div class="radio" id="uniform-no3b">
                                                                             <span class="checked">
-                                                                                <input class="radTipo" type="radio" id="no3b" value="0"  <?php echo ($produto[1]["produto_12_tipo"] == 0)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
+                                                                                <input class="radTipo" type="radio" id="no3b" value="1"  <?php echo ($produto[1]["produto_12_tipo"] == 1)? 'checked="checked"' : ""; ?> name="prd_tipo" style="opacity: 0;">
                                                                             </span>
                                                                         </div>
                                                                         Compra de caixa

@@ -4,7 +4,7 @@ class ProdutoInfoController {
 
     public function insertAction(ProdutoInfo $produto) {
 			
-        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getPeso() != ""){
+        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getNrFotos() != "" && $produto->getPeso() != ""){
 
             $produtoAr = $produto->assocEntity();
 
@@ -25,7 +25,7 @@ class ProdutoInfoController {
 
     public function editAction(ProdutoInfo $produto){
         
-        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getPeso() != ""){
+        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getNrFotos() != "" && $produto->getPeso() != ""){
             $produtoAr = $produto->assocEntity();
             
             $setQuery = array();

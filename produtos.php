@@ -10,6 +10,7 @@ $menuClass = array("active","","");
 
 $prdFront = new ProdutoFrontController();
 $fotoPrd = new FotoProdutoController();
+$infoPrd = new ProdutoInfoController();
 
 if (isset($_SESSION['InstagiftProdId'])){
 	$idProd = $_SESSION['InstagiftProdId'];
@@ -118,6 +119,27 @@ if ($idProd){
             </div>
             <div class="row dica">
             	<span class="titProduto">Opções de Compra</span>
+                <?php
+					$listaOpcoes = $infoPrd->getProdutoAction('produto_10_id',$v->getId());
+					$contOpcoes = 0;
+					foreach($listaOpcoes as $kInfoPrd => $vInfoPrd){
+						if($contOpcoes == 0){
+							$modeloPadrao = $vInfoPrd['produto_info_10_id'];
+							$nrFotosPadrao = $vInfoPrd['produto_info_10_nrFotos'];
+							$classeOpcao = 'contOpcaoModelo active clearfix';
+						}else{
+							$classeOpcao = 'contOpcaoModelo clearfix';
+						}
+						
+						echo "<div class='".$classeOpcao."' style='cursor:pointer;' onclick='selecionaOpcaoCompra(this,\"".$vInfoPrd['produto_info_10_id']."\",\"".$vInfoPrd['produto_info_10_nrFotos']."\")'>		
+								<span class='titOpcaoCompra'>".$vInfoPrd['produto_info_30_nome']."</span>
+								<br>
+								<span class='descOpcaoCompra'>".$vInfoPrd['produto_info_35_desc']." - R$ ".str_replace(".",",",$vInfoPrd['produto_info_20_valor'])."</span>
+							  </div>";
+						
+						$contOpcoes++;
+					}
+				?>
             </div>
             <div class="row dica">
             	<span class="titProduto">Opções de Cores</span>
@@ -127,16 +149,16 @@ if ($idProd){
 					foreach($arCores as $corProd){
 						if($contCores == 0){
 							$corPadrao = $corProd->nome;
-							echo "<div class='corProd'>
-									<div class='boxCorProd active' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
-									<span>".$corProd->nome."</span>
-								  </div>";
+							$classeCor = 'boxCorProd active';
 						}else{
-							echo "<div class='corProd'>
-									<div class='boxCorProd' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
+							$classeCor = 'boxCorProd';
+						}
+						
+						echo "<div class='corProd'>
+									<div class='".$classeCor."' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
 									<span>".$corProd->nome."</span>
 								  </div>";
-						}
+								  
 						$contCores++;
 					}
 				?>
@@ -152,11 +174,12 @@ if ($idProd){
 			if($v->getTipo() == '1'){
 		?>
         <div class="span8">
-            <form name="comprarForm" method="post" action="fechaPedido.php">
+            <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
                 <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
                 <input type="hidden" value="1" name="nrFotosTampa" id="nrFotosTampa" />
-                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" value="<?php echo $nrFotosPadrao; ?>" name="nrFotos" id="nrFotos" />
                 <input type="hidden" name="urlFotosTampa" id="urlFotosTampa" />
                 <input type="hidden" name="urlFotos" id="urlFotos" />
         	<div class="row">
@@ -199,7 +222,7 @@ if ($idProd){
         	</div>
             
             <div class="row fotosSelecionadas">
-            	<span class="titProduto">Imagens Selecionadas - Laterais </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
+            	<span class="titProduto">Imagens Selecionadas - Laterais </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $nrFotosPadrao; ?></span><span class="descProduto"> imagens selecionadas</span>
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
@@ -218,10 +241,11 @@ if ($idProd){
 			}else{
 		?>
         <div class="span8">
-            <form name="comprarForm" method="post" action="fechaPedido.php">
+            <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
                 <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
-                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
+                <input type="hidden" value="<?php echo $nrFotosPadrao; ?>" name="nrFotos" id="nrFotos" />
                 <input type="hidden" name="urlFotos" id="urlFotos" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
@@ -245,7 +269,7 @@ if ($idProd){
                 </div>
         	</div>
             <div class="row fotosSelecionadas">
-            	<span class="titProduto">Imagens Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
+            	<span class="titProduto">Imagens Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $nrFotosPadrao; ?></span><span class="descProduto"> imagens selecionadas</span>
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">

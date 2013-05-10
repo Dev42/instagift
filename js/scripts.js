@@ -126,6 +126,21 @@ function selecionaCor(elemento,corEscolhida){
 	$('#selCor').val(corEscolhida);
 }
 
+function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
+	$('.contOpcaoModelo').removeClass('active');
+	elemento.className += " active";
+	
+	$('#selModelo').val(idEscolhido);
+	$('#nrFotos').val(nrFotosEscolhido);
+	$('#txtNrFotos').html(nrFotosEscolhido);
+	$('#count').html('0');
+	
+	$('#selecaoFotos').empty();
+    $('#urlFotos').val('');
+	
+	$('#btn-comprar').hide();
+}
+
 function selecionaNrFotosTampa(elemento,opcaoEscolhida){
         if(opcaoEscolhida != $('#nrFotosTampa').val()){
                 if(opcaoEscolhida == 1){

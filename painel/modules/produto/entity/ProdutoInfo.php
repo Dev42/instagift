@@ -11,6 +11,8 @@ class ProdutoInfo {
     protected $valor;
     
     protected $desc;
+	
+	protected $nrFotos;
     
     protected $peso;
     
@@ -53,6 +55,14 @@ class ProdutoInfo {
     public function setDesc($desc) {
         $this->desc = $desc;
     }
+	
+	public function getNrFotos() {
+        return $this->nrFotos;
+    }
+
+    public function setNrFotos($nrFotos) {
+        $this->nrFotos = $nrFotos;
+    }
 
     public function getPeso() {
         return $this->peso;
@@ -70,6 +80,7 @@ class ProdutoInfo {
             "produto_info_30_nome"          => $this->getNome(),
             "produto_info_20_valor"         => $this->getValor(),
             "produto_info_35_desc"          => $this->getDesc(),
+			"produto_info_10_nrFotos"       => $this->getNrFotos(),
             "produto_info_12_peso"          => $this->getPeso()
         );
         
@@ -84,6 +95,7 @@ class ProdutoInfo {
         $this->setNome($row['produto_info_30_nome']);
         $this->setValor($row['produto_info_20_valor']);
         $this->setDesc($row['produto_info_35_desc']);
+	    $this->setNrFotos($row['produto_info_10_nrFotos']);
         $this->setPeso($row['produto_info_12_peso']);
         
         return $this;
