@@ -6,24 +6,26 @@ class Chart {
     
     protected $prdId;
 	
-	protected $pedId;
+    protected $pedId;
+    
+    protected $nome;
 	
-	protected $nome;
+    protected $valor;
 	
-	protected $valor;
+    protected $nrFotos;
 	
-	protected $nrFotos;
-	
-	protected $peso;
+    protected $peso;
     
     protected $urlFotos;
 	
-	protected $urlFotosTampa;
+    protected $urlFotosTampa;
     
     protected $quantidade;
     
     protected $cor;
     
+    protected $idLocal;
+
     public function getId() {
         return $this->id;
     }
@@ -110,6 +112,14 @@ class Chart {
 
     public function setCor($cor) {
         $this->cor = $cor;
+    }
+    
+    public function getIdLocal() {
+        return $this->idLocal;
+    }
+
+    public function setIdLocal($idLocal) {
+        $this->idLocal = $idLocal;
     }
 
     public function assocEntity(){

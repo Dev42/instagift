@@ -12,6 +12,9 @@ if (isset($_POST)) {
 		
 	$chart = new Chart();
 	
+        $idItemCarrinho = uniqid();
+        
+        $chart->setIdLocal($idItemCarrinho);
 	$chart->setPrdId($prdId);
 	
 	$prdInfoController = new ProdutoInfoController();
