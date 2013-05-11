@@ -155,3 +155,38 @@ function selecionaNrFotosTampa(elemento,opcaoEscolhida){
                 $('#btn-comprar').hide();
         }
 }
+
+function aumentaQtde(idItem){
+    quantidade = $("#quantidade_"+idItem);
+    $.ajax({
+        type: 'POST',
+        url: 'process/processQtdeCarrinho.php',
+        data: { id: idItem, quantidade : quantidade, action : 'add' }
+    }).done(function(html){
+        if (html == 0){
+            
+        }else {
+            
+        }
+    });
+}
+
+function diminuiQtde(idItem){
+    quantidade = $("#quantidade_"+idItem);
+    if(quantidade == '1'){
+        alert("A quantidade mínima é uma unidade");
+    }else{
+        $.ajax({
+            type: 'POST',
+            url: 'process/processQtdeCarrinho.php',
+            data: { idItem: idItem, quantidade : quantidade, action : 'rm' }
+        }).done(function(html){
+            if (html == 0){
+
+            }else {
+
+            }
+        });
+    }
+    
+}
