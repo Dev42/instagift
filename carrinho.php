@@ -37,7 +37,7 @@ include("inc/header_site.php");
                                 <td>".$nomeProd."<br>".$nomeModelo."</td>
                                 <td>
                                     <div class='input-append'>
-                                        <input style='width:50px' id='quantidade_".$objFixed->getIdLocal()."' type='text' value='".$quantidade."'>
+                                        <input readonly='readonly' style='width:50px' id='quantidade_".$objFixed->getIdLocal()."' type='text' value='".$quantidade."'>
                                         <input class='btn' type='button' value='+' onclick=aumentaQtde('" .$objFixed->getIdLocal()."') />
                                         <input class='btn' type='button' value = '-' onclick=diminuiQtde('" .$objFixed->getIdLocal()."') />
                                     </div>
