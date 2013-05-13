@@ -143,6 +143,30 @@
 		text-shadow:2px 2px #CCC;
 	}
 	
+	.row.login .titPagina{
+		margin-bottom:10px;
+		margin-left:10px;
+	}
+	
+	.row.login .titPagina .titulo{
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		margin-left:20px;
+		font-size:24px;
+		color:#2e4544;
+		float:left;
+		text-shadow:2px 2px #CCC;
+	}
+	
+	.row.login .titPagina .subtitulo{
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		font-size:17px;
+		color:#2e4544;
+		float:left;
+		text-shadow:2px 2px #CCC;
+	}
+	
 	.row.login .span8{
 		margin-left:20px;
 	}
@@ -660,6 +684,54 @@
 	.carrinho .table .btnCalculaCep{
 		float:left;
 		cursor:pointer;
+	}
+	
+	.row.login .btnDir{
+		width:150px;
+		height:39px;
+		text-align:center;
+		background-image:url(../images/site/btn-dir.png);
+		background-color:transparent;
+		padding-top:13px;
+		float:right;
+		position:relative;
+		top:-20px;
+		right:30px;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		border:none !important;
+		border-radius:0 !important;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		display:block;
+		cursor:pointer;
+	}
+	
+	.row.login .btnEsq{
+		width:150px;
+		height:39px;
+		text-align:center;
+		background-image:url(../images/site/btn-esq.png);
+		background-color:transparent;
+		padding-top:13px;
+		float:left;
+		position:relative;
+		top:-20px;
+		left:30px;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		border:none !important;
+		border-radius:0 !important;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		display:block;
+		cursor:pointer;
+	}
+	
+	.row.login .btnEsq:hover, .row.login .btnDir:hover{
+		text-decoration:none;
 	}
 	
 	/*Classes para o menu*/

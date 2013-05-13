@@ -131,7 +131,7 @@ class Chart {
 			"cht_30_nome"         		=> $this->getNome(),
 			"cht_20_valor"         		=> $this->getValor(),
 			"cht_10_nrFotos"         	=> $this->getNrFotos(),
-			"cht_12_peso"         		=> $this->getPeso(),
+			"cht_20_peso"         		=> $this->getPeso(),
 			"cht_35_urlFotos"         	=> $this->getUrlFotos(),
 			"cht_35_urlFotosTampa"      => $this->getUrlFotosTampa(),
             "cht_10_quantidade"     	=> $this->getQuantidade(),
@@ -150,7 +150,7 @@ class Chart {
 		$this->setNome($row['cht_30_nome']);
 		$this->setValor($row['cht_20_valor']);
 		$this->setNrFotos($row['cht_10_nrFotos']);
-		$this->setPeso($row['cht_12_peso']);
+		$this->setPeso($row['cht_20_peso']);
 		$this->setUrlFotos($row['cht_35_urlFotos']);
 		$this->setUrlFotosTampa($row['cht_35_urlFotosTampa']);
 		$this->setQuantidade($row['cht_10_quantidade']);

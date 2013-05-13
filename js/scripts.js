@@ -187,14 +187,29 @@ function calcularCep(){
         $.ajax({
             type: 'POST',
             url: 'process/processAjaxFrete.php',
+			beforeSend: function(){
+				$("#valor_cep").html("<img src='images/site/ajax-loader.gif' alt='Carregando' />");
+			},
             data: { cep: cep }
         }).done(function(html){
             retorno = html.split("|");
 			if (retorno[0] == 'ok'){
-				$("#valor_cep").html("R$ "+retorno[3]);
+				$("#valor_cep").html("R$ "+retorno[1]);
 			}else {
+				$("#valor_cep").html("-");
 				alert("Ocorreu um erro");    
 			}
         });
     }
+}
+
+function validaCarrinho(){
+	cep = $("#cepCliente").val();
+	ssnRegExp = /^\d{5}-\d{3}$/;
+	
+    if(!ssnRegExp.test(cep)){
+        alert("Preencha o CEP corretamente");
+	}else{
+		document.carrinhoForm.submit();
+	}
 }

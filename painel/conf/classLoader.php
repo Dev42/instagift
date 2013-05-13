@@ -63,6 +63,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/entity/Chart.php';
 
 # Controller
 include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/controller/PedidosController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/controller/ChartController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/controller/FreteController.php';
 # /Controller
 /* /Produto Module */

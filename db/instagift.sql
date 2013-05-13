@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 10/05/2013 às 22:16:32
+-- Tempo de Geração: 14/05/2013 às 00:47:05
 -- Versão do Servidor: 5.5.25
 -- Versão do PHP: 5.4.4
 
@@ -71,12 +71,25 @@ CREATE TABLE `pedidos` (
   `ped_35_bairro` text NOT NULL,
   `ped_35_cidade` text NOT NULL,
   `ped_35_estado` text NOT NULL,
+  `ped_20_valorPedido` decimal(10,2) NOT NULL,
   `ped_20_valorFrete` decimal(10,2) NOT NULL,
+  `ped_20_peso` decimal(10,3) NOT NULL,
   `ped_12_frete` int(1) NOT NULL,
-  `ped_10_status` int(10) NOT NULL,
+  `ped_12_status` int(1) NOT NULL,
+  `ped_12_statusPag` int(1) NOT NULL,
+  `ped_30_paymode` varchar(255) NOT NULL,
   `ped_22_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ped_10_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`ped_10_id`, `ped_35_nome`, `ped_35_email`, `ped_35_ddd`, `ped_35_telefone`, `ped_35_logradouro`, `ped_35_numero`, `ped_35_complemento`, `ped_35_cep`, `ped_35_bairro`, `ped_35_cidade`, `ped_35_estado`, `ped_20_valorPedido`, `ped_20_valorFrete`, `ped_20_peso`, `ped_12_frete`, `ped_12_status`, `ped_12_statusPag`, `ped_30_paymode`, `ped_22_created_at`) VALUES
+(7, 'Giovanni Giannichi Forte', 'giogiannichi@gmail.com', '11', '11111111', 'Rua CapitÃ£o Francisco Lipi', '88', 'Complemento Teste', '02243-000', 'Vila Dom Pedro II', 'SÃ£o Paulo', 'SP', 44.80, 13.20, 0.700, 1, 1, 1, 'PAGSEGURO', '0000-00-00 00:00:00'),
+(8, '', '', '', '', '', '', '', '02243-000', '', '', '', 44.80, 13.20, 0.700, 1, 1, 1, 'PAGSEGURO', '0000-00-00 00:00:00'),
+(9, 'Giovanni Giannichi Forte', 'giogiannichi@gmail.com', '11', '11111111', 'Rua CapitÃ£o Francisco Lipi', '88', 'Complemento Teste', '02243-000', 'Vila Dom Pedro II', 'SÃ£o Paulo', 'SP', 44.80, 13.20, 0.700, 1, 1, 1, 'PAGSEGURO', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -91,53 +104,25 @@ CREATE TABLE `pedidos_chart` (
   `cht_30_nome` varchar(255) NOT NULL,
   `cht_20_valor` decimal(10,2) NOT NULL,
   `cht_10_nrFotos` int(11) NOT NULL,
-  `cht_12_peso` decimal(10,3) NOT NULL,
+  `cht_20_peso` decimal(10,3) NOT NULL,
   `cht_35_urlFotos` text NOT NULL,
   `cht_35_urlFotosTampa` text NOT NULL,
   `cht_10_quantidade` int(11) NOT NULL,
   `cht_30_cor` varchar(255) NOT NULL,
   PRIMARY KEY (`cht_10_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
 --
 -- Extraindo dados da tabela `pedidos_chart`
 --
 
-INSERT INTO `pedidos_chart` (`cht_10_id`, `produto_10_id`, `ped_10_id`, `cht_30_nome`, `cht_20_valor`, `cht_10_nrFotos`, `cht_12_peso`, `cht_35_urlFotos`, `cht_35_urlFotosTampa`, `cht_10_quantidade`, `cht_30_cor`) VALUES
-(1, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(2, 0, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(3, 0, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(4, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(5, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(6, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(7, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(8, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(9, 0, 0, '', 0.00, 0, 0.000, '', '', 4, ''),
-(10, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(11, 31, 0, '', 0.00, 0, 0.000, '', '', 3, ''),
-(12, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(13, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(14, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(15, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(16, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(17, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(18, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(19, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(20, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(21, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(22, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(23, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(24, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(25, 31, 0, '', 0.00, 0, 0.000, '', '', 3, ''),
-(26, 31, 0, '', 0.00, 0, 0.000, '', '', 3, ''),
-(27, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(28, 0, 0, '', 0.00, 0, 0.000, '', '', 0, ''),
-(29, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(30, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(31, 31, 0, '', 0.00, 0, 0.000, '', '', 2, ''),
-(32, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(33, 31, 0, '', 0.00, 0, 0.000, '', '', 1, ''),
-(34, 31, 0, '', 0.00, 0, 0.000, '', '', 1, '');
+INSERT INTO `pedidos_chart` (`cht_10_id`, `produto_10_id`, `ped_10_id`, `cht_30_nome`, `cht_20_valor`, `cht_10_nrFotos`, `cht_20_peso`, `cht_35_urlFotos`, `cht_35_urlFotosTampa`, `cht_10_quantidade`, `cht_30_cor`) VALUES
+(43, 33, 7, 'Caixa Pequena', 19.90, 8, 0.200, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 'http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg', 1, 'Branco'),
+(44, 33, 7, 'Caixa Grande', 24.90, 12, 0.500, 'http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg', 'http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg', 1, 'Branco'),
+(45, 33, 8, 'Caixa Pequena', 19.90, 8, 0.200, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 'http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg', 1, 'Branco'),
+(46, 33, 8, 'Caixa Grande', 24.90, 12, 0.500, 'http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg', 'http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg', 1, 'Branco'),
+(47, 33, 9, 'Caixa Pequena', 19.90, 8, 0.200, 'http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg;http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg', 'http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg', 1, 'Branco'),
+(48, 33, 9, 'Caixa Grande', 24.90, 12, 0.500, 'http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg;http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg', 'http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg;http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg', 1, 'Branco');
 
 -- --------------------------------------------------------
 

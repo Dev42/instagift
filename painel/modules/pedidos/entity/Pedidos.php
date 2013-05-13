@@ -26,11 +26,19 @@ class Pedidos {
 	
 	protected $estado;
 	
+	protected $valorPedido;
+	
 	protected $valorFrete;
+	
+	protected $peso;
 	
 	protected $frete;
     
     protected $status;
+	
+	protected $statusPag;
+	
+	protected $paymode;
     
     protected $createdAt;
     
@@ -130,12 +138,28 @@ class Pedidos {
         $this->estado = $estado;
     }
 	
+	public function getValorPedido() {
+        return $this->valorPedido;
+    }
+
+    public function setValorPedido($valorPedido) {
+        $this->valorPedido = $valorPedido;
+    }
+	
 	public function getValorFrete() {
         return $this->valorFrete;
     }
 
     public function setValorFrete($valorFrete) {
         $this->valorFrete = $valorFrete;
+    }
+	
+	public function getPeso() {
+        return $this->peso;
+    }
+
+    public function setPeso($peso) {
+        $this->peso = $peso;
     }
 	
 	public function getFrete() {
@@ -152,6 +176,22 @@ class Pedidos {
 
     public function setStatus($status) {
         $this->status = $status;
+    }
+	
+	public function getStatusPag() {
+        return $this->statusPag;
+    }
+
+    public function setStatusPag($statusPag) {
+        $this->statusPag = $statusPag;
+    }
+	
+	public function getPaymode() {
+        return $this->paymode;
+    }
+
+    public function setPaymode($paymode) {
+        $this->paymode = $paymode;
     }
 	
 	public function getCreatedAt() {
@@ -177,9 +217,13 @@ class Pedidos {
 			"ped_35_bairro"       		=> $this->getBairro(),
 			"ped_35_cidade"       		=> $this->getCidade(),
 			"ped_35_estado"       		=> $this->getEstado(),
+			"ped_20_valorPedido"       	=> $this->getValorPedido(),
 			"ped_20_valorFrete"       	=> $this->getValorFrete(),
+			"ped_20_peso"       		=> $this->getPeso(),
 			"ped_12_frete"       		=> $this->getFrete(),
-            "ped_10_status"             => $this->getStatus(),
+            "ped_12_status"             => $this->getStatus(),
+			"ped_12_statusPag"          => $this->getStatusPag(),
+			"ped_30_paymode"            => $this->getPaymode(),
             "ped_22_created_at"         => $this->getCreatedAt()
         );
         
@@ -201,9 +245,13 @@ class Pedidos {
 		$this->setBairro($row['ped_35_bairro']);
 		$this->setCidade($row['ped_35_cidade']);
 		$this->setEstado($row['ped_35_estado']);
+		$this->setValorPedido($row['ped_20_valorPedido']);
 		$this->setValorFrete($row['ped_20_valorFrete']);
+		$this->setPeso($row['ped_20_peso']);
 		$this->setFrete($row['ped_12_frete']);
-		$this->setStatus($row['ped_10_status']);
+		$this->setStatus($row['ped_12_status']);
+		$this->setStatusPag($row['ped_12_statusPag']);
+		$this->setPaymode($row['ped_30_paymode']);
 		$this->setCreatedAt($row['ped_22_created_at']);
 		
         return $this;

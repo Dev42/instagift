@@ -4,7 +4,7 @@ class PedidosController {
 
     public function insertAction(Pedidos $pedido) {
         
-        if ($pedido->getPayMode() != "" && $pedido->getChartId()){
+        if ($pedido->getPayMode() != ""){
             
             $pedidoAr = $pedido->assocEntity(); 
 			
@@ -18,6 +18,7 @@ class PedidosController {
             $pedId = mysql_insert_id();
 
             return $pedId;
+			
         } else {
             return 0;
         }
@@ -54,7 +55,7 @@ class PedidosController {
         
         if ($pedido->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$pedido->tableName()."` WHERE `produto_10_id` = ". $pedido->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`".$pedido->tableName()."` WHERE `ped_10_id` = ". $pedido->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -65,10 +66,11 @@ class PedidosController {
         
     }
     
-    public function listAction($id = false, $status = 1) {
+    public function listAction($id = false, $status = 1, $statusPag = 1) {
 
         $whereQuery[] = (!$id) ? "1 = 1" : "ped_10_id = " . $id;
-        $whereQuery[] = (!$status) ? "1 = 1" : "ped_10_status = " . $status;
+        $whereQuery[] = (!$status) ? "1 = 1" : "ped_12_status = " . $status;
+		$whereQuery[] = (!$statusPag) ? "1 = 1" : "ped_12_statusPag = " . $statusPag;
 
         $strQuery = "SELECT * FROM pedidos WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);
