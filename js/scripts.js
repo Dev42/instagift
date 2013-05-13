@@ -156,37 +156,45 @@ function selecionaNrFotosTampa(elemento,opcaoEscolhida){
         }
 }
 
-function aumentaQtde(idItem){
-    quantidade = $("#quantidade_"+idItem);
-    $.ajax({
-        type: 'POST',
-        url: 'process/processQtdeCarrinho.php',
-        data: { id: idItem, quantidade : quantidade, action : 'add' }
-    }).done(function(html){
-        if (html == 0){
-            
-        }else {
-            
-        }
-    });
-}
-
-function diminuiQtde(idItem){
-    quantidade = $("#quantidade_"+idItem);
-    if(quantidade == '1'){
+function alteraQtde(idItem,action){
+    quantidade = $("#quantidade_"+idItem).val();
+    if(quantidade == '1' && action == 'rm'){
         alert("A quantidade mínima é uma unidade");
     }else{
         $.ajax({
             type: 'POST',
             url: 'process/processQtdeCarrinho.php',
-            data: { idItem: idItem, quantidade : quantidade, action : 'rm' }
+            data: { idItem: idItem, quantidade : quantidade, action : action }
         }).done(function(html){
-            if (html == 0){
-
-            }else {
-
-            }
+            retorno = html.split(":");
+			if (retorno[0] == 'ok'){
+				$("#quantidade_"+idItem).val(retorno[1]);
+				$("#valor_"+idItem).html("R$ "+retorno[2]);
+			}else {
+				alert("Ocorreu um erro");    
+			}
         });
-    }
-    
+    }    
+}
+
+function calcularCep(){
+	cep = $("#cepCliente").val();
+	objER = /^[0-9]{2}\.[0-9]{3}-[0-9]{3}$/;
+	
+    //if(!objER.test(cep)){
+    //    alert("Preencha o CEP corretamente");
+    //}else{
+        $.ajax({
+            type: 'POST',
+            url: 'process/processAjaxFrete.php',
+            data: { cep: cep }
+        }).done(function(html){
+            retorno = html.split("|");
+			if (retorno[0] == 'ok'){
+				$("#valor_cep").html("R$ "+retorno[3]);
+			}else {
+				alert("Ocorreu um erro");    
+			}
+        });
+    //}
 }

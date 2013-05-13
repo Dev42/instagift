@@ -592,6 +592,76 @@
 		float:left;
 	}
 	
+	.carrinho .table td{
+		border-bottom:1px solid #2e4544 !important;
+	}
+	
+	.carrinho .table tr:last-child td{
+		border-bottom:none;
+	}
+	
+	.carrinho .table .input-append input[type="text"]{
+		height:27px;
+		border:none;
+	}
+	
+	.carrinho .table .infosProd{
+		float:left;
+		margin-top:15px;
+		margin-left:10px;
+	}
+	
+	.carrinho .table .infosProd .nomeProd{
+		font-size:26px;
+		color:#2e4544;
+		font-weight:lighter;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+	}
+	
+	.carrinho .table .infosProd .nomeModelo{
+		font-size:17px;
+		color:#2e4544;
+		font-weight:lighter;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+	}
+	
+	.carrinho .table .remProd{
+		float:right;
+		margin-right:20px;
+		width:14px;
+		height:14px;
+		margin-top:27px;
+	}
+	
+	.carrinho .table .valorProd{
+		margin-top:25px;
+	}
+	
+	.carrinho .table .valorProd span{
+		font-size:17px;
+		color:#000000;
+		font-weight:lighter;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+	}
+	
+	.carrinho .table .descCep{
+		font-size:15px;
+		color:#2e4544;
+		font-weight:lighter;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+	}
+	
+	.carrinho .table .inputCep{
+		float:left;
+		width:141px !important;
+		height:38px !important;
+	}
+	
+	.carrinho .table .btnCalculaCep{
+		float:left;
+		cursor:pointer;
+	}
+	
 	/*Classes para o menu*/
 	.menu #nav {
     	list-style: none outside none;

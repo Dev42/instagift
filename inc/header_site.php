@@ -5,7 +5,7 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />  
     <link href="css/style_site.css" rel="stylesheet" type="text/css" />
     <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/ajaxUserName.js"></script>
     <script type="text/javascript" src="js/slides.jquery.js"></script>
@@ -31,9 +31,18 @@
                     </a>
                 </li>
                 <li>
-                	<a href="index.php" class="active logado">
+                	<?php
+						if (isset($_SESSION['InstagiftCarrinho'])){
+							$linkCarrinho = "carrinho.php";
+							$txtLinkCarrinho = "<br><span style='font-size:10px; text-decoration:underline; float:right; position:relative; top:-5px;'>Meu carrinho</span>";
+						}else{
+							$linkCarrinho = "index.php";
+							$txtLinkCarrinho = "";
+						}
+					?>
+                	<a href="<?php echo $linkCarrinho; ?>" class="active logado">
 						<?php echo '<img src="'.$_SESSION['InstagiftDadosInsta']["data"]["profile_picture"].'" width="30">'; ?>
-                    	<span><?php echo $_SESSION['InstagiftDadosInsta']["data"]["full_name"]; ?></span>
+                    	<span><?php echo $_SESSION['InstagiftDadosInsta']["data"]["full_name"]; ?></span><?php echo $txtLinkCarrinho; ?>
                     </a>
                 </li>
                 <?php
