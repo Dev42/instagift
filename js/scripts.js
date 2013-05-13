@@ -179,11 +179,11 @@ function alteraQtde(idItem,action){
 
 function calcularCep(){
 	cep = $("#cepCliente").val();
-	objER = /^[0-9]{2}\.[0-9]{3}-[0-9]{3}$/;
+	ssnRegExp = /^\d{5}-\d{3}$/;
 	
-    //if(!objER.test(cep)){
-    //    alert("Preencha o CEP corretamente");
-    //}else{
+    if(!ssnRegExp.test(cep)){
+        alert("Preencha o CEP corretamente");
+	}else{
         $.ajax({
             type: 'POST',
             url: 'process/processAjaxFrete.php',
@@ -196,5 +196,5 @@ function calcularCep(){
 				alert("Ocorreu um erro");    
 			}
         });
-    //}
+    }
 }

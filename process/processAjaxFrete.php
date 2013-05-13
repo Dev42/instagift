@@ -14,9 +14,7 @@ foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
 $peso = number_format($peso,3,',','.');
 $valor = number_format($valor,2,',','.');
 
-$freteController = new FreteController();
-
-$retorno = $freteController->calculaFrete($_POST['cep'], $peso, $valor);
+$retorno = calculaFrete($_POST['cep'], $peso, $valor);
 
 echo $retorno."|".$peso."|".$valor;
 

@@ -1,8 +1,5 @@
 <?php
-
-class FreteController {
-
-    public function calculaFrete($cepDestino, $peso, $valor) {
+	function calculaFrete($cepDestino, $peso, $valor) {
 		
 		$cepOrigem = "04516-001";
 		
@@ -20,7 +17,5 @@ class FreteController {
 		
 		return $result;
     }
-
-}
 
 ?>

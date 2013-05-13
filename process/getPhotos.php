@@ -64,7 +64,7 @@ $photosAr = array(
 "http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg");
 
 $numPedido = "424";
-$dir = "/var/www/instagift-crawler/".$numPedido;
+$dir = "../fotosTemp/".$numPedido;
 foreach($photosAr as $k => $v){
         if (!is_dir($dir)){
             if (!mkdir($dir, 0777)){
@@ -76,6 +76,8 @@ foreach($photosAr as $k => $v){
 }
 
 Zip($dir, $dir.".zip");
+
+//Fazer processo para deletar pasta e o zip em um cron mensal
 
 header('Content-Type: application/zip');
 header('Content-disposition: attachment; filename='.$dir.'.zip');
