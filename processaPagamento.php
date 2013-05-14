@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "painel/modules/pedidos/WebService/PagSeguro/PagSeguroLibrary/PagSeguroLibrary.php";
 include 'painel/conf/classLoader.php';
 
@@ -83,7 +83,8 @@ class processaPagamento {
 
     public static function printPaymentUrl($url) {
         if ($url) {
-            header("Location: ../pagamento.php?ps=".base64_encode($url));
+			$_SESSION['InstagiftUrlPgto'] = base64_encode($url);
+            header("Location: ../pagamento.php");
         }
     }
 	
