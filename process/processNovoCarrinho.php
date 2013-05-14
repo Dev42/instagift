@@ -32,6 +32,8 @@ $ped->setCreatedAt(time());
 
 $pedId = $pedController->insertAction($ped);
 
+$ped->setId($pedId);
+
 foreach($_SESSION['InstagiftCarrinho'] as $k => $v){
 	$objFixed = unserialize($v);
 	$objFixed->setPedId($pedId);

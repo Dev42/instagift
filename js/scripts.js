@@ -213,3 +213,43 @@ function validaCarrinho(){
 		document.carrinhoForm.submit();
 	}
 }
+
+function validaFormPedido(){
+    if($("#nome").val() == ''){
+		alert("Preencha o nome");
+		return false;
+	}
+	if($("#email").val() == ''){
+		alert("Preencha o e-mail");
+		return false;
+	}
+	if($("#ddd").val() == ''){
+		alert("Preencha o DDD");
+		return false;
+	}
+	if($("#telefone").val() == ''){
+		alert("Preencha o telefone");
+		return false;
+	}
+	if($("#cidade").val() == ''){
+		alert("Preencha a cidade");
+		return false;
+	}
+	if($("#estado").val() == ''){
+		alert("Preencha o estado");
+		return false;
+	}
+	if($("#endereco").val() == ''){
+		alert("Preencha o endereço");
+		return false;
+	}
+	if($("#numero").val() == ''){
+		alert("Preencha o número");
+		return false;
+	}
+	if($("#bairro").val() == ''){
+		alert("Preencha o bairro");
+		return false;
+	}
+	document.contatoForm.submit();
+}

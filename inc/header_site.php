@@ -22,10 +22,18 @@
                 <?php
 					if (isset($_SESSION['InstagiftTipoLogin'])){
 						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+							$imgUser = $_SESSION['InstagiftDadosInsta']["data"]["profile_picture"];
+							$nomeUser = $_SESSION['InstagiftDadosInsta']["data"]["full_name"];
+							$iconeRede = "ico-instagram.png";
+						}else{
+							$imgUser = $_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"];
+							$nomeUser = $_SESSION['InstagiftDadosUserFb']["name"];
+							$iconeRede = "ico-facebook.png";
+						}
 				?>
                 <li>
                 	<a href="index.php" class="active contador">
-						<img src="images/site/ico-instagram.png" alt="Fotos - Instagram">
+						<img src="images/site/<?php echo $iconeRede ?>" alt="Fotos">
                         <br>
                         <span><?php echo $_SESSION['InstagiftNrFotos']; ?></span>
                     </a>
@@ -41,28 +49,11 @@
 						}
 					?>
                 	<a href="<?php echo $linkCarrinho; ?>" class="active logado">
-						<?php echo '<img src="'.$_SESSION['InstagiftDadosInsta']["data"]["profile_picture"].'" width="30">'; ?>
-                    	<span><?php echo $_SESSION['InstagiftDadosInsta']["data"]["full_name"]; ?></span><?php echo $txtLinkCarrinho; ?>
+						<?php echo '<img src="'.$imgUser.'" width="30">'; ?>
+                    	<span><?php echo $nomeUser; ?></span><?php echo $txtLinkCarrinho; ?>
                     </a>
                 </li>
                 <?php
-						}else{
-				?>
-                <li>
-                	<a href="index.php" class="active contador">
-						<img src="images/site/ico-facebook.png" alt="Fotos - Facebook">
-                        <br>
-                        <span><?php echo $_SESSION['InstagiftNrFotos']; ?></span>
-                    </a>
-                </li>
-                <li>
-                	<a href="index.php" class="active logado">
-						<?php echo '<img src="'.$_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"].'" width="30">'; ?>
-                        <span><?php echo $_SESSION['InstagiftDadosUserFb']["name"]; ?></span>
-                    </a>
-                </li>
-                <?php
-						}
 					}
 				?>
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>

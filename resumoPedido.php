@@ -46,7 +46,7 @@ if(isset($_POST['cepCliente'])){
 ?>
 	<div class="row login carrinho">
     	<div class="span12 titPagina">
-        	<span class="titulo">RESUMO DO PEDIDO</span><span class="subtitulo" style="margin-left:385px;">Quantidade</span><span class="subtitulo" style="margin-left:120px;">Valor</span>
+        	<span class="titulo">RESUMO DO PEDIDO</span><span class="subtitulo" style="margin-left:375px;">Quantidade</span><span class="subtitulo" style="margin-left:95px;">Valor</span>
         </div>
         <div class="span12">
                 <table class="table table-striped table-bordered" style="width:900px; margin-left:30px;">

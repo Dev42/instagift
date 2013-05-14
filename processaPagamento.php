@@ -10,28 +10,26 @@ include 'painel/conf/classLoader.php';
 class processaPagamento {
     
     public static function main (Pedidos $pedido) {
-		$produtoController = new ProdutoController();
+		$produtoController = new ProdutoFrontController();
 		
         $chtController = new ChartController();
-        $chtList = $chtController->listAction($pedido->getId());
-		
-		echo var_dump($chtList);
+        $chtList = $chtController->listByPedido($pedido->getId());
 		
         $paymentRequest = new PagSeguroPaymentRequest();
         $paymentRequest->setCurrency("BRL");
 		
 		foreach ($chtList as $kChart => $vChart){
-			$prdList = $produtoController->listAction($vChart->getPrdId(), false);
+			$prdList = $produtoController->listAction($vChart['produto_10_id'], false);
 			foreach ($prdList as $kProd => $vProd){
 				$nomeProd = $vProd->getNome();
 			}
 			
 			$paymentRequest->addItem(
-				$vChart->getId(), 
-				$nomeProd." - ".$vChart->getNome(), 
-				$vChart->getQuantidade(), 
-				$vChart->getValor()/$vChart->getQuantidade(), 
-				$vChart->getPeso()*1000, 
+				$vChart['cht_10_id'], 
+				$nomeProd." - ".$vChart['cht_30_nome'], 
+				$vChart['cht_10_quantidade'], 
+				$vChart['cht_20_valor']/$vChart['cht_10_quantidade'], 
+				$vChart['cht_20_peso']*1000, 
 				0
 			);
 		}
@@ -40,10 +38,10 @@ class processaPagamento {
         
 		$shipping = new PagSeguroShipping(); 
 		
-		$type = new PagSeguroShippingType(2); // objeto PagSeguroShippingType  
+		$type = new PagSeguroShippingType(3); // objeto PagSeguroShippingType  
 		$shipping->setType($type);
 		
-		$shipping->setCost($cost);  
+		$shipping->setCost($pedido->getValorFrete());  
 		
 		$endEntregaAr = Array(  
 			'postalCode' => $pedido->getCep(),  
@@ -85,7 +83,7 @@ class processaPagamento {
 
     public static function printPaymentUrl($url) {
         if ($url) {
-            header("Location: ../pagamento.php?url=".$url);
+            header("Location: ../pagamento.php?ps=".base64_encode($url));
         }
     }
 	

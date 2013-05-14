@@ -108,7 +108,24 @@ class ChartController {
         return $retArr;
     }
 
-    
+     public function listByPedido($idPedido) {
+
+
+        $strQuery = "SELECT * FROM pedidos_chart WHERE ped_10_id = ".$idPedido;
+        $result = mysql_query($strQuery);
+
+        $retArr = array();
+        $i = 1;
+
+        if (mysql_num_rows($result) > 0) {
+            while ($row = mysql_fetch_assoc($result)) {
+                $retArr[$i] = $row;
+                $i++;
+            }
+        }
+
+        return $retArr;
+    }
     
 }
 

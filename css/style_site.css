@@ -167,7 +167,7 @@
 		text-shadow:2px 2px #CCC;
 	}
 	
-	.row.login .span8{
+	.row.login .span8, .row.login .span11{
 		margin-left:20px;
 	}
 	
@@ -675,6 +675,16 @@
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
 	
+	.row.login .linkPagamento{
+		font-size:15px;
+		color:#2e4544;
+		font-weight:lighter;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		text-decoration:underline;
+		text-transform:uppercase;
+		text-shadow:2px 2px #CCC;
+	}
+	
 	.carrinho .table .inputCep{
 		float:left;
 		width:141px !important;
@@ -732,6 +742,16 @@
 	
 	.row.login .btnEsq:hover, .row.login .btnDir:hover{
 		text-decoration:none;
+	}
+	
+	.fecharPedido .field{
+		float:left;
+		margin-right:15px;
+	}
+	
+	.fecharPedido .dados{
+		border-bottom:1px solid #99a3a2;
+		width:920px;
 	}
 	
 	/*Classes para o menu*/
