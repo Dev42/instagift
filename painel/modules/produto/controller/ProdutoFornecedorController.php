@@ -11,7 +11,7 @@ class ProdutoFornecedorController {
             $fields = implode("`, `", array_keys($produtoFornecedorAr));
             $values = implode("', '", $produtoFornecedorAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $produtoFornecedor->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $produtoFornecedor->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -36,7 +36,7 @@ class ProdutoFornecedorController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$produtoFornecedor->tableName()."` SET $setQuery WHERE `produto_fornecedor_10_id` = ". $produtoFornecedor->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$produtoFornecedor->tableName()."` SET $setQuery WHERE `produto_fornecedor_10_id` = ". $produtoFornecedor->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -53,7 +53,7 @@ class ProdutoFornecedorController {
         
         if ($produtoFornecedor->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$produtoFornecedor->tableName()."` WHERE `produto_fornecedor_10_id` = ". $produtoFornecedor->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$produtoFornecedor->tableName()."` WHERE `produto_fornecedor_10_id` = ". $produtoFornecedor->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -70,7 +70,7 @@ class ProdutoFornecedorController {
         $whereQuery[] = (!$idForn) ? "1 = 1" : "produto_fornecedor_10_id_fornecedor = " . $idForn;
         
         $produtoFornecedor = new ProdutoFornecedor();
-        $sqlQuery = "DELETE FROM `instagift`.`".$produtoFornecedor->tableName()."` WHERE ".implode(" AND ", $whereQuery);
+        $sqlQuery = "DELETE FROM `insta892_instagift`.`".$produtoFornecedor->tableName()."` WHERE ".implode(" AND ", $whereQuery);
         mysql_query($sqlQuery);
             
         return true;

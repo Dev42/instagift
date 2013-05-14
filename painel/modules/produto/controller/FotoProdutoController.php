@@ -11,7 +11,7 @@ class FotoProdutoController {
             $fields = implode("`, `", array_keys($fotoProdutoAr));
             $values = implode("', '", $fotoProdutoAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $fotoProduto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $fotoProduto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -36,7 +36,7 @@ class FotoProdutoController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$fotoProduto->tableName()."` SET $setQuery WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$fotoProduto->tableName()."` SET $setQuery WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -53,7 +53,7 @@ class FotoProdutoController {
         
         if ($fotoProduto->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$fotoProduto->tableName()."` WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$fotoProduto->tableName()."` WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
             mysql_query($sqlQuery);
             
             return true;

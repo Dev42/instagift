@@ -31,7 +31,7 @@ $ped->setPayMode("PAGSEGURO");
 $ped->setCreatedAt(time());
 
 $pedId = $pedController->insertAction($ped);
-
+echo $pedId;
 $ped->setId($pedId);
 
 foreach($_SESSION['InstagiftCarrinho'] as $k => $v){

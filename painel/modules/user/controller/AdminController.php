@@ -12,7 +12,7 @@ class AdminController {
             $fields = implode("`, `", array_keys($userAr));
             $values = implode("', '", $userAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -41,7 +41,7 @@ class AdminController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$user->tableName()."` SET $setQuery WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$user->tableName()."` SET $setQuery WHERE `user_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -58,7 +58,7 @@ class AdminController {
         
         if ($user->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;
