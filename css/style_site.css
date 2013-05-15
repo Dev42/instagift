@@ -378,7 +378,7 @@
 	
 	.titquemja{
 		width:135px;
-		height:240;
+		height:240px;
 		background:url(../images/site/quem-ja.png);
 		margin:60px 0 0 40px;
 		float:left;
@@ -620,12 +620,17 @@
 		border-bottom:1px solid #2e4544 !important;
 	}
 	
+	.carrinho .table td .imgCarrinho{
+		width:110px;
+		height:83px;
+	}
+	
 	.carrinho .table tr:last-child td{
 		border-bottom:none;
 	}
 	
 	.carrinho .table .input-append input[type="text"]{
-		height:27px;
+		height:19px;
 		border:none;
 	}
 	
@@ -687,8 +692,8 @@
 	
 	.carrinho .table .inputCep{
 		float:left;
-		width:141px !important;
-		height:38px !important;
+		width:126px !important;
+		height:28px !important;
 	}
 	
 	.carrinho .table .btnCalculaCep{
@@ -755,7 +760,7 @@
 	}
 	
 	/*Classes para o menu*/
-	.menu #nav {
+	.menu .nav {
     	list-style: none outside none;
     	position: relative;
     	float: left;
@@ -763,30 +768,32 @@
         z-index: 2;
 	}
 	
-	.topo .menu #nav li a {
+	.topo .menu .nav li a {
 		height:15px;
 		padding:30px 10px;
 	}
 	
-	.topo .menu #nav li a.logado {
+	.topo .menu .nav li a.logado {
 		height:20px;
 		padding:26px 15px 29px;
 	}
 	
-	.topo .menu #nav li a.contador {
+	.topo .menu .nav li a.contador {
 		height:20px;
 		padding:26px 10px 29px;
 		text-align:center;
 	}
 	
-	.footer .menu #nav li a {
+	.footer .menu .nav li a {
 		height:20px;
 		padding:20px 10px;
 	}
 	
-	.menu #nav li {display:block; float:left;}
+	.menu .nav li {display:block; float:left;}
 	
-	.menu #nav li a {
+	.menu .nav li .imgUser {width:30px;}
+	
+	.menu .nav li a {
 		display:block;
 		color:#FFFFFF;
 		border-left:1px solid #304948;
@@ -794,46 +801,46 @@
 		font-size:12px;
 		text-transform:uppercase;
 	}
-	.menu #nav li a.last {
+	.menu .nav li a.last {
 		border-right:1px solid #304948;
 	}
-	.menu #nav li a.active {
+	.menu .nav li a.active {
 		background:url(../images/site/bg-btn-menu.png);
 	}
-	.menu #nav li a span{
+	.menu .nav li a span{
 		font-family:'UniversLTStd-BoldCn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 	}
 	
-	.menuSocial #nav {
+	.menuSocial .nav {
     	list-style: none outside none;
     	position: relative;
     	z-index: 2;
 	}
-	.menuSocial #nav li {
+	.menuSocial .nav li {
 		display:block;
 		height:38px;
 		float:left;
 		margin-right:5px;
 	}
-	.menuSocial #nav li a {
+	.menuSocial .nav li a {
 		display:block;
 		height:38px;
 		width:38px;
 	}
-	.menuSocial #nav li a.facebook {
+	.menuSocial .nav li a.facebook {
 		background:url(../images/site/fb.png);
 	}
-	.menuSocial #nav li a.twitter {
+	.menuSocial .nav li a.twitter {
 		background:url(../images/site/twitter.png);
 	}
-	.menuSocial #nav li a.instagram {
+	.menuSocial .nav li a.instagram {
 		background:url(../images/site/instagram.png);
 	}
-	.menuSocial #nav li a.pinterest {
+	.menuSocial .nav li a.pinterest {
 		background:url(../images/site/pinterest.png);
 	}
-	.menuSocial #nav li a.mail {
+	.menuSocial .nav li a.mail {
 		background:url(../images/site/mail.png);
 	}
 	

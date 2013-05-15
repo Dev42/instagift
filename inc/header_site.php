@@ -1,10 +1,10 @@
-﻿<html>
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Instagift - <?php echo $title; ?></title> 
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />  
-    <link href="css/style_site.css" rel="stylesheet" type="text/css" />
-    <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">  
+    <link href="css/style_site.css" rel="stylesheet" type="text/css">
+    <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/ajaxUserName.js"></script>
@@ -18,7 +18,7 @@
         	<div class="span12">
             	<div class="logo"><a href="index.php"><img src="images/site/logo-header.png" alt="Instagift - Suas fotos viram presentes"></a></div>
                 <div class="menu">
-                	<ul id="nav">
+                	<ul class="nav">
                 <?php
 					if (isset($_SESSION['InstagiftTipoLogin'])){
 						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
@@ -49,7 +49,7 @@
 						}
 					?>
                 	<a href="<?php echo $linkCarrinho; ?>" class="active logado">
-						<?php echo '<img src="'.$imgUser.'" width="30">'; ?>
+						<?php echo '<img src="'.$imgUser.'" width="30" class="imgUser">'; ?>
                     	<span><?php echo $nomeUser; ?></span><?php echo $txtLinkCarrinho; ?>
                     </a>
                 </li>

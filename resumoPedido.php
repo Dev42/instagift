@@ -66,7 +66,7 @@ if(isset($_POST['cepCliente'])){
                             $valor = str_replace('.', ',', $valor);
     
                             echo "<tr style='height:83px;'>
-                                    <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83'/></td>
+                                    <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
                                     <td style='width:450px;'>
                                     <div class='infosProd'>
                                     <span class='nomeProd'>".$nomeProd."</span><br><span class='nomeModelo'>".$nomeModelo."</span>

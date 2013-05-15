@@ -5,15 +5,15 @@
                 	<span>Suas fotos viram presentes</span>
                 </div>
                 <div class="menu">
-                	<ul id="nav">
+                	<ul class="nav">
                         <li><a href="produtos.php" class="<?=$menuClass[0]?>"><span>PRODUTOS</span></a></li>
-                        <li><a href="comocomprar.php" class="<?=$menuClass[1]?>"><span>COMO COMPRAR</span></a></li>\
+                        <li><a href="comocomprar.php" class="<?=$menuClass[1]?>"><span>COMO COMPRAR</span></a></li>
                         <li><a href="contato.php" class="<?=$menuClass[2]?>"><span>CONTATO</span></a></li> 
                         <li><a href="#"><span>SIGA-NOS AQUI</span></a></li>  
                     </ul>
                 </div>
                 <div class="menuSocial">
-                	<ul id="nav">
+                	<ul class="nav">
                         <li><a href="#" class="facebook"></a></li>
                         <li><a href="#" class="twitter"></a></li>
                         <li><a href="#" class="instagram"></a></li>

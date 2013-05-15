@@ -32,7 +32,7 @@ include("inc/header_site.php");
                             $valor = str_replace('.', ',', $valor);
     
                             echo "<tr style='height:83px;'>
-                                    <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83'/></td>
+                                    <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
                                     <td style='width:450px;'>
                                     <div class='infosProd'>
                                     <span class='nomeProd'>".$nomeProd."</span><br><span class='nomeModelo'>".$nomeModelo.
@@ -44,7 +44,7 @@ include("inc/header_site.php");
                                     </td>
                                     <td style='text-align:center; padding-top:28px; width:180px;'>
                                         <div class='input-append'>
-                                            <input readonly='readonly' style='width:50px' id='quantidade_".$objFixed->getIdLocal()."' type='text' value='".$quantidade."' class='inputQtde' />
+                                            <input readonly='readonly' style='width:30px' id='quantidade_".$objFixed->getIdLocal()."' type='text' value='".$quantidade."' class='inputQtde' />
                                             <input class='btn' type='button' value='+' onclick=alteraQtde('" .$objFixed->getIdLocal()."','add') />
                                             <input class='btn' type='button' value = '-' onclick=alteraQtde('" .$objFixed->getIdLocal()."','rm') />
                                         </div>

@@ -20,7 +20,7 @@ $uploadPath = $geralUrl . "images/uploads/";
 
 include("inc/header_site.php");
 ?>
-        <script>
+        <script type="text/javascript">
 		$(function(){
 			$('#slides').slides({
 				preload: true,
