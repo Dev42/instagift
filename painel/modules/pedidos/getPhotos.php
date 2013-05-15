@@ -1,6 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/connection.php';
-include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 
 function Zip($source, $destination)
 {
@@ -47,44 +45,26 @@ function Zip($source, $destination)
     return $zip->close();
 }
 
-function deleteDirectory($dir) {
-    if (!file_exists($dir)) return true;
-    if (!is_dir($dir)) return unlink($dir);
-    foreach (scandir($dir) as $item) {
-        if ($item == '.' || $item == '..') continue;
-        if (!deleteDirectory($dir.DIRECTORY_SEPARATOR.$item)) return false;
-    }
-    return rmdir($dir);
-}
 
 /* Foto Getter */
 
-$numItem = $_GET['id'];
-$tipo = $_GET['mod'];
+/* Esse array de fotos será preenchido pelo PHP
+ * 
+ * Serão as fotos que foram enviadas para o pedido! :)
+ * 
+ */
+$photosAr = array(
+"http://distilleryimage10.s3.amazonaws.com/cb2e23faa10d11e2aee522000a9f15b9_7.jpg",
+"http://distilleryimage0.s3.amazonaws.com/2bbf0580754f11e2b52d22000a9f189b_7.jpg",
+"http://distilleryimage8.s3.amazonaws.com/8a192bfc74ae11e2a56722000a1f9d88_7.jpg",
+"http://distilleryimage2.s3.amazonaws.com/bb37c6625c4e11e2843f22000a9e0722_7.jpg",
+"http://distilleryimage9.s3.amazonaws.com/3c05740045d511e281d622000a1f975c_7.jpg",
+"http://distilleryimage2.s3.amazonaws.com/9caf79f4440e11e2a9d522000a1fb17d_7.jpg",
+"http://distilleryimage3.s3.amazonaws.com/811926b43bf211e2ace922000a1f90f6_7.jpg",
+"http://distilleryimage10.s3.amazonaws.com/9e5ae2763b3e11e2a84922000a1f8c0f_7.jpg");
 
-$chtController = new ChartController();
-$cht = $chtController->listAction($numItem, 1);
-if($tipo == 't'){
-	$photosDown = $cht[1]["cht_35_urlFotosTampa"];
-}else{
-	$photosDown = $cht[1]["cht_35_urlFotos"];
-}
-
-$pos = strpos($fotosDown, ";");
-if ($pos !== false){
-	$photosAr = array($fotosDown);
-}else{
-	$photosAr = explode(";", $fotosDown);
-}
-
-$dir = "fotosTemp/".$numItem;
-if (!is_dir($dir)){
-	if (!mkdir($dir, 0777)){
-		die("Erro ao criar diretório!");
-	}
-}else{
-	deleteDirectory($dir);
-}
+$numPedido = "424";
+$dir = "fotosTemp/".$numPedido;
 foreach($photosAr as $k => $v){
         if (!is_dir($dir)){
             if (!mkdir($dir, 0777)){
@@ -96,7 +76,7 @@ foreach($photosAr as $k => $v){
 }
 
 Zip($dir, $dir.".zip");
-deleteDirectory($dir);
+
 //Fazer processo para deletar pasta e o zip em um cron mensal
 
 header('Content-Type: application/zip');

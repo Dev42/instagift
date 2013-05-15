@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 if (isset($_GET['id']) && $_GET['id'] > 0){
     
     $produtoController = new ProdutoController();
-    $produto = $produtoController->listAction($_GET['id'] , 2);
+    $produto = $produtoController->listAction($_GET['id'] , 1);
     
     if (count($user) == 0){
         
@@ -25,15 +25,6 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
 				<?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
-                                    <div class="grid_16">
-                                            <div class="indented round_all clearfix send_left">
-                                                    <ul class="breadcrumb clearfix">
-                                                            <li><a href="<?php echo $urlGeral; ?>/index.php"><div class="ui-icon ui-icon-home"></div></a></li>
-                                                            <li><a href="<?php echo $urlProdutos; ?>/listarProduto.php">Produto</a></li>
-                                                            <li><span>Editar - <?php echo $produto[1]["produto_30_nome"]; ?></span></li>
-                                                    </ul>
-                                            </div>
-                                    </div>
 					<div class="flat_area grid_16">
 						<h2>Editar Produto</h2>
 					</div>

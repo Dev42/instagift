@@ -67,18 +67,17 @@ class ChartController {
     
     public function listAction($id = false) {
 
-        $whereQuery[] = (!$id) ? "1 = 1" : "ped_10_id = " . $id;
+        $whereQuery[] = (!$id) ? "1 = 1" : "cht_10_id = " . $id;
 
         $strQuery = "SELECT * FROM pedidos_chart WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);
 
         $retArr = array();
         $i = 1;
-		
-	    if (mysql_num_rows($result) > 0) {
+
+        if (mysql_num_rows($result) > 0) {
             while ($row = mysql_fetch_assoc($result)) {
-                $cht = new Chart();
-                $retArr[$i] = $cht->fetchEntity($row);
+                $retArr[$i] = $row;
                 $i++;
             }
         }

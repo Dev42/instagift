@@ -28,7 +28,7 @@ $ped->setFrete(1);
 $ped->setStatus(1);
 $ped->setStatusPag(1);
 $ped->setPayMode("PAGSEGURO");
-$ped->setCreatedAt(time());
+$ped->setCreatedAt(time()-18000);
 
 $pedId = $pedController->insertAction($ped);
 $ped->setId($pedId);

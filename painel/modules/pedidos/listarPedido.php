@@ -32,16 +32,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                         
                                                     }
                                                     if ($_GET['type'] == "success"){
-                                                        $strErro = "O produto foi $complSuc com sucesso!";
+                                                        $strErro = "O pedido foi $complSuc com sucesso!";
                                                     }else {
                                                         if ($_GET['erron'] == 1){
                                                             $strErro = "O erro ao processar o formulário, favor enviar novamente!";
                                                         }elseif ($_GET['erron'] == 2){
                                                             $strErro = "Acesse o formulário primeiro antes de querer alguma coisa!";
                                                         }elseif ($_GET['erron'] == 3 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro produto, registro não encontrado!";
+                                                            $strErro = "Erro ao $compErro pedido, registro não encontrado!";
                                                         }elseif ($_GET['erron'] == 4 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro produto, produto já existente!";
+                                                            $strErro = "Erro ao $compErro pedido, pedido já existente!";
                                                         }elseif ($_GET['erron'] == 5 && isset($compErro)){
                                                             $strErro = "Erro ao $compErro produto!";
                                                         }
@@ -60,11 +60,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                     <thead> 
                                                             <tr> 
                                                                     <th>Número</th> 
+                                                                    <th>Ref. PagSeguro</th> 
                                                                     <th>Cliente</th> 
-                                                                    <th>Produto</th> 
-                                                                    <th>Quantidade</th> 
+                                                                    <th>E-mail</th> 
+                                                                    <th>Telefone</th> 
+                                                                    <th>Valor</th>
+                                                                    <th>Frete</th> 
                                                                     <th>Data</th> 
-                                                                    <th>Situação</th> 
                                                                     <th>Ações</th> 
                                                             </tr> 
                                                     </thead> 
@@ -78,14 +80,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                             foreach ($pedList as $k => $v){
                                                                 echo '<tr class="gradeX">';
                                                                 echo '<td>'.$v["ped_10_id"].'</td>';
-                                                                echo '<td>'.$v["user_10_id"].'</td>';
-                                                                echo '<td>'.$v["produto_10_id"].'</td>';
-                                                                echo '<td>'.$v["ped_10_quantidade"].'</td>';
-                                                                echo '<td>'.$v['ped_22_created_at'].'</td>';
-                                                                echo '<td>'.$v['ped_10_status'].'</td>';
+																echo '<td>REF00'.$v["ped_10_id"].'</td>';
+                                                                echo '<td>'.$v["ped_35_nome"].'</td>';
+                                                                echo '<td>'.$v["ped_35_email"].'</td>';
+                                                                echo '<td>'.$v["ped_35_ddd"]."-".$v["ped_35_telefone"].'</td>';
+																echo '<td>R$ '.number_format($v["ped_20_valorPedido"],2,',','.').'</td>';
+																echo '<td> R$'.number_format($v["ped_20_valorFrete"],2,',','.').'</td>';
+                                                                echo '<td>'.date("d/m/Y H:i", $v['ped_22_created_at']).'</td>';
                                                                 echo '<td>
-                                                                        <a href="'.$urlPedidos.'/editarPedidos.php?id='.$v['ped_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/edit.png"/></a>
-                                                                        <a href="'.$urlPedidos.'/deletarPedidos.php?id='.$v['ped_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/trash.gif"/></a>
+                                                                        <a href="'.$urlPedidos.'/detalhesPedido.php?id='.$v['ped_10_id'].'" title="Detalhes do pedido"><img src="'.$urlGeral.'/images/icons/small/grey/list_w_images.png"/></a>
                                                                      </td>';
                                                                 echo '</tr>';
                                                             }

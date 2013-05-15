@@ -58,7 +58,6 @@ function deleteDirectory($dir) {
 }
 
 /* Foto Getter */
-
 $numItem = $_GET['id'];
 $tipo = $_GET['mod'];
 
@@ -85,22 +84,20 @@ if (!is_dir($dir)){
 }else{
 	deleteDirectory($dir);
 }
+
+$count = 1;
 foreach($photosAr as $k => $v){
-        if (!is_dir($dir)){
-            if (!mkdir($dir, 0777)){
-                die("Erro ao criar diretório!");
-            }
-        }else {
-            file_put_contents($dir."/".  uniqid().".jpg", file_get_contents($v));
-        }
+	file_put_contents($dir."/".  $count.".jpg", file_get_contents($v));
+	$count++;
 }
 
 Zip($dir, $dir.".zip");
 deleteDirectory($dir);
+
 //Fazer processo para deletar pasta e o zip em um cron mensal
 
 header('Content-Type: application/zip');
-header('Content-disposition: attachment; filename='.$dir.'.zip');
+header('Content-disposition: attachment; filename='.$numItem.'.zip');
 header('Content-Length: ' . filesize($dir.'.zip'));
 readfile($dir.'.zip');
 
