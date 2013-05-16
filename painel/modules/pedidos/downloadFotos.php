@@ -58,25 +58,25 @@ function deleteDirectory($dir) {
 }
 
 /* Foto Getter */
+
 $numItem = $_GET['id'];
 $tipo = $_GET['mod'];
 
 $chtController = new ChartController();
 $cht = $chtController->listAction($numItem, 1);
+$pedId = $cht[1]["ped_10_id"];
 if($tipo == 't'){
 	$photosDown = $cht[1]["cht_35_urlFotosTampa"];
+	$nomeZip = "tampa_".$pedId."_";
+	$dir = "fotosTampaTemp/".$numItem;
 }else{
 	$photosDown = $cht[1]["cht_35_urlFotos"];
+	$nomeZip = "produto_".$pedId."_";
+	$dir = "fotosProdTemp/".$numItem;
 }
 
-$pos = strpos($fotosDown, ";");
-if ($pos !== false){
-	$photosAr = array($fotosDown);
-}else{
-	$photosAr = explode(";", $fotosDown);
-}
+$imagesAr = explode(";", $photosDown);
 
-$dir = "fotosTemp/".$numItem;
 if (!is_dir($dir)){
 	if (!mkdir($dir, 0777)){
 		die("Erro ao criar diretório!");
@@ -86,18 +86,24 @@ if (!is_dir($dir)){
 }
 
 $count = 1;
-foreach($photosAr as $k => $v){
-	file_put_contents($dir."/".  $count.".jpg", file_get_contents($v));
-	$count++;
+foreach($imagesAr as $k => $v){
+        if (!is_dir($dir)){
+            if (!mkdir($dir, 0777)){
+                die("Erro ao criar diretório!");
+            }
+			file_put_contents($dir."/".  $count.".jpg", file_get_contents($v));
+        }else {
+            file_put_contents($dir."/".  $count.".jpg", file_get_contents($v));
+        }
+		$count++;
 }
 
 Zip($dir, $dir.".zip");
 deleteDirectory($dir);
-
-//Fazer processo para deletar pasta e o zip em um cron mensal
+$nomeZip .= $numItem;
 
 header('Content-Type: application/zip');
-header('Content-disposition: attachment; filename='.$numItem.'.zip');
+header('Content-disposition: attachment; filename='.$nomeZip.'.zip');
 header('Content-Length: ' . filesize($dir.'.zip'));
 readfile($dir.'.zip');
 

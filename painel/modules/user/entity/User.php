@@ -174,6 +174,28 @@ class User {
         return $fields;
         
     }
+	
+	public function assocEntitySemSenha(){
+        
+        $fields = array(
+            "user_10_id"       => $this->getId(),
+            "user_30_nome"     => $this->getNome(),
+            "user_30_contato"  => $this->getContato(),
+			"user_30_doc1"  => $this->getDoc1(),
+			"user_30_doc2"  => $this->getDoc2(),
+            "user_10_tel_ddd"  => $this->getDdd(),
+            "user_10_tel"      => $this->getTelefone(),
+            "user_30_endereco" => $this->getEndereco(),
+            "user_30_obs"      => $this->getObs(),
+            "user_30_username" => $this->getLogin(),
+            "user_30_email"    => $this->getEmail(),
+            "user_12_type"     => $this->getType(),
+            "user_12_active"   => $this->getActive()
+        );
+        
+        return $fields;
+        
+    }
     
     public function fetchEntity($row){
         
@@ -212,9 +234,7 @@ class User {
 
         $password = $this->getSenha();
         
-        for ($i = 20; $i <= 20; $i++) {
-            $password = md5($password);
-        }
+        $password = md5($password);
 
         $password = base64_encode($password);
         

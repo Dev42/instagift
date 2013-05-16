@@ -27,7 +27,7 @@ switch ($op) {
                 $userClass->setLogin($login);
                 $userClass->setEmail($email);
                 $userClass->setSenha($senha);
-                $userClass->setType(2);
+                $userClass->setType(1);
 
                 $userController = new AdminController();
                 
@@ -71,13 +71,13 @@ switch ($op) {
                 $userClass->setLogin($login);
                 $userClass->setEmail($email);
                 $userClass->setSenha($senha);
-                $userClass->setType(2);
+                $userClass->setType(1);
                 $userClass->setId($user_10_id);
-                
+				
                 $userController = new AdminController();
 
                 $userVer = $userController->getFornecedorAction("user_30_username", $login);
-
+				
                 $userRet = $userNew->fetchEntity($userVer[1]);
                 
                 

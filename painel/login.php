@@ -4,6 +4,7 @@ if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){
 }else {
     $urlGeral = "http://instagift.com.br/instagift/painel";
 }
+session_start();
 include 'includes/header.php';
 ?>
 		<div id="wrapper">	
@@ -40,11 +41,7 @@ include 'includes/header.php';
                                                             </form>	
 							</div>
 						</div>
-						<a href="#" id="login_logo"><span>Adminica</span></a>
-						<button data-dialog="dialog_register" class="on_dark dark dialog_button" style="float:right; margin:-30px 0 0 0;">
-							<img src="images/icons/small/white/user.png">
-							<span>Not Registered ?</span>
-						</button>
+						<a href="#" id="login_logo" style="background-position:0;"><span>Adminica</span></a>
 					</div>
 					<div class="main_container clearfix" style="display:none;">
 						<div class="box">

@@ -70,7 +70,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                             echo '<td>';
 											
 											if($urlFotosTampa != ''){
-												echo '<a href="'.$urlPedidos.'/getPhotos.php?id='.$idChart.'&mod=t" title="Fotos Tampa">Fotos Tampa</a><br />';
+												echo '<a href="'.$urlPedidos.'/downloadFotos.php?id='.$idChart.'&mod=t" title="Fotos Tampa">Fotos Tampa</a><br />';
 											}
 											
                                             echo 	'<a href="'.$urlPedidos.'/downloadFotos.php?id='.$idChart.'&mod=n" title="Fotos Produto">Fotos Produto</a>

@@ -17,7 +17,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 	<head>
 		<meta charset="utf-8">
 		
-		<title>Quup | Painel de Controle</title>
+		<title>Instagift | Painel de Controle</title>
   		<meta name="description" content="http://themeforest.net/item/adminica-the-professional-admin-template/160638">
   		<meta name="author" content="Oisin Lavery - Tricycle Labs">
   		
