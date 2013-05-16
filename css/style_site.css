@@ -203,6 +203,25 @@
 		font-weight:lighter;
 	}
 	
+	.row.login .fecharPedido .enviarContato{
+		width:150px;
+		height:52px;
+		text-align:center;
+		background-image:url(../images/site/btn-login.png);
+		background-color:transparent;
+		position:relative;
+		left:0px;
+		top:0px;
+		margin-bottom:30px;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		border:none !important;
+		border-radius:0 !important;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+	}
+	
 	.btn-comprar #comprar{
 		width:150px;
 		height:52px;

@@ -253,3 +253,23 @@ function validaFormPedido(){
 	}
 	document.contatoForm.submit();
 }
+
+function validaFormContato(){
+    if($("#nome").val() == ''){
+		alert("Preencha o nome");
+		return false;
+	}
+	if($("#email").val() == ''){
+		alert("Preencha o e-mail");
+		return false;
+	}
+	if($("#telefone").val() == ''){
+		alert("Preencha o telefone");
+		return false;
+	}
+	if($("#mensagem").val() == ''){
+		alert("Preencha a mensagem");
+		return false;
+	}
+	document.contatoForm.submit();
+}
