@@ -63,7 +63,10 @@ if (isset($_SESSION['InstagiftProdId'])){
 		}else if($_SESSION['InstagiftTipoLogin'] == 'Fb'){
 			$me = $_SESSION['InstagiftDadosUserFb'];
 			$picture = $_SESSION['InstagiftFotoUserFb'];
-			$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+			$photos = $facebook->api(array(
+								'method'    => 'fql.query',
+								'query'     => 'SELECT src,src_big FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner=me()) OR pid IN (SELECT pid FROM photo_tag WHERE subject=me())'
+							));
 		}else{
 			header("Location:produtos.php");
 		}
@@ -195,9 +198,9 @@ if ($idProd){
                             }
                         }
         
-                        if (isset($photos['data'])){
-                            foreach ($photos['data'] as $photo){
-                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['picture'].'\',\''.$photo['source'].'\')">';
+						if (isset($photos)){
+                            foreach ($photos as $photo){
+                                echo '<img src="'.$photo['src'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\')">';
                             }
                         }
                     ?>
@@ -260,9 +263,9 @@ if ($idProd){
                             }
                         }
         
-                        if (isset($photos['data'])){
-                            foreach ($photos['data'] as $photo){
-                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\'padrao\')">';
+						if (isset($photos)){
+                            foreach ($photos as $photo){
+                                echo '<img src="'.$photo['src'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\')">';
                             }
                         }
                     ?>

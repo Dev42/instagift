@@ -42,8 +42,11 @@ if($o_user == 0){
 	$_SESSION['InstagiftTipoLogin'] = 'Fb';
 	$_SESSION['InstagiftDadosUserFb'] = $facebook->api('/me');
 	$_SESSION['InstagiftFotoUserFb'] = $facebook->api('/me?fields=picture');
-	$photos = $facebook->api('/me/photos?limit=9000&offset=0');
-	$_SESSION['InstagiftNrFotos'] = count($photos['data']);
+	$photos = $facebook->api(array(
+								'method'    => 'fql.query',
+								'query'     => 'SELECT src,src_big FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner=me()) OR pid IN (SELECT pid FROM photo_tag WHERE subject=me())'
+							));
+	$_SESSION['InstagiftNrFotos'] = count($photos);
 	header("Location: ../produtos.php");
 }
 
