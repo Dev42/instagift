@@ -65,7 +65,7 @@ if (isset($_SESSION['InstagiftProdId'])){
 			$picture = $_SESSION['InstagiftFotoUserFb'];
 			$photos = $facebook->api(array(
 								'method'    => 'fql.query',
-								'query'     => 'SELECT src,src_big FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner=me()) OR pid IN (SELECT pid FROM photo_tag WHERE subject=me())'
+								'query'     => 'SELECT src,src_big,src_height,src_width FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner=me()) OR pid IN (SELECT pid FROM photo_tag WHERE subject=me())'
 							));
 		}else{
 			header("Location:produtos.php");
@@ -194,13 +194,19 @@ if ($idProd){
                     
                         if (isset($instaPhotos['data'])){
                             foreach ($instaPhotos['data'] as $instaPhoto){
-                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFotoCaixa(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\')">';
+                                echo '<div class="containerQuadFotoGrd"><img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFotoCaixa(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'quad\')"></div>';
                             }
                         }
         
 						if (isset($photos)){
                             foreach ($photos as $photo){
-                                echo '<img src="'.$photo['src'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\')">';
+								if($photo['src_width'] > $photo['src_height']){
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'lar\')"></div>';
+								}else if($photo['src_height'] > $photo['src_width']){
+									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'alt\')"></div>';
+								}else{
+									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'quad\')"></div>';
+								}
                             }
                         }
                     ?>
@@ -220,7 +226,7 @@ if ($idProd){
             </div>
             <div class="row listaFotos">
                 <div class="fotos" id="selecaoFotosTampa">
-                    
+                    <div class="spaceFoto"></div>
                 </div>
         	</div>
             
@@ -229,7 +235,11 @@ if ($idProd){
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
-                    
+                    <?php
+						for($f=1;$f<=$nrFotosPadrao;$f++){
+							echo '<div class="spaceFoto"></div>';
+						}
+					?>
                 </div>
         	</div>
             
@@ -259,13 +269,19 @@ if ($idProd){
                     
                         if (isset($instaPhotos['data'])){
                             foreach ($instaPhotos['data'] as $instaPhoto){
-                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'padrao\')">';
+								echo '<div class="containerQuadFotoGrd"><img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'padrao\',\'quad\')"></div>';
                             }
                         }
         
 						if (isset($photos)){
                             foreach ($photos as $photo){
-                                echo '<img src="'.$photo['src'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\')">';
+								if($photo['src_width'] > $photo['src_height']){
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'lar\')"></div>';
+								}else if($photo['src_height'] > $photo['src_width']){
+									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'alt\')"></div>';
+								}else{
+									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'quad\')"></div>';
+								}
                             }
                         }
                     ?>

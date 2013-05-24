@@ -6,18 +6,25 @@ function hideBox(idProduto){
 	 $('#box_'+idProduto).slideUp('slow');
 }
 
-function adicionarFotoCaixa(urlExibicao, urlImpressao){
+function adicionarFotoCaixa(urlExibicao, urlImpressao, tipodiv){
 	var nrFotosTampa = $('#nrFotosTampa').val();
 	fotosEscolhidasTampa = verificaNrFotosEscolhidas('tampa');
 	
 	if(fotosEscolhidasTampa < parseInt(nrFotosTampa)){
-		adicionarFoto(urlExibicao, urlImpressao, 'tampa');
+		adicionarFoto(urlExibicao, urlImpressao, 'tampa', tipodiv);
 	}else{
-		adicionarFoto(urlExibicao, urlImpressao, 'padrao');
+		adicionarFoto(urlExibicao, urlImpressao, 'padrao', tipodiv);
 	}
 }
 
-function adicionarFoto(urlExibicao, urlImpressao, tipo){
+function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv){
+	if(tipodiv == "lar"){
+		divcontainer = "<div class='containerLarFoto'>";
+	}else if(tipodiv == "alt"){
+		divcontainer = "<div class='containerAltFoto'>";
+	}else{
+		divcontainer = "<div class='containerQuadFoto'>";
+	}
 	if(tipo == 'tampa'){
 		nrFotosTampa = $('#nrFotosTampa').val();
 		fotosEscolhidasTampa = verificaNrFotosEscolhidas('tampa');
@@ -32,7 +39,11 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo){
 			inputFotos.value = inputFotos.value+";"+urlImpressao;
 		}
 		var idFoto = new Date().getTime();
-		$('#selecaoFotosTampa').prepend('<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'tampa\')" id="foto_'+idFoto+'">');
+		
+		$('#selecaoFotosTampa').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'tampa\')" id="foto_'+idFoto+'"></div>');
+		
+		$("#selecaoFotosTampa .spaceFoto:first").remove()
+		
 		$('#countTampa').html(fotosEscolhidasTampa+1);
 		
 		if(fotosEscolhidas == parseInt(nrFotos) && fotosEscolhidasTampa+1 == parseInt(nrFotosTampa)){
@@ -50,7 +61,11 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo){
 				inputFotos.value = inputFotos.value+";"+urlImpressao;
 			}
 			var idFoto = new Date().getTime();
-			$('#selecaoFotos').prepend('<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'padrao\')" id="foto_'+idFoto+'">');
+
+			$('#selecaoFotos').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'padrao\')" id="foto_'+idFoto+'"></div>');
+
+			$("#selecaoFotos .spaceFoto:first").remove();
+			
 			$('#count').html(fotosEscolhidas+1);
 			
 			if(fotosEscolhidas+1 == parseInt(nrFotos)){
@@ -80,7 +95,8 @@ function removerFoto(idFoto, urlImpressao, tipo){
 			}
 			inputFotos.value = arrFotos.join(";");
 		}
-		$('#foto_'+idFoto).remove();
+		$('#foto_'+idFoto).parent('div').remove();
+		$('#selecaoFotosTampa').append("<div class='spaceFoto'></div>");
 		$('#countTampa').html(fotosEscolhidas-1);
 	}else{
 		fotosEscolhidas = verificaNrFotosEscolhidas('padrao');
@@ -98,7 +114,8 @@ function removerFoto(idFoto, urlImpressao, tipo){
 			}
 			inputFotos.value = arrFotos.join(";");
 		}
-		$('#foto_'+idFoto).remove();
+		$('#foto_'+idFoto).parent('div').remove();
+		$('#selecaoFotos').append("<div class='spaceFoto'></div>");
 		$('#count').html(fotosEscolhidas-1);
 	}
 	$('#btn-comprar').hide();
@@ -136,6 +153,9 @@ function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
 	$('#count').html('0');
 	
 	$('#selecaoFotos').empty();
+	for(i=1;i<=nrFotosEscolhido;i++){
+		$('#selecaoFotos').append("<div class='spaceFoto'></div>");
+	}
     $('#urlFotos').val('');
 	
 	$('#btn-comprar').hide();
@@ -145,9 +165,11 @@ function selecionaNrFotosTampa(elemento,opcaoEscolhida){
         if(opcaoEscolhida != $('#nrFotosTampa').val()){
                 if(opcaoEscolhida == 1){
                         $('#selecaoFotosTampa').empty();
+						$('#selecaoFotosTampa').append("<div class='spaceFoto'></div>");
                         $('#urlFotosTampa').val('');
-                }
-                
+                }else{
+                	$('#selecaoFotosTampa').append("<div class='spaceFoto'></div><div class='spaceFoto'></div><div class='spaceFoto'></div>");
+				}
                 $('.boxNrFotosTampa').removeClass('active');
                 elemento.className += " active";
                 $('#nrFotosTampa').val(opcaoEscolhida);

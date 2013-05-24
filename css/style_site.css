@@ -384,15 +384,83 @@
 		height:60px;
 	}
 	
-	.fotos img{
+	.fotos .containerQuadFotoGrd{
 		width:100px;
+		height:100px;
 		margin:20px 0 0 20px;
+		float:left;
+	}
+	
+	.fotos .containerQuadFotoGrd img{
+		width:100px;
+		height:100px;
 		cursor:pointer;
 	}
 	
-	#selecaoFotos.fotos img, #selecaoFotosTampa.fotos img{
+	.fotos .containerLarFotoGrd{
+		width:100px;
+		height:100px;
+		margin:20px 0 0 20px;
+		overflow:hidden;
+		text-align:center;
+		float:left;
+	}
+	
+	.fotos .containerLarFotoGrd img{
+		height:100px;
+		cursor:pointer;
+		max-width:none !important;
+		display:block !important;
+		margin:0 auto !important;
+	}
+	
+	.fotos .containerAltFotoGrd{
+		width:100px;
+		height:100px;
+		margin:20px 0 0 20px;
+		overflow:hidden;
+		text-align:center;
+		float:left;
+	}
+	
+	.fotos .containerAltFotoGrd img{
+		width:100px;
+		cursor:pointer;
+	}
+	
+	#selecaoFotos.fotos .containerLarFoto, #selecaoFotosTampa.fotos .containerLarFoto, #selecaoFotos.fotos .containerAltFoto, #selecaoFotosTampa.fotos .containerAltFoto, #selecaoFotos.fotos .containerQuadFoto, #selecaoFotosTampa.fotos .containerQuadFoto{
 		width:50px;
+		height:50px;
 		margin:10px 0 0 10px;
+		border:1px dashed #BEBEBE;
+		overflow:hidden;
+		text-align:center;
+		float:left;
+	}
+	
+	#selecaoFotos.fotos .containerLarFoto img, #selecaoFotosTampa.fotos .containerLarFoto img{
+		height:50px;
+		cursor:pointer;
+		max-width:none !important;
+	}
+	
+	#selecaoFotos.fotos .containerAltFoto img, #selecaoFotosTampa.fotos .containerAltFoto img{
+		width:50px;
+		cursor:pointer;
+	}
+	
+	#selecaoFotos.fotos .containerQuadFoto img, #selecaoFotosTampa.fotos .containerQuadFoto img{
+		width:50px;
+		height:50px;
+		cursor:pointer;
+	}
+	
+	#selecaoFotos.fotos .spaceFoto, #selecaoFotosTampa.fotos .spaceFoto{
+		width:50px;
+		height:50px;
+		margin:10px 0 0 10px;
+		border:1px dashed #BEBEBE;
+		float:left;
 	}
 	
 	.titquemja{
@@ -562,10 +630,8 @@
 	}
 	
 	.contCorModelo{
-		background-color:#dce7e7;
 		width:220px;
 		padding:10px;
-		border:2px solid #069f9b;
 		margin-top:5px;
 	}
 	
@@ -584,12 +650,12 @@
 	.contCorModelo .boxCorProd{
 		width:36px;
 		height:36px;
-		border:2px solid #bebebe;
+		border:3px solid #bebebe;
 		cursor:pointer;
 	}
 	
 	.contCorModelo .boxCorProd.active{
-		border:2px solid #069f9b;
+		border:3px solid #069f9b;
 	}
 	
 	.boxNrFotosTampa{
