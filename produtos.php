@@ -201,7 +201,8 @@ if ($idProd){
 						if (isset($photos)){
                             foreach ($photos as $photo){
 								if($photo['src_width'] > $photo['src_height']){
-                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'lar\')"></div>';
+									$marginLeft = (($photo['src_width'] * 100) / $photo['src_height']) / 2;
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" style="margin-left:-'.$marginLeft.'px;" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'lar\')"></div>';
 								}else if($photo['src_height'] > $photo['src_width']){
 									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'alt\')"></div>';
 								}else{

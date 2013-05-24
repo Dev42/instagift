@@ -410,8 +410,8 @@
 		height:100px;
 		cursor:pointer;
 		max-width:none !important;
-		display:block !important;
-		margin:0 auto !important;
+		position:relative;
+		left:50%;
 	}
 	
 	.fotos .containerAltFotoGrd{
