@@ -23,6 +23,12 @@ if($sucesso == 1){
 }
 
 ?>
+<script type="text/javascript">
+jQuery(function($){
+   $("#ddd").mask("99");
+   $("#telefone").mask("99999999");
+});
+</script>
 	<div class="row login">
     	<form name="contatoForm" class="form-stacked fecharPedido" method="post" action="process/processNovoCarrinho.php" id="fecharPedido">
             <div class="span12"><h1 style="text-transform:uppercase;">Dados pessoais</h1></div>

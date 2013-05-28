@@ -152,7 +152,7 @@ if ($idProd){
 					foreach($arCores as $corProd){
 						if($contCores == 0){
 							$corPadrao = $corProd->nome;
-							$classeCor = 'boxCorProd active';
+							$classeCor = 'boxCorProd';
 						}else{
 							$classeCor = 'boxCorProd';
 						}
@@ -179,7 +179,7 @@ if ($idProd){
         <div class="span8">
             <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
-                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="" name="selCor" id="selCor" />
                 <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
                 <input type="hidden" value="1" name="nrFotosTampa" id="nrFotosTampa" />
                 <input type="hidden" value="<?php echo $nrFotosPadrao; ?>" name="nrFotos" id="nrFotos" />
@@ -201,12 +201,13 @@ if ($idProd){
 						if (isset($photos)){
                             foreach ($photos as $photo){
 								if($photo['src_width'] > $photo['src_height']){
-									$marginLeft = (($photo['src_width'] * 100) / $photo['src_height']) / 2;
-                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" style="margin-left:-'.$marginLeft.'px;" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'lar\')"></div>';
+									$marginLeft = floor(((($photo['src_width'] * 100) / $photo['src_height'])-100) / 2);
+									$marginLeftScript = floor($marginLeft / 2);
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" style="margin-left:-'.$marginLeft.'px;" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'lar\',\''.$marginLeftScript.'\')"></div>';
 								}else if($photo['src_height'] > $photo['src_width']){
-									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'alt\')"></div>';
+									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'alt\',\'0\')"></div>';
 								}else{
-									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'quad\')"></div>';
+									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'quad\',\'0\')"></div>';
 								}
                             }
                         }
@@ -246,7 +247,7 @@ if ($idProd){
             
             <div class="row comprar">
                 <div class="btn-comprar" id="btn-comprar" style="display:none;">
-                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                    <input type="button" value="Comprar" id="comprar" name="comprar" onclick="validaCompra()">
                 </div>
             </div>
             </form>
@@ -257,7 +258,7 @@ if ($idProd){
         <div class="span8">
             <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
-                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="" name="selCor" id="selCor" />
                 <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
                 <input type="hidden" value="<?php echo $nrFotosPadrao; ?>" name="nrFotos" id="nrFotos" />
                 <input type="hidden" name="urlFotos" id="urlFotos" />
@@ -277,11 +278,13 @@ if ($idProd){
 						if (isset($photos)){
                             foreach ($photos as $photo){
 								if($photo['src_width'] > $photo['src_height']){
-                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'lar\')"></div>';
+									$marginLeft = floor(((($photo['src_width'] * 100) / $photo['src_height'])-100) / 2);
+									$marginLeftScript = floor($marginLeft / 2);
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" style="margin-left:-'.$marginLeft.'px;" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'lar\',\''.$marginLeftScript.'\')"></div>';
 								}else if($photo['src_height'] > $photo['src_width']){
-									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'alt\')"></div>';
+									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'alt\',\'0\')"></div>';
 								}else{
-									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'quad\')"></div>';
+									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'quad\',\'0\')"></div>';
 								}
                             }
                         }
@@ -298,7 +301,7 @@ if ($idProd){
         	</div>
             <div class="row comprar">
                 <div class="btn-comprar" id="btn-comprar" style="display:none;">
-                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                    <input type="button" value="Comprar" id="comprar" name="comprar" onclick="validaCompra()">
                 </div>
             </div>
             </form>
