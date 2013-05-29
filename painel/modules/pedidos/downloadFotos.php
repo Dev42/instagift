@@ -2,51 +2,6 @@
 include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/connection.php';
 include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
 
-function Zip($source, $destination)
-{
-    if (!extension_loaded('zip') || !file_exists($source)) {
-        return false;
-    }
-
-    $zip = new ZipArchive();
-    if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-        return false;
-    }
-
-    $source = str_replace('\\', '/', realpath($source));
-
-    if (is_dir($source) === true)
-    {
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-
-        foreach ($files as $file)
-        {
-            $file = str_replace('\\', '/', $file);
-
-            // Ignore "." and ".." folders
-            if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
-                continue;
-
-            $file = realpath($file);
-
-            if (is_dir($file) === true)
-            {
-                $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-            }
-            else if (is_file($file) === true)
-            {
-                $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
-            }
-        }
-    }
-    else if (is_file($source) === true)
-    {
-        $zip->addFromString(basename($source), file_get_contents($source));
-    }
-
-    return $zip->close();
-}
-
 function deleteDirectory($dir) {
     if (!file_exists($dir)) return true;
     if (!is_dir($dir)) return unlink($dir);
@@ -65,46 +20,42 @@ $tipo = $_GET['mod'];
 $chtController = new ChartController();
 $cht = $chtController->listAction($numItem, 1);
 $pedId = $cht[1]["ped_10_id"];
+$prodId = $cht[1]["produto_10_id"];
+
+$prodController = new ProdutoController();
+$prod = $prodController->listAction($prodId, 1);
+$dimFotos = $prod[1]["produto_10_largura_minima"];
+
 if($tipo == 't'){
 	$photosDown = $cht[1]["cht_35_urlFotosTampa"];
-	$nomeZip = "tampa_".$pedId."_";
-	$dir = "fotosTampaTemp/".$numItem;
+	$nomeZip = "tampa_".$pedId."_".$numItem;
+	$dir = "fotosTampaTemp/";
 }else{
 	$photosDown = $cht[1]["cht_35_urlFotos"];
-	$nomeZip = "produto_".$pedId."_";
-	$dir = "fotosProdTemp/".$numItem;
+	$nomeZip = "produto_".$pedId."_".$numItem;
+	$dir = "fotosProdTemp/";
 }
 
 $imagesAr = explode(";", $photosDown);
 
-if (!is_dir($dir)){
-	if (!mkdir($dir, 0777)){
-		die("Erro ao criar diretório!");
-	}
-}else{
-	deleteDirectory($dir);
-}
+$photo = new PhotosLoader($imagesAr,$nomeZip,$dir);
+$photo->getPhotos();
 
-$count = 1;
-foreach($imagesAr as $k => $v){
-        if (!is_dir($dir)){
-            if (!mkdir($dir, 0777)){
-                die("Erro ao criar diretório!");
+$photoLoc = $dir.$nomeZip;
+if ($handle = opendir($photoLoc)) {
+    while (false !== ($file = readdir($handle))) {
+        if (is_file($photoLoc."/".$file)){
+            if ($file != "." && $file != ".."){
+                $imageCutter = new ImageCutter($photoLoc."/".$file, $dimFotos);
+                $imageCutter->generateImage($photoLoc."/resized/");
             }
-			file_put_contents($dir."/".  $count.".jpg", file_get_contents($v));
-        }else {
-            file_put_contents($dir."/".  $count.".jpg", file_get_contents($v));
         }
-		$count++;
+    }
+
+    $photo->gerenetaPackage(true, $photoLoc."/resized/");
+    
+    closedir($handle);
 }
 
-Zip($dir, $dir.".zip");
-deleteDirectory($dir);
-$nomeZip .= $numItem;
-
-header('Content-Type: application/zip');
-header('Content-disposition: attachment; filename='.$nomeZip.'.zip');
-header('Content-Length: ' . filesize($dir.'.zip'));
-readfile($dir.'.zip');
 
 ?>

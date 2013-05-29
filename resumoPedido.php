@@ -11,10 +11,21 @@ if(isset($_POST['cepCliente'])){
 	$valor = 0;
 	$peso = 0;
 	
-	foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
-		$obj = unserialize($vChart);
-		$peso = $peso + $obj->getPeso();
-		$valor = $valor + $obj->getValor();
+        if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+            $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+            $origem = '1';
+        }else {
+            $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+            $origem = '2';
+        }
+        $status = '1';
+        $chartAction = new ChartController();
+        $chartProducts = $chartAction->listActionChart($username, $origem, $status);
+	foreach ($chartProducts as $kChart => $vChart) {
+            $chart = new Chart();
+            $obj = $chart->fetchEntity($vChart);
+            $peso = $peso + $obj->getPeso();
+            $valor = $valor + $obj->getValor();
 	}
 	
 	$pesoCru = $peso;
@@ -26,8 +37,14 @@ if(isset($_POST['cepCliente'])){
 	
 	$retArr = explode("|", $retorno);
 	
-	$valorEntregaCru = $retArr[3];
-	$valorEntrega = number_format($retArr[3],2,',','.');
+	$tipoEntrega = $_POST['optFrete'];
+	if($tipoEntrega == 'pac'){
+		$valorEntregaCru = $retArr[4];
+		$valorEntrega = number_format($retArr[4],2,',','.');
+	}else{
+		$valorEntregaCru = $retArr[3];
+		$valorEntrega = number_format($retArr[3],2,',','.');
+	}
 	
 	if($retArr[0] != 'ok'){
 		echo "<script>alert('Ocorreu um erro com o CEP, por favor preencha novamente');
@@ -38,6 +55,7 @@ if(isset($_POST['cepCliente'])){
 	$valorTotal = number_format($valorTotalCru,2,',','.');
 	
 	$_SESSION['InstagiftCepEntrega'] = $_POST['cepCliente'];
+	$_SESSION['InstagiftTipoEntrega'] = $tipoEntrega;
 	$_SESSION['InstagiftValorEntrega'] = $valorEntregaCru;
 	$_SESSION['InstagiftTotalPedido'] = $valorCru;
 	$_SESSION['InstagiftPesoTotal'] = $pesoCru;
@@ -51,8 +69,19 @@ if(isset($_POST['cepCliente'])){
         <div class="span12">
                 <table class="table table-striped table-bordered" style="width:900px; margin-left:30px;">
                     <?php
-                    foreach($_SESSION['InstagiftCarrinho'] as $k => $v){
-                            $objFixed = unserialize($v);
+                    if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+                        $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+                        $origem = '1';
+                    }else {
+                        $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+                        $origem = '2';
+                    }
+                    $status = '1';
+                    $chartAction = new ChartController();
+                    $chartProducts = $chartAction->listActionChart($username, $origem, $status);
+                    foreach($chartProducts as $k => $v){
+                            $chart = new Chart();
+                            $objFixed = $chart->fetchEntity($vChart);
     
                             $prdList = $produtoController->listAction($objFixed->getPrdId(), false);
                             foreach ($prdList as $kProd => $vProd){
@@ -67,7 +96,7 @@ if(isset($_POST['cepCliente'])){
     
                             echo "<tr style='height:83px;'>
                                     <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
-                                    <td style='width:450px;'>
+                                    <td style='width:400px;'>
                                     <div class='infosProd'>
                                     <span class='nomeProd'>".$nomeProd."</span><br><span class='nomeModelo'>".$nomeModelo."</span>
                                     </div>
@@ -91,7 +120,6 @@ if(isset($_POST['cepCliente'])){
             	<a href="carrinho.php" class="btnEsq" alt="Editar pedido">Editar pedido</a>
                 <a href="fechaPedido.php" class="btnDir" alt="Finalizar pedido">Finalizar pedido</a>
             </div>
-            </form>
         </div>
     </div>
 <?php

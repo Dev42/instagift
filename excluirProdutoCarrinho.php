@@ -4,20 +4,27 @@ session_start();
 error_reporting(E_ERROR);
 
 include_once 'painel/conf/classLoader.php';
+include_once 'config/connection.php';
 
 if (isset($_GET['id']) && $_GET['id'] >= 1) {
-	if(count($_SESSION['InstagiftCarrinho']) == 1){
-		unset($_SESSION['InstagiftCarrinho']);
-		$redirect = "index.php";
-	}else{
-		foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
-			$obj = unserialize($vChart);
-			if ($obj->getIdLocal() == $_GET['id']) {
-				unset($_SESSION['InstagiftCarrinho'][$kChart]);
-			}
-		}
-		$redirect = "carrinho.php";
-	}
+    $chart = new Chart();
+    $chart->setId($_GET['id']);
+    $chartController = new ChartController();
+    if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+        $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+        $origem = '1';
+    }else {
+        $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+        $origem = '2';
+    }
+    $status = '1';
+    $chartProducts = $chartController->listActionChart($username, $origem, $status);
+    $chartController->deleteAction($chart);
+    if(count($chartProducts) == 1){
+        $redirect = "index.php";
+    }else{
+        $redirect = "carrinho.php";
+    }
     
     header("Location: ".$redirect);
 }

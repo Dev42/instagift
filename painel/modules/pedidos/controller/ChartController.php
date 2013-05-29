@@ -4,7 +4,7 @@ class ChartController {
 
     public function insertAction(Chart $chart) {
         
-        if ($chart->getPrdId() != "" && $chart->getPedId() != "" && $chart->getNome() != "" && $chart->getValor() != "" && $chart->getNrFotos() != "" && $chart->getPeso() != "" && $chart->getUrlFotos() != "" && $chart->getQuantidade() != "" && $chart->getCor() != ""){
+        if ($chart->getPrdId() != "" && $chart->getNome() != "" && $chart->getValor() != "" && $chart->getNrFotos() != "" && $chart->getPeso() != "" && $chart->getUrlFotos() != "" && $chart->getQuantidade() != "" && $chart->getCor() != ""){
             
             $chartAr = $chart->assocEntity(); 
 			
@@ -40,9 +40,7 @@ class ChartController {
             
             $sqlQuery = "UPDATE `insta892_instagift`.`".$chart->tableName()."` SET $setQuery WHERE `cht_10_id` = ". $chart->getId();
             mysql_query($sqlQuery);
-            
             return true;
-            
         }else {
             return false;
             
@@ -54,7 +52,7 @@ class ChartController {
         
         if ($chart->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$chart->tableName()."` WHERE `cht_10_id` = ". $chart->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`".$chart->tableName()."` WHERE `cht_10_id` = ". $chart->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -68,6 +66,29 @@ class ChartController {
     public function listAction($id = false) {
 
         $whereQuery[] = (!$id) ? "1 = 1" : "cht_10_id = " . $id;
+
+        $strQuery = "SELECT * FROM pedidos_chart WHERE ".implode(" AND ", $whereQuery);
+        $result = mysql_query($strQuery);
+
+        $retArr = array();
+        $i = 1;
+
+        if (mysql_num_rows($result) > 0) {
+            while ($row = mysql_fetch_assoc($result)) {
+                $retArr[$i] = $row;
+                $i++;
+            }
+        }
+
+        return $retArr;
+    }
+    
+    public function listActionChart($userName = false, $origem = false, $status = false, $idChart=false) {
+
+        $whereQuery[] = (!$userName) ? "1 = 1" : "cht_30_username = '" . $userName."'";
+        $whereQuery[] = (!$origem) ? "1 = 1" : "cht_12_origem = " . $origem;
+        $whereQuery[] = (!$status) ? "1 = 1" : "cht_12_status = " . $status;
+        $whereQuery[] = (!$idChart) ? "1 = 1" : "cht_10_id= " . $idChart;
 
         $strQuery = "SELECT * FROM pedidos_chart WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);
