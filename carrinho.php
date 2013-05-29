@@ -9,6 +9,11 @@ $produtoController = new ProdutoFrontController();
 
 include("inc/header_site.php");
 ?>
+<script type="text/javascript">
+jQuery(function($){
+   $("#cepCliente").mask("99999-999");
+});
+</script>
 	<div class="row login carrinho">
     	<div class="span12 titPagina">
         	<span class="titulo">LISTA DE COMPRAS</span><span class="subtitulo" style="margin-left:385px;">Quantidade</span><span class="subtitulo" style="margin-left:120px;">Valor</span>

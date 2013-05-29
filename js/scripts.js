@@ -6,18 +6,18 @@ function hideBox(idProduto){
 	 $('#box_'+idProduto).slideUp('slow');
 }
 
-function adicionarFotoCaixa(urlExibicao, urlImpressao, tipodiv){
+function adicionarFotoCaixa(urlExibicao, urlImpressao, tipodiv, margin){
 	var nrFotosTampa = $('#nrFotosTampa').val();
 	fotosEscolhidasTampa = verificaNrFotosEscolhidas('tampa');
 	
 	if(fotosEscolhidasTampa < parseInt(nrFotosTampa)){
-		adicionarFoto(urlExibicao, urlImpressao, 'tampa', tipodiv);
+		adicionarFoto(urlExibicao, urlImpressao, 'tampa', tipodiv, margin);
 	}else{
-		adicionarFoto(urlExibicao, urlImpressao, 'padrao', tipodiv);
+		adicionarFoto(urlExibicao, urlImpressao, 'padrao', tipodiv, margin);
 	}
 }
 
-function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv){
+function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv,margin){
 	if(tipodiv == "lar"){
 		divcontainer = "<div class='containerLarFoto'>";
 	}else if(tipodiv == "alt"){
@@ -40,7 +40,7 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv){
 		}
 		var idFoto = new Date().getTime();
 		
-		$('#selecaoFotosTampa').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'tampa\')" id="foto_'+idFoto+'"></div>');
+		$('#selecaoFotosTampa').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" style="margin-left:-'+margin+'px" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'tampa\')" id="foto_'+idFoto+'"></div>');
 		
 		$("#selecaoFotosTampa .spaceFoto:first").remove()
 		
@@ -62,7 +62,7 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv){
 			}
 			var idFoto = new Date().getTime();
 
-			$('#selecaoFotos').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'padrao\')" id="foto_'+idFoto+'"></div>');
+			$('#selecaoFotos').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" style="margin-left:-'+margin+'px" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'padrao\')" id="foto_'+idFoto+'"></div>');
 
 			$("#selecaoFotos .spaceFoto:first").remove();
 			
@@ -146,19 +146,33 @@ function selecionaCor(elemento,corEscolhida){
 function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
 	$('.contOpcaoModelo').removeClass('active');
 	elemento.className += " active";
+	nrFotosAtual = parseInt($('#nrFotos').val());
 	
-	$('#selModelo').val(idEscolhido);
-	$('#nrFotos').val(nrFotosEscolhido);
-	$('#txtNrFotos').html(nrFotosEscolhido);
-	$('#count').html('0');
-	
-	$('#selecaoFotos').empty();
-	for(i=1;i<=nrFotosEscolhido;i++){
-		$('#selecaoFotos').append("<div class='spaceFoto'></div>");
+	if(nrFotosAtual < nrFotosEscolhido){
+		$('#selModelo').val(idEscolhido);
+		$('#nrFotos').val(nrFotosEscolhido);
+		$('#txtNrFotos').html(nrFotosEscolhido);
+		
+		diferencaFotos = nrFotosEscolhido - nrFotosAtual;
+		for(i=1;i<=diferencaFotos;i++){
+			$('#selecaoFotos').append("<div class='spaceFoto'></div>");
+		}
+		$('#btn-comprar').hide();
+	}else if(nrFotosEscolhido < nrFotosAtual){
+		$('#selModelo').val(idEscolhido);
+		$('#nrFotos').val(nrFotosEscolhido);
+		$('#txtNrFotos').html(nrFotosEscolhido);
+		$('#count').html('0');
+		
+		$('#selecaoFotos').empty();
+		for(i=1;i<=nrFotosEscolhido;i++){
+			$('#selecaoFotos').append("<div class='spaceFoto'></div>");
+		}
+		$('#urlFotos').val('');
+		$('#btn-comprar').hide();
+	}else{
+		$('#selModelo').val(idEscolhido);
 	}
-    $('#urlFotos').val('');
-	
-	$('#btn-comprar').hide();
 }
 
 function selecionaNrFotosTampa(elemento,opcaoEscolhida){
@@ -294,4 +308,11 @@ function validaFormContato(){
 		return false;
 	}
 	document.contatoForm.submit();
+}
+function validaCompra(){
+    if($("#selCor").val() == ''){
+		alert("Selecione a cor que deseja o produto");
+		return false;
+	}
+	document.comprarForm.submit();
 }

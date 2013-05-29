@@ -7,7 +7,7 @@
     <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript" src="js/ajaxUserName.js"></script>
+    <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
     <script type="text/javascript" src="js/slides.jquery.js"></script>
     <script type="text/javascript" src="js/jquery.instagram.js"></script>
     <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
@@ -60,9 +60,14 @@
                         <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
                         <li><a href="contato.php" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
                 <?php
-					if (isset($_SESSION['LogadoInstagift'])){
+					if (isset($_SESSION['InstagiftTipoLogin'])){
+						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+							$linkLogout = "process/processRedirectInsta.php?action=sair";	
+						}else{
+							$linkLogout = "process/processRedirectFace.php?action=sair";
+						}
 				?>
-                		<li><a href="process/processLogout.php"><span>SAIR</span></a></li>
+                		<li><a href="<?php echo $linkLogout ?>"><span>SAIR</span></a></li>
                 <?php } ?>
                     </ul>
                 </div>
