@@ -25,6 +25,8 @@ class Chart {
     protected $cor;
     
     protected $idLocal;
+    
+    protected $status;
 
     public function getId() {
         return $this->id;
@@ -121,7 +123,15 @@ class Chart {
     public function setIdLocal($idLocal) {
         $this->idLocal = $idLocal;
     }
+    
+    public function getStatus() {
+        return $this->status;
+    }
 
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+    
     public function assocEntity(){
         
         $fields = array(
@@ -135,7 +145,8 @@ class Chart {
 			"cht_35_urlFotos"         	=> $this->getUrlFotos(),
 			"cht_35_urlFotosTampa"      => $this->getUrlFotosTampa(),
             "cht_10_quantidade"     	=> $this->getQuantidade(),
-            "cht_30_cor"     			=> $this->getCor()
+            "cht_30_cor"     			=> $this->getCor(),
+            "cht_12_status"     			=> $this->getStatus()
         );
         
         return $fields;
@@ -155,6 +166,7 @@ class Chart {
 		$this->setUrlFotosTampa($row['cht_35_urlFotosTampa']);
 		$this->setQuantidade($row['cht_10_quantidade']);
 		$this->setCor($row['cht_30_cor']);
+		$this->setStatus($row['cht_12_status']);
         
         return $this;
     }

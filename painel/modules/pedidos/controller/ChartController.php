@@ -4,7 +4,7 @@ class ChartController {
 
     public function insertAction(Chart $chart) {
         
-        if ($chart->getPrdId() != "" && $chart->getPedId() != "" && $chart->getNome() != "" && $chart->getValor() != "" && $chart->getNrFotos() != "" && $chart->getPeso() != "" && $chart->getUrlFotos() != "" && $chart->getQuantidade() != "" && $chart->getCor() != ""){
+        if ($chart->getPrdId() != "" && $chart->getNome() != "" && $chart->getValor() != "" && $chart->getNrFotos() != "" && $chart->getPeso() != "" && $chart->getUrlFotos() != "" && $chart->getQuantidade() != "" && $chart->getCor() != ""){
             
             $chartAr = $chart->assocEntity(); 
 			

@@ -42,6 +42,13 @@ if (isset($_POST)) {
 	$chart->setQuantidade(1);
 	$chart->setCor($selCor);
 	
+        echo "<pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
+        
+        //$chartAction = new ChartController();
+        
+        exit();
 	if(!isset($_SESSION['InstagiftCarrinho'])){
 		$_SESSION['InstagiftCarrinho'] = array();
 	}
