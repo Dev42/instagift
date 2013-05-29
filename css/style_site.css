@@ -134,6 +134,11 @@
 		width: 50px;
 	}
 	
+	.row.login label.radio{
+		width: 120px;
+		text-align:left;
+	}
+	
 	.row.login h1{
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
@@ -750,6 +755,11 @@
 	
 	.carrinho .table .valorProd{
 		margin-top:25px;
+	}
+	
+	.carrinho .table #opcoesFrete.valorProd{
+		margin-top:10px;
+		margin-left:5px;
 	}
 	
 	.carrinho .table .valorProd span{

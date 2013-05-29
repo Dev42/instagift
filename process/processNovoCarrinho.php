@@ -24,7 +24,12 @@ $ped->setEstado($_POST['estado']);
 $ped->setValorPedido($_SESSION['InstagiftTotalPedido']);
 $ped->setValorFrete($_SESSION['InstagiftValorEntrega']);
 $ped->setPeso($_SESSION['InstagiftPesoTotal']);
-$ped->setFrete(1);
+//1 para Sedex, 2 para PAC
+if($_SESSION['InstagiftTipoEntrega'] == 'pac'){
+	$ped->setFrete(2);
+}else{
+	$ped->setFrete(1);
+}
 $ped->setStatus(1);
 $ped->setStatusPag(1);
 $ped->setPayMode("PAGSEGURO");

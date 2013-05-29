@@ -230,9 +230,12 @@ function calcularCep(){
         }).done(function(html){
             retorno = html.split("|");
 			if (retorno[0] == 'ok'){
-				$("#valor_cep").html("R$ "+retorno[1]);
+				$("#opcoesFrete").show();
+				$("#valorCepPac").html("PAC - R$ "+retorno[1]);
+				$("#valorCepSedex").html("Sedex - R$ "+retorno[2]);
 			}else {
-				$("#valor_cep").html("-");
+				$("#opcoesFrete").show();
+				$("#opcoesFrete").html("-");
 				alert("Ocorreu um erro");    
 			}
         });
@@ -243,11 +246,24 @@ function validaCarrinho(){
 	cep = $("#cepCliente").val();
 	ssnRegExp = /^\d{5}-\d{3}$/;
 	
+	radios = document.getElementsByName('optFrete');
+	freteEscolhido = false;
+	
+	for (var i = 0, length = radios.length; i < length; i++) {
+		if (radios[i].checked) {
+			freteEscolhido = true
+		}
+	}
+	
     if(!ssnRegExp.test(cep)){
         alert("Preencha o CEP corretamente");
-	}else{
-		document.carrinhoForm.submit();
+		return false;
 	}
+	if(!freteEscolhido){
+		alert("Selecione o tipo de entrega");
+		return false;
+	}
+	document.carrinhoForm.submit();
 }
 
 function validaFormPedido(){
