@@ -36,6 +36,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . $clientesClass . '/controller/EnderecoC
 # /Controller
 
 include_once $_SERVER['DOCUMENT_ROOT'] . $clientesClass . '/util/SimpleImage.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . $clientesClass . '/util/ImageCutter.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . $clientesClass . '/util/PhotosLoader.php';
 /* /Clientes Module */
 
 /* Produto Module */
