@@ -83,11 +83,12 @@ class ChartController {
         return $retArr;
     }
     
-    public function listActionChart($userName = false, $origem = false, $status = false) {
+    public function listActionChart($userName = false, $origem = false, $status = false, $idChart=false) {
 
         $whereQuery[] = (!$userName) ? "1 = 1" : "cht_30_username = '" . $userName."'";
         $whereQuery[] = (!$origem) ? "1 = 1" : "cht_12_origem = " . $origem;
         $whereQuery[] = (!$status) ? "1 = 1" : "cht_12_status = " . $status;
+        $whereQuery[] = (!$idChart) ? "1 = 1" : "cht_10_id= " . $idChart;
 
         $strQuery = "SELECT * FROM pedidos_chart WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);

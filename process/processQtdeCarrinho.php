@@ -21,11 +21,11 @@ if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
 }
 $status = '1';
 $chartAction = new ChartController();
-$chartProducts = $chartAction->listActionChart($username, $origem, $status);
+$chartProducts = $chartAction->listActionChart($username, $origem, $status, $idItem);
 foreach ($chartProducts as $kChart => $vChart) {
         $chart = new Chart();
 	$obj = $chart->fetchEntity($vChart);
-	if ($obj->getIdLocal() == $idItem) {
+	if ($obj->getId() == $idItem) {
 		$pesoAtual = $obj->getPeso();
 		$quantidadeAtual = $obj->getQuantidade();
 		$valor = $obj->getValor();

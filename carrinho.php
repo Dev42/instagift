@@ -56,17 +56,17 @@ jQuery(function($){
                                     "</span>
                                     </div>
                                     <div class='remProd'>
-                                        <a href='excluirProdutoCarrinho.php?id=".$objFixed->getIdLocal()."' style='border:none;'><img src='images/site/btn-remover.png' alt='Remover' /></a>
+                                        <a href='excluirProdutoCarrinho.php?id=".$objFixed->getId()."' style='border:none;'><img src='images/site/btn-remover.png' alt='Remover' /></a>
                                     </div>
                                     </td>
                                     <td style='text-align:center; padding-top:28px; width:180px;'>
                                         <div class='input-append'>
-                                            <input readonly='readonly' style='width:30px' id='quantidade_".$objFixed->getIdLocal()."' type='text' value='".$quantidade."' class='inputQtde' />
-                                            <input class='btn' type='button' value='+' onclick=alteraQtde('" .$objFixed->getIdLocal()."','add') />
-                                            <input class='btn' type='button' value = '-' onclick=alteraQtde('" .$objFixed->getIdLocal()."','rm') />
+                                            <input readonly='readonly' style='width:30px' id='quantidade_".$objFixed->getId()."' type='text' value='".$quantidade."' class='inputQtde' />
+                                            <input class='btn' type='button' value='+' onclick=alteraQtde('" .$objFixed->getId()."','add') />
+                                            <input class='btn' type='button' value = '-' onclick=alteraQtde('" .$objFixed->getId()."','rm') />
                                         </div>
                                     </td>
-                                    <td style='text-align:center;'><div class='valorProd'><span id='valor_".$objFixed->getIdLocal()."'>R$ ".$valor."</span></div></td>
+                                    <td style='text-align:center;'><div class='valorProd'><span id='valor_".$objFixed->getId()."'>R$ ".$valor."</span></div></td>
                                     </tr>";
                     }
             ?>
