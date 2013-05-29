@@ -4,18 +4,18 @@ class PedidosController {
 
     public function insertAction(Pedidos $pedido) {
             
-            $pedidoAr = $pedido->assocEntity(); 
-			
-            $fields = implode("`, `", array_keys($pedidoAr));
-            $values = implode("', '", $pedidoAr);
+        $pedidoAr = $pedido->assocEntity(); 
 
-            $strQuery = "INSERT INTO `insta892_instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+        $fields = implode("`, `", array_keys($pedidoAr));
+        $values = implode("', '", $pedidoAr);
 
-            $gravar = mysql_query($strQuery);
+        $strQuery = "INSERT INTO `instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+
+        $gravar = mysql_query($strQuery);
+
+        $pedId = mysql_insert_id();
 			
-            $pedId = mysql_insert_id();
-			
-		if($gravar){
+        if($gravar){
             return $pedId;
 			
         } else {

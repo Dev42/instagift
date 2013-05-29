@@ -32,14 +32,23 @@ $ped->setCreatedAt(time()-18000);
 
 $pedId = $pedController->insertAction($ped);
 $ped->setId($pedId);
-
-foreach($_SESSION['InstagiftCarrinho'] as $k => $v){
-	$objFixed = unserialize($v);
-	$objFixed->setPedId($pedId);
-	
-	$chtController->insertAction($objFixed);
+if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+    $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+    $origem = '1';
+}else {
+    $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+    $origem = '2';
 }
-
+$status = '1';
+$chartAction = new ChartController();
+$chartProducts = $chartAction->listActionChart($username, $origem, $status);
+foreach($chartProducts as $k => $v){
+        $chart = new Chart();
+	$objFixed = $chart->fetchEntity($v);
+	$objFixed->setPedId($pedId);
+	$objFixed->setStatus(2);
+	$chtController->editAction($objFixed);
+}
 $procPag = new processaPagamento();
 $procPag->main($ped);
 

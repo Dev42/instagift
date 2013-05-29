@@ -41,14 +41,18 @@ if (isset($_POST)) {
 	
 	$chart->setQuantidade(1);
 	$chart->setCor($selCor);
-	
-        echo "<pre>";
-        var_dump($_SESSION);
-        echo "</pre>";
+	$chart->setStatus(1);
+        if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+            $chart->setUsername($_SESSION['InstagiftDadosInsta']['data']['username']);
+            $chart->setOrigem('1');
+        }else {
+            $chart->setUsername($_SESSION['InstagiftDadosUserFb']['username']);
+            $chart->setOrigem('2');
+        }
         
-        //$chartAction = new ChartController();
+        $chartAction = new ChartController();
+        $chartAction->insertAction($chart);
         
-        exit();
 	if(!isset($_SESSION['InstagiftCarrinho'])){
 		$_SESSION['InstagiftCarrinho'] = array();
 	}
