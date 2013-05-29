@@ -50,7 +50,7 @@ jQuery(function($){
     
                             echo "<tr style='height:83px;'>
                                     <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
-                                    <td style='width:450px;'>
+                                    <td style='width:400px;'>
                                     <div class='infosProd'>
                                     <span class='nomeProd'>".$nomeProd."</span><br><span class='nomeModelo'>".$nomeModelo.
                                     "</span>
@@ -73,7 +73,19 @@ jQuery(function($){
                     <tr style="height:83px;">
                         <td colspan="2" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">Calcule o valor da entrega preenchendo seu CEP</span></td>
                         <td style="padding-top:20px;"><input id="cepCliente" name="cepCliente" type="text" class="inputCep" /><img src="images/site/btn-calculo-cep.png" alt="Calcular" onclick="calcularCep();" class="btnCalculaCep" /></td>
-                        <td style="text-align:center;"><div class="valorProd"><span id="valor_cep">-</span></div></td>
+                        <td style="text-align:center;">
+                        	<div class="valorProd" id="opcoesFrete" style="display:none;">
+                                	<label class="radio">
+                                    <input type="radio" name="optFrete" id="optFretePac" value="pac">
+                                    <span id="valorCepPac">Pac</span>
+                                    </label>
+                                    
+                                    <label class="radio">
+                                    <input type="radio" name="optFrete" id="optFreteSedex" value="sedex">
+                                    <span id="valorCepSedex">Sedex</span>
+									</label>
+                            </div>
+                       	</td>
                     </tr>
                 </table>
             <div class="botoesNav span12">

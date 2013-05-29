@@ -19,6 +19,12 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 	$enderecoL3 = $pedido[1]["ped_35_cidade"]." - ".$pedido[1]["ped_35_estado"];
 	$valorPedido = "R$ ".number_format($pedido[1]["ped_20_valorPedido"],2,',','.');
 	$valorFrete = "R$ ".number_format($pedido[1]["ped_20_valorFrete"],2,',','.');
+	$codTipoFrete = $pedido[1]["ped_12_frete"];
+	if($codTipoFrete == 1){
+		$tipoFrete = "Sedex";
+	}else{
+		$tipoFrete = "PAC";
+	}
 	$peso = number_format($pedido[1]["ped_20_peso"],3,',','.');
 	$criadoEm = date("d/m/Y - H:i", $pedido[1]["ped_22_created_at"]);
 }
@@ -116,6 +122,12 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                         <label>Valor do pedido</label>
                                         <div>
                                             <p><?php echo $valorPedido; ?></p>
+                                        </div>
+                                </fieldset>
+                                <fieldset class="label_side">
+                                        <label>Tipo do frete</label>
+                                        <div>
+                                            <p><?php echo $tipoFrete; ?></p>
                                         </div>
                                 </fieldset>
                                 <fieldset class="label_side">

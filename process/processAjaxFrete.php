@@ -20,6 +20,6 @@ $retorno = $retorno."|".$peso."|".$valor;
 
 $retArr = explode("|", $retorno);
 
-echo $retArr[0]."|".number_format($retArr[3],2,',','.')."|".$retArr[5]."|".$retArr[6];
+echo $retArr[0]."|".number_format($retArr[4],2,',','.')."|".number_format($retArr[3],2,',','.')."|".$retArr[5]."|".$retArr[6];
 
 ?>

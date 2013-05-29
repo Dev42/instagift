@@ -37,8 +37,14 @@ if(isset($_POST['cepCliente'])){
 	
 	$retArr = explode("|", $retorno);
 	
-	$valorEntregaCru = $retArr[3];
-	$valorEntrega = number_format($retArr[3],2,',','.');
+	$tipoEntrega = $_POST['optFrete'];
+	if($tipoEntrega == 'pac'){
+		$valorEntregaCru = $retArr[4];
+		$valorEntrega = number_format($retArr[4],2,',','.');
+	}else{
+		$valorEntregaCru = $retArr[3];
+		$valorEntrega = number_format($retArr[3],2,',','.');
+	}
 	
 	if($retArr[0] != 'ok'){
 		echo "<script>alert('Ocorreu um erro com o CEP, por favor preencha novamente');
@@ -49,6 +55,7 @@ if(isset($_POST['cepCliente'])){
 	$valorTotal = number_format($valorTotalCru,2,',','.');
 	
 	$_SESSION['InstagiftCepEntrega'] = $_POST['cepCliente'];
+	$_SESSION['InstagiftTipoEntrega'] = $tipoEntrega;
 	$_SESSION['InstagiftValorEntrega'] = $valorEntregaCru;
 	$_SESSION['InstagiftTotalPedido'] = $valorCru;
 	$_SESSION['InstagiftPesoTotal'] = $pesoCru;
@@ -78,7 +85,7 @@ if(isset($_POST['cepCliente'])){
     
                             echo "<tr style='height:83px;'>
                                     <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
-                                    <td style='width:450px;'>
+                                    <td style='width:400px;'>
                                     <div class='infosProd'>
                                     <span class='nomeProd'>".$nomeProd."</span><br><span class='nomeModelo'>".$nomeModelo."</span>
                                     </div>
