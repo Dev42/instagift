@@ -10,6 +10,7 @@ $menuClass = array("active","","");
 
 $prdFront = new ProdutoFrontController();
 $fotoPrd = new FotoProdutoController();
+$infoPrd = new ProdutoInfoController();
 
 if (isset($_SESSION['InstagiftProdId'])){
 	$idProd = $_SESSION['InstagiftProdId'];
@@ -62,7 +63,10 @@ if (isset($_SESSION['InstagiftProdId'])){
 		}else if($_SESSION['InstagiftTipoLogin'] == 'Fb'){
 			$me = $_SESSION['InstagiftDadosUserFb'];
 			$picture = $_SESSION['InstagiftFotoUserFb'];
-			$photos = $facebook->api('/me/photos?limit=9000&offset=0');
+			$photos = $facebook->api(array(
+								'method'    => 'fql.query',
+								'query'     => 'SELECT src,src_big,src_height,src_width FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner=me()) OR pid IN (SELECT pid FROM photo_tag WHERE subject=me())'
+							));
 		}else{
 			header("Location:produtos.php");
 		}
@@ -117,7 +121,28 @@ if ($idProd){
                 </span>
             </div>
             <div class="row dica">
-            	<span class="titProduto">Opção de Compra</span>
+            	<span class="titProduto">Opções de Compra</span>
+                <?php
+					$listaOpcoes = $infoPrd->getProdutoAction('produto_10_id',$v->getId());
+					$contOpcoes = 0;
+					foreach($listaOpcoes as $kInfoPrd => $vInfoPrd){
+						if($contOpcoes == 0){
+							$modeloPadrao = $vInfoPrd['produto_info_10_id'];
+							$nrFotosPadrao = $vInfoPrd['produto_info_10_nrFotos'];
+							$classeOpcao = 'contOpcaoModelo active clearfix';
+						}else{
+							$classeOpcao = 'contOpcaoModelo clearfix';
+						}
+						
+						echo "<div class='".$classeOpcao."' style='cursor:pointer;' onclick='selecionaOpcaoCompra(this,\"".$vInfoPrd['produto_info_10_id']."\",\"".$vInfoPrd['produto_info_10_nrFotos']."\")'>		
+								<span class='titOpcaoCompra'>".$vInfoPrd['produto_info_30_nome']."</span>
+								<br>
+								<span class='descOpcaoCompra'>".$vInfoPrd['produto_info_35_desc']." - R$ ".str_replace(".",",",$vInfoPrd['produto_info_20_valor'])."</span>
+							  </div>";
+						
+						$contOpcoes++;
+					}
+				?>
             </div>
             <div class="row dica">
             	<span class="titProduto">Opções de Cores</span>
@@ -127,16 +152,16 @@ if ($idProd){
 					foreach($arCores as $corProd){
 						if($contCores == 0){
 							$corPadrao = $corProd->nome;
-							echo "<div class='corProd'>
-									<div class='boxCorProd active' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
-									<span>".$corProd->nome."</span>
-								  </div>";
+							$classeCor = 'boxCorProd';
 						}else{
-							echo "<div class='corProd'>
-									<div class='boxCorProd' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
+							$classeCor = 'boxCorProd';
+						}
+						
+						echo "<div class='corProd'>
+									<div class='".$classeCor."' onclick='selecionaCor(this,\"".$corProd->nome."\")' style='background-color:#".$corProd->cor."'></div>
 									<span>".$corProd->nome."</span>
 								  </div>";
-						}
+								  
 						$contCores++;
 					}
 				?>
@@ -152,11 +177,12 @@ if ($idProd){
 			if($v->getTipo() == '1'){
 		?>
         <div class="span8">
-            <form name="comprarForm" method="post" action="fechaPedido.php">
+            <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
-                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
+                <input type="hidden" value="" name="selCor" id="selCor" />
+                <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
                 <input type="hidden" value="1" name="nrFotosTampa" id="nrFotosTampa" />
-                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" value="<?php echo $nrFotosPadrao; ?>" name="nrFotos" id="nrFotos" />
                 <input type="hidden" name="urlFotosTampa" id="urlFotosTampa" />
                 <input type="hidden" name="urlFotos" id="urlFotos" />
         	<div class="row">
@@ -168,13 +194,21 @@ if ($idProd){
                     
                         if (isset($instaPhotos['data'])){
                             foreach ($instaPhotos['data'] as $instaPhoto){
-                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFotoCaixa(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\')">';
+                                echo '<div class="containerQuadFotoGrd"><img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFotoCaixa(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'quad\')"></div>';
                             }
                         }
         
-                        if (isset($photos['data'])){
-                            foreach ($photos['data'] as $photo){
-                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['picture'].'\',\''.$photo['source'].'\')">';
+						if (isset($photos)){
+                            foreach ($photos as $photo){
+								if($photo['src_width'] > $photo['src_height']){
+									$marginLeft = floor(((($photo['src_width'] * 100) / $photo['src_height'])-100) / 2);
+									$marginLeftScript = floor($marginLeft / 2);
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" style="margin-left:-'.$marginLeft.'px;" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'lar\',\''.$marginLeftScript.'\')"></div>';
+								}else if($photo['src_height'] > $photo['src_width']){
+									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'alt\',\'0\')"></div>';
+								}else{
+									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFotoCaixa(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'quad\',\'0\')"></div>';
+								}
                             }
                         }
                     ?>
@@ -194,22 +228,26 @@ if ($idProd){
             </div>
             <div class="row listaFotos">
                 <div class="fotos" id="selecaoFotosTampa">
-                    
+                    <div class="spaceFoto"></div>
                 </div>
         	</div>
             
             <div class="row fotosSelecionadas">
-            	<span class="titProduto">Imagens Selecionadas - Laterais </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
+            	<span class="titProduto">Imagens Selecionadas - Laterais </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $nrFotosPadrao; ?></span><span class="descProduto"> imagens selecionadas</span>
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
-                    
+                    <?php
+						for($f=1;$f<=$nrFotosPadrao;$f++){
+							echo '<div class="spaceFoto"></div>';
+						}
+					?>
                 </div>
         	</div>
             
             <div class="row comprar">
                 <div class="btn-comprar" id="btn-comprar" style="display:none;">
-                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                    <input type="button" value="Comprar" id="comprar" name="comprar" onclick="validaCompra()">
                 </div>
             </div>
             </form>
@@ -218,10 +256,11 @@ if ($idProd){
 			}else{
 		?>
         <div class="span8">
-            <form name="comprarForm" method="post" action="fechaPedido.php">
+            <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                 <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
-                <input type="hidden" value="<?php echo $corPadrao; ?>" name="selCor" id="selCor" />
-                <input type="hidden" value="<?php echo $v->getMinimoFotos(); ?>" name="nrFotos" id="nrFotos" />
+                <input type="hidden" value="" name="selCor" id="selCor" />
+                <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
+                <input type="hidden" value="<?php echo $nrFotosPadrao; ?>" name="nrFotos" id="nrFotos" />
                 <input type="hidden" name="urlFotos" id="urlFotos" />
         	<div class="row">
             	<span class="titProduto">Escolha suas fotos</span>
@@ -232,20 +271,28 @@ if ($idProd){
                     
                         if (isset($instaPhotos['data'])){
                             foreach ($instaPhotos['data'] as $instaPhoto){
-                                echo '<img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'padrao\')">';
+								echo '<div class="containerQuadFotoGrd"><img src="'.$instaPhoto['images']['thumbnail']['url'].'" alt="" onclick="adicionarFoto(\''.$instaPhoto['images']['thumbnail']['url'].'\',\''.$instaPhoto['images']['standard_resolution']['url'].'\',\'padrao\',\'quad\')"></div>';
                             }
                         }
         
-                        if (isset($photos['data'])){
-                            foreach ($photos['data'] as $photo){
-                                echo '<img src="'.$photo['picture'].'" alt="" onclick="adicionarFoto(\''.$photo['picture'].'\',\''.$photo['source'].'\',\'padrao\')">';
+						if (isset($photos)){
+                            foreach ($photos as $photo){
+								if($photo['src_width'] > $photo['src_height']){
+									$marginLeft = floor(((($photo['src_width'] * 100) / $photo['src_height'])-100) / 2);
+									$marginLeftScript = floor($marginLeft / 2);
+                                	echo '<div class="containerLarFotoGrd"><img src="'.$photo['src_big'].'" style="margin-left:-'.$marginLeft.'px;" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'lar\',\''.$marginLeftScript.'\')"></div>';
+								}else if($photo['src_height'] > $photo['src_width']){
+									echo '<div class="containerAltFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'alt\',\'0\')"></div>';
+								}else{
+									echo '<div class="containerQuadFotoGrd"><img src="'.$photo['src_big'].'" alt="" onclick="adicionarFoto(\''.$photo['src'].'\',\''.$photo['src_big'].'\',\'padrao\',\'quad\',\'0\')"></div>';
+								}
                             }
                         }
                     ?>
                 </div>
         	</div>
             <div class="row fotosSelecionadas">
-            	<span class="titProduto">Imagens Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $v->getMinimoFotos(); ?></span><span class="descProduto"> imagens selecionadas</span>
+            	<span class="titProduto">Imagens Selecionadas </span> <span class="descProduto" id="count">0</span> <span class="descProduto"> de </span><span class="descProduto" id="txtNrFotos"><?php echo $nrFotosPadrao; ?></span><span class="descProduto"> imagens selecionadas</span>
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
@@ -254,7 +301,7 @@ if ($idProd){
         	</div>
             <div class="row comprar">
                 <div class="btn-comprar" id="btn-comprar" style="display:none;">
-                    <input type="submit" value="Comprar" id="comprar" name="comprar">
+                    <input type="button" value="Comprar" id="comprar" name="comprar" onclick="validaCompra()">
                 </div>
             </div>
             </form>

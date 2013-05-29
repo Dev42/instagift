@@ -1,6 +1,6 @@
 <div id="nav_top" class="clearfix round_top">
 	<ul class="clearfix">
-		<li><a href="index.php"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/laptop.png"/></a></li>
+		<li><a href="<?php echo $urlGeral; ?>/index.php"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/laptop.png"/></a></li>
 	
                 <?php
                 if ($_SESSION['loginType'] < 3){
@@ -31,34 +31,14 @@
                 <?php
                 if ($_SESSION['loginType'] < 3){
                 ?>
-		<li><a href="#"><img src="<?php echo $urlGeral; ?>/images/icons/small/white/create_write.png"/><span>Pedidos  </span></a>
+		<li><a href="#"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/create_write.png"/><span>Pedidos  </span></a>
 			<ul>
 				<li><a href="<?php echo $urlPedidos; ?>/listarPedido.php"><span>Listar</span></a></li>
-				<li><a href="<?php echo $urlPedidos; ?>/novoPedido.php"><span>Novo</span></a></li>
 			</ul>
 		</li>
                 <?php
                 }
                 ?>
-                
-		<li><a href="#"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/apartment_building.png"/><span>Clientes</span></a>
-			<ul>
-				<li><a href="<?php echo $urlClientes; ?>/listar.php"><span>Listar</span></a></li>
-				<li><a href="<?php echo $urlClientes; ?>/novo.php"><span>Novo</span></a></li>
-				<li><a href="#"><span>Contato</span></a>
-					<ul class="drawer">
-						<li><a href="listarContato.php"><span>Listar</span></a></li>
-						<li><a href="novoContato.php"><span>Novo</span></a></li>
-					</ul>
-				</li>
-				<li><a href="#"><span>Endereço</span></a>
-					<ul class="drawer">
-						<li><a href="listarEndereco.php"><span>Listar</span></a></li>
-						<li><a href="novoEndereco.php"><span>Novo</span></a></li>
-					</ul>
-				</li>
-			</ul>
-		</li>
                 <?php
                 if ($_SESSION['loginType'] == 1){
                 ?>
@@ -71,7 +51,7 @@
                 <?php
                 }
                 ?>
-		<li><a href="<?php echo $urlGeral; ?>/logout.php" class="dialog_button" data-dialog="logout"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/locked_2.png"/></a></li>
+		<li><a href="<?php echo $urlGeral; ?>/logout.php"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/locked_2.png"/><span>Logout</span></a></li>
 	</ul>
 	<?php include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/includes/dialog_logout.php'?>		
 

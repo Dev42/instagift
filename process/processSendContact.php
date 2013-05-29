@@ -5,7 +5,7 @@
 	$telefone = $_POST['telefone'];
 	$mensagem = $_POST['mensagem'];
 	
-	$destinatario = 'giogiannichi@gmail.com';
+	$destinatario = 'contato@instagift.com.br';
 	
 	$assuntoEmail = "Contato via site";
 	
@@ -34,9 +34,9 @@
 	// Define os dados do servidor e tipo de conexão
 	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	$mail->IsSMTP(); // Define que a mensagem será SMTP
-	$mail->Host = "smtp.instagift.com.br"; // Endereço do servidor SMTP
+	$mail->Host = "mail.instagift.com.br"; // Endereço do servidor SMTP
 	$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-	$mail->Port = 587;
+	$mail->Port = 25;
 	$mail->Username = 'envio@instagift.com.br'; // Usuário do servidor SMTP
 	$mail->Password = 'Envio2013'; // Senha do servidor SMTP
 	 

@@ -1,6 +1,17 @@
 <?php
 session_start();
-
+if($_GET['action'] == 'sair'){
+	unset($_SESSION['InstagiftTipoLogin']);
+	foreach($_SESSION as $kSession => $vSession){
+		$pos = strpos($kSession, "fb_");
+		if($pos !== false){
+				unset($_SESSION[$kSession]);
+		}
+	}
+	$o_user = 0;
+	header("Location: ../index.php");
+	break;
+}
 //Coloca o Id do produto desejado em Session
 if(isset($_GET['id'])){
 	$_SESSION['InstagiftProdId'] = $_GET['id'];
@@ -36,14 +47,17 @@ if($o_user == 0){
 	//Coloca o Id do produto desejado em Session
 	$_SESSION['InstagiftProdId'] = $_GET['id'];
 	
-	$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream')));
+	$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream','user_photos')));
 	header("Location: ".$urlFacebook);
 }else{
 	$_SESSION['InstagiftTipoLogin'] = 'Fb';
 	$_SESSION['InstagiftDadosUserFb'] = $facebook->api('/me');
 	$_SESSION['InstagiftFotoUserFb'] = $facebook->api('/me?fields=picture');
-	$photos = $facebook->api('/me/photos?limit=9000&offset=0');
-	$_SESSION['InstagiftNrFotos'] = count($photos['data']);
+	$photos = $facebook->api(array(
+								'method'    => 'fql.query',
+								'query'     => 'SELECT src,src_big FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner=me()) OR pid IN (SELECT pid FROM photo_tag WHERE subject=me())'
+							));
+	$_SESSION['InstagiftNrFotos'] = count($photos);
 	header("Location: ../produtos.php");
 }
 

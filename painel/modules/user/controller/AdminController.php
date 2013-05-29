@@ -6,13 +6,12 @@ class AdminController {
 
         if ($user->getLogin() != "" && $user->getNome() != "" && $user->getSenha() != "" && $user->getEmail() != "") {
 
-            $user->setSenha($user->encriptPassword());
             $userAr = $user->assocEntity();
 
             $fields = implode("`, `", array_keys($userAr));
             $values = implode("', '", $userAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -24,13 +23,13 @@ class AdminController {
 
     public function editAction(User $user){
         
-        if ($user->getLogin() != "" && $user->getNome() != "" && $user->getSenha() != "" && $user->getEmail() != "") {
+        if ($user->getLogin() != "" && $user->getNome() != "" && $user->getEmail() != "") {
             
-            if ($user->getSenha() != ""){
-                $user->setSenha($user->encriptPassword());
-            }
-            
-            $userAr = $user->assocEntity();
+			if($user->getSenha() == ""){
+				$userAr = $user->assocEntitySemSenha();
+			}else{
+            	$userAr = $user->assocEntity();
+			}
             
             $setQuery = array();
             foreach ($userAr as $k => $v){
@@ -41,7 +40,8 @@ class AdminController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$user->tableName()."` SET $setQuery WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$user->tableName()."` SET $setQuery WHERE `user_10_id` = ". $user->getId();
+			
             mysql_query($sqlQuery);
             
             return true;
@@ -58,7 +58,7 @@ class AdminController {
         
         if ($user->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;

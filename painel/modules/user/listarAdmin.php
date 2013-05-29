@@ -68,7 +68,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                             
                                                             $userController = new AdminController();
                                                             
-                                                            $userList = $userController->listAction(false, 2);
+                                                            $userList = $userController->listAction(false, 1);
                                                             
                                                             foreach ($userList as $k => $v){
                                                                 echo '<tr class="gradeX">';
@@ -76,9 +76,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                                 echo '<td>'.$v['user_30_username'].'</td>';
                                                                 echo '<td>'.$v['user_30_email'].'</td>';
                                                                 echo '<td>
-                                                                        <a href="'.$urlUser.'/editarAdmin.php?id='.$v['user_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/edit.png"/></a>
-                                                                        <a href="'.$urlUser.'/deletarAdmin.php?id='.$v['user_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/trash.gif"/></a>
-                                                                     </td>';
+                                                                        <a href="'.$urlUser.'/editarAdmin.php?id='.$v['user_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/edit.png"/></a>';
+																if($v['user_10_id'] != 1){		
+                                                                echo   '<a href="'.$urlUser.'/deletarAdmin.php?id='.$v['user_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/trash.gif"/></a>';
+																}
+                                                                echo '</td>';
                                                                 echo '</tr>';
                                                             }
                                                             

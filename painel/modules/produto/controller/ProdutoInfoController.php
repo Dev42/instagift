@@ -4,14 +4,14 @@ class ProdutoInfoController {
 
     public function insertAction(ProdutoInfo $produto) {
 			
-        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getPeso() != ""){
+        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getNrFotos() != "" && $produto->getPeso() != ""){
 
             $produtoAr = $produto->assocEntity();
 
             $fields = implode("`, `", array_keys($produtoAr));
             $values = implode("', '", $produtoAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $produto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $produto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 			
@@ -25,7 +25,7 @@ class ProdutoInfoController {
 
     public function editAction(ProdutoInfo $produto){
         
-        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getPeso() != ""){
+        if ($produto->getNome() != "" && $produto->getDesc() != "" && $produto->getValor() != "" && $produto->getNrFotos() != "" && $produto->getPeso() != ""){
             $produtoAr = $produto->assocEntity();
             
             $setQuery = array();
@@ -37,7 +37,7 @@ class ProdutoInfoController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$produto->tableName()."` SET $setQuery WHERE `produto_info_10_id` = ". $produto->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$produto->tableName()."` SET $setQuery WHERE `produto_info_10_id` = ". $produto->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -49,11 +49,26 @@ class ProdutoInfoController {
         
     }
 
+    public function deleteByProdutoAction($produtoId){
+        
+        if ($produtoId != "") {
+            
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`produto_info` WHERE `produto_10_id` = ". $produtoId;
+            mysql_query($sqlQuery);
+            
+            return true;
+            
+        }else {
+            return false;
+        }
+        
+    }
+    
     public function deleteAction(ProdutoInfo $produto){
         
         if ($produto->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$produto->tableName()."` WHERE `produto_info_10_id` = ". $produto->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$produto->tableName()."` WHERE `produto_info_10_id` = ". $produto->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -69,7 +84,7 @@ class ProdutoInfoController {
         $field = addslashes($field);
         $value = addslashes($value);
         
-        $strQuery = "SELECT * FROM produto WHERE ".$field . " = '" . $value."'";
+        $strQuery = "SELECT * FROM produto_info WHERE ".$field . " = '" . $value."'";
         $result = mysql_query($strQuery);
 
         $retArr = array();

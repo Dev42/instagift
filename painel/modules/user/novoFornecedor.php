@@ -6,15 +6,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
 				<?php $keyphrase = '2'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
-                                    <div class="grid_16">
-                                            <div class="indented round_all clearfix send_left">
-                                                    <ul class="breadcrumb clearfix">
-                                                            <li><a href="<?php echo $urlGeral; ?>/index.php"><div class="ui-icon ui-icon-home"></div></a></li>
-                                                            <li><a href="<?php echo $urlUser; ?>/listarFornecedor.php">Fornecedores</a></li>
-                                                            <li><span>Novo</span></li>
-                                                    </ul>
-                                            </div>
-                                    </div>
 					<div class="flat_area grid_16">
 						<h2>Adicionar Fornecedor</h2>
 						<p>Crie um fornecedor para que ele possa acessar o sistema.</p>

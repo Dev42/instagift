@@ -4,14 +4,14 @@ class ProdutoController {
 
     public function insertAction(Produto $produto) {
 			
-        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getValor() != "" && $produto->getPeso() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
+        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
 
             $produtoAr = $produto->assocEntity();
 
             $fields = implode("`, `", array_keys($produtoAr));
             $values = implode("', '", $produtoAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $produto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $produto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 			
@@ -25,7 +25,7 @@ class ProdutoController {
 
     public function editAction(Produto $produto){
         
-        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getValor() != "" && $produto->getPeso() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
+        if ($produto->getNome() != "" && $produto->getDescCurta() != "" && $produto->getDescCompleta() != "" && $produto->getPrazoProducao() != "" && $produto->getLarguraMinima() != "" && $produto->getAlturaMinima() != "" && $produto->getMinimoFotos() != ""){
             $produtoAr = $produto->assocEntity();
             
             $setQuery = array();
@@ -37,7 +37,7 @@ class ProdutoController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$produto->tableName()."` SET $setQuery WHERE `produto_10_id` = ". $produto->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$produto->tableName()."` SET $setQuery WHERE `produto_10_id` = ". $produto->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -53,7 +53,7 @@ class ProdutoController {
         
         if ($produto->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$produto->tableName()."` WHERE `produto_10_id` = ". $produto->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$produto->tableName()."` WHERE `produto_10_id` = ". $produto->getId();
             mysql_query($sqlQuery);
             
             return true;

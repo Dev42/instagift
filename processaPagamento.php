@@ -1,15 +1,7 @@
 <?php
-
-require_once "../painel/modules/pedidos/WebService/PagSeguro/PagSeguroLibrary/PagSeguroLibrary.php";
-require_once '../painel/modules/pedidos/entity/Chart.php';
-
-require_once '../painel/modules/produto/controller/ProdutoController.php';
-require_once '../painel/modules/produto/entity/Produto.php';
-
-require_once '../painel/modules/clientes/controller/EnderecoController.php';
-require_once '../painel/modules/clientes/controller/ContatoController.php';
-require_once '../painel/modules/clientes/entity/Endereco.php';
-require_once '../painel/modules/clientes/entity/Contato.php';
+session_start();
+include "painel/modules/pedidos/WebService/PagSeguro/PagSeguroLibrary/PagSeguroLibrary.php";
+include 'painel/conf/classLoader.php';
 
 /* 
  * Classe para solicitar o pagamento do item carrinho
@@ -17,58 +9,62 @@ require_once '../painel/modules/clientes/entity/Contato.php';
 
 class processaPagamento {
     
-    public static function main (Chart $chart) {
-        $prdController = new ProdutoController();
-        $prdInfo = $prdController->listAction($chart->getPrdId());
-        $prd = new Produto();
-        $prd->fetchEntity($prdInfo[1]);
-        
-        $endController = new EnderecoController();
-        $endInfo = $endController->listAction(false, $chart->getCliId());
-        $countEnd = count($endInfo);
+    public static function main (Pedidos $pedido) {
+		$produtoController = new ProdutoFrontController();
 		
-        $cntController = new ContatoController();
-        $cntInfo = $cntController->listAction(false,$chart->getCliId());
-        $countCnt = count($cntInfo);
+        $chtController = new ChartController();
+        $chtList = $chtController->listByPedido($pedido->getId());
 		
         $paymentRequest = new PagSeguroPaymentRequest();
         $paymentRequest->setCurrency("BRL");
+		
+		foreach ($chtList as $kChart => $vChart){
+			$prdList = $produtoController->listAction($vChart['produto_10_id'], false);
+			foreach ($prdList as $kProd => $vProd){
+				$nomeProd = $vProd->getNome();
+			}
+			
+			$paymentRequest->addItem(
+				$vChart['cht_10_id'], 
+				$nomeProd." - ".$vChart['cht_30_nome'], 
+				$vChart['cht_10_quantidade'], 
+				$vChart['cht_20_valor']/$vChart['cht_10_quantidade'], 
+				$vChart['cht_20_peso']*1000, 
+				0
+			);
+		}
         
-        $prodTotal = $chart->getQuantidade()*$prd->getValor();
-		$freteTotal = $chart->getQuantidade()*$prd->getFrete();
-		$valTotal = $prodTotal + $freteTotal;
+        $paymentRequest->setReference("REF00".$pedido->getId());
         
-        $paymentRequest->addItem(
-                $prd->getId(), 
-                $prd->getNome(), 
-                $chart->getQuantidade(), 
-                $valTotal, 
-                $prd->getPeso()*1000, 
-                0
-                );
-        
-        $paymentRequest->setReference("REF00".$chart->getId());
-        
-        $CODIGO_ENTREGA = PagSeguroShippingType::getCodeByType('NOT_SPECIFIED');
-        $paymentRequest->setShippingType($CODIGO_ENTREGA);
-        
-        $paymentRequest->setShippingAddress(
-                $endInfo[$countEnd]->getCep(),
-                $endInfo[$countEnd]->getEndereco(),
-                $endInfo[$countEnd]->getNumero(), 
-                $endInfo[$countEnd]->getComplemento(),
-                $endInfo[$countEnd]->getBairro(), 
-                $endInfo[$countEnd]->getCidade(),
-                $endInfo[$countEnd]->getEstado(),
-                'BRA'
-                );
+		$shipping = new PagSeguroShipping(); 
+		
+		$type = new PagSeguroShippingType(3); // objeto PagSeguroShippingType  
+		$shipping->setType($type);
+		
+		$shipping->setCost($pedido->getValorFrete());  
+		
+		$endEntregaAr = Array(  
+			'postalCode' => $pedido->getCep(),  
+			'street' => $pedido->getLogradouro(),  
+			'number' => $pedido->getNumero(),  
+			'complement' => $pedido->getComplemento(),  
+			'district' => $pedido->getBairro(),  
+			'city' => $pedido->getCidade(),  
+			'state' => $pedido->getEstado(),  
+			'country' => 'BRA'  
+		);  
+		
+		$address = new PagSeguroAddress($endEntregaAr); // objeto PagSeguroAddress  
+		$shipping->setAddress($address); 
+		
+        $paymentRequest->setShipping($shipping); 
          
 		$paymentRequest->setSender(
-                $cntInfo[$countCnt]->getNome(),
-                $cntInfo[$countCnt]->getEmail(), 
-                $cntInfo[$countCnt]->getDdd(),
-                $cntInfo[$countCnt]->getTel()
-                );
+                $pedido->getNome(),
+                $pedido->getEmail(), 
+                $pedido->getDdd(),
+                $pedido->getTelefone()
+        );
        
         $paymentRequest->setRedirectUrl("http://www.instagift.com.br");
         
@@ -87,7 +83,8 @@ class processaPagamento {
 
     public static function printPaymentUrl($url) {
         if ($url) {
-            header("Location: ../pagamento.php?url=".$url);
+			$_SESSION['InstagiftUrlPgto'] = base64_encode($url);
+            header("Location: ../pagamento.php");
         }
     }
 	

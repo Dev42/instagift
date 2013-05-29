@@ -3,21 +3,21 @@
 class PedidosController {
 
     public function insertAction(Pedidos $pedido) {
-        
-        if ($pedido->getPayMode() != "" && $pedido->getChartId()){
             
             $pedidoAr = $pedido->assocEntity(); 
 			
             $fields = implode("`, `", array_keys($pedidoAr));
             $values = implode("', '", $pedidoAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
-            mysql_query($strQuery);
+            $gravar = mysql_query($strQuery);
 			
             $pedId = mysql_insert_id();
-
+			
+		if($gravar){
             return $pedId;
+			
         } else {
             return 0;
         }
@@ -25,7 +25,7 @@ class PedidosController {
 
     public function editAction(Pedidos $pedido){
         
-        if ($pedido->getPayMode() != "" && $pedido->getPrdId() && $pedido->getCliId() != "" && $pedido->getQuantidade()){
+        if ($pedido->getPaymode() != "" && $pedido->getPrdId() && $pedido->getCliId() != "" && $pedido->getQuantidade()){
             
             $pedidoAr = $pedido->assocEntity();
             
@@ -38,7 +38,7 @@ class PedidosController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$pedido->tableName()."` SET $setQuery WHERE `ped_10_id` = ". $pedido->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$pedido->tableName()."` SET $setQuery WHERE `ped_10_id` = ". $pedido->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -54,7 +54,7 @@ class PedidosController {
         
         if ($pedido->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$pedido->tableName()."` WHERE `produto_10_id` = ". $pedido->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$pedido->tableName()."` WHERE `ped_10_id` = ". $pedido->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -65,10 +65,11 @@ class PedidosController {
         
     }
     
-    public function listAction($id = false, $status = 1) {
+    public function listAction($id = false, $status = 1, $statusPag = 1) {
 
         $whereQuery[] = (!$id) ? "1 = 1" : "ped_10_id = " . $id;
-        $whereQuery[] = (!$status) ? "1 = 1" : "ped_10_status = " . $status;
+        $whereQuery[] = (!$status) ? "1 = 1" : "ped_12_status = " . $status;
+		$whereQuery[] = (!$statusPag) ? "1 = 1" : "ped_12_statusPag = " . $statusPag;
 
         $strQuery = "SELECT * FROM pedidos WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);

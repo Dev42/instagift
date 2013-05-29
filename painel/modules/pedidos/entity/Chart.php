@@ -4,30 +4,34 @@ class Chart {
     
     protected $id;
     
-    protected $cliId;
-    
     protected $prdId;
+	
+    protected $pedId;
     
-    protected $prdConfig;
+    protected $nome;
+	
+    protected $valor;
+	
+    protected $nrFotos;
+	
+    protected $peso;
+    
+    protected $urlFotos;
+	
+    protected $urlFotosTampa;
     
     protected $quantidade;
     
-    protected $createdAt;
+    protected $cor;
     
+    protected $idLocal;
+
     public function getId() {
         return $this->id;
     }
 
     public function setId($id) {
         $this->id = $id;
-    }
-
-    public function getCliId() {
-        return $this->cliId;
-    }
-
-    public function setCliId($cliId) {
-        $this->cliId = $cliId;
     }
 
     public function getPrdId() {
@@ -37,13 +41,61 @@ class Chart {
     public function setPrdId($prdId) {
         $this->prdId = $prdId;
     }
-
-    public function getPrdConfig() {
-        return $this->prdConfig;
+	
+	public function getPedId() {
+        return $this->pedId;
     }
 
-    public function setPrdConfig($prdConfig) {
-        $this->prdConfig = $prdConfig;
+    public function setPedId($pedId) {
+        $this->pedId = $pedId;
+    }
+	
+	public function getNome() {
+        return $this->nome;
+    }
+
+    public function setNome($nome) {
+        $this->nome = $nome;
+    }
+	
+	public function getValor() {
+        return $this->valor;
+    }
+
+    public function setValor($valor) {
+        $this->valor = $valor;
+    }
+	
+	public function getNrFotos() {
+        return $this->nrFotos;
+    }
+
+    public function setNrFotos($nrFotos) {
+        $this->nrFotos = $nrFotos;
+    }
+	
+	public function getPeso() {
+        return $this->peso;
+    }
+
+    public function setPeso($peso) {
+        $this->peso = $peso;
+    }
+	
+	public function getUrlFotos() {
+        return $this->urlFotos;
+    }
+
+    public function setUrlFotos($urlFotos) {
+        $this->urlFotos = $urlFotos;
+    }
+	
+	public function getUrlFotosTampa() {
+        return $this->urlFotosTampa;
+    }
+
+    public function setUrlFotosTampa($urlFotosTampa) {
+        $this->urlFotosTampa = $urlFotosTampa;
     }
 
     public function getQuantidade() {
@@ -54,37 +106,55 @@ class Chart {
         $this->quantidade = $quantidade;
     }
 
-    public function getCreatedAt() {
-        return $this->createdAt;
+    public function getCor() {
+        return $this->cor;
     }
 
-    public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
+    public function setCor($cor) {
+        $this->cor = $cor;
+    }
+    
+    public function getIdLocal() {
+        return $this->idLocal;
+    }
+
+    public function setIdLocal($idLocal) {
+        $this->idLocal = $idLocal;
     }
 
     public function assocEntity(){
         
         $fields = array(
-            "cht_10_id"       		=> $this->getId(),
-            "user_10_id"     		=> $this->getCliId(),
-            "produto_10_id"             => $this->getPrdId(),
-            "cht_35_config"             => $this->getPrdConfig(),
-            "cht_10_quantidade"         => $this->getQuantidade(),
-            "cht_22_created_at"         => $this->getCreatedAt()
+            "cht_10_id"       			=> $this->getId(),
+            "produto_10_id"         	=> $this->getPrdId(),
+			"ped_10_id"   			 	=> $this->getPedId(),
+			"cht_30_nome"         		=> $this->getNome(),
+			"cht_20_valor"         		=> $this->getValor(),
+			"cht_10_nrFotos"         	=> $this->getNrFotos(),
+			"cht_20_peso"         		=> $this->getPeso(),
+			"cht_35_urlFotos"         	=> $this->getUrlFotos(),
+			"cht_35_urlFotosTampa"      => $this->getUrlFotosTampa(),
+            "cht_10_quantidade"     	=> $this->getQuantidade(),
+            "cht_30_cor"     			=> $this->getCor()
         );
         
         return $fields;
-        
     }
     
     public function fetchEntity($row){
         
         $this->setId($row['cht_10_id']);
-        $this->setCliId($row['user_10_id']);
-        $this->setPrdId($row['produto_10_id']);
-        $this->setPrdConfig($row['cht_35_config']);
-        $this->setQuantidade($row['ped_10_quantidade']);
-        $this->setCreatedAt($row['cht_22_created_at']);
+		$this->setPrdId($row['produto_10_id']);
+		$this->setPrdInfoId($row['produto_info_10_id']);
+		$this->setPedId($row['ped_10_id']);
+		$this->setNome($row['cht_30_nome']);
+		$this->setValor($row['cht_20_valor']);
+		$this->setNrFotos($row['cht_10_nrFotos']);
+		$this->setPeso($row['cht_20_peso']);
+		$this->setUrlFotos($row['cht_35_urlFotos']);
+		$this->setUrlFotosTampa($row['cht_35_urlFotosTampa']);
+		$this->setQuantidade($row['cht_10_quantidade']);
+		$this->setCor($row['cht_30_cor']);
         
         return $this;
     }

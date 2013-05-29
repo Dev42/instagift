@@ -1,20 +1,23 @@
 <?php
 session_start();
-error_reporting(E_ERROR);
-if (!isset($_SESSION['LogadoInstagift'])){
-	header("Location: produtos.php");
-}else{
-$menuClass = array("active","","");
-$title = "Ir para pagamento";
-include("inc/header_site.php");
+if(isset($_SESSION['InstagiftUrlPgto'])){
+	$menuClass = array("active","","");
+	$title = "Ir para pagamento";
+	include("inc/header_site.php");
+	unset($_SESSION['InstagiftCarrinho']);
 ?>
 	<div class="row login">
-    	<div class="span12"><h1>Acesse o link abaixo para ir para o pagamento via PagSeguro</h1></div>
-    	<div class="span8" style="margin-bottom:20px;">
-        	<a href="<?php echo $_GET['url']; ?>">Ir para o pagamento</a>
+    	<div class="span12" style="text-align:center; margin-bottom:40px;">
+        	<h1 style="text-transform:uppercase; font-size:28px;">Muito obrigado <?php echo $nomeUser ?></h1>
+        	<a href="<?php echo base64_decode($_SESSION['InstagiftUrlPgto']); ?>" class="linkPagamento">Clique aqui para selecionar o pagamento</a>
+        </div>
+        <div class="span12" style="text-align:center;">
+    		<img src="images/site/ico-camera.png" alt="Obrigado" style="margin-bottom:50px;" />
         </div>
     </div>
 <?php
-include("inc/footer_site.php");
+	include("inc/footer_site.php");
+}else{
+	header("Location: index.php");
 }
 ?>

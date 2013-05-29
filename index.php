@@ -20,7 +20,7 @@ $uploadPath = $geralUrl . "images/uploads/";
 
 include("inc/header_site.php");
 ?>
-        <script>
+        <script type="text/javascript">
 		$(function(){
 			$('#slides').slides({
 				preload: true,
@@ -65,6 +65,9 @@ include("inc/header_site.php");
             	<div class="titquemja"></div>
                 <div class="imgsquemja">
                 </div>
+            </div>
+            <div class="span12">
+				<span style="font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif; color:#2e4544; font-size:16px; position:relative; top:15px; left:40px;">Poste uma foto do seu produto no Instagram com a #instagiftbr</span>
             </div>
         </div>
 <?php

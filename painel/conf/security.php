@@ -7,13 +7,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/connection.php';
 
 if ((isset($_POST['username']) && $_POST['username'] != "" && isset($_POST['password']) && $_POST['password'] != "")) {
     $userName = $_POST['username'];
-    $password = $_POST['password'];
+    $passwordCru = $_POST['password'];
     
-    for ($i = 20; $i <= 20; $i++) {
-        $password = md5($password);
-    }
+    $passwordMd5 = md5($passwordCru);
 
-    $password = base64_encode($password);
+    $password = base64_encode($passwordMd5);
 } else {
     header("Location: $urlGeral/login.php?ver=false&error=1");
 }

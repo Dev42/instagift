@@ -13,7 +13,7 @@ class EnderecoController {
                 $fields = implode("`, `", array_keys($enderecoAr));
                 $values = implode("', '", $enderecoAr);
 
-                $strQuery = "INSERT INTO `instagift`.`" . $endereco->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+                $strQuery = "INSERT INTO `insta892_instagift`.`" . $endereco->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
                 mysql_query($strQuery);
 
                 return true;
@@ -42,7 +42,7 @@ class EnderecoController {
 
                 $setQuery = implode($setQuery, ", ");
 
-                $sqlQuery = "UPDATE `instagift`.`".$endereco->tableName()."` SET $setQuery WHERE `end_10_id` = ". $endereco->getId();
+                $sqlQuery = "UPDATE `insta892_instagift`.`".$endereco->tableName()."` SET $setQuery WHERE `end_10_id` = ". $endereco->getId();
 
                 mysql_query($sqlQuery);
 
@@ -63,7 +63,7 @@ class EnderecoController {
         
         if ($endereco->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$endereco->tableName()."` WHERE `end_10_id` = ". $endereco->getId();
+            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$endereco->tableName()."` WHERE `end_10_id` = ". $endereco->getId();
             mysql_query($sqlQuery);
             
             return true;
