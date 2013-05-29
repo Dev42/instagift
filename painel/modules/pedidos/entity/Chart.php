@@ -25,6 +25,12 @@ class Chart {
     protected $cor;
     
     protected $idLocal;
+    
+    protected $status;
+    
+    protected $username;
+    
+    protected $origem;
 
     public function getId() {
         return $this->id;
@@ -121,21 +127,48 @@ class Chart {
     public function setIdLocal($idLocal) {
         $this->idLocal = $idLocal;
     }
+    
+    public function getStatus() {
+        return $this->status;
+    }
 
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+    
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    public function getOrigem() {
+        return $this->origem;
+    }
+
+    public function setOrigem($origem) {
+        $this->origem = $origem;
+    }
+        
     public function assocEntity(){
         
         $fields = array(
-            "cht_10_id"       			=> $this->getId(),
+            "cht_10_id"       		=> $this->getId(),
             "produto_10_id"         	=> $this->getPrdId(),
-			"ped_10_id"   			 	=> $this->getPedId(),
-			"cht_30_nome"         		=> $this->getNome(),
-			"cht_20_valor"         		=> $this->getValor(),
-			"cht_10_nrFotos"         	=> $this->getNrFotos(),
-			"cht_20_peso"         		=> $this->getPeso(),
-			"cht_35_urlFotos"         	=> $this->getUrlFotos(),
-			"cht_35_urlFotosTampa"      => $this->getUrlFotosTampa(),
+            "ped_10_id"                 => $this->getPedId(),
+            "cht_30_nome"         	=> $this->getNome(),
+            "cht_20_valor"         	=> $this->getValor(),
+            "cht_10_nrFotos"         	=> $this->getNrFotos(),
+            "cht_20_peso"         	=> $this->getPeso(),
+            "cht_35_urlFotos"         	=> $this->getUrlFotos(),
+            "cht_35_urlFotosTampa"      => $this->getUrlFotosTampa(),
             "cht_10_quantidade"     	=> $this->getQuantidade(),
-            "cht_30_cor"     			=> $this->getCor()
+            "cht_30_cor"     		=> $this->getCor(),
+            "cht_12_status"     	=> $this->getStatus(),
+            "cht_30_username"     	=> $this->getUsername(),
+            "cht_12_origem"     	=> $this->getOrigem()
         );
         
         return $fields;
@@ -144,17 +177,19 @@ class Chart {
     public function fetchEntity($row){
         
         $this->setId($row['cht_10_id']);
-		$this->setPrdId($row['produto_10_id']);
-		$this->setPrdInfoId($row['produto_info_10_id']);
-		$this->setPedId($row['ped_10_id']);
-		$this->setNome($row['cht_30_nome']);
-		$this->setValor($row['cht_20_valor']);
-		$this->setNrFotos($row['cht_10_nrFotos']);
-		$this->setPeso($row['cht_20_peso']);
-		$this->setUrlFotos($row['cht_35_urlFotos']);
-		$this->setUrlFotosTampa($row['cht_35_urlFotosTampa']);
-		$this->setQuantidade($row['cht_10_quantidade']);
-		$this->setCor($row['cht_30_cor']);
+        $this->setPrdId($row['produto_10_id']);
+        $this->setPedId($row['ped_10_id']);
+        $this->setNome($row['cht_30_nome']);
+        $this->setValor($row['cht_20_valor']);
+        $this->setNrFotos($row['cht_10_nrFotos']);
+        $this->setPeso($row['cht_20_peso']);
+        $this->setUrlFotos($row['cht_35_urlFotos']);
+        $this->setUrlFotosTampa($row['cht_35_urlFotosTampa']);
+        $this->setQuantidade($row['cht_10_quantidade']);
+        $this->setCor($row['cht_30_cor']);
+        $this->setStatus($row['cht_12_status']);
+        $this->setUsername($row['cht_30_username']);
+        $this->setOrigem($row['cht_12_origem']);
         
         return $this;
     }

@@ -40,14 +40,24 @@
                 </li>
                 <li>
                 	<?php
-						if (isset($_SESSION['InstagiftCarrinho'])){
-							$linkCarrinho = "carrinho.php";
-							$txtLinkCarrinho = "<br><span style='font-size:10px; text-decoration:underline; float:right; position:relative; top:-5px;'>Meu carrinho</span>";
-						}else{
-							$linkCarrinho = "index.php";
-							$txtLinkCarrinho = "";
-						}
-					?>
+                            $chartController = new ChartController();
+                            if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+                                $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+                                $origem = '1';
+                            }else {
+                                $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+                                $origem = '2';
+                            }
+                            $status = '1';
+                            $chartProducts = $chartController->listActionChart($username, $origem, $status);
+                            if (count($chartProducts) > 0){
+                                $linkCarrinho = "carrinho.php";
+                                $txtLinkCarrinho = "<br><span style='font-size:10px; text-decoration:underline; float:right; position:relative; top:-5px;'>Meu carrinho</span>";
+                            }else{
+                                $linkCarrinho = "index.php";
+                                $txtLinkCarrinho = "";
+                            }
+                        ?>
                 	<a href="<?php echo $linkCarrinho; ?>" class="active logado">
 						<?php echo '<img src="'.$imgUser.'" width="30" class="imgUser">'; ?>
                     	<span><?php echo $nomeUser; ?></span><?php echo $txtLinkCarrinho; ?>

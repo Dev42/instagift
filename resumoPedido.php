@@ -11,10 +11,21 @@ if(isset($_POST['cepCliente'])){
 	$valor = 0;
 	$peso = 0;
 	
-	foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
-		$obj = unserialize($vChart);
-		$peso = $peso + $obj->getPeso();
-		$valor = $valor + $obj->getValor();
+        if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+            $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+            $origem = '1';
+        }else {
+            $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+            $origem = '2';
+        }
+        $status = '1';
+        $chartAction = new ChartController();
+        $chartProducts = $chartAction->listActionChart($username, $origem, $status);
+	foreach ($chartProducts as $kChart => $vChart) {
+            $chart = new Chart();
+            $obj = $chart->fetchEntity($vChart);
+            $peso = $peso + $obj->getPeso();
+            $valor = $valor + $obj->getValor();
 	}
 	
 	$pesoCru = $peso;
@@ -58,8 +69,19 @@ if(isset($_POST['cepCliente'])){
         <div class="span12">
                 <table class="table table-striped table-bordered" style="width:900px; margin-left:30px;">
                     <?php
-                    foreach($_SESSION['InstagiftCarrinho'] as $k => $v){
-                            $objFixed = unserialize($v);
+                    if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+                        $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+                        $origem = '1';
+                    }else {
+                        $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+                        $origem = '2';
+                    }
+                    $status = '1';
+                    $chartAction = new ChartController();
+                    $chartProducts = $chartAction->listActionChart($username, $origem, $status);
+                    foreach($chartProducts as $k => $v){
+                            $chart = new Chart();
+                            $objFixed = $chart->fetchEntity($vChart);
     
                             $prdList = $produtoController->listAction($objFixed->getPrdId(), false);
                             foreach ($prdList as $kProd => $vProd){

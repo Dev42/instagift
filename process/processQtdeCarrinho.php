@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once '../painel/conf/classLoader.php';
+include_once '../config/connection.php';
 $idItem = $_POST['idItem'];
 $quantidade = $_POST['quantidade'];
 $action = $_POST['action'];
@@ -11,10 +12,20 @@ if($action == 'add'){
 }else{
 	$quantidade--;
 }
-
-foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
-	$obj = unserialize($vChart);
-	if ($obj->getIdLocal() == $idItem) {
+if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+    $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+    $origem = '1';
+}else {
+    $username = ($_SESSION['InstagiftDadosUserFb']['username']);
+    $origem = '2';
+}
+$status = '1';
+$chartAction = new ChartController();
+$chartProducts = $chartAction->listActionChart($username, $origem, $status, $idItem);
+foreach ($chartProducts as $kChart => $vChart) {
+        $chart = new Chart();
+	$obj = $chart->fetchEntity($vChart);
+	if ($obj->getId() == $idItem) {
 		$pesoAtual = $obj->getPeso();
 		$quantidadeAtual = $obj->getQuantidade();
 		$valor = $obj->getValor();
@@ -25,7 +36,7 @@ foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
 		$obj->setPeso($pesoFinal);
 		$obj->setValor(number_format($valorFinal,2,'.',','));
 		$obj->setQuantidade($quantidade);
-		$_SESSION['InstagiftCarrinho'][$kChart] = serialize($obj);
+		$chartAction->editAction($obj);
 		$status = 'ok';
 	}
 } 
