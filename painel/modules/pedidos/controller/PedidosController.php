@@ -9,7 +9,7 @@ class PedidosController {
         $fields = implode("`, `", array_keys($pedidoAr));
         $values = implode("', '", $pedidoAr);
 
-        $strQuery = "INSERT INTO `instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+        $strQuery = "INSERT INTO `insta892_instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
         $gravar = mysql_query($strQuery);
 

@@ -11,7 +11,7 @@ class ChartController {
             $fields = implode("`, `", array_keys($chartAr));
             $values = implode("', '", $chartAr);
 
-            $strQuery = "INSERT INTO `instagift`.`" . $chart->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `insta892_instagift`.`" . $chart->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 			
@@ -38,7 +38,7 @@ class ChartController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `instagift`.`".$chart->tableName()."` SET $setQuery WHERE `cht_10_id` = ". $chart->getId();
+            $sqlQuery = "UPDATE `insta892_instagift`.`".$chart->tableName()."` SET $setQuery WHERE `cht_10_id` = ". $chart->getId();
             mysql_query($sqlQuery);
             return true;
         }else {

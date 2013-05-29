@@ -120,7 +120,6 @@ if(isset($_POST['cepCliente'])){
             	<a href="carrinho.php" class="btnEsq" alt="Editar pedido">Editar pedido</a>
                 <a href="fechaPedido.php" class="btnDir" alt="Finalizar pedido">Finalizar pedido</a>
             </div>
-            </form>
         </div>
     </div>
 <?php
