@@ -77,7 +77,6 @@ class ImageCutter{
             $this->setWidth($current_height);
             
         }else {
-            
             $canvas = imagecreatetruecolor($this->getMaxSize(), $this->getMaxSize());
             $current_image = imagecreatefromjpeg($this->getFile());
             imagecopy($canvas, $current_image, 0, 0, 0, 0, $this->getWidth(), $this->getHeight());
@@ -87,15 +86,15 @@ class ImageCutter{
             $this->setWidth($this->getMaxSize());
             
         }
-        
         $simpleImg = new SimpleImage();
         $simpleImg->load($fileName."-out.".$fileExtension);
         $simpleImg->resize($this->getMaxSize(),$this->getMaxSize());
-        preg_match("@(.*)/(\d+)/(.*?).jpg@is", $this->getFile(), $matchImage);
+        
+        preg_match("@(.*)/(.*)/(.*?).jpg@is", $this->getFile(), $matchImage);
         if ($path == ""){
             $path = $matchImage[1]."/".$matchImage[2]."/";
         }
-        $simpleImg->save($path.$matchImage[3].uniqid()."-final.".$fileExtension);
+        $simpleImg->save($path.$matchImage[3]."-final.".$fileExtension);
         if (!unlink($fileName."-out.".$fileExtension)){
             die ("Erro ao deletar arquivo de saída!");
         }
