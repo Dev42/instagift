@@ -45,7 +45,6 @@ if (file_exists($correctDir . '/' . $nomeZip . '.zip')) {
         while (false !== ($file = readdir($handle))) {
             if (is_file($photoLoc . "/" . $file)) {
                 if ($file != "." && $file != "..") {
-                    echo $file;
                     $imageCutter = new ImageCutter($photoLoc . "/" . $file, $dimFotos);
                     $imageCutter->generateImage($photoLoc . "/resized/");
                 }

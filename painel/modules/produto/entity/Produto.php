@@ -206,9 +206,9 @@ class Produto {
         // the absolute directory path where uploaded documents should be saved
         
         if ($type == "banner"){
-            return __DIR__ . '/../../../../images/' . $this->getUploadBannerDir();
+            return dirname(__FILE__) . '/../../../../images/' . $this->getUploadBannerDir();
         }else {
-            return __DIR__ . '/../../../../images/' . $this->getUploadFotoDir();
+            return dirname(__FILE__) . '/../../../../images/' . $this->getUploadFotoDir();
         }
     }
 
