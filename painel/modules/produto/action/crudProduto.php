@@ -212,6 +212,25 @@ switch ($op) {
                 $enc = json_encode($arColor);
                 
                 $produtoClass->setCores($enc);
+				
+				if (array_key_exists("name", $prd_banner)) {
+                    $produtoClass->setUrl($prd_banner);
+                    if ($produtoClass->uploadImage()) {
+                        //echo "Inseriu e fez upload! ";
+                    } else {
+                        //echo "Deu erro adicionando as imagens!";
+                    }
+                }
+
+                if (array_key_exists("name", $prd_foto)) {
+                    $produtoClass->setUrl2($prd_foto);
+                    if ($produtoClass->uploadImage('foto')) {
+                       // echo "Inseriu e fez upload! ";
+                    } else {
+                        //echo "Deu erro adicionando as imagens!";
+                    }
+                }
+				
                 $produtoClass->setPrazoProducao($prazoProducao);
                 $produtoClass->setLarguraMinima($larguraMinima);
                 $produtoClass->setAlturaMinima($alturaMinima);
