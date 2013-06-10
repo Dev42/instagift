@@ -213,7 +213,7 @@ switch ($op) {
                 
                 $produtoClass->setCores($enc);
 				
-				if (array_key_exists("name", $prd_banner)) {
+				if (array_key_exists("name", $prd_banner) && $prd_banner["name"] != "") {
                     $produtoClass->setUrl($prd_banner);
                     if ($produtoClass->uploadImage()) {
                         //echo "Inseriu e fez upload! ";
@@ -222,7 +222,7 @@ switch ($op) {
                     }
                 }
 
-                if (array_key_exists("name", $prd_foto)) {
+                if (array_key_exists("name", $prd_foto) && $prd_foto["name"] != "") {
                     $produtoClass->setUrl2($prd_foto);
                     if ($produtoClass->uploadImage('foto')) {
                        // echo "Inseriu e fez upload! ";
