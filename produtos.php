@@ -296,7 +296,11 @@ if ($idProd){
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
-                    
+                    <?php
+						for($f=1;$f<=$nrFotosPadrao;$f++){
+							echo '<div class="spaceFoto"></div>';
+						}
+					?>
                 </div>
         	</div>
             <div class="row comprar">
