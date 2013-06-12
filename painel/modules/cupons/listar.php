@@ -1,12 +1,12 @@
 <?php
-$menuCurrent = "produto-listar";
+$menuCurrent = "user-listar";
 include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 ?>
                 <div id="wrapper">
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-                                    <?php $keyphrase = '4'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php'; ?>
+                                    <?php $keyphrase = '3'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php'; ?>
                                         <div class="flat_area grid_16">
                                             <?php
                                             if (isset($_GET['type']) && isset($_GET['case'])){
@@ -15,7 +15,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                     <img width="24" height="24" src="<?php echo $urlGeral; ?>/images/icons/small/white/alert_2.png">
                                                     <?php
                                                     if ($_GET['case'] == "novo"){
-                                                        $compErro = "incluir";
                                                         if ($_GET['type'] == "success"){
                                                             $complSuc = "registrado";
                                                         }
@@ -32,67 +31,63 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                         
                                                     }
                                                     if ($_GET['type'] == "success"){
-                                                        $strErro = "O pedido foi $complSuc com sucesso!";
+                                                        echo "O cliente foi $complSuc com sucesso!";
                                                     }else {
                                                         if ($_GET['erron'] == 1){
                                                             $strErro = "O erro ao processar o formulário, favor enviar novamente!";
                                                         }elseif ($_GET['erron'] == 2){
                                                             $strErro = "Acesse o formulário primeiro antes de querer alguma coisa!";
                                                         }elseif ($_GET['erron'] == 3 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro pedido, registro não encontrado!";
-                                                        }elseif ($_GET['erron'] == 4 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro pedido, pedido já existente!";
-                                                        }elseif ($_GET['erron'] == 5 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro produto!";
+                                                            $strErro = "Erro ao $compErro produto, registro não encontrado!";
                                                         }
                                                     }
-                                                    echo $strErro;
                                                     ?>
                                                 </div>
                                             <?php 
                                             }
                                             ?>
-                                            <h2>Listagem de Pedidos</h2>
+                                            <h2>Listagem de Clientes</h2>
 					</div>
                                         <div class="box grid_16 single_datatable">
                                             <div id="dt1" class="no_margin">
                                                 <table class="display datatable"> 
                                                     <thead> 
                                                             <tr> 
-                                                                    <th>Número</th> 
-                                                                    <th>Ref. PagSeguro</th> 
-                                                                    <th>Cliente</th>
-                                                                    <th>Telefone</th> 
-                                                                    <th>Valor Ori.</th>
-                                                                    <th>Frete</th>
-                                                                    <th>Desc. Cupom</th> 
-                                                                    <th>Total Ped.</th>
-                                                                    <th>Data</th> 
+                                                                    <th>#</th> 
+                                                                    <th>Nome</th> 
+                                                                    <th>Logo</th> 
+                                                                    <th>Site</th> 
+                                                                    <th>Contatos</th> 
+                                                                    <th>Endereços</th> 
                                                                     <th>Ações</th> 
                                                             </tr> 
                                                     </thead> 
                                                     <tbody> 
                                                             <?php
                                                             
-                                                            $pedidoController = new PedidosController();
+                                                            $clienteController = new ClientesController();
                                                             
-                                                            $pedList = $pedidoController->listAction();
+                                                            if (isset($_GET['cliId']) && $_GET['cliId'] > 0){
+                                                                $clienteList = $clienteController->listAction($_GET['cliId']);
+                                                            }else {
+                                                                $clienteList = $clienteController->listAction();
+                                                            }
                                                             
-                                                            foreach ($pedList as $k => $v){
-																$desconto = $v["ped_20_valorPedido"]*($v["ped_10_descCupom"]/100);
-																$totalPed = ($v["ped_20_valorPedido"]-$desconto)+$v["ped_20_valorFrete"];
+                                                            foreach ($clienteList as $k => $v){
+                                                                
+                                                                $numContato = $clienteController->countChilds($v);
+                                                                $numEndereco = $clienteController->countChilds($v, "endereco");
+                                                                
                                                                 echo '<tr class="gradeX">';
-                                                                echo '<td>'.$v["ped_10_id"].'</td>';
-																echo '<td>REF00'.$v["ped_10_id"].'</td>';
-                                                                echo '<td>'.$v["ped_35_nome"].'</td>';
-                                                                echo '<td>'.$v["ped_35_ddd"]."-".$v["ped_35_telefone"].'</td>';
-																echo '<td>R$ '.number_format($v["ped_20_valorPedido"],2,',','.').'</td>';
-																echo '<td> R$'.number_format($v["ped_20_valorFrete"],2,',','.').'</td>';
-																echo '<td> R$'.number_format($desconto,2,',','.').'</td>';
-																echo '<td> R$'.number_format($totalPed,2,',','.').'</td>';
-                                                                echo '<td>'.date("d/m/Y H:i", $v['ped_22_created_at']).'</td>';
+                                                                echo '<td>'.$k.'</td>';
+                                                                echo '<td>'.$v->getNome().'</td>';
+                                                                echo '<td><img src="'.$v->getWebPath().'" /></td>';
+                                                                echo '<td><a href="'.$v->getSite().'" target="_blank">'.$v->getNome().'</a></td>';
+                                                                echo '<td><a href="'.$urlClientes.'/listarContato.php?cliId='.$v->getId().'" target="_blank">'.$numContato["total"].'</a></td>';
+                                                                echo '<td><a href="'.$urlClientes.'/listarEndereco.php?cliId='.$v->getId().'" target="_blank">'.$numEndereco["total"].'</a></td>';
                                                                 echo '<td>
-                                                                        <a href="'.$urlPedidos.'/detalhesPedido.php?id='.$v['ped_10_id'].'" title="Detalhes do pedido"><img src="'.$urlGeral.'/images/icons/small/grey/list_w_images.png"/></a>
+                                                                        <a href="'.$urlClientes.'/editar.php?id='.$v->getId().'"><img src="'.$urlGeral.'/images/icons/personal/edit.png"/></a>
+                                                                        <a href="'.$urlClientes.'/deletar.php?id='.$v->getId().'"><img src="'.$urlGeral.'/images/icons/personal/trash.gif"/></a>
                                                                      </td>';
                                                                 echo '</tr>';
                                                             }

@@ -17,8 +17,14 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 	$enderecoL1 = $pedido[1]["ped_35_logradouro"].", ".$pedido[1]["ped_35_numero"]." ".$pedido[1]["ped_35_complemento"];
 	$enderecoL2 = $pedido[1]["ped_35_cep"]." - ".$pedido[1]["ped_35_bairro"];
 	$enderecoL3 = $pedido[1]["ped_35_cidade"]." - ".$pedido[1]["ped_35_estado"];
+	$cupom = $pedido[1]["ped_35_codigoCupom"]." - ".$pedido[1]["ped_10_descCupom"]."%";
 	$valorPedido = "R$ ".number_format($pedido[1]["ped_20_valorPedido"],2,',','.');
 	$valorFrete = "R$ ".number_format($pedido[1]["ped_20_valorFrete"],2,',','.');
+	$descontoCru = $pedido[1]["ped_20_valorPedido"]*($pedido[1]["ped_10_descCupom"]/100);
+	$desconto = "R$ ".number_format($descontoCru,2,',','.');
+	$totalPedCru = $pedido[1]["ped_20_valorFrete"]+($pedido[1]["ped_20_valorPedido"]-$descontoCru);
+	$totalPed = "R$ ".number_format($totalPedCru,2,',','.');
+	
 	$codTipoFrete = $pedido[1]["ped_12_frete"];
 	if($codTipoFrete == 1){
 		$tipoFrete = "Sedex";
@@ -134,6 +140,24 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                         <label>Valor do frete</label>
                                         <div>
                                             <p><?php echo $valorFrete; ?></p>
+                                        </div>
+                                </fieldset>
+                                <fieldset class="label_side">
+                                        <label>Cupom de desconto</label>
+                                        <div>
+                                            <p><?php echo $cupom; ?></p>
+                                        </div>
+                                </fieldset>
+                                <fieldset class="label_side">
+                                        <label>Valor do desconto</label>
+                                        <div>
+                                            <p><?php echo $desconto; ?></p>
+                                        </div>
+                                </fieldset>
+                                <fieldset class="label_side">
+                                        <label>Total do pedido</label>
+                                        <div>
+                                            <p><?php echo $totalPed; ?></p>
                                         </div>
                                 </fieldset>
                                 <fieldset class="label_side">

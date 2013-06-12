@@ -1,12 +1,12 @@
 <?php
-$menuCurrent = "produto-listar";
+$menuCurrent = "cupom-listar";
 include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
 ?>
                 <div id="wrapper">
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
 			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-                                    <?php $keyphrase = '4'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php'; ?>
+                                    <?php $keyphrase = '6'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php'; ?>
                                         <div class="flat_area grid_16">
                                             <?php
                                             if (isset($_GET['type']) && isset($_GET['case'])){
@@ -32,18 +32,18 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                         
                                                     }
                                                     if ($_GET['type'] == "success"){
-                                                        $strErro = "O pedido foi $complSuc com sucesso!";
+                                                        $strErro = "O cupom foi $complSuc com sucesso!";
                                                     }else {
                                                         if ($_GET['erron'] == 1){
                                                             $strErro = "O erro ao processar o formulário, favor enviar novamente!";
                                                         }elseif ($_GET['erron'] == 2){
                                                             $strErro = "Acesse o formulário primeiro antes de querer alguma coisa!";
                                                         }elseif ($_GET['erron'] == 3 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro pedido, registro não encontrado!";
+                                                            $strErro = "Erro ao $compErro cupom, registro não encontrado!";
                                                         }elseif ($_GET['erron'] == 4 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro pedido, pedido já existente!";
+                                                            $strErro = "Erro ao $compErro cupom, cupom já existente!";
                                                         }elseif ($_GET['erron'] == 5 && isset($compErro)){
-                                                            $strErro = "Erro ao $compErro produto!";
+                                                            $strErro = "Erro ao $compErro cupom!";
                                                         }
                                                     }
                                                     echo $strErro;
@@ -52,47 +52,42 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                             <?php 
                                             }
                                             ?>
-                                            <h2>Listagem de Pedidos</h2>
+                                            <h2>Listagem de Cupons</h2>
 					</div>
                                         <div class="box grid_16 single_datatable">
                                             <div id="dt1" class="no_margin">
                                                 <table class="display datatable"> 
                                                     <thead> 
                                                             <tr> 
-                                                                    <th>Número</th> 
-                                                                    <th>Ref. PagSeguro</th> 
-                                                                    <th>Cliente</th>
-                                                                    <th>Telefone</th> 
-                                                                    <th>Valor Ori.</th>
-                                                                    <th>Frete</th>
-                                                                    <th>Desc. Cupom</th> 
-                                                                    <th>Total Ped.</th>
-                                                                    <th>Data</th> 
+                                                                    <th>#</th> 
+                                                                    <th>Código</th> 
+                                                                    <th>Valor</th> 
+                                                                    <th>Validade</th> 
+                                                                    <th>Usado</th>
                                                                     <th>Ações</th> 
                                                             </tr> 
                                                     </thead> 
                                                     <tbody> 
                                                             <?php
                                                             
-                                                            $pedidoController = new PedidosController();
+                                                            $cupomController = new CupomController();
                                                             
-                                                            $pedList = $pedidoController->listAction();
+                                                            $cupomList = $cupomController->listAction(false, 2);
                                                             
-                                                            foreach ($pedList as $k => $v){
-																$desconto = $v["ped_20_valorPedido"]*($v["ped_10_descCupom"]/100);
-																$totalPed = ($v["ped_20_valorPedido"]-$desconto)+$v["ped_20_valorFrete"];
+                                                            foreach ($cupomList as $k => $v){
                                                                 echo '<tr class="gradeX">';
-                                                                echo '<td>'.$v["ped_10_id"].'</td>';
-																echo '<td>REF00'.$v["ped_10_id"].'</td>';
-                                                                echo '<td>'.$v["ped_35_nome"].'</td>';
-                                                                echo '<td>'.$v["ped_35_ddd"]."-".$v["ped_35_telefone"].'</td>';
-																echo '<td>R$ '.number_format($v["ped_20_valorPedido"],2,',','.').'</td>';
-																echo '<td> R$'.number_format($v["ped_20_valorFrete"],2,',','.').'</td>';
-																echo '<td> R$'.number_format($desconto,2,',','.').'</td>';
-																echo '<td> R$'.number_format($totalPed,2,',','.').'</td>';
-                                                                echo '<td>'.date("d/m/Y H:i", $v['ped_22_created_at']).'</td>';
-                                                                echo '<td>
-                                                                        <a href="'.$urlPedidos.'/detalhesPedido.php?id='.$v['ped_10_id'].'" title="Detalhes do pedido"><img src="'.$urlGeral.'/images/icons/small/grey/list_w_images.png"/></a>
+                                                                echo '<td>'.$k.'</td>';
+                                                                echo '<td>'.$v['cupom_35_codigo'].'</td>';
+                                                                echo '<td>'.$v["cupom_10_valor"].' %</td>';
+                                                                echo '<td>'.date("d/m/Y", $v['cupom_22_validade']).'</td>';
+																if($v['cupom_12_status'] == 1){
+																	$usado = 'Sim';
+																}else{
+																	$usado = 'Não';
+																}
+																echo '<td>'.$usado.'</td>';
+																echo '<td>
+                                                                        <a href="'.$urlCupons.'/deletarCupom.php?id='.$v['cupom_10_id'].'"><img src="'.$urlGeral.'/images/icons/personal/trash.gif"/></a>
                                                                      </td>';
                                                                 echo '</tr>';
                                                             }

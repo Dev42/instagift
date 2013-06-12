@@ -23,6 +23,8 @@ $ped->setCidade($_POST['cidade']);
 $ped->setEstado($_POST['estado']);
 $ped->setValorPedido($_SESSION['InstagiftTotalPedido']);
 $ped->setValorFrete($_SESSION['InstagiftValorEntrega']);
+$ped->setDescCupom($_SESSION['InstagiftCupomDesconto']);
+$ped->setCodigoCupom($_SESSION['InstagiftCodigoCupom']);
 $ped->setPeso($_SESSION['InstagiftPesoTotal']);
 //1 para Sedex, 2 para PAC
 if($_SESSION['InstagiftTipoEntrega'] == 'pac'){
