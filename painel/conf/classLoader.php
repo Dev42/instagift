@@ -16,6 +16,7 @@ $servicesClass = $geralClass."/services";
 $produtosClass = $geralClass."/produto";
 $pedidosClass = $geralClass."/pedidos";
 $cuponsClass = $geralClass."/cupons";
+$frasesClass = $geralClass."/frases";
 
 /* User Module */
 include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/entity/User.php';
@@ -78,6 +79,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].$cuponsClass.'/entity/Cupom.php';
 
 # Controller
 include_once $_SERVER['DOCUMENT_ROOT'].$cuponsClass.'/controller/CupomController.php';
+# /Controller
+/* /Cupom Module */
+
+/* Cupom Module */
+# Entity
+include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/entity/Frase.php';
+# /Entity
+
+# Controller
+include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/controller/FraseController.php';
 # /Controller
 /* /Cupom Module */
 ?>
