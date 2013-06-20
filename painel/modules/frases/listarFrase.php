@@ -18,21 +18,21 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                     if ($_GET['case'] == "novo") {
                         $compErro = "incluir";
                         if ($_GET['type'] == "success") {
-                            $complSuc = "registrado";
+                            $complSuc = "registrada";
                         }
                     } elseif ($_GET['case'] == "editar") {
                         $compErro = "editar";
                         if ($_GET['type'] == "success") {
-                            $complSuc = "editado";
+                            $complSuc = "editada";
                         }
                     } elseif ($_GET['case'] == "deletar") {
                         $compErro = "deletar";
                         if ($_GET['type'] == "success") {
-                            $complSuc = "deletado";
+                            $complSuc = "deletada";
                         }
                     }
                     if ($_GET['type'] == "success") {
-                        $strErro = "O cupom foi $complSuc com sucesso!";
+                        $strErro = "A frase foi $complSuc com sucesso!";
                     } else {
                         if ($_GET['erron'] == 1) {
                             $strErro = "O erro ao processar o formulário, favor enviar novamente!";
