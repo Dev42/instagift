@@ -6,9 +6,9 @@ class Cupom {
     
     protected $codigo;
 	
-	protected $valor;
+    protected $valor;
 	
-	protected $validade;
+    protected $validade;
     
     protected $status;
     
@@ -55,11 +55,11 @@ class Cupom {
     public function assocEntity(){
         
         $fields = array(
-            "cupom_10_id"       	=> $this->getId(),
-			"cupom_35_codigo"       => $this->getCodigo(),
-            "cupom_10_valor"     	=> $this->getValor(),
-            "cupom_22_validade"  	=> $this->getValidade(),
-            "cupom_12_status"   	=> $this->getStatus()
+            "cupom_10_id"        => $this->getId(),
+            "cupom_35_codigo"    => $this->getCodigo(),
+            "cupom_10_valor"     => $this->getValor(),
+            "cupom_22_validade"  => $this->getValidade(),
+            "cupom_12_status"    => $this->getStatus()
         );
         
         return $fields;
@@ -69,7 +69,7 @@ class Cupom {
     public function fetchEntity($row){
         
         $this->setId($row['cupom_10_id']);
-		$this->setCodigo($row['cupom_35_codigo']);
+        $this->setCodigo($row['cupom_35_codigo']);
         $this->setValor($row['cupom_10_valor']);
         $this->setValidade($row['cupom_22_validade']);
         $this->setStatus($row['cupom_12_status']);
