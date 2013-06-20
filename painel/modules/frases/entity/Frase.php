@@ -112,7 +112,7 @@ class Frase {
                 unlink($this->getImage());
             }
 			
-            $this->setImage(uniqid() . "-" . $this->getIdProduto() . $this->url["name"]);
+            $this->setImage(uniqid() . "-" . $this->url["name"]);
 
             if(move_uploaded_file($this->url['tmp_name'], $this->getUploadRootDir().$this->getImage(true))){
             	return true;
