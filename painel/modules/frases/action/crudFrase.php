@@ -17,22 +17,22 @@ switch ($op) {
             foreach ($_FILES as $keyImg => $valImg) {
                 $$keyImg = $valImg;
             }
-			
+
             if ($nome != "" && array_key_exists("name", $imgFrase)) {
                 $fraseClass = new Frase();
                 $fraseController = new FraseController();
 
                 $fraseClass->setNome($nome);
-				
-				if (array_key_exists("name", $imgFrase)) {
+
+                if (array_key_exists("name", $imgFrase)) {
                     $fraseClass->setUrl($imgFrase);
                     if ($fraseClass->uploadImage()) {
-                       echo "Inseriu e fez upload!";
+                        echo "Inseriu e fez upload!";
                     } else {
-					   echo "Erro";
+                        echo "Erro";
                     }
                 }
-				
+
                 $fraseId = $fraseController->insertAction($fraseClass);
 
                 if ($fraseId != 0) {
@@ -46,9 +46,6 @@ switch ($op) {
         } else {
             header("Location: $urlFrases/listarFrase.php?type=error&case=novo&erron=2");
         }
-
-        break;
-    case "editar":
 
         break;
     case "deletar":

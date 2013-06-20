@@ -37,7 +37,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 					<div class="box grid_16">
                                                 <div class="block">
                                                     <h2 class="section">
-                                                        Tem certeza que deseja deletar a frase <b><?php echo $cupom[1]["frase_35_nome"]; ?></b>?
+                                                        Tem certeza que deseja deletar a frase <b><?php echo $frase[1]["frase_35_nome"]; ?></b>?
                                                     </h2>
                                                     <form action="<?php echo $urlFrases;?>/action/crudFrase.php?op=deletar" method="post">
                                                         <div style="display: none;">

@@ -11,7 +11,7 @@ class FraseController {
             $fields = implode("`, `", array_keys($fraseAr));
             $values = implode("', '", $fraseAr);
 
-            $strQuery = "INSERT INTO `insta892_instagift`.`" . $frase->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `" . $frase->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 			
@@ -38,7 +38,7 @@ class FraseController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `insta892_instagift`.`".$frase->tableName()."` SET $setQuery WHERE `frase_10_id` = ". $frase->getId();
+            $sqlQuery = "UPDATE `".$frase->tableName()."` SET $setQuery WHERE `frase_10_id` = ". $frase->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -54,7 +54,7 @@ class FraseController {
         
         if ($frase->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$frase->tableName()."` WHERE `frase_10_id` = ". $frase->getId();
+            $sqlQuery = "DELETE FROM `".$frase->tableName()."` WHERE `frase_10_id` = ". $frase->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -65,9 +65,9 @@ class FraseController {
         
     }
     
-    public function listAction($id = false, $type = 3) {
+    public function listAction($id = false) {
 
-        $whereQuery[] = (!$id) ? "1 = 1" : "frases_10_id = " . $id;
+        $whereQuery[] = (!$id) ? "1 = 1" : "frase_10_id = " . $id;
 
         $strQuery = "SELECT * FROM frases WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);

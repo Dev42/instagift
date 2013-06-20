@@ -6,9 +6,9 @@ class Frase {
     
     protected $nome;
 	
-	protected $url;
+    protected $url;
 	
-	protected $image;
+    protected $image;
     
     public function getId() {
         return $this->id;
@@ -38,7 +38,7 @@ class Frase {
         
         $fields = array(
             "frase_10_id"    => $this->getId(),
-			"frase_35_nome"  => $this->getNome(),
+            "frase_35_nome"  => $this->getNome(),
             "frase_30_url"   => $this->getImage()
         );
         
@@ -49,7 +49,7 @@ class Frase {
     public function fetchEntity($row){
         
         $this->setId($row['frase_10_id']);
-		$this->setNome($row['frase_35_nome']);
+        $this->setNome($row['frase_35_nome']);
         $this->setImage($row['frase_30_url']);
         
         return $this;
@@ -92,7 +92,7 @@ class Frase {
             }
         }else {
             if ($this->image == ""){
-                return "/images/uploads/produtos/no_photo.png";
+                return "/images/uploads/frases/no_photo.png";
             }else {
                 return $this->getUploadRootDir().$this->image;
             }
@@ -112,13 +112,13 @@ class Frase {
                 unlink($this->getImage());
             }
 			
-            $this->setImage(uniqid() . "-" . $this->getIdProduto() . $this->url["name"]);
+            $this->setImage(uniqid() . "-" . $this->url["name"]);
 
             if(move_uploaded_file($this->url['tmp_name'], $this->getUploadRootDir().$this->getImage(true))){
             	return true;
-			}else{
-				return false;
-			}
+            }else{
+                return false;
+            }
         }
     }
     
