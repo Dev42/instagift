@@ -303,9 +303,14 @@ if ($idProd){
 					?>
                 </div>
         	</div>
+            <div class="row frasesCool" id="frasesCool" style="display:none;">
+            	<div class="btn-comprar" id="btn-personalizar">
+                    <input type="button" value="Personalizar" id="personalizar" name="personalizar" onclick="iniciaFrasesCool()">
+                </div>
+           	</div>
             <div class="row comprar">
                 <div class="btn-comprar" id="btn-comprar" style="display:none;">
-                    <input type="button" value="Comprar" id="comprar" name="comprar" onclick="validaCompra()">
+                    <input type="button" value="Continuar" id="comprar" name="comprar" onclick="validaCompra()">
                 </div>
             </div>
             </form>

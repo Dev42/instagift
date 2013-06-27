@@ -10,7 +10,7 @@ $title = "Suas fotos viram presentes";
 $prdFront = new ProdutoFrontController();
 $prdList = $prdFront->listAction(false, "produto_12_active = 1");
 
-if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
     $geralUrl = "http://localhost/instagift/";
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
