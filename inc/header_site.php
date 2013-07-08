@@ -26,14 +26,18 @@ include_once 'config/connection.php';
                 <?php
 					if (isset($_SESSION['InstagiftTipoLogin'])){
 						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
-							$imgUser = $_SESSION['InstagiftDadosInsta']["data"]["profile_picture"];
-							$nomeUser = $_SESSION['InstagiftDadosInsta']["data"]["full_name"];
-							$iconeRede = "ico-instagram.png";
-						}else{
-							$imgUser = $_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"];
-							$nomeUser = $_SESSION['InstagiftDadosUserFb']["name"];
-							$iconeRede = "ico-facebook.png";
-						}
+                                                    $imgUser = $_SESSION['InstagiftDadosInsta']["data"]["profile_picture"];
+                                                    $nomeUser = $_SESSION['InstagiftDadosInsta']["data"]["full_name"];
+                                                    $iconeRede = "ico-instagram.png";
+						}elseif ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                                                    $imgUser = "";
+                                                    $nomeUser = $_SESSION['NomeInstagift'];
+                                                    $iconeRede = "ico-facebook.png";
+						}else {
+                                                    $imgUser = $_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"];
+                                                    $nomeUser = $_SESSION['InstagiftDadosUserFb']["name"];
+                                                    $iconeRede = "ico-facebook.png";
+                                                }
 				?>
                 <li>
                 	<a href="index.php" class="active contador">
@@ -48,6 +52,9 @@ include_once 'config/connection.php';
                             if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
                                 $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
                                 $origem = '1';
+                            }elseif ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                                $username = $_SESSION['NomeInstagift'];
+                                $origem = '3';
                             }else {
                                 $username = ($_SESSION['InstagiftDadosUserFb']['username']);
                                 $origem = '2';
