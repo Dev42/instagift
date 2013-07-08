@@ -11,7 +11,6 @@ $menuClass = array("active","","");
 $prdFront = new ProdutoFrontController();
 $fotoPrd = new FotoProdutoController();
 $infoPrd = new ProdutoInfoController();
-
 if (isset($_SESSION['InstagiftProdId'])){
 	$idProd = $_SESSION['InstagiftProdId'];
 	unset($_SESSION['InstagiftProdId']);
@@ -84,7 +83,6 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") 
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
 }
-
 $uploadPath = $geralUrl . "images/uploads/";
 
 include("inc/header_site.php");

@@ -1,11 +1,9 @@
 <?php
-
 if (!isset($_GET['ver'])){
     include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/config.php';
 }
 include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/connection.php';
 include $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/classLoader.php';
-
 ?>
 <!doctype html public "✰">
 <!--[if lt IE 7]> <html lang="en-us" class="no-js ie6"> <![endif]-->
