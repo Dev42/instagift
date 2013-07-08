@@ -8,9 +8,9 @@ class User {
     
     protected $contato;
 	
-	protected $doc1;
-	
-	protected $doc2;
+    protected $doc1;
+
+    protected $doc2;
     
     protected $ddd;
     
@@ -158,8 +158,8 @@ class User {
             "user_10_id"       => $this->getId(),
             "user_30_nome"     => $this->getNome(),
             "user_30_contato"  => $this->getContato(),
-			"user_30_doc1"  => $this->getDoc1(),
-			"user_30_doc2"  => $this->getDoc2(),
+            "user_30_doc1"  => $this->getDoc1(),
+            "user_30_doc2"  => $this->getDoc2(),
             "user_10_tel_ddd"  => $this->getDdd(),
             "user_10_tel"      => $this->getTelefone(),
             "user_30_endereco" => $this->getEndereco(),
@@ -181,8 +181,8 @@ class User {
             "user_10_id"       => $this->getId(),
             "user_30_nome"     => $this->getNome(),
             "user_30_contato"  => $this->getContato(),
-			"user_30_doc1"  => $this->getDoc1(),
-			"user_30_doc2"  => $this->getDoc2(),
+            "user_30_doc1"  => $this->getDoc1(),
+            "user_30_doc2"  => $this->getDoc2(),
             "user_10_tel_ddd"  => $this->getDdd(),
             "user_10_tel"      => $this->getTelefone(),
             "user_30_endereco" => $this->getEndereco(),
@@ -202,8 +202,8 @@ class User {
         $this->setId($row['user_10_id']);
         $this->setNome($row['user_30_nome']);
         $this->setContato($row['user_30_contato']);
-		$this->setDoc1($row['user_30_doc1']);
-		$this->setDoc2($row['user_30_doc2']);
+        $this->setDoc1($row['user_30_doc1']);
+        $this->setDoc2($row['user_30_doc2']);
         $this->setDdd($row['user_10_tel_ddd']);
         $this->setTelefone($row['user_10_tel']);
         $this->setEndereco($row['user_30_endereco']);

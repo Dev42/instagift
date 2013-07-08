@@ -224,22 +224,44 @@ function calcularCep(){
             type: 'POST',
             url: 'process/processAjaxFrete.php',
 			beforeSend: function(){
-				$("#valor_cep").html("<img src='images/site/ajax-loader.gif' alt='Carregando' />");
+				$("#loadingCep").html("<img src='images/site/ajax-loader.gif' alt='Carregando' />");
 			},
             data: { cep: cep }
         }).done(function(html){
             retorno = html.split("|");
 			if (retorno[0] == 'ok'){
+				$("#loadingCep").html("");
 				$("#opcoesFrete").show();
 				$("#valorCepPac").html("PAC - R$ "+retorno[1]);
 				$("#valorCepSedex").html("Sedex - R$ "+retorno[2]);
 			}else {
+				$("#loadingCep").html("");
 				$("#opcoesFrete").show();
 				$("#opcoesFrete").html("-");
 				alert("Ocorreu um erro");    
 			}
         });
     }
+}
+
+function verificarCupom(){
+	$.ajax({
+		type: 'POST',
+		url: 'process/processAjaxCupom.php',
+		beforeSend: function(){
+			$("#loadingCupom").html("<img src='images/site/ajax-loader.gif' alt='Carregando' />");
+		},
+		data: { codigoCupom: $("#codigoCupom").val() }
+	}).done(function(html){
+		retorno = html.split("|");
+		if (retorno[0] == 'ok'){
+			$("#loadingCupom").html("");
+			$("#resultadoCupom").html("<span>"+retorno[1]+"% de desconto</span>");
+		}else {
+			$("#loadingCupom").html("");
+			$("#resultadoCupom").html("<span>Cupom inválido</span>"); 
+		}
+	});
 }
 
 function validaCarrinho(){

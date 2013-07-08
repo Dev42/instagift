@@ -18,6 +18,8 @@ $urlProdutos = $urlModules."/produto";
 $urlClientes = $urlModules."/clientes";
 $urlServices = $urlModules."/services";
 $urlPedidos = $urlModules."/pedidos";
+$urlCupons = $urlModules."/cupons";
+$urlFrases = $urlModules."/frases";
 /* /Modules */
 
 if (isset($_SESSION['loginVer']) && $_SESSION['loginVer'] == 1 && $_SESSION['loginUser'] != "" && $_SESSION['loginSecret'] != "") {

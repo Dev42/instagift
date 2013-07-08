@@ -18,6 +18,7 @@ class processaPagamento {
         $paymentRequest = new PagSeguroPaymentRequest();
         $paymentRequest->setCurrency("BRL");
 		
+		$valorTotal = 0;
 		foreach ($chtList as $kChart => $vChart){
 			$prdList = $produtoController->listAction($vChart['produto_10_id'], false);
 			foreach ($prdList as $kProd => $vProd){
@@ -32,6 +33,7 @@ class processaPagamento {
 				$vChart['cht_20_peso']*1000, 
 				0
 			);
+			$valorTotal = $valorTotal + $vChart['cht_20_valor'];
 		}
         
         $paymentRequest->setReference("REF00".$pedido->getId());
@@ -65,6 +67,13 @@ class processaPagamento {
                 $pedido->getDdd(),
                 $pedido->getTelefone()
         );
+		
+		if($pedido->getDescCupom() != "0"){
+			$cupomController = new CupomController();
+			$desconto = $valorTotal*($pedido->getDescCupom()/100);
+			$paymentRequest->setExtraAmount("-".$desconto);
+			$cupomController->desabilitaCupom($pedido->getCodigoCupom());
+		}
        
         $paymentRequest->setRedirectUrl("http://www.instagift.com.br");
         

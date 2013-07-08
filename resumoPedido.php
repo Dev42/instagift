@@ -51,14 +51,39 @@ if(isset($_POST['cepCliente'])){
 				window.location = 'carrinho.php';</script>";
 	}
 	
-	$valorTotalCru = $valorEntregaCru + $valorCru;
-	$valorTotal = number_format($valorTotalCru,2,',','.');
+	if($_POST['codigoCupom'] != ""){
+		$cupomController = new CupomController();
+		$retornoCupom = $cupomController->verificaCupom($_POST['codigoCupom']);
+		if($retornoCupom == "invalido"){
+			$cupom = "Nenhum";
+			$resultadoCupom = 0;
+			$valorDesconto = 0;
+			$valorTotalCru = $valorEntregaCru + $valorCru;
+			$valorTotal = number_format($valorTotalCru,2,',','.');
+		}else{
+			$resultadoCupom = $retornoCupom;
+			$cupom = $_POST['codigoCupom'];
+			$valorDescontoCru = $valorCru*($resultadoCupom/100);
+			$valorDesconto = number_format($valorDescontoCru,2,',','.');
+			
+			$valorTotalCru = $valorEntregaCru + ($valorCru - $valorDescontoCru);
+			$valorTotal = number_format($valorTotalCru,2,',','.');
+		}
+	}else{
+		$cupom = "Nenhum";
+		$resultadoCupom = 0;
+		$valorDesconto = 0;
+		$valorTotalCru = $valorEntregaCru + $valorCru;
+		$valorTotal = number_format($valorTotalCru,2,',','.');
+	}
 	
 	$_SESSION['InstagiftCepEntrega'] = $_POST['cepCliente'];
 	$_SESSION['InstagiftTipoEntrega'] = $tipoEntrega;
 	$_SESSION['InstagiftValorEntrega'] = $valorEntregaCru;
 	$_SESSION['InstagiftTotalPedido'] = $valorCru;
 	$_SESSION['InstagiftPesoTotal'] = $pesoCru;
+	$_SESSION['InstagiftCupomDesconto'] = $resultadoCupom;
+	$_SESSION['InstagiftCodigoCupom'] = $_POST['codigoCupom'];
 	
 	include("inc/header_site.php");
 ?>
@@ -110,6 +135,11 @@ if(isset($_POST['cepCliente'])){
                         <td colspan="2" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">CEP destinatário</span></td>
                         <td style="text-align:center;"><div class="valorProd"><span><?php echo $_SESSION['InstagiftCepEntrega']; ?></span></div></td>
                         <td style="text-align:center;"><div class="valorProd"><span>R$ <?php echo $valorEntrega; ?></span></div></td>
+                    </tr>
+                    <tr style="height:83px;">
+                        <td colspan="2" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">Cupom de desconto</span></td>
+                        <td style="text-align:center;"><div class="valorProd"><span><?php echo $cupom; ?></span></div></td>
+                        <td style="text-align:center;"><div class="valorProd"><span>R$ <?php echo $valorDesconto; ?></span></div></td>
                     </tr>
                     <tr style="height:83px;">
                         <td colspan="3" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">TOTAL DO PEDIDO:</span></td>

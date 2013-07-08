@@ -75,7 +75,7 @@ class FotoProduto {
 
     protected function getUploadRootDir() {
         // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../images/' . $this->getUploadDir();
+        return dirname(__FILE__) . '/../../../../images/' . $this->getUploadDir();
     }
 
     protected function getUploadDir() {

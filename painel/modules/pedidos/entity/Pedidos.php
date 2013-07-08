@@ -30,6 +30,10 @@ class Pedidos {
 	
 	protected $valorFrete;
 	
+	protected $descCupom;
+	
+	protected $codigoCupom;
+	
 	protected $peso;
 	
 	protected $frete;
@@ -154,6 +158,22 @@ class Pedidos {
         $this->valorFrete = $valorFrete;
     }
 	
+	public function getCodigoCupom() {
+        return $this->codigoCupom;
+    }
+
+    public function setCodigoCupom($codigoCupom) {
+        $this->codigoCupom = $codigoCupom;
+    }
+	
+	public function getDescCupom() {
+        return $this->descCupom;
+    }
+
+    public function setDescCupom($descCupom) {
+        $this->descCupom = $descCupom;
+    }
+	
 	public function getPeso() {
         return $this->peso;
     }
@@ -219,6 +239,8 @@ class Pedidos {
 			"ped_35_estado"       		=> $this->getEstado(),
 			"ped_20_valorPedido"       	=> $this->getValorPedido(),
 			"ped_20_valorFrete"       	=> $this->getValorFrete(),
+			"ped_10_descCupom"       	=> $this->getDescCupom(),
+			"ped_35_codigoCupom"       	=> $this->getCodigoCupom(),
 			"ped_20_peso"       		=> $this->getPeso(),
 			"ped_12_frete"       		=> $this->getFrete(),
             "ped_12_status"             => $this->getStatus(),
@@ -247,6 +269,8 @@ class Pedidos {
 		$this->setEstado($row['ped_35_estado']);
 		$this->setValorPedido($row['ped_20_valorPedido']);
 		$this->setValorFrete($row['ped_20_valorFrete']);
+		$this->setDescCupom($row['ped_10_descCupom']);
+		$this->setCodigoCupom($row['ped_35_codigoCupom']);
 		$this->setPeso($row['ped_20_peso']);
 		$this->setFrete($row['ped_12_frete']);
 		$this->setStatus($row['ped_12_status']);

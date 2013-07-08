@@ -15,6 +15,8 @@ $clientesClass = $geralClass."/clientes";
 $servicesClass = $geralClass."/services";
 $produtosClass = $geralClass."/produto";
 $pedidosClass = $geralClass."/pedidos";
+$cuponsClass = $geralClass."/cupons";
+$frasesClass = $geralClass."/frases";
 
 /* User Module */
 include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/entity/User.php';
@@ -68,5 +70,25 @@ include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/controller/PedidosControl
 include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/controller/ChartController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$pedidosClass.'/controller/FreteController.php';
 # /Controller
-/* /Produto Module */
+/* /Pedido Module */
+
+/* Cupom Module */
+# Entity
+include_once $_SERVER['DOCUMENT_ROOT'].$cuponsClass.'/entity/Cupom.php';
+# /Entity
+
+# Controller
+include_once $_SERVER['DOCUMENT_ROOT'].$cuponsClass.'/controller/CupomController.php';
+# /Controller
+/* /Cupom Module */
+
+/* Cupom Module */
+# Entity
+include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/entity/Frase.php';
+# /Entity
+
+# Controller
+include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/controller/FraseController.php';
+# /Controller
+/* /Cupom Module */
 ?>

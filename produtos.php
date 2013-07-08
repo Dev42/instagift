@@ -294,7 +294,11 @@ if ($idProd){
             </div>
             <div class="row">
                 <div class="fotos" id="selecaoFotos">
-                    
+                    <?php
+						for($f=1;$f<=$nrFotosPadrao;$f++){
+							echo '<div class="spaceFoto"></div>';
+						}
+					?>
                 </div>
         	</div>
             <div class="row comprar">
@@ -344,6 +348,7 @@ if ($idProd){
 		$boxBanner .= 			'<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Instagift para selecionar suas fotos.</span>';
 		$boxBanner .= 		'</div>';
 		$boxBanner .= 		'<div class="comprar">';
+		$boxBanner .= 			'<a href="process/processRedirectUser.php?id='.$v->getId().'" class="loginUser"><img src="images/site/ico-instagram.png" alt="Login"></a>';
 		$boxBanner .= 			'<a href="process/processRedirectInsta.php?id='.$v->getId().'" class="loginInsta"><img src="images/site/ico-instagram.png" alt="Login - Instagram"></a>';
 		$boxBanner .= 			'<a href="process/processRedirectFace.php?id='.$v->getId().'" class="loginFace"><img src="images/site/ico-facebook.png" alt="Login - Facebook"></a>';
 		$boxBanner .= 		'</div>';

@@ -61,11 +61,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                             <tr> 
                                                                     <th>Número</th> 
                                                                     <th>Ref. PagSeguro</th> 
-                                                                    <th>Cliente</th> 
-                                                                    <th>E-mail</th> 
+                                                                    <th>Cliente</th>
                                                                     <th>Telefone</th> 
-                                                                    <th>Valor</th>
-                                                                    <th>Frete</th> 
+                                                                    <th>Valor Ori.</th>
+                                                                    <th>Frete</th>
+                                                                    <th>Desc. Cupom</th> 
+                                                                    <th>Total Ped.</th>
                                                                     <th>Data</th> 
                                                                     <th>Ações</th> 
                                                             </tr> 
@@ -78,14 +79,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
                                                             $pedList = $pedidoController->listAction();
                                                             
                                                             foreach ($pedList as $k => $v){
+																$desconto = $v["ped_20_valorPedido"]*($v["ped_10_descCupom"]/100);
+																$totalPed = ($v["ped_20_valorPedido"]-$desconto)+$v["ped_20_valorFrete"];
                                                                 echo '<tr class="gradeX">';
                                                                 echo '<td>'.$v["ped_10_id"].'</td>';
 																echo '<td>REF00'.$v["ped_10_id"].'</td>';
                                                                 echo '<td>'.$v["ped_35_nome"].'</td>';
-                                                                echo '<td>'.$v["ped_35_email"].'</td>';
                                                                 echo '<td>'.$v["ped_35_ddd"]."-".$v["ped_35_telefone"].'</td>';
 																echo '<td>R$ '.number_format($v["ped_20_valorPedido"],2,',','.').'</td>';
 																echo '<td> R$'.number_format($v["ped_20_valorFrete"],2,',','.').'</td>';
+																echo '<td> R$'.number_format($desconto,2,',','.').'</td>';
+																echo '<td> R$'.number_format($totalPed,2,',','.').'</td>';
                                                                 echo '<td>'.date("d/m/Y H:i", $v['ped_22_created_at']).'</td>';
                                                                 echo '<td>
                                                                         <a href="'.$urlPedidos.'/detalhesPedido.php?id='.$v['ped_10_id'].'" title="Detalhes do pedido"><img src="'.$urlGeral.'/images/icons/small/grey/list_w_images.png"/></a>

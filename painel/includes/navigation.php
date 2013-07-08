@@ -48,6 +48,18 @@
 				<li><a href="<?php echo $urlUser; ?>/novoAdmin.php"><span>Novo</span></a></li>
 			</ul>
 		</li>
+        <li><a href="#"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/price_tag.png"/><span>Cupons</span></a>
+			<ul>
+				<li><a href="<?php echo $urlCupons; ?>/listarCupom.php"><span>Listar</span></a></li>
+				<li><a href="<?php echo $urlCupons; ?>/novoCupom.php"><span>Novo</span></a></li>
+			</ul>
+		</li>
+        <li><a href="#"><img src="<?php echo $urlGeral; ?>/images/icons/small/grey/images.png"/><span>Frases</span></a>
+			<ul>
+				<li><a href="<?php echo $urlFrases; ?>/listarFrase.php"><span>Listar</span></a></li>
+				<li><a href="<?php echo $urlFrases; ?>/novaFrase.php"><span>Nova</span></a></li>
+			</ul>
+		</li>
                 <?php
                 }
                 ?>

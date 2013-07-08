@@ -74,6 +74,7 @@ jQuery(function($){
                         <td colspan="2" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">Calcule o valor da entrega preenchendo seu CEP</span></td>
                         <td style="padding-top:20px;"><input id="cepCliente" name="cepCliente" type="text" class="inputCep" /><img src="images/site/btn-calculo-cep.png" alt="Calcular" onclick="calcularCep();" class="btnCalculaCep" /></td>
                         <td style="text-align:center;">
+                        	<div id="loadingCep"></div>
                         	<div class="valorProd" id="opcoesFrete" style="display:none;">
                                 	<label class="radio">
                                     <input type="radio" name="optFrete" id="optFretePac" value="pac">
@@ -85,6 +86,14 @@ jQuery(function($){
                                     <span id="valorCepSedex">Sedex</span>
 									</label>
                             </div>
+                       	</td>
+                    </tr>
+                    <tr style="height:83px;">
+                        <td colspan="2" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">Se possuir um cupom de desconto digite o código aqui</span></td>
+                        <td style="padding-top:20px;"><input id="codigoCupom" name="codigoCupom" type="text" class="inputCep" /><img src="images/site/btn-calculo-cep.png" alt="Calcular" onclick="verificarCupom();" class="btnCalculaCep" /></td>
+                        <td style="text-align:center;">
+                        	<div id="loadingCupom"></div>
+                        	<div class="valorProd" id="resultadoCupom"></div>
                        	</td>
                     </tr>
                 </table>
