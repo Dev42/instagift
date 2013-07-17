@@ -32,7 +32,7 @@ include_once 'config/connection.php';
 						}elseif ($_SESSION['InstagiftTipoLogin'] == 'user'){
                                                     $imgUser = "";
                                                     $nomeUser = $_SESSION['NomeInstagift'];
-                                                    $iconeRede = "ico-facebook.png";
+                                                    $iconeRede = "ico-upload.png";
 						}else {
                                                     $imgUser = $_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"];
                                                     $nomeUser = $_SESSION['InstagiftDadosUserFb']["name"];
@@ -79,16 +79,19 @@ include_once 'config/connection.php';
 				?>
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
                         <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
+                        <li><a href="login.php" class="last <?php echo $menuClass[1]; ?>"><span>LOGIN</span></a></li> 
                         <li><a href="contato.php" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
                 <?php
-					if (isset($_SESSION['InstagiftTipoLogin'])){
-						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
-							$linkLogout = "process/processRedirectInsta.php?action=sair";	
-						}else{
-							$linkLogout = "process/processRedirectFace.php?action=sair";
-						}
-				?>
-                		<li><a href="<?php echo $linkLogout ?>"><span>SAIR</span></a></li>
+                    if (isset($_SESSION['InstagiftTipoLogin'])){
+                        if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+                            $linkLogout = "process/processRedirectInsta.php?action=sair";	
+                        }elseif($_SESSION['InstagiftTipoLogin'] == 'user'){
+                            $linkLogout = "logout.php";
+                        }else{
+                            $linkLogout = "process/processRedirectFace.php?action=sair";
+                        }
+                ?>
+                        <li><a href="<?php echo $linkLogout ?>"><span>SAIR</span></a></li>
                 <?php } ?>
                     </ul>
                 </div>
