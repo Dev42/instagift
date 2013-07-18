@@ -256,6 +256,19 @@ INSERT INTO `user` (`user_10_id`, `user_30_nome`, `user_30_contato`, `user_30_do
 (10, 'Empresa de venda', 'Contato', '', '', 11, 22223333, 'Rua VoluntÃ¡rios da PÃ¡tria, 2820, sala 58', 'observaÃ§Ã£o', 'fornecedor1', 'YWJiOGU4OTBiZjZiMTMwMWU0YTIxMDZkNGM1NDhmNzM=', 'andre.simoes@quup.com.br', 3, 1),
 (17, 'Fornecedor teste 2', 'Fornecedor', '', '', 22, 22222222, 'Teste', 'Teste obs', 'fornecedor', 'YWNlZjk2NDJlYTgzYjRmYjM3OTRmMGIyMjhkZTNlNzc=', 'fornecedor@teste.com.br', 3, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user_foto`
+--
+
+CREATE TABLE `user_foto` (
+  `fot_10_id` int(11) NOT NULL AUTO_INCREMENT,
+  `usr_10_id` int(11) NOT NULL,
+  `fot_30_path` varchar(255) NOT NULL,
+  PRIMARY KEY (`fot_10_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 --
 -- Restrições para as tabelas dumpadas
 --
