@@ -940,4 +940,46 @@
 		background:url(../images/site/mail.png);
 	}
 	
+        .blockTitle{
+            margin-bottom: 0px;
+        }
+        
+        .formLine{
+            margin-left: 15px;
+        }
+        
+        .observation{
+            color: #069C98;
+            font-size: 14px;
+            margin: 0px 0px 20px 20px;
+            float: left;
+        }
+        
+        .observationLogin{
+            color: #069C98;
+            font-size: 14px;
+            margin: 4px 15px 0px 15px;
+            float: left;
+        }
+        
+        .loginFacebook{
+            float: left;
+            margin: 4px 0px 0px 15px;
+        }
+        
+        .loginInstagram{
+            float: left;
+        }
+        .loginInstaBig{
+            background: url("../images/site/instagram-login-button.png") no-repeat scroll 0 0 transparent;
+            cursor: pointer;
+            display: block;
+            height: 29px;
+            overflow: hidden;
+            text-indent: -9999px;
+            width: 200px;
+        }
+        .loginInstaBig:hover {
+            background-position: 0px -29px;
+        }
 	/*Fim das classes para o menu*/
