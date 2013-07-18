@@ -76,7 +76,7 @@ class UserFoto {
     public function getWebPath() {
         $ext = "";
         
-        if($_SERVER['SERVER_ADDR'] == "127.0.0.1"){
+        if($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){
             $ext = "/instagift";
         }
         
@@ -113,6 +113,9 @@ class UserFoto {
             $this->setPath(uniqid() . "-" . $this->getUserId() . str_replace(" ", "_", str_replace(array("(",")"), "-", $this->image["name"])));
 
             try {
+                if ($this->image['tmp_name'] == ""){
+                    return false;
+                }
                 $fromFile = $this->image['tmp_name'];
                 $destFile = $this->getUploadRootDir().$this->getPath();
                 move_uploaded_file($fromFile, $destFile);

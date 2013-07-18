@@ -246,7 +246,7 @@
 	}
 	
 	.boxprodutos .comprar{
-		width:339px;
+		width:319px;
 		height:132px;
 		background-image:url(../images/site/bg-btn-conectar.png);
 		position:relative;
@@ -255,13 +255,19 @@
 	.boxprodutos .comprar .loginInsta{
 		float:left;
 		margin-top:28px;
-		margin-left:215px;
+		margin-left:10px;
 	}
 	
 	.boxprodutos .comprar .loginFace{
 		float:left;
 		margin-top:28px;
 		margin-left:10px;
+	}
+	
+	.boxprodutos .comprar .loginUser{
+		float:left;
+		margin-top:28px;
+		margin-left:200px;
 	}
 	
 	.boxprodutos .txtbox{

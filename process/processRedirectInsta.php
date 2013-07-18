@@ -2,6 +2,7 @@
 session_start();
 if($_GET['action'] == 'sair'){
 	unset($_SESSION['InstagiftTipoLogin']);
+	unset($_SESSION['LogadoInstagift']);
 	header("Location: ../index.php");
 	break;
 }
