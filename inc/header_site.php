@@ -101,7 +101,13 @@ include_once 'config/connection.php';
 				?>
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
                         <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
+                <?php
+                if ($_SESSION['InstagiftTipoLogin'] != 'Insta' && $_SESSION['InstagiftTipoLogin'] != "Fb"){
+                ?>
                         <li><a href="login.php" class="last <?php echo $menuClass[1]; ?>"><span>LOGIN</span></a></li> 
+                <?php
+                }
+                ?>
                         <li><a href="contato.php" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
                 <?php
                     if (isset($_SESSION['InstagiftTipoLogin'])){

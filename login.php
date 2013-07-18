@@ -42,7 +42,7 @@ include("inc/header_site.php");
                 </div>
                 <span class="observationLogin">ou</span>
                 <div class="loginInstagram">
-                    <a href="process/processRedirectFace.php" class="loginInstaBig"></a>
+                    <a href="process/processRedirectInsta.php" class="loginInstaBig"></a>
                 </div>
             </div>
         </div>
