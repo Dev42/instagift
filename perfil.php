@@ -1,6 +1,11 @@
 <?php
 session_start();
 error_reporting(E_ERROR);
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
+    $geralUrl = "http://localhost/instagift";
+} else {
+    $geralUrl = "http://instagift.com.br/instagift/";
+}
 if (isset($_SESSION['LogadoInstagift'])){
 	$menuClass = array("","","");
 	$title = "Suas fotos viram presentes";
@@ -116,7 +121,7 @@ $fotosUser = $usrFoto->listAction($_SESSION['IdInstagift']);
                                 $foto->setId($vFoto['fot_10_id']);
                                 $foto->setPath($vFoto['fot_30_path']);
                                 echo "<div class='conexao listImagemUser'>";
-                                echo "<img src='".$foto->getWebPath()."' class='fotoList' id='foto_".$foto->getId()."' />";
+                                echo "<img src='".$geralUrl.$foto->getWebPath()."' class='fotoList' id='foto_".$foto->getId()."' />";
                                 echo "</div>";
                             }
                         }
