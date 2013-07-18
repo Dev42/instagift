@@ -15,7 +15,7 @@ $fraseCtrl = new FraseController();
 
 if (isset($_SESSION['InstagiftProdId'])) {
     $idProd = $_SESSION['InstagiftProdId'];
-    //unset($_SESSION['InstagiftProdId']);
+    unset($_SESSION['InstagiftProdId']);
 
     if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
         $appIdFace = "379620018818263";
@@ -83,9 +83,11 @@ if (isset($_SESSION['InstagiftProdId'])) {
 }
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
-    $geralUrl = "http://localhost/instagift";
+    $geralUrl = "http://localhost/instagift/";
+    $geralUrl2 = "http://localhost/instagift";
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
+    $geralUrl2 = "http://localhost/instagift";
 }
 
 $uploadPath = $geralUrl . "images/uploads/";
@@ -222,11 +224,11 @@ if ($idProd) {
                                         if ($photoInfo[0] > $photoInfo[1]) {
                                             $marginLeft = floor(((($photoInfo[0] * 100) / $photoInfo[1]) - 100) / 2);
                                             $marginLeftScript = floor($marginLeft / 2);
-                                            echo '<div class="containerLarFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
+                                            echo '<div class="containerLarFotoGrd"><img src="' . $geralUrl2.$userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
                                         } else if ($photoInfo[1] > $photoInfo[0]) {
-                                            echo '<div class="containerAltFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
+                                            echo '<div class="containerAltFotoGrd"><img src="' . $geralUrl2.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
                                         } else {
-                                            echo '<div class="containerQuadFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
+                                            echo '<div class="containerQuadFotoGrd"><img src="' . $geralUrl2.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
                                         }
                                     }
                                 }
@@ -315,11 +317,11 @@ if ($idProd) {
                                         if ($photoInfo[0] > $photoInfo[1]) {
                                             $marginLeft = floor(((($photoInfo[0] * 100) / $photoInfo[1]) - 100) / 2);
                                             $marginLeftScript = floor($marginLeft / 2);
-                                            echo '<div class="containerLarFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
+                                            echo '<div class="containerLarFotoGrd"><img src="' . $geralUrl2.$userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
                                         } else if ($photoInfo[1] > $photoInfo[0]) {
-                                            echo '<div class="containerAltFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
+                                            echo '<div class="containerAltFotoGrd"><img src="' . $geralUrl2.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
                                         } else {
-                                            echo '<div class="containerQuadFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
+                                            echo '<div class="containerQuadFotoGrd"><img src="' . $geralUrl2.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'' . $geralUrl2.$userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
                                         }
                                     }
                                 }
@@ -450,6 +452,7 @@ if ($idProd) {
         $boxBanner .= '<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Instagift para selecionar suas fotos.</span>';
         $boxBanner .= '</div>';
         $boxBanner .= '<div class="comprar">';
+        $boxBanner .= '<a href="process/processRedirectUser.php?id=' . $v->getId() . '" class="loginUser"><img src="images/site/ico-upload.png" alt="Login"></a>';
         $boxBanner .= '<a href="process/processRedirectInsta.php?id=' . $v->getId() . '" class="loginInsta"><img src="images/site/ico-instagram.png" alt="Login - Instagram"></a>';
         $boxBanner .= '<a href="process/processRedirectFace.php?id=' . $v->getId() . '" class="loginFace"><img src="images/site/ico-facebook.png" alt="Login - Facebook"></a>';
         $boxBanner .= '</div>';
@@ -458,7 +461,7 @@ if ($idProd) {
         echo $boxBanner;
         ?>
         </div>
-<?php
+        <?php
         }
         echo '<script>
 	$(document).ready(function(){
