@@ -13,7 +13,7 @@ $fotoPrd = new FotoProdutoController();
 $infoPrd = new ProdutoInfoController();
 if (isset($_SESSION['InstagiftProdId'])) {
     $idProd = $_SESSION['InstagiftProdId'];
-    //unset($_SESSION['InstagiftProdId']);
+    unset($_SESSION['InstagiftProdId']);
 
     if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
         $appIdFace = "379620018818263";
@@ -81,7 +81,11 @@ if (isset($_SESSION['InstagiftProdId'])) {
 }
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
-    $geralUrl = "http://localhost/instagift/";
+    if (isset($fotosUser)){
+        $geralUrl = "http://localhost/instagift";
+    }else {
+        $geralUrl = "http://localhost/instagift/";
+    }
 } else {
     $geralUrl = "http://instagift.com.br/instagift/";
 }
@@ -216,15 +220,15 @@ if ($idProd) {
                                     foreach ($fotosUser as $photo) {
                                         $userFoto = new \UserFoto();
                                         $userFoto->setPath($photo['fot_30_path']);
-                                        $photoInfo = getimagesize("http://localhost".$userFoto->getWebPath());
+                                        $photoInfo = getimagesize($geralUrl.$userFoto->getWebPath());
                                         if ($photoInfo[0] > $photoInfo[1]) {
                                             $marginLeft = floor(((($photoInfo[0] * 100) / $photoInfo[1]) - 100) / 2);
                                             $marginLeftScript = floor($marginLeft / 2);
-                                            echo '<div class="containerLarFotoGrd"><img src="' . $userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
+                                            echo '<div class="containerLarFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
                                         } else if ($photoInfo[1] > $photoInfo[0]) {
-                                            echo '<div class="containerAltFotoGrd"><img src="' . $userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
+                                            echo '<div class="containerAltFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
                                         } else {
-                                            echo '<div class="containerQuadFotoGrd"><img src="' . $userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
+                                            echo '<div class="containerQuadFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
                                         }
                                     }
                                 }
@@ -310,15 +314,15 @@ if ($idProd) {
                                     foreach ($fotosUser as $photo) {
                                         $userFoto = new \UserFoto();
                                         $userFoto->setPath($photo['fot_30_path']);
-                                        $photoInfo = getimagesize("http://localhost".$userFoto->getWebPath());
+                                        $photoInfo = getimagesize($geralUrl.$userFoto->getWebPath());
                                         if ($photoInfo[0] > $photoInfo[1]) {
                                             $marginLeft = floor(((($photoInfo[0] * 100) / $photoInfo[1]) - 100) / 2);
                                             $marginLeftScript = floor($marginLeft / 2);
-                                            echo '<div class="containerLarFotoGrd"><img src="' . $userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
+                                            echo '<div class="containerLarFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" style="margin-left:-' . $marginLeft . 'px;" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'lar\',\'' . $marginLeftScript . '\')"></div>';
                                         } else if ($photoInfo[1] > $photoInfo[0]) {
-                                            echo '<div class="containerAltFotoGrd"><img src="' . $userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
+                                            echo '<div class="containerAltFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'alt\',\'0\')"></div>';
                                         } else {
-                                            echo '<div class="containerQuadFotoGrd"><img src="' . $userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $userFoto->getWebPath() . '\',\'' . $userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
+                                            echo '<div class="containerQuadFotoGrd"><img src="' . $geralUrl.$userFoto->getWebPath() . '" alt="" onclick="adicionarFoto(\'' . $geralUrl.$userFoto->getWebPath() . '\',\'' . $geralUrl.$userFoto->getWebPath() . '\',\'padrao\',\'quad\',\'0\')"></div>';
                                         }
                                     }
                                 }

@@ -76,7 +76,7 @@ class UserFoto {
     public function getWebPath() {
         $ext = "";
         
-        if($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){
+        if($_SERVER['SERVER_ADDR'] == "127.0.0.1"){
             $ext = "/instagift";
         }
         
