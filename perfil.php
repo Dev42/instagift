@@ -43,7 +43,10 @@ if (isset($_SESSION['LogadoInstagift'])){
 	}
 
 	include("inc/header_site.php");
-	?>
+
+$usrFoto = new UserFotoController();
+$fotosUser = $usrFoto->listAction($_SESSION['IdInstagift']);
+?>
                 <div class="clearfix"></div>
                 <div class="row painel">
                     <?php
@@ -105,8 +108,20 @@ if (isset($_SESSION['LogadoInstagift'])){
                         <h3>Listagem de imagens inseridas</h3>
                         <div class="conexao">
                     <?php
-                        var_dump($_SESSION['IdInstagift']);
+                        if (count($fotosUser) == 0){
+                            echo "Você ainda não enviou nenhuma foto! Comece a participar utilizando o formulário acima!";
+                        }else {
+                            foreach($fotosUser as $kFoto => $vFoto){
+                                $foto = new UserFoto();
+                                $foto->setId($vFoto['fot_10_id']);
+                                $foto->setPath($vFoto['fot_30_path']);
+                                echo "<div class='conexao listImagemUser'>";
+                                echo "<img src='".$foto->getWebPath()."' class='fotoList' id='foto_".$foto->getId()."' />";
+                                echo "</div>";
+                            }
+                        }
                     ?>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <?php

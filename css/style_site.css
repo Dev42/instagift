@@ -246,7 +246,7 @@
 	}
 	
 	.boxprodutos .comprar{
-		width:319px;
+		width:339px;
 		height:132px;
 		background-image:url(../images/site/bg-btn-conectar.png);
 		position:relative;
@@ -939,5 +939,10 @@
 	.menuSocial .nav li a.mail {
 		background:url(../images/site/mail.png);
 	}
+        
+        .listImagemUser{
+            float: left !important;
+            margin-right: 10px !important;
+        }
 	
 	/*Fim das classes para o menu*/
