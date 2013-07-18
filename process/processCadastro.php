@@ -5,19 +5,10 @@ include_once '../config/connection.php';
 $user = new User();
 $cliController = new UserController();
 
-$user->setNome($_POST['nome']);
-$user->setContato($_POST['nome']);
-$user->setDoc1($_POST['cpf']);
-$user->setDoc2($_POST['rg']);
-$user->setEmail($_POST['email']);
-$user->setDdd($_POST['ddd']);
-$user->setTelefone($_POST['telefone']);
-$user->setEndereco($_POST['endereco']);
-$user->setLogin($_POST['login']);
-$user->setSenha($_POST['senha']);
-
-$sqlQuery = "SELECT user_10_id FROM user WHERE user_30_username='".$user->getLogin()."'";
-$logar = mysql_query($sqlQuery);
+$user->setNome(mysql_real_escape_string($_POST['nome']));
+$user->setEmail(mysql_real_escape_string($_POST['email']));
+$user->setLogin(mysql_real_escape_string($_POST['login']));
+$user->setSenha(mysql_real_escape_string($_POST['senha']));
 
 if (mysql_num_rows($logar) > 0) {
     header("Location: ../cadastro.php?err=1");
@@ -30,6 +21,7 @@ if ($cliController->insertAction($user)){
         $dados = mysql_fetch_array($logar);
         session_start();
         $_SESSION['LogadoInstagift'] = 's';
+        $_SESSION['InstagiftTipoLogin'] = 'user';
         $_SESSION['IdInstagift'] = $dados['user_10_id'];
         $_SESSION['NomeInstagift'] = $dados['user_30_nome'];
         header("Location: ../perfil.php");

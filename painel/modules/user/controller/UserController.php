@@ -4,7 +4,7 @@ class UserController {
 
     public function insertAction(User $user) {
 
-        if ($user->getLogin() != "" && $user->getNome() != "" && $user->getContato() != "" && $user->getTelefone() != "" && $user->getSenha() != "" && $user->getEmail() != "") {
+        if ($user->getLogin() != "" && $user->getNome() != "" && $user->getSenha() != "" && $user->getEmail() != "") {
 
 	    $user->encriptPassword();
             $userAr = $user->assocEntity();
@@ -12,7 +12,7 @@ class UserController {
             $fields = implode("`, `", array_keys($userAr));
             $values = implode("', '", $userAr);
 
-            $strQuery = "INSERT INTO `insta892_instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `instagift`.`" . $user->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -41,7 +41,7 @@ class UserController {
             
             $setQuery = implode($setQuery, ", ");
             
-            $sqlQuery = "UPDATE `insta892_instagift`.`".$user->tableName()."` SET $setQuery WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "UPDATE `instagift`.`".$user->tableName()."` SET $setQuery WHERE `user_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -58,7 +58,7 @@ class UserController {
         
         if ($user->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
+            $sqlQuery = "DELETE FROM `instagift`.`".$user->tableName()."` WHERE `user_10_id` = ". $user->getId();
             mysql_query($sqlQuery);
             
             return true;

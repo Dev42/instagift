@@ -211,6 +211,23 @@ switch ($op) {
                 }
                 $enc = json_encode($arColor);
                 
+                if (array_key_exists("name", $prd_banner) && $prd_banner["name"] != "") {
+                    $produtoClass->setUrl($prd_banner);
+                    if ($produtoClass->uploadImage()) {
+                        echo "Inseriu e fez upload! ";
+                    } else {
+                        echo "Deu erro adicionando as imagens!";
+                    }
+                }
+                if (array_key_exists("name", $prd_foto) && $prd_foto["name"] != "") {
+                    $produtoClass->setUrl2($prd_foto);
+                    if ($produtoClass->uploadImage('foto')) {
+                       // echo "Inseriu e fez upload! ";
+                    } else {
+                        //echo "Deu erro adicionando as imagens!";
+                    }
+                }
+                
                 $produtoClass->setCores($enc);
 				
 				if (array_key_exists("name", $prd_banner) && $prd_banner["name"] != "") {
@@ -237,7 +254,6 @@ switch ($op) {
                 $produtoClass->setMinimoFotos($minimoFotos);
 
                 if ($produtoController->editAction($produtoClass)) {
-
                     // Inserção das opções
                     $prdInfoController = new ProdutoInfoController();
                     $prdInfoController->deleteByProdutoAction($produtoClass->getId());

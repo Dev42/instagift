@@ -28,20 +28,44 @@ include_once 'config/connection.php';
                 <?php
 					if (isset($_SESSION['InstagiftTipoLogin'])){
 						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
-							$imgUser = $_SESSION['InstagiftDadosInsta']["data"]["profile_picture"];
-							$nomeUser = $_SESSION['InstagiftDadosInsta']["data"]["full_name"];
-							$iconeRede = "ico-instagram.png";
-						}else{
-							$imgUser = $_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"];
-							$nomeUser = $_SESSION['InstagiftDadosUserFb']["name"];
-							$iconeRede = "ico-facebook.png";
-						}
+                                                    $imgUser = $_SESSION['InstagiftDadosInsta']["data"]["profile_picture"];
+                                                    $nomeUser = $_SESSION['InstagiftDadosInsta']["data"]["full_name"];
+                                                    $iconeRede = "ico-instagram.png";
+						}elseif ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                                                    $imgUser = "";
+                                                    $nomeUser = $_SESSION['NomeInstagift'];
+                                                    $iconeRede = "ico-upload.png";
+						}else {
+                                                    $imgUser = $_SESSION['InstagiftFotoUserFb']["picture"]["data"]["url"];
+                                                    $nomeUser = $_SESSION['InstagiftDadosUserFb']["name"];
+                                                    $iconeRede = "ico-facebook.png";
+                                                }
 				?>
                 <li>
-                	<a href="index.php" class="active contador">
-						<img src="images/site/<?php echo $iconeRede ?>" alt="Fotos">
+                    <?php
+                    if ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                    ?>
+                        <a href="perfil.php" class="active contador">
+                    <?php
+                    }else{
+                    ?>
+                        <a href="index.php" class="active contador">
+                    <?php
+                    }
+                    ?>
+                        <img src="images/site/<?php echo $iconeRede ?>" alt="Fotos">
                         <br>
-                        <span><?php echo $_SESSION['InstagiftNrFotos']; ?></span>
+                        <span>
+                            <?php 
+                                if ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                                    $usrFoto = new UserFotoController();
+                                    $fotosUser = $usrFoto->listAction($_SESSION['IdInstagift']);
+                                    echo count($fotosUser);
+                                }else {
+                                    echo $_SESSION['InstagiftNrFotos']; 
+                                }
+                            ?>
+                        </span>
                     </a>
                 </li>
                 <li>
@@ -50,6 +74,9 @@ include_once 'config/connection.php';
                             if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
                                 $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
                                 $origem = '1';
+                            }elseif ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                                $username = $_SESSION['NomeInstagift'];
+                                $origem = '3';
                             }else {
                                 $username = ($_SESSION['InstagiftDadosUserFb']['username']);
                                 $origem = '2';
@@ -64,8 +91,8 @@ include_once 'config/connection.php';
                                 $txtLinkCarrinho = "";
                             }
                         ?>
-                	<a href="<?php echo $linkCarrinho; ?>" class="active logado">
-						<?php echo '<img src="'.$imgUser.'" width="30" class="imgUser">'; ?>
+                    <a href="<?php echo $linkCarrinho; ?>" class="active logado">
+                        <?php echo '<img src="'.$imgUser.'" width="30" class="imgUser">'; ?>
                     	<span><?php echo $nomeUser; ?></span><?php echo $txtLinkCarrinho; ?>
                     </a>
                 </li>
@@ -74,16 +101,19 @@ include_once 'config/connection.php';
 				?>
                         <li><a href="produtos.php" class="<?php echo $menuClass[0]; ?>"><span>PRODUTOS</span></a></li>
                         <li><a href="comocomprar.php" class="<?php echo $menuClass[1]; ?>"><span>COMO COMPRAR</span></a></li>
+                        <li><a href="login.php" class="last <?php echo $menuClass[1]; ?>"><span>LOGIN</span></a></li> 
                         <li><a href="contato.php" class="last <?php echo $menuClass[2]; ?>"><span>CONTATO</span></a></li> 
                 <?php
-					if (isset($_SESSION['InstagiftTipoLogin'])){
-						if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
-							$linkLogout = "process/processRedirectInsta.php?action=sair";	
-						}else{
-							$linkLogout = "process/processRedirectFace.php?action=sair";
-						}
-				?>
-                		<li><a href="<?php echo $linkLogout ?>"><span>SAIR</span></a></li>
+                    if (isset($_SESSION['InstagiftTipoLogin'])){
+                        if($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+                            $linkLogout = "process/processRedirectInsta.php?action=sair";	
+                        }elseif($_SESSION['InstagiftTipoLogin'] == 'user'){
+                            $linkLogout = "logout.php";
+                        }else{
+                            $linkLogout = "process/processRedirectFace.php?action=sair";
+                        }
+                ?>
+                        <li><a href="<?php echo $linkLogout ?>"><span>SAIR</span></a></li>
                 <?php } ?>
                     </ul>
                 </div>

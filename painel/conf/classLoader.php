@@ -20,8 +20,10 @@ $frasesClass = $geralClass."/frases";
 
 /* User Module */
 include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/entity/User.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/entity/UserFoto.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/controller/UserController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/controller/AdminController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$userClass.'/controller/UserFotoController.php';
 /* /User Module */
 
 /* Clientes Module */

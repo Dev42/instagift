@@ -3,20 +3,19 @@
 if ($_SERVER['SERVER_ADDR'] == "127.0.0.1"){ 
     $dataBase = "insta892_instagift";
     $host = "localhost";
-    $user = "instagift";
-    $pass = "instaDB";
+    $user = "root";
+    $pass = "";
 	
 }else if($_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
-	$dataBase = "insta892_instagift";
+    $dataBase = "insta892_instagift";
     $host = "localhost";
-    $user = "instagift";
-    $pass = "instaDB";
-    
+    $user = "root";
+    $pass = "root";
 }else {
     $dataBase = "insta892_instagift";
     $host = "localhost";
-    $user = "insta892_insta";
-    $pass = "instaDB13";
+    $user = "root";
+    $pass = "";
 	
 }
 
