@@ -70,6 +70,7 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv,margin){
 			
 			if(fotosEscolhidas+1 == parseInt(nrFotos)){
 				$('#btn-comprar').show();
+				$('#frasesCool').show();
 			}
 			
 		}else{
@@ -118,6 +119,7 @@ function removerFoto(idFoto, urlImpressao, tipo){
 		$('#selecaoFotos').append("<div class='spaceFoto'></div>");
 		$('#count').html(fotosEscolhidas-1);
 	}
+	$('#frasesCool').hide();
 	$('#btn-comprar').hide();
 }
 
@@ -353,4 +355,39 @@ function validaCompra(){
 		return false;
 	}
 	document.comprarForm.submit();
+}
+
+function iniciaFrasesCool(){
+	$("#fotosFrasesCool").html($("#selecaoFotos").html().replace(/removerFoto\(/g,"selFotoFrasesCool(this,"));
+	$('#frasesCoolModal').modal('show');
+}
+
+function selFotoFrasesCool(element, id, urlImagem, tipo){
+	var classe = $(element).closest('div').attr('class');
+	$(".fotoCool").css('border','2px solid #FFFFFF');
+	if(classe == "containerQuadFoto"){
+		$("#fotoCool").html("<img src='"+urlImagem+"' style='width:300px; height:300px;'>");
+	}else if(classe == "containerAltFoto"){
+		$("#fotoCool").html("<img src='"+urlImagem+"' style='width:300px;'>");
+	}else{
+		var marginLeft = parseInt($(element).css('margin-left').replace('px','')) * 7;
+		$("#fotoCool").html("<img src='"+urlImagem+"' style='margin-left:"+marginLeft+"px; height:300px; max-width:none !important;'>");
+	}
+	$("#idFotoCool").val(id);
+	$("#urlFotoCool").val(urlImagem);
+	$(".modal-footer").show();
+}
+
+function avancaPasso2FraseCool(){
+	$("#headerPasso1").hide(0);
+	$("#headerPasso2").show(0);
+	$(".controllersFotosCool").show(0);
+	$(".footerPasso1").hide(0);
+}
+
+function adicionaFraseCool(elemento, id, url){
+	$("#fotoCool").append("<div id='fraseCoolEditada' style='cursor:move; display:inline-block; border:1px dashed #ffffff;'><img src='images/uploads/frases/"+url+"' id='imagemFraseCool' style='width:350px;'></div>");
+	
+	$("#fraseCoolEditada").draggable();
+	$("#imagemFraseCool").resizable();
 }

@@ -9,12 +9,14 @@ include_once 'config/connection.php';
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">  
     <link href="css/style_site.css" rel="stylesheet" type="text/css">
     <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css">
+    <link href="css/no-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
     <script type="text/javascript" src="js/slides.jquery.js"></script>
     <script type="text/javascript" src="js/jquery.instagram.js"></script>
     <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>
 </head>
 <body>
 	<div class="container">

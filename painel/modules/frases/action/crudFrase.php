@@ -27,9 +27,9 @@ switch ($op) {
                 if (array_key_exists("name", $imgFrase)) {
                     $fraseClass->setUrl($imgFrase);
                     if ($fraseClass->uploadImage()) {
-                        echo "Inseriu e fez upload!";
+                        //echo "Inseriu e fez upload!";
                     } else {
-                        echo "Erro";
+                        //echo "Erro";
                     }
                 }
 
