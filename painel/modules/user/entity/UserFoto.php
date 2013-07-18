@@ -85,7 +85,7 @@ class UserFoto {
 
     protected function getUploadRootDir() {
         // the absolute directory path where uploaded documents should be saved
-        return dirname(__FILE__) . '/../../../../../images/' . $this->getUploadDir();
+        return dirname(__FILE__) . '/../../../../images/' . $this->getUploadDir();
     }
 
     protected function getUploadDir() {
@@ -93,19 +93,11 @@ class UserFoto {
         return 'uploads/user/';
     }
     
-    public function getPath($edit = false){
-        if ($edit){
-            if ($this->path == ""){
-                return "";
-            }else {
-                return $this->path;
-            }
+    public function getPath(){
+        if ($this->path == ""){
+            return "";
         }else {
-            if ($this->path == ""){
-                return "/images/uploads/produtos/no_photo.png";
-            }else {
-                return $this->getUploadRootDir().$this->path;
-            }
+            return $this->path;
         }
     }
 
@@ -115,24 +107,26 @@ class UserFoto {
     
     public function uploadImage() {
 
-        if (null !== $this->url) {
+        if (null !== $this->image) {
             
             $imgEdit = new SimpleImage();
-            
-            if ($this->getImage(true) != ""){
-                unlink($this->getImage());
-            }
-            
-            $this->setImage(uniqid() . "-" . $this->getIdProduto() . $this->url["name"]);
+            $this->setPath(uniqid() . "-" . $this->getUserId() . str_replace(" ", "_", str_replace(array("(",")"), "-", $this->image["name"])));
 
-            move_uploaded_file($this->image['tmp_name'], $this->getUploadRootDir().$this->getImage(true));
-            
-            $imgEdit->load($this->getUploadRootDir().$this->getImage(true));
+            try {
+                $fromFile = $this->image['tmp_name'];
+                $destFile = $this->getUploadRootDir().$this->getPath();
+                move_uploaded_file($fromFile, $destFile);
+            }  catch (Exception $e){
+                throw new Exception($e);
+            }
+            $imgEdit->load($this->getUploadRootDir().$this->getPath());
             $imgEdit->adjustImage(600,600);
-            $imgEdit->save($this->getUploadRootDir().$this->getImage(true));
+            $imgEdit->save($this->getUploadRootDir().$this->getPath());
             
             return true;
             
+        }else {
+            return false;
         }
     }
     

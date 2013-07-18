@@ -40,10 +40,30 @@ include_once 'config/connection.php';
                                                 }
 				?>
                 <li>
-                	<a href="index.php" class="active contador">
-						<img src="images/site/<?php echo $iconeRede ?>" alt="Fotos">
+                    <?php
+                    if ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                    ?>
+                        <a href="perfil.php" class="active contador">
+                    <?php
+                    }else{
+                    ?>
+                        <a href="index.php" class="active contador">
+                    <?php
+                    }
+                    ?>
+                        <img src="images/site/<?php echo $iconeRede ?>" alt="Fotos">
                         <br>
-                        <span><?php echo $_SESSION['InstagiftNrFotos']; ?></span>
+                        <span>
+                            <?php 
+                                if ($_SESSION['InstagiftTipoLogin'] == 'user'){
+                                    $usrFoto = new UserFotoController();
+                                    $fotosUser = $usrFoto->listAction($_SESSION['IdInstagift']);
+                                    echo count($fotosUser);
+                                }else {
+                                    echo $_SESSION['InstagiftNrFotos']; 
+                                }
+                            ?>
+                        </span>
                     </a>
                 </li>
                 <li>
@@ -69,8 +89,8 @@ include_once 'config/connection.php';
                                 $txtLinkCarrinho = "";
                             }
                         ?>
-                	<a href="<?php echo $linkCarrinho; ?>" class="active logado">
-						<?php echo '<img src="'.$imgUser.'" width="30" class="imgUser">'; ?>
+                    <a href="<?php echo $linkCarrinho; ?>" class="active logado">
+                        <?php echo '<img src="'.$imgUser.'" width="30" class="imgUser">'; ?>
                     	<span><?php echo $nomeUser; ?></span><?php echo $txtLinkCarrinho; ?>
                     </a>
                 </li>

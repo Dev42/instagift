@@ -1,28 +1,35 @@
 <?php
 
+session_start();
+error_reporting(E_ERROR);
 include_once '../painel/conf/classLoader.php';
 include_once '../config/connection.php';
 
-echo "<pre>";
-var_dump($_POST);
-var_dump($_FILES);
-echo "</pre>";
-exit();
-
-$user->setLogin(mysql_real_escape_string($_POST['login']));
-$user->setSenha(mysql_real_escape_string($_POST['senha']));
-
-$logar = mysql_query("SELECT user_10_id,user_30_nome FROM user WHERE user_30_username='".$user->getLogin()."' AND user_30_password='".$user->encriptPassword()."' AND user_12_active = '1'");
-if(mysql_num_rows($logar) > 0)
-{
-    $dados = mysql_fetch_array($logar);
-    session_start();
-    $_SESSION['LogadoInstagift'] = 's';
-    $_SESSION['InstagiftTipoLogin'] = 'user';
-    $_SESSION['IdInstagift'] = $dados['user_10_id'];
-    $_SESSION['NomeInstagift'] = $dados['user_30_nome'];
-    header("Location: ../perfil.php");
-}else{
+if (isset($_SESSION['InstagiftTipoLogin'])){
+    if ($_SESSION['InstagiftTipoLogin'] == 'user'){
+        
+        $userId = $_POST['idUser'];
+        $usrFoto = new UserFoto();
+        $usrFoto->setUserId($userId);
+        $usrFoto->setImage($_FILES['prd_foto']);
+        
+        if ($usrFoto->uploadImage()){
+            $usrFotoController = new \UserFotoController();
+            if ($usrFotoController->insertAction($usrFoto)){
+                header("Location: ../perfil.php");
+            }else {
+                echo "Erro ao adicionar nova foto do usuário";
+                exit();
+            }
+        }else {
+            echo "Erro ao adicionar nova foto do usuário";
+            exit();
+        }
+        
+    }else {
+        header("Location: ../login.php?err=1");
+    }
+}else {
     header("Location: ../login.php?err=1");
 }
 
