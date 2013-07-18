@@ -94,7 +94,7 @@ class Frase {
             if ($this->image == ""){
                 return "/images/uploads/frases/no_photo.png";
             }else {
-                return $this->getUploadRootDir().$this->image;
+                return $this->image;
             }
         }
     }

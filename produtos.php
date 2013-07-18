@@ -11,10 +11,11 @@ $menuClass = array("active","","");
 $prdFront = new ProdutoFrontController();
 $fotoPrd = new FotoProdutoController();
 $infoPrd = new ProdutoInfoController();
+$fraseCtrl = new FraseController();
 
 if (isset($_SESSION['InstagiftProdId'])){
 	$idProd = $_SESSION['InstagiftProdId'];
-	unset($_SESSION['InstagiftProdId']);
+	//unset($_SESSION['InstagiftProdId']);
 	
 	if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
 		$appIdFace = "379620018818263";
@@ -304,9 +305,7 @@ if ($idProd){
                 </div>
         	</div>
             <div class="row frasesCool" id="frasesCool" style="display:none;">
-            	<div class="btn-comprar" id="btn-personalizar">
-                    <input type="button" value="Personalizar" id="personalizar" name="personalizar" onclick="iniciaFrasesCool()">
-                </div>
+                    <img src="images/site/btn-personalizar.png" id="personalizar" name="personalizar" onclick="iniciaFrasesCool()">
            	</div>
             <div class="row comprar">
                 <div class="btn-comprar" id="btn-comprar" style="display:none;">
@@ -314,6 +313,68 @@ if ($idProd){
                 </div>
             </div>
             </form>
+        </div>
+        <!-- Modal Frases Cool-->
+        <div id="frasesCoolModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Frases Cool" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        	<div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            	<div id="headerPasso1">
+                    <h3>ESCOLHA A FOTO E NA SEQUENCIA A FRASE</h3>
+                    <div id="fotosFrasesCool" class="fotos"></div>
+                </div>
+            	<div id="headerPasso2" style="display:none;">
+                    <h3>ESCOLHA A FRASE</h3>
+                    <div id="listaFrasesCool">
+                    <?php
+						$frasesList = $fraseCtrl->listAction();
+						foreach($frasesList as $kFrases => $vFrases){
+							$fraseId = $vFrases['frase_10_id'];
+							$fraseNome = $vFrases['frase_35_nome'];
+							$fraseUrl = $vFrases['frase_30_url'];
+					?>
+						<div class="fraseCool" onclick="adicionaFraseCool(this, '<?php echo $fraseId ?>', '<?php echo $fraseUrl ?>')">
+                        	<div class="modeloFraseCool">
+                        		<img src="<?php echo $geralUrl ?>images/uploads/frases/<?php echo $fraseUrl ?>" style="width:100px;">
+                            </div>
+                            <div class="descricaoFraseCool">
+                            	<span><?php echo $fraseNome ?></span>
+                            </div>
+                        </div>
+					<?php
+						}
+					?>
+                    </div>
+            	</div>
+            	<div id="headerPasso3" style="display:none;">
+                    <h3>SALVE PARA CONTINUAR</h3>
+            	</div>
+            </div>
+            <div class="modal-body">
+                <form name="formFrasesCool" class="form-horizontal" action="#" method="post">
+                	<input type="hidden" id="idFotoCool" name="idFotoCool" />
+                    <input type="hidden" id="urlFotoCool" name="urlFotoCool" />
+                    <input type="hidden" id="idFraseCool" name="idFraseCool" />
+                    <input type="hidden" id="posFraseCool" name="posFraseCool" />
+                    <input type="hidden" id="dimFraseCool" name="dimFraseCool" />
+                    <div class="edicaoFrasesCool" id="edicaoFrasesCool">
+                        <div class="fotoCool" id="fotoCool"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="display:none;">
+                <div class="footerPasso1">
+                  <a class="btnDir" alt="Continuar" onclick="avancaPasso2FraseCool()" style="float:right; margin-right:60px;">Continuar</a>
+                </div>
+                <div class="footerPasso2" style="display:none;">
+                	<a class="btnEsq" alt="Voltar" onclick="voltarPasso1FraseCool()" style="float:left; margin-left:60px;">Voltar</a>
+                    <a class="btnDir" alt="Continuar" onclick="avancaPasso3FraseCool()" style="float:right; margin-right:60px;">Continuar</a>
+                </div>
+                <div class="footerPasso3" style="display:none;">
+                	<a class="btnEsq" alt="Voltar" onclick="voltarPasso1FraseCool()" style="float:left; margin-left:60px;">Voltar</a>
+                    <a class="btnDir" alt="Salvar" onclick="finalizarFrase()" style="float:right;">Salvar</a>
+                    <a class="btnDir" alt="Salvar e criar uma nova" onclick="salvarNovaFraseCool()" style="float:right; margin-right:60px;">Salvar e criar uma nova</a>
+                </div>
+            </div>
         </div>
         <?php
 			}

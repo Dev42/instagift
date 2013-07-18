@@ -245,6 +245,13 @@
 		font-weight:lighter;
 	}
 	
+	.frasesCool #personalizar{
+		position:relative;
+		cursor:pointer;
+		top:60px;
+		left:30px;
+	}
+	
 	.boxprodutos .comprar{
 		width:319px;
 		height:132px;
@@ -381,6 +388,11 @@
 		padding:0 0 10px 5px;
 	}
 	
+	#fotosFrasesCool.fotos{
+		height:100px;
+		width:500px !important;
+	}
+	
 	#selecaoFotos.fotos{
 		height:100px;
 	}
@@ -431,7 +443,7 @@
 		cursor:pointer;
 	}
 	
-	#selecaoFotos.fotos .containerLarFoto, #selecaoFotosTampa.fotos .containerLarFoto, #selecaoFotos.fotos .containerAltFoto, #selecaoFotosTampa.fotos .containerAltFoto, #selecaoFotos.fotos .containerQuadFoto, #selecaoFotosTampa.fotos .containerQuadFoto{
+	#fotosFrasesCool.fotos .containerLarFoto, #selecaoFotos.fotos .containerLarFoto, #selecaoFotosTampa.fotos .containerLarFoto, #fotosFrasesCool.fotos .containerAltFoto, #selecaoFotos.fotos .containerAltFoto, #selecaoFotosTampa.fotos .containerAltFoto, #fotosFrasesCool.fotos .containerQuadFoto, #selecaoFotos.fotos .containerQuadFoto, #selecaoFotosTampa.fotos .containerQuadFoto{
 		width:50px;
 		height:50px;
 		margin:10px 0 0 10px;
@@ -441,24 +453,24 @@
 		float:left;
 	}
 	
-	#selecaoFotos.fotos .containerLarFoto img, #selecaoFotosTampa.fotos .containerLarFoto img{
+	#fotosFrasesCool.fotos .containerLarFoto img, #selecaoFotos.fotos .containerLarFoto img, #selecaoFotosTampa.fotos .containerLarFoto img{
 		height:50px;
 		cursor:pointer;
 		max-width:none !important;
 	}
 	
-	#selecaoFotos.fotos .containerAltFoto img, #selecaoFotosTampa.fotos .containerAltFoto img{
+	#fotosFrasesCool.fotos .containerAltFoto img, #selecaoFotos.fotos .containerAltFoto img, #selecaoFotosTampa.fotos .containerAltFoto img{
 		width:50px;
 		cursor:pointer;
 	}
 	
-	#selecaoFotos.fotos .containerQuadFoto img, #selecaoFotosTampa.fotos .containerQuadFoto img{
+	#fotosFrasesCool.fotos .containerQuadFoto img, #selecaoFotos.fotos .containerQuadFoto img, #selecaoFotosTampa.fotos .containerQuadFoto img{
 		width:50px;
 		height:50px;
 		cursor:pointer;
 	}
 	
-	#selecaoFotos.fotos .spaceFoto, #selecaoFotosTampa.fotos .spaceFoto{
+	#fotosFrasesCool.fotos .spaceFoto, #selecaoFotos.fotos .spaceFoto, #selecaoFotosTampa.fotos .spaceFoto{
 		width:50px;
 		height:50px;
 		margin:10px 0 0 10px;
@@ -855,6 +867,14 @@
 		width:920px;
 	}
 	
+	.frasesCool{
+		width:647px;
+		height:121px;
+		border:1px solid #069F9B;
+		background:#dce8e8 url(../images/site/bg-frases-cool.jpg) no-repeat center;
+		margin-top:35px;
+	}
+	
 	/*Classes para o menu*/
 	.menu .nav {
     	list-style: none outside none;
@@ -941,3 +961,135 @@
 	}
 	
 	/*Fim das classes para o menu*/
+	
+	/* Replaces Classes Modal FrasesCool*/
+	
+	#frasesCoolModal.modal, #frasesCoolModal.modal .modal-footer{
+		background-color:transparent !important;
+		border:none !important;
+		border-radius:none !important;
+		box-shadow:none !important;
+		padding-top:0 !important;
+	}
+	
+	#frasesCoolModal.modal.fade.in{
+		top:3% !important;
+	}
+	
+	#frasesCoolModal.modal .modal-header{
+		border-bottom:none !important;
+	}
+	
+	#frasesCoolModal.modal .modal-header .close{
+		color:#FFFFFF !important;
+		margin-top:-4px;
+		margin-right:20px;
+		text-shadow:none !important;
+		opacity:1 !important;
+	}
+	
+	#frasesCoolModal.modal .modal-header h3{
+		color:#FFFFFF;
+		font-size:24px;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+	}
+	
+	#frasesCoolModal.modal .modal-body{
+		padding-bottom:0 !important;
+		padding-top:0 !important;
+	}
+	
+	#frasesCoolModal.modal .modal-body .edicaoFrasesCool .fotoCool{
+		width:300px;
+		height:300px;
+		overflow:hidden;
+		margin-left:100px;
+	}
+	
+	#frasesCoolModal form{
+		margin:0 !important;
+	}
+	
+	#frasesCoolModal #listaFrasesCool{
+		width:500px;
+		height:150px;
+		overflow-x:hidden;
+		overflow-y: visible;
+		padding:0 0 10px 5px;
+		background:#FFFFFF;
+		border:2px solid #2E4544;
+	}
+	
+	#frasesCoolModal #listaFrasesCool .fraseCool{	
+		float:left;
+		height:145px;
+		cursor:pointer;
+		margin-bottom:10px;
+	}
+	
+	#frasesCoolModal #listaFrasesCool .modeloFraseCool{
+		width:120px;
+		height:120px;
+		background:url(../images/site/bg-frase.jpg);
+		padding:10px 0 0 10px;
+	}
+	
+	#frasesCoolModal #listaFrasesCool .descricaoFraseCool{
+		font-size:12px;
+		text-decoration:none;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		color:#2E4544;
+		padding-left:6px;
+	}
+	
+	#frasesCoolModal #listaFrasesCool .modeloFraseCool.active{
+		background:url(../images/site/bg-frase-active.jpg);
+	}
+	
+	#frasesCoolModal .btnDir{
+		width:150px;
+		height:39px;
+		text-align:center;
+		background-image:url(../images/site/btn-dir.png);
+		background-color:transparent;
+		padding-top:13px;
+		float:right;
+		position:relative;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		border:none !important;
+		border-radius:0 !important;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		display:block;
+		cursor:pointer;
+	}
+	
+	#frasesCoolModal .btnEsq{
+		width:150px;
+		height:39px;
+		text-align:center;
+		background-image:url(../images/site/btn-esq.png);
+		background-color:transparent;
+		padding-top:13px;
+		float:left;
+		position:relative;
+		color:#FFF;
+		text-transform:uppercase;
+		font-size:14px;
+		border:none !important;
+		border-radius:0 !important;
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
+		font-weight:lighter;
+		display:block;
+		cursor:pointer;
+	}
+	
+	#frasesCoolModal #fraseCoolEditada{
+		position:absolute;
+		top:0;
+		left:0;
+	}
