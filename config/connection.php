@@ -1,22 +1,16 @@
 <?php
 
-if ($_SERVER['SERVER_ADDR'] == "127.0.0.1"){ 
+if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){ 
     $dataBase = "insta892_instagift";
     $host = "localhost";
-    $user = "root";
-    $pass = "";
+    $user = "instagift";
+    $pass = "instaDB";
 	
-}else if($_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
-    $dataBase = "insta892_instagift";
-    $host = "localhost";
-    $user = "root";
-    $pass = "root";
 }else {
     $dataBase = "insta892_instagift";
     $host = "localhost";
-    $user = "root";
-    $pass = "";
-	
+    $user = "insta892_insta";
+    $pass = "instaDB13";
 }
 
 $conn = mysql_connect($host, $user, $pass);

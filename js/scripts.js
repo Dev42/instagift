@@ -386,6 +386,7 @@ function avancaPasso2FraseCool(){
 }
 
 function adicionaFraseCool(elemento, id, url){
+	$("#fraseCoolEditada").remove();
 	$("#fotoCool").append("<div id='fraseCoolEditada' style='cursor:move; display:inline-block; border:1px dashed #ffffff;'><img src='images/uploads/frases/"+url+"' id='imagemFraseCool' style='width:350px;'></div>");
 	
 	$("#fraseCoolEditada").draggable();
