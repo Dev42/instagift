@@ -10,7 +10,6 @@ if($_GET['action'] == 'sair'){
 	}
 	$o_user = 0;
 	header("Location: ../index.php");
-	break;
 }
 //Coloca o Id do produto desejado em Session
 if(isset($_GET['id'])){
