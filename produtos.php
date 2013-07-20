@@ -15,7 +15,7 @@ $fraseCtrl = new FraseController();
 
 if (isset($_SESSION['InstagiftProdId'])) {
     $idProd = $_SESSION['InstagiftProdId'];
-    unset($_SESSION['InstagiftProdId']);
+    //unset($_SESSION['InstagiftProdId']);
 
     if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
         $appIdFace = "379620018818263";
@@ -182,7 +182,7 @@ if ($idProd) {
             if ($v->getTipo() == '1') {
                 ?>
                 <div class="span8">
-                    <form name="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
+                    <form name="comprarForm" id="comprarForm" method="post" action="process/processAdicionaCarrinho.php">
                         <input type="hidden" value="<?php echo $idProd; ?>" name="prdId" />
                         <input type="hidden" value="" name="selCor" id="selCor" />
                         <input type="hidden" value="<?php echo $modeloPadrao; ?>" name="selModelo" id="selModelo" />
@@ -355,11 +355,11 @@ if ($idProd) {
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <div id="headerPasso1">
-                            <h3>ESCOLHA A FOTO E NA SEQUENCIA A FRASE</h3>
+                            <h3>ESCOLHA A FOTO E NA SEQUENCIA A FRASE 1/3</h3>
                             <div id="fotosFrasesCool" class="fotos"></div>
                         </div>
                         <div id="headerPasso2" style="display:none;">
-                            <h3>ESCOLHA A FRASE</h3>
+                            <h3>ESCOLHA A FRASE 2/3</h3>
                             <div id="listaFrasesCool">
             <?php
             $frasesList = $fraseCtrl->listAction();
@@ -382,7 +382,7 @@ if ($idProd) {
                             </div>
                         </div>
                         <div id="headerPasso3" style="display:none;">
-                            <h3>SALVE PARA CONTINUAR</h3>
+                            <h3>SALVE PARA CONTINUAR 3/3</h3>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -393,7 +393,7 @@ if ($idProd) {
                             <input type="hidden" id="posFraseCool" name="posFraseCool" />
                             <input type="hidden" id="dimFraseCool" name="dimFraseCool" />
                             <div class="edicaoFrasesCool" id="edicaoFrasesCool">
-                                <div class="fotoCool" id="fotoCool"></div>
+                                <div class="fotoCool" id="fotoCool" style="text-align:center;"></div>
                             </div>
                         </form>
                     </div>
@@ -403,12 +403,12 @@ if ($idProd) {
                         </div>
                         <div class="footerPasso2" style="display:none;">
                             <a class="btnEsq" alt="Voltar" onclick="voltarPasso1FraseCool()" style="float:left; margin-left:60px;">Voltar</a>
-                            <a class="btnDir" alt="Continuar" onclick="avancaPasso3FraseCool()" style="float:right; margin-right:60px;">Continuar</a>
+                            <a class="btnDir" alt="Continuar" onclick="avancaPasso3FraseCool()" style="float:right; margin-right:60px; display:none;">Continuar</a>
                         </div>
                         <div class="footerPasso3" style="display:none;">
-                            <a class="btnEsq" alt="Voltar" onclick="voltarPasso1FraseCool()" style="float:left; margin-left:60px;">Voltar</a>
-                            <a class="btnDir" alt="Salvar" onclick="finalizarFrase()" style="float:right;">Salvar</a>
-                            <a class="btnDir" alt="Salvar e criar uma nova" onclick="salvarNovaFraseCool()" style="float:right; margin-right:60px;">Salvar e criar uma nova</a>
+                            <a class="btnEsq" alt="Voltar" onclick="voltarPasso2FraseCool()" style="float:left; margin-left:60px;">Voltar</a>
+                            <a class="btnDir" alt="Salvar" onclick="finalizarFrase()" style="float:right; margin-right:60px;">Salvar</a>
+                            <a class="btnDir" alt="Salvar e criar uma nova" onclick="salvarNovaFraseCool()" style="float:right; margin-right:60px; margin-top:-16px; font-size:10px;">Salvar e criar uma nova</a>
                         </div>
                     </div>
                 </div>

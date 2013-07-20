@@ -607,8 +607,8 @@
 	}
 	
 	.painel .conexao img{
-		width:50px;
-		height:50px;
+		width:100px;
+		height:100px;
 		border:1px solid #2E4544;
 	}
 	
@@ -969,6 +969,7 @@
         .listImagemUser{
             float: left !important;
             margin-right: 10px !important;
+			padding:0 !important;
         }
 	
         .blockTitle{
@@ -1144,5 +1145,5 @@
 	#frasesCoolModal #fraseCoolEditada{
 		position:absolute;
 		top:0;
-		left:0;
+		left:127px;
 	}

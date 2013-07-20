@@ -358,7 +358,19 @@ function validaCompra(){
 }
 
 function iniciaFrasesCool(){
+	$('#blockAction').remove();
+	$('#selecaoFotos').fadeTo('slow',1);
 	$("#fotosFrasesCool").html($("#selecaoFotos").html().replace(/removerFoto\(/g,"selFotoFrasesCool(this,"));
+	$('#selecaoFotos').fadeTo('slow',.6);
+	$('#selecaoFotos').append('<div id="blockAction" style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
+	$("#headerPasso1").show(0);
+	$("#headerPasso2").hide(0);
+	$("#headerPasso3").hide(0);
+	$(".footerPasso1").hide(0);
+	$(".footerPasso2").hide(0);
+	$(".footerPasso3").hide(0);
+	$("#fotoCool").empty();
+	$("#fotoCool").css('border','none');
 	$('#frasesCoolModal').modal('show');
 }
 
@@ -376,19 +388,78 @@ function selFotoFrasesCool(element, id, urlImagem, tipo){
 	$("#idFotoCool").val(id);
 	$("#urlFotoCool").val(urlImagem);
 	$(".modal-footer").show();
+	$(".footerPasso1").show(0);
+}
+
+function voltarPasso1FraseCool(){
+	$("#headerPasso1").show(0);
+	$("#headerPasso2").hide(0);
+	$(".footerPasso1").show(0);
+	$(".footerPasso2").hide(0);
+	$("#fraseCoolEditada").remove();
+}
+
+function voltarPasso2FraseCool(){
+	$("#headerPasso3").hide(0);
+	$("#headerPasso2").show(0);
+	$(".footerPasso3").hide(0);
+	$(".footerPasso2").show(0);
+	$("#fraseCoolEditada").css('border','1px dashed #ffffff');
+	$("#fraseCoolEditada").draggable({disabled: false });
+	$("#imagemFraseCool").resizable({disabled: false });
 }
 
 function avancaPasso2FraseCool(){
 	$("#headerPasso1").hide(0);
 	$("#headerPasso2").show(0);
-	$(".controllersFotosCool").show(0);
 	$(".footerPasso1").hide(0);
+	$(".footerPasso2").show(0);
+}
+
+function avancaPasso3FraseCool(){
+	$("#headerPasso2").hide(0);
+	$("#headerPasso3").show(0);
+	$(".footerPasso2").hide(0);
+	$(".footerPasso3").show(0);
+	$("#fraseCoolEditada").css('border','none');
+	$("#fraseCoolEditada").draggable({disabled: true});
+	$("#imagemFraseCool").resizable({disabled: true});
 }
 
 function adicionaFraseCool(elemento, id, url){
 	$("#fraseCoolEditada").remove();
-	$("#fotoCool").append("<div id='fraseCoolEditada' style='cursor:move; display:inline-block; border:1px dashed #ffffff;'><img src='images/uploads/frases/"+url+"' id='imagemFraseCool' style='width:350px;'></div>");
+	$("#fotoCool").append("<div id='fraseCoolEditada' style='cursor:move; display:inline-block; border:1px dashed #ffffff;'><img src='images/uploads/frases/"+url+"' id='imagemFraseCool' style='width:280px;'></div>");
 	
-	$("#fraseCoolEditada").draggable();
-	$("#imagemFraseCool").resizable();
+	$("#fraseCoolEditada").draggable({ containment: "#fotoCool", drag: function( event, ui ){atualizaPosDimFraseCool()} });
+	$("#imagemFraseCool").resizable({ containment: "#fotoCool", aspectRatio: true, resize: function( event, ui ){atualizaPosDimFraseCool()} });
+	$("#idFraseCool").val(id);
+	$("#posFraseCool").val("10,0");
+	$("#dimFraseCool").val("280");
+	$(".footerPasso2 .btnDir").show(0);
+}
+
+function atualizaPosDimFraseCool(){
+	var dimensao = parseInt($("#imagemFraseCool").css('width').replace('px',''));
+	var posicaoLeft = parseInt($("#fraseCoolEditada").css('left').replace('px','')) - 117;
+	var posicaoTop =parseInt($("#fraseCoolEditada").css('top').replace('px','')) - 2;
+	
+	$("#posFraseCool").val(posicaoLeft+","+posicaoTop);
+	$("#dimFraseCool").val(dimensao);
+}
+
+function finalizarFrase(){
+	var idFotoCool = $("#idFotoCool").val();
+	var urlFotoCool = $("#urlFotoCool").val();
+	var idFraseCool = $("#idFraseCool").val();
+	var posFraseCool = $("#posFraseCool").val();
+	var dimFraseCool = $("#dimFraseCool").val();
+	
+	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+idFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
+	
+	$('#frasesCoolModal').modal('hide');
+}
+
+function salvarNovaFraseCool(){
+	finalizarFrase();
+	iniciaFrasesCool();
 }
