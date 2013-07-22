@@ -9,10 +9,10 @@ class PedidosController {
         $fields = implode("`, `", array_keys($pedidoAr));
         $values = implode("', '", $pedidoAr);
 
-        $strQuery = "INSERT INTO `insta892_instagift`.`" . $pedido->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
-
+        $strQuery = "INSERT INTO " . $pedido->tableName() . " (`" . $fields . "`) VALUES('" . $values . "');";
+		
         $gravar = mysql_query($strQuery);
-
+		
         $pedId = mysql_insert_id();
 			
         if($gravar){

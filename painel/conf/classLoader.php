@@ -84,13 +84,15 @@ include_once $_SERVER['DOCUMENT_ROOT'].$cuponsClass.'/controller/CupomController
 # /Controller
 /* /Cupom Module */
 
-/* Cupom Module */
+/* Frase Module */
 # Entity
 include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/entity/Frase.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/entity/FraseUser.php';
 # /Entity
 
 # Controller
 include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/controller/FraseController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].$frasesClass.'/controller/FraseUserController.php';
 # /Controller
-/* /Cupom Module */
+/* /Frase Module */
 ?>

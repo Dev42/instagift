@@ -4,7 +4,7 @@ if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){
     $dataBase = "insta892_instagift";
     $host = "localhost";
     $user = "instagift";
-    $pass = "instagiftDB";
+    $pass = "instaDB";
 }else {
     $dataBase = "insta892_instagift";
     $host = "localhost";

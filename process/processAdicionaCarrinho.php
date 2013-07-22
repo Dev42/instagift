@@ -45,13 +45,33 @@ if (isset($_POST)) {
         if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
             $chart->setUsername($_SESSION['InstagiftDadosInsta']['data']['username']);
             $chart->setOrigem('1');
-        }else {
+        }else if ($_SESSION['InstagiftTipoLogin'] == 'Fb'){
             $chart->setUsername($_SESSION['InstagiftDadosUserFb']['username']);
             $chart->setOrigem('2');
-        }
-        
+        }else{
+			$chart->setUsername($_SESSION['UserNameInstagift']);
+            $chart->setOrigem('3');
+		}
+		
         $chartAction = new ChartController();
-        $chartAction->insertAction($chart);
+        $idChart = $chartAction->insertAction($chart);
+		
+		$fraseUserController = new FraseUserController();
+		
+		if(isset($fotosCool)){
+			foreach ($fotosCool as $kFotoCool => $vFotoCool) {
+				$fraseUser = new FraseUser();
+				$fotoCool = explode(";",$fotosCool[$kFotoCool]);
+				
+				$fraseUser->setChtId($idChart);
+				$fraseUser->setUrlFoto($fotoCool[1]);    
+				$fraseUser->setFraseId($fotoCool[2]);
+				$fraseUser->setPosicao($fotoCool[3]);
+				$fraseUser->setWidth($fotoCool[4]); 
+				  
+				$fraseUserController->insertAction($fraseUser); 
+			}
+		}
         
 	if(!isset($_SESSION['InstagiftCarrinho'])){
 		$_SESSION['InstagiftCarrinho'] = array();

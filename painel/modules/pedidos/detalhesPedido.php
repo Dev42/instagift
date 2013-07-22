@@ -11,13 +11,19 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 	$chtController = new ChartController();
 	$chtList = $chtController->listByPedido($pedido[1]["ped_10_id"]);
 	
+	$fraseUserController = new FraseUserController();
+	
 	$nomeCliente = $pedido[1]["ped_35_nome"];
 	$emailCliente = $pedido[1]["ped_35_email"];
 	$telefone = $pedido[1]["ped_35_ddd"]."-".$pedido[1]["ped_35_telefone"];
 	$enderecoL1 = $pedido[1]["ped_35_logradouro"].", ".$pedido[1]["ped_35_numero"]." ".$pedido[1]["ped_35_complemento"];
 	$enderecoL2 = $pedido[1]["ped_35_cep"]." - ".$pedido[1]["ped_35_bairro"];
 	$enderecoL3 = $pedido[1]["ped_35_cidade"]." - ".$pedido[1]["ped_35_estado"];
-	$cupom = $pedido[1]["ped_35_codigoCupom"]." - ".$pedido[1]["ped_10_descCupom"]."%";
+	if($pedido[1]["ped_35_codigoCupom"] != ""){
+		$cupom = $pedido[1]["ped_35_codigoCupom"]." - ".$pedido[1]["ped_10_descCupom"]."%";
+	}else{
+		$cupom = 'Não';
+	}
 	$valorPedido = "R$ ".number_format($pedido[1]["ped_20_valorPedido"],2,',','.');
 	$valorFrete = "R$ ".number_format($pedido[1]["ped_20_valorFrete"],2,',','.');
 	$descontoCru = $pedido[1]["ped_20_valorPedido"]*($pedido[1]["ped_10_descCupom"]/100);
@@ -54,6 +60,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                             <th>Cor</th>
                                             <th>Valor Unid.</th> 
                                             <th>Qtde.</th> 
+                                            <th>Frases Cool</th> 
                                             <th>Download Fotos</th> 
                                         </tr> 
                                 </thead> 
@@ -67,6 +74,12 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 												$tipoProd = $vProd->getTipo();
 											}
 											$idChart = $vChart['cht_10_id']; 
+											$frasesList = $fraseUserController->listAction($idChart);
+											if(count($frasesList) > 0){
+												$frasesCool = count($frasesList);
+											}else{
+												$frasesCool = "Não";
+											}
 											$modelo = $vChart['cht_30_nome']; 
 											$quantidade = $vChart['cht_10_quantidade'];
 											$valorUnid = $vChart['cht_20_valor']/$vChart['cht_10_quantidade'];
@@ -79,6 +92,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
                                             echo '<td>'.$cor.'</td>';
                                             echo '<td>R$ '.number_format($valorUnid,2,',','.').'</td>';
                                             echo '<td>'.$quantidade.'</td>';
+											 echo '<td>'.$frasesCool.'</td>';
                                             echo '<td>';
 											
 											if($urlFotosTampa != ''){

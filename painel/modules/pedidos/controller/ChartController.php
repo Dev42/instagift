@@ -11,11 +11,11 @@ class ChartController {
             $fields = implode("`, `", array_keys($chartAr));
             $values = implode("', '", $chartAr);
 
-            $strQuery = "INSERT INTO `insta892_instagift`.`" . $chart->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
-
+            $strQuery = "INSERT INTO " . $chart->tableName() . " (`" . $fields . "`) VALUES('" . $values . "');";
+			
             mysql_query($strQuery);
 			
-            $pedId = mysql_insert_id();
+            $chartId = mysql_insert_id();
 
             return $chartId;
         } else {

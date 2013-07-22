@@ -17,6 +17,7 @@ if(mysql_num_rows($logar) > 0)
     $_SESSION['InstagiftTipoLogin'] = 'user';
     $_SESSION['IdInstagift'] = $dados['user_10_id'];
     $_SESSION['NomeInstagift'] = $dados['user_30_nome'];
+	$_SESSION['UserNameInstagift'] = $dados['user_30_username'];
     header("Location: ../perfil.php");
 }else{
     header("Location: ../login.php?err=1");

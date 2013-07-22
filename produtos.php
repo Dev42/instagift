@@ -15,7 +15,7 @@ $fraseCtrl = new FraseController();
 
 if (isset($_SESSION['InstagiftProdId'])) {
     $idProd = $_SESSION['InstagiftProdId'];
-    //unset($_SESSION['InstagiftProdId']);
+    unset($_SESSION['InstagiftProdId']);
 
     if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
         $appIdFace = "379620018818263";
@@ -125,7 +125,7 @@ if ($idProd) {
                         ?>
                     </span>
                 </div>
-                <div class="row dica">
+                <div class="row dica opCompra">
                     <span class="titProduto">Opções de Compra</span>
                     <?php
                     $listaOpcoes = $infoPrd->getProdutoAction('produto_10_id', $v->getId());
@@ -368,8 +368,8 @@ if ($idProd) {
                 $fraseNome = $vFrases['frase_35_nome'];
                 $fraseUrl = $vFrases['frase_30_url'];
                 ?>
-                                    <div class="fraseCool" onclick="adicionaFraseCool(this, '<?php echo $fraseId ?>', '<?php echo $fraseUrl ?>')">
-                                        <div class="modeloFraseCool">
+                                    <div class="fraseCool" onclick="adicionaFraseCool('<?php echo $fraseId ?>', '<?php echo $fraseUrl ?>')">
+                                        <div class="modeloFraseCool" id="modeloFrase_<?php echo $fraseId ?>">
                                             <img src="<?php echo $geralUrl ?>images/uploads/frases/<?php echo $fraseUrl ?>" style="width:100px;">
                                         </div>
                                         <div class="descricaoFraseCool">
