@@ -118,6 +118,20 @@ class ImageCutter{
 		
 		if($incFrase){
 			$dadosFrase = calculaProporcao($posicao,$widthFrase);
+			$fraseImg = new SimpleImage();
+        	$fraseImg->load("../../../".$urlFrase);
+			$fraseImg->resize($dadosFrase["width"]);
+			$fraseImg->save($path.$urlFrase);
+			
+			$imagemFinal = imagecreatefromjpeg($path.$matchImage[3]."-final.".$fileExtension);
+			$imagemFrase = imagecreatefrompng($path.$urlFrase);
+			
+			$imagemFraseX = imagesx($imagemFrase);
+			$imagemFraseY = imagesy($imagemFrase);
+			
+			imagecopymerge($imagemFinal,$imagemFrase,$dadosFrase["left"],$dadosFrase["top"],0,0,$imagemFraseX,$imagemFraseY,100);
+			imagejpeg($imagemFinal,$path.$matchImage[3]."-final.".$fileExtension);
+			imagedestroy($path.$urlFrase);
 		}
         
     }

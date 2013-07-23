@@ -58,10 +58,6 @@ if (file_exists($correctDir . '/' . $nomeZip . '.zip')) {
             }
         }
 		
-		echo var_dump($_SESSION['InstagiftArAssocFotos']);
-		echo var_dump($_SESSION['InstagiftArFrasesCool']);
-		break;
-		
         $photo->gerenetaPackage(false, $correctDir . "/resized/");
 
         closedir($handle);
