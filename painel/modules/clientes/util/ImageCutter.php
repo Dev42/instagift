@@ -121,10 +121,11 @@ class ImageCutter{
 			$dadosFrase = $this->calculaProporcao($posicao,$widthFrase);
 			
 			$fraseImg = new SimpleImage();
-        	$fraseImg->load("../../../".$urlFrase);
+        	$fraseImg->load("../../../images/uploads/frases/".$urlFrase);
 			$fraseImg->resize($dadosFrase["width"]);
 			$fraseImg->save($path.$urlFrase);
 			
+
 			$imagemFinal = imagecreatefromjpeg($path.$matchImage[3]."-final.".$fileExtension);
 			$imagemFrase = imagecreatefrompng($path.$urlFrase);
 			
