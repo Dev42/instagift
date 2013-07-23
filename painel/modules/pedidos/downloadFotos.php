@@ -17,6 +17,13 @@ $prodController = new ProdutoController();
 $prod = $prodController->listAction($prodId, 1);
 $dimFotos = $prod[1]["produto_10_largura_minima"];
 
+$prodController = new ProdutoController();
+$prod = $prodController->listAction($prodId, 1);
+
+$fraseUserController = new FraseUserController();
+session_start();
+$_SESSION['InstagiftArFrasesCool'] = $fraseUserController->listAction($numItem);
+
 if ($tipo == 't') {
     $photosDown = $cht[1]["cht_35_urlFotosTampa"];
     $nomeZip = "tampa_" . $pedId . "_" . $numItem;
@@ -50,7 +57,11 @@ if (file_exists($correctDir . '/' . $nomeZip . '.zip')) {
                 }
             }
         }
-
+		
+		echo var_dump($_SESSION['InstagiftArAssocFotos']);
+		echo var_dump($_SESSION['InstagiftArFrasesCool']);
+		break;
+		
         $photo->gerenetaPackage(false, $correctDir . "/resized/");
 
         closedir($handle);

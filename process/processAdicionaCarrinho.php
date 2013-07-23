@@ -65,7 +65,7 @@ if (isset($_POST)) {
 				
 				$fraseUser->setChtId($idChart);
 				$fraseUser->setUrlFoto($fotoCool[1]);    
-				$fraseUser->setFraseId($fotoCool[2]);
+				$fraseUser->setUrlFrase($fotoCool[2]);
 				$fraseUser->setPosicao($fotoCool[3]);
 				$fraseUser->setWidth($fotoCool[4]); 
 				  

@@ -13,10 +13,14 @@ if (isset($_GET['id']) && $_GET['id'] >= 1) {
     if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
         $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
         $origem = '1';
-    }else {
+    }else if ($_SESSION['InstagiftTipoLogin'] == 'Fb') {
         $username = ($_SESSION['InstagiftDadosUserFb']['username']);
         $origem = '2';
-    }
+    }else{
+		$username = $_SESSION['UserNameInstagift'];
+        $origem = '3';
+	}
+		
     $status = '1';
     $chartProducts = $chartController->listActionChart($username, $origem, $status);
     $chartController->deleteAction($chart);

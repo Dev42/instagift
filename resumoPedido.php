@@ -51,23 +51,35 @@ if(isset($_POST['cepCliente'])){
 				window.location = 'carrinho.php';</script>";
 	}
 	
-	if($_POST['codigoCupom'] != ""){
-		$cupomController = new CupomController();
-		$retornoCupom = $cupomController->verificaCupom($_POST['codigoCupom']);
-		if($retornoCupom == "invalido"){
-			$cupom = "Nenhum";
-			$resultadoCupom = 0;
-			$valorDesconto = 0;
-			$valorTotalCru = $valorEntregaCru + $valorCru;
-			$valorTotal = number_format($valorTotalCru,2,',','.');
-		}else{
-			$resultadoCupom = $retornoCupom;
-			$cupom = $_POST['codigoCupom'];
-			$valorDescontoCru = $valorCru*($resultadoCupom/100);
+	if($_POST['codigoCupom'] != "" || isset($_SESSION['InstagiftDescCompFb'])){
+		if(isset($_SESSION['InstagiftDescCompFb'])){
+			$cupom = "Compartilhamento Facebook";
+			$resultadoCupom = 5;
+			$valorDescontoCru = $valorCru*(5/100);
+			$valorDescontoCru = round($valorDescontoCru,2);
 			$valorDesconto = number_format($valorDescontoCru,2,',','.');
 			
 			$valorTotalCru = $valorEntregaCru + ($valorCru - $valorDescontoCru);
 			$valorTotal = number_format($valorTotalCru,2,',','.');
+		}else{
+			$cupomController = new CupomController();
+			$retornoCupom = $cupomController->verificaCupom($_POST['codigoCupom']);
+			if($retornoCupom == "invalido"){
+				$cupom = "Nenhum";
+				$resultadoCupom = 0;
+				$valorDesconto = 0;
+				$valorTotalCru = $valorEntregaCru + $valorCru;
+				$valorTotal = number_format($valorTotalCru,2,',','.');
+			}else{
+				$resultadoCupom = $retornoCupom;
+				$cupom = $_POST['codigoCupom'];
+				$valorDescontoCru = $valorCru*($resultadoCupom/100);
+				$valorDescontoCru = round($valorDescontoCru,2);
+				$valorDesconto = number_format($valorDescontoCru,2,',','.');
+				
+				$valorTotalCru = $valorEntregaCru + ($valorCru - $valorDescontoCru);
+				$valorTotal = number_format($valorTotalCru,2,',','.');
+			}
 		}
 	}else{
 		$cupom = "Nenhum";
@@ -83,7 +95,7 @@ if(isset($_POST['cepCliente'])){
 	$_SESSION['InstagiftTotalPedido'] = $valorCru;
 	$_SESSION['InstagiftPesoTotal'] = $pesoCru;
 	$_SESSION['InstagiftCupomDesconto'] = $resultadoCupom;
-	$_SESSION['InstagiftCodigoCupom'] = $_POST['codigoCupom'];
+	$_SESSION['InstagiftCodigoCupom'] = $cupom;
 	
 	include("inc/header_site.php");
 ?>
@@ -144,6 +156,9 @@ if(isset($_POST['cepCliente'])){
                     <tr style="height:83px;">
                         <td colspan="3" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">TOTAL DO PEDIDO:</span></td>
                         <td style="text-align:center;"><div class="valorProd"><span>R$ <?php echo $valorTotal; ?></span></div></td>
+                    </tr>
+                    <tr style="height:40px;">
+                        <td colspan="4" style="text-align:right; padding-right:20px; padding-top:10px;"><span class="descCep" style="font-size:12px;">Prazo de entrega: Sedex = até 6 dias úteis / PAC = até 10 dias úteis</span></td>
                     </tr>
                 </table>
             <div class="botoesNav span12">

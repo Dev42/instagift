@@ -52,7 +52,7 @@ class ChartController {
         
         if ($chart->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `instagift`.`".$chart->tableName()."` WHERE `cht_10_id` = ". $chart->getId();
+            $sqlQuery = "DELETE FROM ".$chart->tableName()." WHERE `cht_10_id` = ". $chart->getId();
             mysql_query($sqlQuery);
             
             return true;

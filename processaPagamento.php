@@ -71,8 +71,12 @@ class processaPagamento {
 		if($pedido->getDescCupom() != "0"){
 			$cupomController = new CupomController();
 			$desconto = $valorTotal*($pedido->getDescCupom()/100);
+			$desconto = round($desconto,2);
+			$desconto = number_format($desconto,2,'.',',');
 			$paymentRequest->setExtraAmount("-".$desconto);
-			$cupomController->desabilitaCupom($pedido->getCodigoCupom());
+			if($pedido->getCodigoCupom() != 'Compartilhamento Facebook'){
+				$cupomController->desabilitaCupom($pedido->getCodigoCupom());
+			}
 		}
        
         $paymentRequest->setRedirectUrl("http://www.instagift.com.br");

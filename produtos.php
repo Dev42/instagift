@@ -389,7 +389,7 @@ if ($idProd) {
                         <form name="formFrasesCool" class="form-horizontal" action="#" method="post">
                             <input type="hidden" id="idFotoCool" name="idFotoCool" />
                             <input type="hidden" id="urlFotoCool" name="urlFotoCool" />
-                            <input type="hidden" id="idFraseCool" name="idFraseCool" />
+                            <input type="hidden" id="urlFraseCool" name="urlFraseCool" />
                             <input type="hidden" id="posFraseCool" name="posFraseCool" />
                             <input type="hidden" id="dimFraseCool" name="dimFraseCool" />
                             <div class="edicaoFrasesCool" id="edicaoFrasesCool">

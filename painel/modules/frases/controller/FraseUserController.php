@@ -4,7 +4,7 @@ class FraseUserController {
 
     public function insertAction(FraseUser $fraseUser) {
 		
-        if ($fraseUser->getChtId() != "" || $fraseUser->getUrlFoto() != "" || $fraseUser->getFraseId() != "" || $fraseUser->getPosicao() != "" || $fraseUser->getWidth() != ""){
+        if ($fraseUser->getChtId() != "" || $fraseUser->getUrlFoto() != "" || $fraseUser->getUrlFrase() != "" || $fraseUser->getPosicao() != "" || $fraseUser->getWidth() != ""){
 
             $fraseUserAr = $fraseUser->assocEntity();
 

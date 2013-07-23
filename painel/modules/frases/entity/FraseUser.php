@@ -8,7 +8,7 @@ class FraseUser {
 	
     protected $urlFoto;
 	
-    protected $fraseId;
+    protected $urlFrase;
 	
 	protected $posicao;
 	
@@ -38,12 +38,12 @@ class FraseUser {
         $this->urlFoto = $urlFoto;
     }
 	
-	public function getFraseId() {
-        return $this->fraseId;
+	public function getUrlFrase() {
+        return $this->urlFrase;
     }
 
-    public function setFraseId($fraseId) {
-        $this->fraseId = $fraseId;
+    public function setUrlFrase($urlFrase) {
+        $this->urlFrase = $urlFrase;
     }
 	
 	public function getPosicao() {
@@ -68,7 +68,7 @@ class FraseUser {
             "frase_user_10_id"  	  => $this->getId(),
             "cht_10_id"  			  => $this->getChtId(),
             "frase_user_35_urlFoto"   => $this->getUrlFoto(),
-			"frase_10_id"   		  => $this->getFraseId(),
+			"frase_user_35_urlFrase"  => $this->getUrlFrase(),
 			"frase_user_30_posicao"   => $this->getPosicao(),
 			"frase_user_30_width"     => $this->getWidth(),
         );
@@ -82,7 +82,7 @@ class FraseUser {
         $this->setId($row['frase_user_10_id']);
         $this->setChtId($row['cht_10_id']);
         $this->setUrlFoto($row['frase_user_35_urlFoto']);
-		$this->setFraseId($row['frase_10_id']);
+		$this->setUrlFrase($row['frase_user_35_urlFrase']);
 		$this->setPosicao($row['frase_user_30_posicao']);
 		$this->setWidth($row['frase_user_30_width']);
         

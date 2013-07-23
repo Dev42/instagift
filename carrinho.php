@@ -8,10 +8,26 @@ $title = "Meu Carrinho";
 $produtoController = new ProdutoFrontController();
 
 include("inc/header_site.php");
+
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
+	$appIdFace = "379620018818263";
+	$imageInsta = "http://localhost/instagift/images/site/logo-header.png";
+}else{
+	$appIdFace = "619446894748617";
+	$imageInsta = "http://instagift.com.br/instagift/images/site/logo-header.png";
+}
 ?>
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript">
 jQuery(function($){
    $("#cepCliente").mask("99999-999");
+  
+   FB.init({
+      appId      : '<?php echo $appIdFace ?>',           // App ID from the app dashboard
+      channelUrl : 'http://instagift.com.br', 			 // Channel file for x-domain comms
+      status     : true,                                 // Check Facebook Login status
+      xfbml      : true                                  // Look for social plugins on the page
+    });
 });
 </script>
 	<div class="row login carrinho">
@@ -25,9 +41,12 @@ jQuery(function($){
                     if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
                         $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
                         $origem = '1';
-                    }else {
+                    }else if ($_SESSION['InstagiftTipoLogin'] == 'Fb'){
                         $username = ($_SESSION['InstagiftDadosUserFb']['username']);
                         $origem = '2';
+					}else {
+                        $username = $_SESSION['UserNameInstagift'];
+                        $origem = '3';
                     }
                     $status = '1';
                     $chartAction = new ChartController();
@@ -89,12 +108,18 @@ jQuery(function($){
                        	</td>
                     </tr>
                     <tr style="height:83px;">
-                        <td colspan="2" style="text-align:right; padding-right:15px; padding-top:30px;"><span class="descCep">Se possuir um cupom de desconto digite o código aqui</span></td>
-                        <td style="padding-top:20px;"><input id="codigoCupom" name="codigoCupom" type="text" class="inputCep" /><img src="images/site/btn-calculo-cep.png" alt="Calcular" onclick="verificarCupom();" class="btnCalculaCep" /></td>
+                        <td colspan="2" style="text-align:right; padding-right:15px; padding-top:20px;"><span class="descCep">Se possuir um cupom de desconto digite o código aqui ou nos compartilhe no Facebook para ganhar 5%: <a href="#" 
+  onclick="compartilharInstaFb()" style="text-decoration:underline;">
+  Clique aqui
+</a></span></td>
+                        <td style="padding-top:20px;"><input id="codigoCupom" name="codigoCupom" type="text" class="inputCep" /><img src="images/site/btn-calculo-cep.png" alt="Calcular" onclick="verificarCupom('def');" class="btnCalculaCep" /></td>
                         <td style="text-align:center;">
                         	<div id="loadingCupom"></div>
                         	<div class="valorProd" id="resultadoCupom"></div>
                        	</td>
+                    </tr>
+                    <tr style="height:40px;">
+                        <td colspan="4" style="text-align:right; padding-right:20px; padding-top:10px;"><span class="descCep" style="font-size:12px;">Prazo de entrega: Sedex = até 6 dias úteis / PAC = até 10 dias úteis</span></td>
                     </tr>
                 </table>
             <div class="botoesNav span12">

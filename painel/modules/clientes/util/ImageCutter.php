@@ -52,6 +52,23 @@ class ImageCutter{
         $fileName = explode(".", $this->getFile());
         $fileExtension = $fileName[count($fileName)-1];
         $fileName = $fileName[count($fileName)-2];
+		session_start();
+		foreach ($_SESSION['InstagiftArAssocFotos'] as $kAssoc => $vAssoc){
+			if($vAssoc["idArquivo"] == $fileName){
+				$urlFoto = $vAssoc["urlFoto"];
+			}
+		}
+		$incFrase = false;
+		foreach ($_SESSION['InstagiftArFrasesCool'] as $kFrases => $vFrases){
+			if($urlFoto == $vFrases["frase_user_35_urlFoto"]){
+				$incFrase = true;
+				$urlFrase = $vFrases["frase_user_35_urlFrase"];
+				$posicao = $vFrases["frase_user_30_posicao"];
+				$widthFrase = $vFrases["frase_user_30_width"];
+				array_splice($_SESSION['InstagiftArFrasesCool'], $kFrases, 1);
+			}
+		}
+		
         if ($this->getMaiorLado() == "height"){
             $dif = $current_width = $current_height = $this->getMaxSize();
             
@@ -98,6 +115,10 @@ class ImageCutter{
         if (!unlink($fileName."-out.".$fileExtension)){
             die ("Erro ao deletar arquivo de saída!");
         }
+		
+		if($incFrase){
+			$dadosFrase = calculaProporcao($posicao,$widthFrase);
+		}
         
     }
     
@@ -140,6 +161,18 @@ class ImageCutter{
     public function getOutImage(){
         return $this->outImage;
     }
+	
+	public function calculaProporcao($pos,$widthFrase){
+		$proporcao = $this->getMaxSize() / 300;
+		$posicoes = explode(",", $pos);
+		$posicaoLeft = round($posicoes[0] * $proporcao);
+		$posicaoTop = round($posicoes[1] * $proporcao);
+		$largura = round($widthFrase * $proporcao);
+		
+		$dadosFrase = array("left" => $posicaoLeft, "top" => $posicaoTop, "width" => $largura);
+		
+		return $dadosFrase;
+	}
     
 }
 

@@ -76,6 +76,7 @@ class PhotosLoader {
     }
 
     function getPhotos() {
+		$arAssocFotos = array();
         $dirCreate = $this->absolutePath() . $this->getPedId();
         if (!mkdir($dirCreate, 0777)) {
             die("Erro ao criar diretório principal!");
@@ -85,8 +86,12 @@ class PhotosLoader {
         }
 
         foreach ($this->getPhotoList() as $k => $v) {
-            file_put_contents($dirCreate . "/" . uniqid() . ".jpg", file_get_contents($v));
+			$nomeArqFoto = uniqid();
+            file_put_contents($dirCreate . "/" . $nomeArqFoto . ".jpg", file_get_contents($v));
+			$arAssocFotos[] = array("urlFoto" => $v, "idArquivo" => $nomeArqFoto);
         }
+		session_start();
+		$_SESSION['InstagiftArAssocFotos'] = $arAssocFotos;
     }
 
     function gerenetaPackage($download = true, $path = "") {

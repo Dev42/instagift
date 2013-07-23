@@ -5,10 +5,24 @@ include_once '../painel/conf/classLoader.php';
 $valor = 0;
 $peso = 0;
 
-foreach ($_SESSION['InstagiftCarrinho'] as $kChart => $vChart) {
-	$obj = unserialize($vChart);
-	$peso = $peso + $obj->getPeso();
-	$valor = $valor + $obj->getValor();
+if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
+	$username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
+	$origem = '1';
+}else if ($_SESSION['InstagiftTipoLogin'] == 'Fb'){
+	$username = ($_SESSION['InstagiftDadosUserFb']['username']);
+	$origem = '2';
+}else {
+	$username = $_SESSION['UserNameInstagift'];
+	$origem = '3';
+}
+$status = '1';
+
+$chartAction = new ChartController();
+$chartProducts = $chartAction->listActionChart($username, $origem, $status);
+
+foreach ($chartProducts as $kChart => $vChart) {
+	$peso = $peso + $vChart["cht_20_peso"];
+	$valor = $valor + $vChart["cht_20_valor"];
 }
 
 $peso = number_format($peso,3,',','.');

@@ -146,6 +146,11 @@ function selecionaCor(elemento,corEscolhida){
 }
 
 function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
+	$("input[name='fotosCool[]']").each(function(){
+		$(this).remove();
+	});
+	$("#blockAction").remove();
+	$('#selecaoFotos').fadeTo('slow',1);
 	$('.contOpcaoModelo').removeClass('active');
 	elemento.className += " active";
 	nrFotosAtual = parseInt($('#nrFotos').val());
@@ -160,6 +165,7 @@ function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
 			$('#selecaoFotos').append("<div class='spaceFoto'></div>");
 		}
 		$('#btn-comprar').hide();
+		$('#frasesCool').hide();
 	}else if(nrFotosEscolhido < nrFotosAtual){
 		$('#selModelo').val(idEscolhido);
 		$('#nrFotos').val(nrFotosEscolhido);
@@ -172,6 +178,7 @@ function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
 		}
 		$('#urlFotos').val('');
 		$('#btn-comprar').hide();
+		$('#frasesCool').hide();
 	}else{
 		$('#selModelo').val(idEscolhido);
 	}
@@ -246,14 +253,14 @@ function calcularCep(){
     }
 }
 
-function verificarCupom(){
+function verificarCupom(metodo){
 	$.ajax({
 		type: 'POST',
 		url: 'process/processAjaxCupom.php',
 		beforeSend: function(){
 			$("#loadingCupom").html("<img src='images/site/ajax-loader.gif' alt='Carregando' />");
 		},
-		data: { codigoCupom: $("#codigoCupom").val() }
+		data: { codigoCupom: $("#codigoCupom").val(), metodo:metodo }
 	}).done(function(html){
 		retorno = html.split("|");
 		if (retorno[0] == 'ok'){
@@ -367,7 +374,6 @@ function iniciaFrasesCool(){
 	
 	$('#selecaoFotos').fadeTo('slow',.6);
 	$('#selecaoFotos').append('<div id="blockAction" style="position: relative;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
-	$('.row.dica.opCompra').append('<div id="blockActionOpcoes" style="position: relative;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
 	$("#headerPasso1").show(0);
 	$("#headerPasso2").hide(0);
 	$("#headerPasso3").hide(0);
@@ -440,7 +446,7 @@ function adicionaFraseCool(id, url){
 	
 	$("#fraseCoolEditada").draggable({ containment: "#fotoCool", drag: function( event, ui ){atualizaPosDimFraseCool()} });
 	$("#imagemFraseCool").resizable({ containment: "#fotoCool", aspectRatio: true, resize: function( event, ui ){atualizaPosDimFraseCool()} });
-	$("#idFraseCool").val(id);
+	$("#urlFraseCool").val(url);
 	$("#posFraseCool").val("10,0");
 	$("#dimFraseCool").val("280");
 	$(".footerPasso2 .btnDir").show(0);
@@ -458,11 +464,11 @@ function atualizaPosDimFraseCool(){
 function finalizarFrase(){
 	var idFotoCool = $("#idFotoCool").val();
 	var urlFotoCool = $("#urlFotoCool").val();
-	var idFraseCool = $("#idFraseCool").val();
+	var urlFraseCool = $("#urlFraseCool").val();
 	var posFraseCool = $("#posFraseCool").val();
 	var dimFraseCool = $("#dimFraseCool").val();
 	
-	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+idFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
+	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+urlFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
 	
 	$('#frasesCoolModal').modal('hide');
 }
@@ -470,11 +476,11 @@ function finalizarFrase(){
 function salvarNovaFraseCool(){
 	var idFotoCool = $("#idFotoCool").val();
 	var urlFotoCool = $("#urlFotoCool").val();
-	var idFraseCool = $("#idFraseCool").val();
+	var urlFraseCool = $("#urlFraseCool").val();
 	var posFraseCool = $("#posFraseCool").val();
 	var dimFraseCool = $("#dimFraseCool").val();
 	
-	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+idFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
+	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+urlFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
 	
 	verificarFraseFeita();
 	
@@ -505,4 +511,24 @@ function verificarFraseFeita(){
 			}
 		}
 	});
+}
+
+function compartilharInstaFb(){
+	FB.ui(
+	  {
+		method: 'feed',
+		link: 'http://instagift.com.br',
+		image: '<?php echo $imageInsta ?>',
+		name: 'Instagift',
+		caption: 'Instagift',
+		description: 'Suas fotos viram presentes'
+	  },
+	  function(response) {
+		if (response && response.post_id) {
+		  verificarCupom('fb');
+		} else {
+		  
+		}
+	  }
+	);
 }
