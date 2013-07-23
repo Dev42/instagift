@@ -62,5 +62,9 @@ if (file_exists($correctDir . '/' . $nomeZip . '.zip')) {
 
         closedir($handle);
     }
+	header('Content-Type: application/zip');
+    header('Content-disposition: attachment; filename=' . $nomeZip . '.zip');
+    header('Content-Length: ' . filesize($correctDir . '/' . $nomeZip . '.zip'));
+    readfile($correctDir . '/' . $nomeZip . '.zip');
 }
 ?>

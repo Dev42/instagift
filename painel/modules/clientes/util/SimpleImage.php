@@ -33,6 +33,7 @@ class SimpleImage {
 
         $image_info = getimagesize($filename);
         $this->image_type = $image_info[2];
+		
         if ($this->image_type == IMAGETYPE_JPEG) {
 
             $this->image = imagecreatefromjpeg($filename);
@@ -93,6 +94,12 @@ class SimpleImage {
         $height = $this->getheight() * $ratio;
         $this->resize($width, $height);
     }
+	
+	function resizeToWidthFrase($width) {
+        $ratio = $width / $this->getWidth();
+        $height = $this->getheight() * $ratio;
+        $this->resizeFrase($width, $height);
+    }
 
     function scale($scale) {
         $width = $this->getWidth() * $scale / 100;
@@ -105,6 +112,16 @@ class SimpleImage {
         imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
         $this->image = $new_image;
     }
+	
+	function resizeFrase($width, $height){
+		$new_image = imagecreatetruecolor($width, $height);
+		imagealphablending($new_image, false);
+		imagesavealpha($new_image,true);
+		$transparent = imagecolorallocatealpha($new_image, 255, 255, 255, 127);
+		imagefilledrectangle($new_image, 0, 0, $width, $height, $transparent);
+		imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+        $this->image = $new_image;
+	}
     
     function adjustImage($heightMax, $widthMax){
         if ($this->getWidth() > $this->getHeight()){

@@ -122,18 +122,21 @@ class ImageCutter{
 			
 			$fraseImg = new SimpleImage();
         	$fraseImg->load(dirname(__FILE__)."/../../../../images/uploads/frases/".$urlFrase);
-			$fraseImg->resize($dadosFrase["width"]);
-			$fraseImg->save($path.$urlFrase); // o erro ta aqui...
-
+			$fraseImg->resizeToWidthFrase($dadosFrase["width"]);
+			$fraseImg->save($path.$urlFrase,IMAGETYPE_PNG);
+			
 			$imagemFinal = imagecreatefromjpeg($path.$matchImage[3]."-final.".$fileExtension);
 			$imagemFrase = imagecreatefrompng($path.$urlFrase);
 			
 			$imagemFraseX = imagesx($imagemFrase);
 			$imagemFraseY = imagesy($imagemFrase);
 			
-			imagecopymerge($imagemFinal,$imagemFrase,$dadosFrase["left"],$dadosFrase["top"],0,0,$imagemFraseX,$imagemFraseY,100);
-			imagejpeg($imagemFinal,100);
-			imagedestroy($path.$urlFrase);
+			$imagemFinalX = imagesx($imagemFinal);
+			$imagemFinalY = imagesy($imagemFinal);
+			
+			imagecopy($imagemFinal,$imagemFrase,$dadosFrase["left"],$dadosFrase["top"],0,0,$imagemFraseX,$imagemFraseY);
+			imagejpeg($imagemFinal,$path.$matchImage[3]."-final.".$fileExtension,100);
+			unlink($path.$urlFrase);
 		}
         
     }
