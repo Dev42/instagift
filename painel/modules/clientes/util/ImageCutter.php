@@ -52,9 +52,10 @@ class ImageCutter{
         $fileName = explode(".", $this->getFile());
         $fileExtension = $fileName[count($fileName)-1];
         $fileName = $fileName[count($fileName)-2];
+		$nomeArquivoArr = explode("/",$fileName);
 		session_start();
 		foreach ($_SESSION['InstagiftArAssocFotos'] as $kAssoc => $vAssoc){
-			if($vAssoc["idArquivo"] == $fileName){
+			if($vAssoc["idArquivo"] == $nomeArquivoArr[2]){
 				$urlFoto = $vAssoc["urlFoto"];
 			}
 		}
@@ -65,7 +66,7 @@ class ImageCutter{
 				$urlFrase = $vFrases["frase_user_35_urlFrase"];
 				$posicao = $vFrases["frase_user_30_posicao"];
 				$widthFrase = $vFrases["frase_user_30_width"];
-				array_splice($_SESSION['InstagiftArFrasesCool'], $kFrases, 1);
+				unset($_SESSION['InstagiftArFrasesCool'][$kFrases]);
 			}
 		}
 		
@@ -117,7 +118,8 @@ class ImageCutter{
         }
 		
 		if($incFrase){
-			$dadosFrase = calculaProporcao($posicao,$widthFrase);
+			$dadosFrase = $this->calculaProporcao($posicao,$widthFrase);
+			
 			$fraseImg = new SimpleImage();
         	$fraseImg->load("../../../".$urlFrase);
 			$fraseImg->resize($dadosFrase["width"]);
@@ -130,7 +132,7 @@ class ImageCutter{
 			$imagemFraseY = imagesy($imagemFrase);
 			
 			imagecopymerge($imagemFinal,$imagemFrase,$dadosFrase["left"],$dadosFrase["top"],0,0,$imagemFraseX,$imagemFraseY,100);
-			imagejpeg($imagemFinal,$path.$matchImage[3]."-final.".$fileExtension);
+			imagejpeg($imagemFinal);
 			imagedestroy($path.$urlFrase);
 		}
         
@@ -176,12 +178,12 @@ class ImageCutter{
         return $this->outImage;
     }
 	
-	public function calculaProporcao($pos,$widthFrase){
+	public function calculaProporcao($pos,$width){
 		$proporcao = $this->getMaxSize() / 300;
 		$posicoes = explode(",", $pos);
 		$posicaoLeft = round($posicoes[0] * $proporcao);
 		$posicaoTop = round($posicoes[1] * $proporcao);
-		$largura = round($widthFrase * $proporcao);
+		$largura = round($width * $proporcao);
 		
 		$dadosFrase = array("left" => $posicaoLeft, "top" => $posicaoTop, "width" => $largura);
 		
