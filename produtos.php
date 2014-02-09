@@ -218,7 +218,7 @@ if ($idProd) {
                                 
                                 if (isset($fotosUser)){
                                     foreach ($fotosUser as $photo) {
-                                        $userFoto = new \UserFoto();
+                                        $userFoto = new UserFoto();
                                         $userFoto->setPath($photo['fot_30_path']);
                                         $photoInfo = getimagesize($geralUrl.$userFoto->getWebPath());
                                         if ($photoInfo[0] > $photoInfo[1]) {
@@ -311,7 +311,7 @@ if ($idProd) {
                                 
                                 if (isset($fotosUser)){
                                     foreach ($fotosUser as $photo) {
-                                        $userFoto = new \UserFoto();
+                                        $userFoto = new UserFoto();
                                         $userFoto->setPath($photo['fot_30_path']);
                                         $photoInfo = getimagesize($geralUrl.$userFoto->getWebPath());
                                         if ($photoInfo[0] > $photoInfo[1]) {
