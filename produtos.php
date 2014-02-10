@@ -102,6 +102,7 @@ if ($idProd) {
         }
         $arCores = json_decode($jsonCores);
         ?>
+        <div class="clearfix"></div>
         <div class="row produtoInfo">
             <div class="span4">
                 <div class="row">
@@ -139,7 +140,7 @@ if ($idProd) {
                             $classeOpcao = 'contOpcaoModelo clearfix';
                         }
 
-                        echo "<div class='" . $classeOpcao . "' style='cursor:pointer;' onclick='selecionaOpcaoCompra(this,\"" . $vInfoPrd['produto_info_10_id'] . "\",\"" . $vInfoPrd['produto_info_10_nrFotos'] . "\")'>		
+                        echo "<div class='" . $classeOpcao . "' style='cursor:pointer;' onclick='selecionaOpcaoCompra(this,\"" . $vInfoPrd['produto_info_10_id'] . "\",\"" . $vInfoPrd['produto_info_10_nrFotos'] . "\")'>
 								<span class='titOpcaoCompra'>" . $vInfoPrd['produto_info_30_nome'] . "</span>
 								<br>
 								<span class='descOpcaoCompra'>" . $vInfoPrd['produto_info_35_desc'] . " - R$ " . str_replace(".", ",", $vInfoPrd['produto_info_20_valor']) . "</span>
@@ -215,7 +216,7 @@ if ($idProd) {
                                         }
                                     }
                                 }
-                                
+
                                 if (isset($fotosUser)){
                                     foreach ($fotosUser as $photo) {
                                         $userFoto = new UserFoto();
@@ -308,7 +309,7 @@ if ($idProd) {
                                         }
                                     }
                                 }
-                                
+
                                 if (isset($fotosUser)){
                                     foreach ($fotosUser as $photo) {
                                         $userFoto = new UserFoto();

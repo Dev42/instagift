@@ -3,7 +3,7 @@ session_start();
 include_once 'painel/conf/classLoader.php';
 include_once 'config/connection.php';
 
-$menuClass = array("active","","");
+$menuClass = array("","","","active");
 $title = "Meu Carrinho";
 $produtoController = new ProdutoFrontController();
 
@@ -21,7 +21,7 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") 
 <script type="text/javascript">
 jQuery(function($){
    $("#cepCliente").mask("99999-999");
-  
+
    FB.init({
       appId      : '<?php echo $appIdFace ?>',           // App ID from the app dashboard
       channelUrl : 'http://instagift.com.br', 			 // Channel file for x-domain comms
@@ -30,6 +30,7 @@ jQuery(function($){
     });
 });
 </script>
+<div class="clearfix"></div>
 	<div class="row login carrinho">
     	<div class="span12 titPagina">
         	<span class="titulo">LISTA DE COMPRAS</span><span class="subtitulo" style="margin-left:385px;">Quantidade</span><span class="subtitulo" style="margin-left:120px;">Valor</span>
@@ -51,22 +52,22 @@ jQuery(function($){
                     $status = '1';
                     $chartAction = new ChartController();
                     $chartProdutcts = $chartAction->listActionChart($username, $origem, $status);
-                    
+
                     foreach($chartProdutcts as $k => $v){
                             $chart = new Chart();
                             $objFixed = $chart->fetchEntity($v);
-    
+
                             $prdList = $produtoController->listAction($objFixed->getPrdId(), false);
                             foreach ($prdList as $kProd => $vProd){
                                     $foto = $vProd->getFoto(true);
-    
+
                                     $nomeProd = $vProd->getNome();
                             }
                             $nomeModelo = $objFixed->getNome();
                             $quantidade = $objFixed->getQuantidade();
                             $valor = $objFixed->getValor();
                             $valor = str_replace('.', ',', $valor);
-    
+
                             echo "<tr style='height:83px;'>
                                     <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
                                     <td style='width:400px;'>
@@ -99,7 +100,7 @@ jQuery(function($){
                                     <input type="radio" name="optFrete" id="optFretePac" value="pac">
                                     <span id="valorCepPac">Pac</span>
                                     </label>
-                                    
+
                                     <label class="radio">
                                     <input type="radio" name="optFrete" id="optFreteSedex" value="sedex">
                                     <span id="valorCepSedex">Sedex</span>
@@ -108,7 +109,7 @@ jQuery(function($){
                        	</td>
                     </tr>
                     <tr style="height:83px;">
-                        <td colspan="2" style="text-align:right; padding-right:15px; padding-top:20px;"><span class="descCep">Se possuir um cupom de desconto digite o código aqui ou nos compartilhe no Facebook para ganhar 5%: <a href="#" 
+                        <td colspan="2" style="text-align:right; padding-right:15px; padding-top:20px;"><span class="descCep">Se possuir um cupom de desconto digite o código aqui ou nos compartilhe no Facebook para ganhar 5%: <a href="#"
   onclick="compartilharInstaFb()" style="text-decoration:underline;">
   Clique aqui
 </a></span></td>

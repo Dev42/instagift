@@ -33,7 +33,7 @@ include("inc/header_site.php");
 		$(document).ready(function() {
 			var clientId = 'fc50d2f7eb9b49f384280a3cc32af0d6';
 			$(".imgsquemja").instagram({
-			hash: 'instagiftbr',
+			hash: 'fotunet',
 			show: 10,
 			clientId: clientId
 			});
@@ -50,11 +50,11 @@ include("inc/header_site.php");
 							}
                         ?>
                     </div>
-                    <a href="#" class="prev"><img src="images/site/btn-anterior.png" width="87" height="44" alt="Anterior"></a>
-					<a href="#" class="next"><img src="images/site/btn-seguinte.png" width="87" height="44" alt="Próxima"></a>
+                    <a href="#" class="prev"><img src="images/site/btn-anterior.png" width="86" height="38" alt="Anterior"></a>
+					<a href="#" class="next"><img src="images/site/btn-seguinte.png" width="86" height="38" alt="Próxima"></a>
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="row passoapasso">
         	<div class="span12">
             	<div class="instrucoes"><img src="images/site/passo-a-passo.png" alt="Passo a passo"></div>
@@ -67,7 +67,7 @@ include("inc/header_site.php");
                 </div>
             </div>
             <div class="span12">
-				<span style="font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif; color:#2e4544; font-size:16px; position:relative; top:15px; left:40px;">Poste uma foto do seu produto no Instagram com a #instagiftbr</span>
+				<span style="font-family:'HelveticaNeue', Arial, Helvetica, sans-serif; color:#827973; font-size:16px; position:relative; right:15px; top:15px; float:right;">Poste uma foto do seu produto no Instagram com a #fotunet</span>
             </div>
         </div>
 <?php

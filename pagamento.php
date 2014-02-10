@@ -6,6 +6,7 @@ if(isset($_SESSION['InstagiftUrlPgto'])){
 	include("inc/header_site.php");
 	unset($_SESSION['InstagiftCarrinho']);
 ?>
+<div class="clearfix"></div>
 	<div class="row login">
     	<div class="span12" style="text-align:center; margin-bottom:40px;">
         	<h1 style="text-transform:uppercase; font-size:28px;">Muito obrigado <?php echo $nomeUser ?></h1>

@@ -5,6 +5,7 @@ $menuClass = array("","","active");
 $title = "Contato";
 include("inc/header_site.php");
 ?>
+    <div class="clearfix"></div>
 	<div class="row login">
         <form name="contatoForm" class="form-stacked fecharPedido" method="post" action="process/processSendContact.php">
             <div class="span12"><h1 style="text-transform:uppercase;">Contato</h1></div>
@@ -13,16 +14,16 @@ include("inc/header_site.php");
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" />
                 </div>
-                <div class="field">    
+                <div class="field">
                     <label for="email">E-mail</label>
                     <input type="text" name="email" id="email" />
                 </div>
                 <br style="clear:both;" />
-                <div class="field">    
+                <div class="field">
                     <label for="telefone">Telefone</label>
                     <input type="text" name="telefone" id="telefone" />
                 </div>
-                <div class="field">    
+                <div class="field">
                     <label for="mensagem">Mensagem</label>
                     <textarea name="mensagem" id="mensagem"></textarea>
                 </div>

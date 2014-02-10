@@ -17,6 +17,7 @@ include("inc/header_site.php");
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
+    <div class="clearfix"></div>
     <div class="row login">
         <div class="span6">
             <div class="span6">

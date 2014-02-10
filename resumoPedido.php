@@ -3,14 +3,14 @@ if(isset($_POST['cepCliente'])){
 	session_start();
 	include_once 'painel/conf/classLoader.php';
 	include_once 'config/connection.php';
-	
+
 	$menuClass = array("active","","");
 	$title = "Resumo do Pedido";
 	$produtoController = new ProdutoFrontController();
-	
+
 	$valor = 0;
 	$peso = 0;
-	
+
         if ($_SESSION['InstagiftTipoLogin'] == 'Insta'){
             $username = ($_SESSION['InstagiftDadosInsta']['data']['username']);
             $origem = '1';
@@ -27,16 +27,16 @@ if(isset($_POST['cepCliente'])){
             $peso = $peso + $obj->getPeso();
             $valor = $valor + $obj->getValor();
 	}
-	
+
 	$pesoCru = $peso;
 	$peso = number_format($peso,3,',','.');
 	$valorCru = $valor;
 	$valor = number_format($valor,2,',','.');
-	
+
 	$retorno = calculaFrete($_POST['cepCliente'], $peso, $valor);
-	
+
 	$retArr = explode("|", $retorno);
-	
+
 	$tipoEntrega = $_POST['optFrete'];
 	if($tipoEntrega == 'pac'){
 		$valorEntregaCru = $retArr[4];
@@ -45,12 +45,12 @@ if(isset($_POST['cepCliente'])){
 		$valorEntregaCru = $retArr[3];
 		$valorEntrega = number_format($retArr[3],2,',','.');
 	}
-	
+
 	if($retArr[0] != 'ok'){
 		echo "<script>alert('Ocorreu um erro com o CEP, por favor preencha novamente');
 				window.location = 'carrinho.php';</script>";
 	}
-	
+
 	if($_POST['codigoCupom'] != "" || isset($_SESSION['InstagiftDescCompFb'])){
 		if(isset($_SESSION['InstagiftDescCompFb'])){
 			$cupom = "Compartilhamento Facebook";
@@ -58,7 +58,7 @@ if(isset($_POST['cepCliente'])){
 			$valorDescontoCru = $valorCru*(5/100);
 			$valorDescontoCru = round($valorDescontoCru,2);
 			$valorDesconto = number_format($valorDescontoCru,2,',','.');
-			
+
 			$valorTotalCru = $valorEntregaCru + ($valorCru - $valorDescontoCru);
 			$valorTotal = number_format($valorTotalCru,2,',','.');
 		}else{
@@ -76,7 +76,7 @@ if(isset($_POST['cepCliente'])){
 				$valorDescontoCru = $valorCru*($resultadoCupom/100);
 				$valorDescontoCru = round($valorDescontoCru,2);
 				$valorDesconto = number_format($valorDescontoCru,2,',','.');
-				
+
 				$valorTotalCru = $valorEntregaCru + ($valorCru - $valorDescontoCru);
 				$valorTotal = number_format($valorTotalCru,2,',','.');
 			}
@@ -88,7 +88,7 @@ if(isset($_POST['cepCliente'])){
 		$valorTotalCru = $valorEntregaCru + $valorCru;
 		$valorTotal = number_format($valorTotalCru,2,',','.');
 	}
-	
+
 	$_SESSION['InstagiftCepEntrega'] = $_POST['cepCliente'];
 	$_SESSION['InstagiftTipoEntrega'] = $tipoEntrega;
 	$_SESSION['InstagiftValorEntrega'] = $valorEntregaCru;
@@ -96,9 +96,10 @@ if(isset($_POST['cepCliente'])){
 	$_SESSION['InstagiftPesoTotal'] = $pesoCru;
 	$_SESSION['InstagiftCupomDesconto'] = $resultadoCupom;
 	$_SESSION['InstagiftCodigoCupom'] = $cupom;
-	
+
 	include("inc/header_site.php");
 ?>
+<div class="clearfix"></div>
 	<div class="row login carrinho">
     	<div class="span12 titPagina">
         	<span class="titulo">RESUMO DO PEDIDO</span><span class="subtitulo" style="margin-left:375px;">Quantidade</span><span class="subtitulo" style="margin-left:95px;">Valor</span>
@@ -119,18 +120,18 @@ if(isset($_POST['cepCliente'])){
                     foreach($chartProducts as $k => $v){
                             $chart = new Chart();
                             $objFixed = $chart->fetchEntity($vChart);
-    
+
                             $prdList = $produtoController->listAction($objFixed->getPrdId(), false);
                             foreach ($prdList as $kProd => $vProd){
                                     $foto = $vProd->getFoto(true);
-    
+
                                     $nomeProd = $vProd->getNome();
                             }
                             $nomeModelo = $objFixed->getNome();
                             $quantidade = $objFixed->getQuantidade();
                             $valor = $objFixed->getValor();
                             $valor = str_replace('.', ',', $valor);
-    
+
                             echo "<tr style='height:83px;'>
                                     <td style='width:110px; padding:0;'><img src='images/uploads/produtos/produto/".$foto."' width='110' height='83' class='imgCarrinho'/></td>
                                     <td style='width:400px;'>

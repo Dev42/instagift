@@ -8,7 +8,7 @@ include("inc/header_site.php");
 $reg = simplexml_load_file("http://cep.republicavirtual.com.br/web_cep.php?formato=xml&cep=".$_SESSION['InstagiftCepEntrega']);
 
 $estados = array("AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MG","MS","MT","PA","PB","PE","PI","PR","RJ","RN","RO","RS","RR","SC","SE","SP","TO");
- 
+
 $sucesso = (string) $reg->resultado;
 if($sucesso == 1){
 	$logradouro  = (string) $reg->tipo_logradouro . ' ' . $reg->logradouro;
@@ -29,6 +29,7 @@ jQuery(function($){
    $("#telefone").mask("99999999");
 });
 </script>
+<div class="clearfix"></div>
 	<div class="row login">
     	<form name="contatoForm" class="form-stacked fecharPedido" method="post" action="process/processNovoCarrinho.php" id="fecharPedido">
             <div class="span12"><h1 style="text-transform:uppercase;">Dados pessoais</h1></div>
@@ -46,7 +47,7 @@ jQuery(function($){
                     <input type="text" name="ddd" id="ddd" style="width: 30px;"/>
                     <input type="text" name="telefone" id="telefone" style="width: 214px;" />
                 </div>
-             </div>   
+             </div>
              <div class="span12"><h1 style="text-transform:uppercase;">Endereço de entrega</h1></div>
     			<div class="span11 dados">
                     <div class="field">
@@ -64,7 +65,7 @@ jQuery(function($){
                             <?php
                                 foreach($estados as $est){
                                     if($est == $estado){
-                                        echo "<option value='".$est."' selected='selected'>".$est."</option>";	
+                                        echo "<option value='".$est."' selected='selected'>".$est."</option>";
                                     }else{
                                         echo "<option value='".$est."'>".$est."</option>";
                                     }

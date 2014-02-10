@@ -29,8 +29,23 @@
 				font-weight: normal;
 				font-style: normal;
 		}
+
+    @font-face {
+        font-family: "HelveticaNeue";
+        src: url('../fonts/helveticaneuelight.eot');
+        src: url('../fonts/helveticaneuelight.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/helveticaneuelight.svg#HelveticaNeue') format('svg'),
+        url('../fonts/helveticaneuelight.woff') format('woff'),
+        url('../fonts/helveticaneuelight.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
 	/*fim font-face */
-	
+
+	body{
+		background:#f5f5f3;
+	}
+
 	.logo img{
 		position:relative;
 		z-index:200;
@@ -45,11 +60,11 @@
 		width:960px;
 		display:block;
 	}
-	
+
 	.slides_container a img {
 		display:block;
 	}
-	
+
 	.pagination {
 		position:relative;
 		top:-20px;
@@ -57,14 +72,14 @@
 		margin:0 auto 0;
 		width:217px;
 	}
-	
+
 	.pagination li {
 		float:left;
 		margin:0 1px;
 		list-style:none;
 		margin-right:5px;
 	}
-	
+
 	.pagination li a {
 		display:block;
 		width:12px;
@@ -77,55 +92,53 @@
 		border:none;
 		text-decoration:none;
 	}
-	
+
 	.pagination li.current a {
 		background-position:0 -13px;
 	}
-	
+
 	#slides .next,#slides .prev {
 		position:absolute;
-		top:210px;
-		width:88px;
-		height:44px;
+		top:380px;
+		width:86px;
+		height:38px;
 		display:block;
 		z-index:101;
 	}
-	
+
 	#slides .next {
 		left:873px;
 	}
-	
+
 	.slider{
 		height:338px;
 		position:relative;
 	}
-	
+
 	.slider .span12{
 		height:338px;
 	}
-	
+
 	.produtos{
 		position:relative;
 	}
-	
+
 	.produtos .produto{
 		cursor:pointer;
 	}
-	
+
 	.produtoInfo{
 		position:relative;
 		background-color:#e1e1e1;
-		margin-top:77px;
-		padding-top:60px;
+		padding-top:30px;
 	}
-	
+
 	.row.login{
 		position:relative;
 		background-color:#e1e1e1;
-		margin-top:77px;
-		padding-top:60px;
+		padding-top:30px;
 	}
-	
+
 	.row.login label{
 		font-family:'UniversLTStd-BoldCn', Arial, Helvetica, sans-serif !important;
 		font-size:16px;
@@ -133,12 +146,12 @@
 		text-shadow:2px 2px #CCC;
 		width: 50px;
 	}
-	
+
 	.row.login label.radio{
 		width: 120px;
 		text-align:left;
 	}
-	
+
 	.row.login h1{
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
@@ -147,12 +160,12 @@
 		color:#2e4544;
 		text-shadow:2px 2px #CCC;
 	}
-	
+
 	.row.login .titPagina{
 		margin-bottom:10px;
 		margin-left:10px;
 	}
-	
+
 	.row.login .titPagina .titulo{
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
@@ -162,7 +175,7 @@
 		float:left;
 		text-shadow:2px 2px #CCC;
 	}
-	
+
 	.row.login .titPagina .subtitulo{
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
@@ -171,25 +184,25 @@
 		float:left;
 		text-shadow:2px 2px #CCC;
 	}
-	
+
 	.row.login .span8, .row.login .span11{
 		margin-left:20px;
 	}
-	
+
 	.row.login input[type="text"], .row.login input[type="password"], .row.login select{
 		width:250px;
 		height:30px;
 		border:1px solid #2e4544;
 		border-radius:0 !important;
 	}
-	
+
 	.row.login textarea{
 		width:250px;
 		height:100px;
 		border:1px solid #2e4544;
 		border-radius:0 !important;
 	}
-	
+
 	.row.login input[type="submit"]{
 		width:150px;
 		height:52px;
@@ -207,7 +220,7 @@
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 	}
-	
+
 	.row.login .fecharPedido .enviarContato{
 		width:150px;
 		height:52px;
@@ -226,7 +239,7 @@
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 	}
-	
+
 	.btn-comprar #comprar{
 		width:150px;
 		height:52px;
@@ -244,51 +257,51 @@
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 	}
-	
+
 	.frasesCool #personalizar{
 		position:relative;
 		cursor:pointer;
 		top:60px;
 		left:30px;
 	}
-	
+
 	.boxprodutos .comprar{
 		width:319px;
 		height:132px;
 		background-image:url(../images/site/bg-btn-conectar.png);
 		position:relative;
 	}
-	
+
 	.boxprodutos .comprar .loginInsta{
 		float:left;
 		margin-top:28px;
 		margin-left:10px;
 	}
-	
+
 	.boxprodutos .comprar .loginFace{
 		float:left;
 		margin-top:28px;
 		margin-left:10px;
 	}
-	
+
 	.boxprodutos .comprar .loginUser{
 		float:left;
 		margin-top:28px;
 		margin-left:200px;
 	}
-	
+
 	.boxprodutos .txtbox{
 		position:relative;
 		margin:20px 0;
 	}
-	
+
 	.boxprodutos span{
-		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;	
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 		color:#2e4544;
 		font-size:14px;
 	}
-	
+
 	.boxprodutos .thumbs{
 		width:180px;
 		height:180px;
@@ -296,7 +309,7 @@
 		overflow-y:visible;
 		overflow-x:hidden;
 	}
-	
+
 	.boxprodutos .thumbs .thumbProduto{
 		width:75px;
 		height:75px;
@@ -304,26 +317,26 @@
 		float:left;
 		margin:10px 0 0 10px;
 	}
-	
+
 	.boxprodutos .thumbs .thumbProduto img{
 		display:block;
 	}
-	
+
 	.boxprodutos .descricaobox{
 		margin:20px 10px 0 0;
 	}
-	
+
 	.produtoInfo .span4{
 		width:255px !important;
 		margin:0 0 0 15px;
 	}
-	
+
 	.produtoInfo .span8{
 		width:665px !important;
 		padding-left:15px;
 		border-left:1px solid #99a3a2;
 	}
-	
+
 	.produtoInfo .titProduto{
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
@@ -332,11 +345,11 @@
 		text-transform:uppercase;
 		text-shadow:2px 2px #CCCCCC;
 	}
-	
+
 	.produtoInfo .fotoProduto{
 		border:2px solid #2e4544;
 	}
-	
+
 	.produtoInfo .descProduto{
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
@@ -344,46 +357,46 @@
 		color:#2e4544;
 		margin: 10px 0;
 	}
-	
+
 	.comocomprar{
-		background-color:#f9f9f9;
+		background-color:#d1e4e1;
 		position:relative;
-		margin:130px 0 20px 0;
+		margin:0px;
 	}
-	
+
 	.row.comprar{
 		float:right;
 		margin:0 20px 40px 0;
 	}
-	
+
 	.passoapasso{
 		border-bottom:1px solid #9a9d9a;
-		background-color:#f9f9f9;
+		background-color:#d0e2df;
 	}
-	
+
 	.passoapasso .span12{
 		padding:20px 0;
 	}
-	
+
 	.dica{
 		padding:20px 0;
 	}
-	
+
 	.listaFotos .fotos{
 		margin-bottom:40px;
 	}
-	
+
 	.instrucoes{
 		margin-left:20px;
 	}
-	
+
 	.quemja{
 		height:350px;
 		border-bottom:1px solid #9a9d9a;
 		background-color:#d9e4e4;
 		background-image:url(../images/site/bg-quemja.png);
 	}
-	
+
 	.fotos{
 		height:150px;
 		width:640px;
@@ -393,33 +406,33 @@
 		border:2px solid #2E4544;
 		padding:0 0 10px 5px;
 	}
-	
+
 	#fotosFrasesCool.fotos{
 		height:100px;
 		width:500px !important;
 	}
-	
+
 	#selecaoFotos.fotos{
 		height:100px;
 	}
-	
+
 	#selecaoFotosTampa.fotos{
 		height:60px;
 	}
-	
+
 	.fotos .containerQuadFotoGrd{
 		width:100px;
 		height:100px;
 		margin:20px 0 0 20px;
 		float:left;
 	}
-	
+
 	.fotos .containerQuadFotoGrd img{
 		width:100px;
 		height:100px;
 		cursor:pointer;
 	}
-	
+
 	.fotos .containerLarFotoGrd{
 		width:100px;
 		height:100px;
@@ -428,13 +441,13 @@
 		text-align:center;
 		float:left;
 	}
-	
+
 	.fotos .containerLarFotoGrd img{
 		height:100px;
 		cursor:pointer;
 		max-width:none !important;
 	}
-	
+
 	.fotos .containerAltFotoGrd{
 		width:100px;
 		height:100px;
@@ -443,12 +456,12 @@
 		text-align:center;
 		float:left;
 	}
-	
+
 	.fotos .containerAltFotoGrd img{
 		width:100px;
 		cursor:pointer;
 	}
-	
+
 	#fotosFrasesCool.fotos .containerLarFoto, #selecaoFotos.fotos .containerLarFoto, #selecaoFotosTampa.fotos .containerLarFoto, #fotosFrasesCool.fotos .containerAltFoto, #selecaoFotos.fotos .containerAltFoto, #selecaoFotosTampa.fotos .containerAltFoto, #fotosFrasesCool.fotos .containerQuadFoto, #selecaoFotos.fotos .containerQuadFoto, #selecaoFotosTampa.fotos .containerQuadFoto{
 		width:50px;
 		height:50px;
@@ -458,24 +471,24 @@
 		text-align:center;
 		float:left;
 	}
-	
+
 	#fotosFrasesCool.fotos .containerLarFoto img, #selecaoFotos.fotos .containerLarFoto img, #selecaoFotosTampa.fotos .containerLarFoto img{
 		height:50px;
 		cursor:pointer;
 		max-width:none !important;
 	}
-	
+
 	#fotosFrasesCool.fotos .containerAltFoto img, #selecaoFotos.fotos .containerAltFoto img, #selecaoFotosTampa.fotos .containerAltFoto img{
 		width:50px;
 		cursor:pointer;
 	}
-	
+
 	#fotosFrasesCool.fotos .containerQuadFoto img, #selecaoFotos.fotos .containerQuadFoto img, #selecaoFotosTampa.fotos .containerQuadFoto img{
 		width:50px;
 		height:50px;
 		cursor:pointer;
 	}
-	
+
 	#fotosFrasesCool.fotos .spaceFoto, #selecaoFotos.fotos .spaceFoto, #selecaoFotosTampa.fotos .spaceFoto{
 		width:50px;
 		height:50px;
@@ -483,7 +496,7 @@
 		border:1px dashed #BEBEBE;
 		float:left;
 	}
-	
+
 	.titquemja{
 		width:135px;
 		height:240px;
@@ -491,15 +504,15 @@
 		margin:60px 0 0 40px;
 		float:left;
 	}
-	
+
 	.imgsquemja{
 		margin:60px 0 0 20px;
 	}
-	
+
 	.imgsquemja img{
 		margin:0 0 20px 20px;
 	}
-	
+
 	.boxprodutos{
 		height:300px;
 		padding-top:20px;
@@ -508,7 +521,7 @@
 		background-repeat:no-repeat;
 		position:relative;
 	}
-	
+
 	.boxprodutos .fechar{
 		float:right;
 		margin-right:20px;
@@ -517,13 +530,13 @@
 		height:14px;
 		background-image:url(../images/site/btn-fechar.jpg);
 	}
-	
+
 	.footer{
-		height:250px;
+		height:285px;
 		background-image:url(../images/site/bg-footer.png);
 		margin: -20px 0 0 0;
 	}
-	
+
 	.fatiafooter{
 		position:relative;
 		top:-1px;
@@ -533,12 +546,12 @@
 		float:left;
 		background:url(../images/site/fatia-footer.png) no-repeat;
 	}
-	
+
 	.frasefooter{
 		position:relative;
 		margin:10px 0 10px 210px;
 	}
-	
+
 	.logofooter{
 		margin:10px 0 0 30px;
 		width:153px;
@@ -546,99 +559,118 @@
 		float:left;
 		background:url(../images/site/logo-footer.png) no-repeat;
 	}
-	
+
 	.copyrights{
 		color:#FFF;
 		font-size:10px;
 		font-family: Arial, Helvetica, sans-serif;
 		margin-left:30px;
 	}
-	
+
 	.logofooter span{
 		color:#FFF;
 		font-size:14px;
 		font-family: 'Gabriel-Sans-Cond-Light', Arial, Helvetica, sans-serif;
 		font-weight:lighter;
 	}
-	
+
 	.logo{
 		margin:0;
 		float:left;
 	}
-	
+
 	.topo{
-		margin:0 0 -43px 0;
+		margin:0 0 10px 0;
+		float:left;
+		border-bottom: 1px solid #a7998d;
+	}
+
+	.altLeft{
+		margin:0 0 0 0;
 		float:left;
 	}
-	
-	.topo .menu{
+
+	.altLeft .menu{
 		margin:0;
-		float:right;
+		float:left;
+		width: 100%;
 	}
-	
-	.topo .menu.login u{
+
+	.altLeft .menu.login u{
 		float:right;
 		font-size:10px;
 	}
-	
-	.painel{
-		margin:60px 0 30px 0;
+
+	.altLeft .menu .itensRight{
+		float: left;
+		margin-left: 165px;
 	}
-	
+
+	.itensRight li{
+		border-left: 1px solid #90867d;
+	}
+	.itensRight li:last-child{
+		border-left: none;
+	}
+
+	.painel{
+		margin:0px 0 30px 0;
+	}
+
 	.painel .conexao{
 		border:2px solid #2E4544;
 		margin-right:20px;
 		padding:15px;
 	}
-	
+
 	.painel .conexao.insta{
 		background:url(../images/site/ico-instagram.png) no-repeat 225px 5px #E1E1E1;
 	}
-	
+
 	.painel .conexao.fb{
 		background:url(../images/site/ico-facebook.png) no-repeat 225px 5px #E1E1E1;
 	}
-	
+
 	.painel .conexao a{
-		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;	
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-size:14px;
 		color:#2E4544;
 		text-decoration:underline;
 	}
-	
+
 	.painel .conexao img{
 		width:100px;
 		height:100px;
 		border:1px solid #2E4544;
 	}
-	
+
 	.painel .conexao .span2{
 		margin-top:5px;
 	}
-	
+
 	.painel .conexao .span2 span{
-		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;	
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-size:14px;
 		color:#2E4544;
 		font-weight:bold;
 	}
-	
+
 	.painel .conexao .span2 a{
-		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;	
+		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-size:12px;
 		color:#2E4544;
 		text-decoration:underline;
 	}
-	
+
 	.footer .menu{
 		margin:0;
-		float:left;
+		float:right;
 	}
-	
+
 	#fecharPedido label{
 		width:130px;
 	}
-	
+
 	.contOpcaoModelo{
 		width:220px;
 		padding:10px;
@@ -646,30 +678,30 @@
 		margin-top:5px;
 		box-shadow:0 0 2px 1px #888888;
 	}
-	
-	.contOpcaoModelo.active{	
+
+	.contOpcaoModelo.active{
 		background-color:#dce7e7;
 		border:2px solid #069f9b;
 	}
-	
+
 	.contCorModelo{
 		width:220px;
 		padding:10px;
 		margin-top:5px;
 	}
-	
+
 	.contCorModelo .corProd{
 		float:left;
 		text-align:center;
 		margin-right:5px;
 	}
-	
+
 	.contCorModelo .corProd span{
 		font-size:12px;
 		color:#2e4544;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.contCorModelo .boxCorProd{
 		width:36px;
 		height:36px;
@@ -677,11 +709,11 @@
 		cursor:pointer;
 		box-shadow:0 0 2px 1px #888888;
 	}
-	
+
 	.contCorModelo .boxCorProd.active{
 		border:2px solid #069f9b;
 	}
-	
+
 	.boxNrFotosTampa{
 		float:left;
 		border:2px solid #bebebe;
@@ -694,75 +726,75 @@
 		position:relative;
 		top:-4px;
 	}
-	
+
 	.boxNrFotosTampa.active{
 		background-color:#dce7e7;
 		border:2px solid #069f9b;
 	}
-	
+
 	.boxNrFotosTampa span{
 		font-size:11px;
 		font-weight:bold;
 		color:#2e4544;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.titOpcaoCompra{
 		font-size:17px;
 		color:#000000;
 		font-weight:lighter;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.descOpcaoCompra{
 		font-size:17px;
 		color:#2e4544;
 		font-weight:lighter;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.titProduto.tampa{
 		float:left;
 	}
-	
+
 	.carrinho .table td{
 		border-bottom:1px solid #2e4544 !important;
 	}
-	
+
 	.carrinho .table td .imgCarrinho{
 		width:110px;
 		height:83px;
 	}
-	
+
 	.carrinho .table tr:last-child td{
 		border-bottom:none;
 	}
-	
+
 	.carrinho .table .input-append input[type="text"]{
 		height:19px;
 		border:none;
 	}
-	
+
 	.carrinho .table .infosProd{
 		float:left;
 		margin-top:15px;
 		margin-left:10px;
 	}
-	
+
 	.carrinho .table .infosProd .nomeProd{
 		font-size:26px;
 		color:#2e4544;
 		font-weight:lighter;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.carrinho .table .infosProd .nomeModelo{
 		font-size:17px;
 		color:#2e4544;
 		font-weight:lighter;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.carrinho .table .remProd{
 		float:right;
 		margin-right:20px;
@@ -770,30 +802,30 @@
 		height:14px;
 		margin-top:27px;
 	}
-	
+
 	.carrinho .table .valorProd{
 		margin-top:25px;
 	}
-	
+
 	.carrinho .table #opcoesFrete.valorProd{
 		margin-top:10px;
 		margin-left:5px;
 	}
-	
+
 	.carrinho .table .valorProd span{
 		font-size:17px;
 		color:#000000;
 		font-weight:lighter;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.carrinho .table .descCep{
 		font-size:15px;
 		color:#2e4544;
 		font-weight:lighter;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 	}
-	
+
 	.row.login .linkPagamento{
 		font-size:15px;
 		color:#2e4544;
@@ -803,18 +835,18 @@
 		text-transform:uppercase;
 		text-shadow:2px 2px #CCC;
 	}
-	
+
 	.carrinho .table .inputCep{
 		float:left;
 		width:126px !important;
 		height:28px !important;
 	}
-	
+
 	.carrinho .table .btnCalculaCep{
 		float:left;
 		cursor:pointer;
 	}
-	
+
 	.row.login .btnDir{
 		width:150px;
 		height:39px;
@@ -836,7 +868,7 @@
 		display:block;
 		cursor:pointer;
 	}
-	
+
 	.row.login .btnEsq{
 		width:150px;
 		height:39px;
@@ -858,21 +890,21 @@
 		display:block;
 		cursor:pointer;
 	}
-	
+
 	.row.login .btnEsq:hover, .row.login .btnDir:hover{
 		text-decoration:none;
 	}
-	
+
 	.fecharPedido .field{
 		float:left;
 		margin-right:15px;
 	}
-	
+
 	.fecharPedido .dados{
 		border-bottom:1px solid #99a3a2;
 		width:920px;
 	}
-	
+
 	.frasesCool{
 		width:647px;
 		height:121px;
@@ -880,7 +912,7 @@
 		background:#dce8e8 url(../images/site/bg-frases-cool.jpg) no-repeat center;
 		margin-top:35px;
 	}
-	
+
 	/*Classes para o menu*/
 	.menu .nav {
     	list-style: none outside none;
@@ -889,36 +921,63 @@
         margin-left: 3px;
         z-index: 2;
 	}
-	
-	.topo .menu .nav li a {
+
+	.altLeft .menu .nav li a {
 		height:15px;
-		padding:30px 10px;
+		padding:1 0px 10px;
 	}
-	
-	.topo .menu .nav li a.logado {
-		height:20px;
-		padding:26px 15px 29px;
+
+	.altLeft .menu .nav li a.logado {
+		height:15px;
 	}
-	
-	.topo .menu .nav li a.contador {
-		height:20px;
-		padding:26px 10px 29px;
+
+	.altLeft .menu .nav li a.contador {
+		height:15px;
 		text-align:center;
+		padding-left: 10px;
+		font-size: 14px;
+		position: relative;
+		left: -20px;
 	}
-	
+
 	.footer .menu .nav li a {
 		height:20px;
 		padding:20px 10px;
 	}
-	
+
 	.menu .nav li {display:block; float:left;}
-	
-	.menu .nav li .imgUser {width:30px;}
-	
+
+	.altLeft .menu .nav li{padding-left:10px; padding-right: 10px; height:20px;}
+
+	.altLeft{height: 40px;}
+
+	.menu .nav li .imgUser {width:24px;}
+
+	.altLeft .menu .nav li a {
+		display:block;
+		color:#a7998d;
+		border:none;
+		text-decoration:none;
+		font-size:19px;
+		text-transform: none;
+	}
+	.altLeft .menu .nav li a.last {
+		border-right:none;
+	}
+	.altLeft .menu .nav li a span{
+		font-family: "HelveticaNeue" !important;
+   		font-weight: lighter;
+	}
+	.altLeft .menu .nav li a.active {
+		border-bottom: 3px solid #f9af85;
+		background: none;
+		padding-bottom: 15px;
+	}
+
 	.menu .nav li a {
 		display:block;
 		color:#FFFFFF;
-		border-left:1px solid #304948;
+		border-left:1px solid #6b6158;
 		text-decoration:none;
 		font-size:12px;
 		text-transform:uppercase;
@@ -933,7 +992,12 @@
 		font-family:'UniversLTStd-BoldCn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 	}
-	
+
+	.menuSocial{
+		float:right;
+		margin-top: 60px;
+	}
+
 	.menuSocial .nav {
     	list-style: none outside none;
     	position: relative;
@@ -947,7 +1011,7 @@
 	}
 	.menuSocial .nav li a {
 		display:block;
-		height:38px;
+		height:40px;
 		width:38px;
 	}
 	.menuSocial .nav li a.facebook {
@@ -965,40 +1029,40 @@
 	.menuSocial .nav li a.mail {
 		background:url(../images/site/mail.png);
 	}
-        
+
         .listImagemUser{
             float: left !important;
             margin-right: 10px !important;
 			padding:0 !important;
         }
-	
+
         .blockTitle{
             margin-bottom: 0px;
         }
-        
+
         .formLine{
             margin-left: 15px;
         }
-        
+
         .observation{
             color: #069C98;
             font-size: 14px;
             margin: 0px 0px 20px 20px;
             float: left;
         }
-        
+
         .observationLogin{
             color: #069C98;
             font-size: 14px;
             margin: 4px 15px 0px 15px;
             float: left;
         }
-        
+
         .loginFacebook{
             float: left;
             margin: 4px 0px 0px 15px;
         }
-        
+
         .loginInstagram{
             float: left;
         }
@@ -1015,9 +1079,9 @@
             background-position: 0px -29px;
         }
 	/*Fim das classes para o menu*/
-	
+
 	/* Replaces Classes Modal FrasesCool*/
-	
+
 	#frasesCoolModal.modal, #frasesCoolModal.modal .modal-footer{
 		background-color:transparent !important;
 		border:none !important;
@@ -1025,15 +1089,15 @@
 		box-shadow:none !important;
 		padding-top:0 !important;
 	}
-	
+
 	#frasesCoolModal.modal.fade.in{
 		top:3% !important;
 	}
-	
+
 	#frasesCoolModal.modal .modal-header{
 		border-bottom:none !important;
 	}
-	
+
 	#frasesCoolModal.modal .modal-header .close{
 		color:#FFFFFF !important;
 		margin-top:-4px;
@@ -1041,30 +1105,30 @@
 		text-shadow:none !important;
 		opacity:1 !important;
 	}
-	
+
 	#frasesCoolModal.modal .modal-header h3{
 		color:#FFFFFF;
 		font-size:24px;
 		font-family:'UniversLTStd-Cn', Arial, Helvetica, sans-serif !important;
 		font-weight:lighter;
 	}
-	
+
 	#frasesCoolModal.modal .modal-body{
 		padding-bottom:0 !important;
 		padding-top:0 !important;
 	}
-	
+
 	#frasesCoolModal.modal .modal-body .edicaoFrasesCool .fotoCool{
 		width:300px;
 		height:300px;
 		overflow:hidden;
 		margin-left:100px;
 	}
-	
+
 	#frasesCoolModal form{
 		margin:0 !important;
 	}
-	
+
 	#frasesCoolModal #listaFrasesCool{
 		width:500px;
 		height:150px;
@@ -1074,21 +1138,21 @@
 		background:#FFFFFF;
 		border:2px solid #2E4544;
 	}
-	
-	#frasesCoolModal #listaFrasesCool .fraseCool{	
+
+	#frasesCoolModal #listaFrasesCool .fraseCool{
 		float:left;
 		height:145px;
 		cursor:pointer;
 		margin-bottom:10px;
 	}
-	
+
 	#frasesCoolModal #listaFrasesCool .modeloFraseCool{
 		width:120px;
 		height:120px;
 		background:url(../images/site/bg-frase.jpg);
 		padding:10px 0 0 10px;
 	}
-	
+
 	#frasesCoolModal #listaFrasesCool .descricaoFraseCool{
 		font-size:12px;
 		text-decoration:none;
@@ -1097,11 +1161,11 @@
 		color:#2E4544;
 		padding-left:6px;
 	}
-	
+
 	#frasesCoolModal #listaFrasesCool .modeloFraseCool.active{
 		background:url(../images/site/bg-frase-active.jpg);
 	}
-	
+
 	#frasesCoolModal .btnDir{
 		width:150px;
 		height:39px;
@@ -1121,7 +1185,7 @@
 		display:block;
 		cursor:pointer;
 	}
-	
+
 	#frasesCoolModal .btnEsq{
 		width:150px;
 		height:39px;
@@ -1141,7 +1205,7 @@
 		display:block;
 		cursor:pointer;
 	}
-	
+
 	#frasesCoolModal #fraseCoolEditada{
 		position:absolute;
 		top:0;
