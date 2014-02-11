@@ -11,6 +11,7 @@ if($_GET['action'] == 'sair'){
 	}
 	$o_user = 0;
 	header("Location: ../index.php");
+	break;
 }
 //Coloca o Id do produto desejado em Session
 if(isset($_GET['id'])){
@@ -19,10 +20,10 @@ if(isset($_GET['id'])){
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
 	$appIdFace = "379620018818263";
-	$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";	
+	$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
 }else{
 	$appIdFace = "619446894748617";
-	$appSecretFace = "e36eb608b47d070353394814c9541b10";	
+	$appSecretFace = "e36eb608b47d070353394814c9541b10";
 }
 
 include("../WebServer/Instagram/Instagram.php");
@@ -46,7 +47,7 @@ $o_user = $facebook->getUser();
 if($o_user == 0){
 	//Coloca o Id do produto desejado em Session
 	$_SESSION['InstagiftProdId'] = $_GET['id'];
-	
+
 	$urlFacebook = $facebook->getLoginUrl(array('scope' => array('publish_stream','read_stream','user_photos')));
 	header("Location: ".$urlFacebook);
 }else{
