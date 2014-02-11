@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(E_ERROR);
-$menuClass = array("","active","");
+$menuClass = array("","active","","");
 $title = "Como Comprar";
 
 include("inc/header_site.php");

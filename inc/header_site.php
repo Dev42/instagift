@@ -46,7 +46,7 @@ include_once 'config/connection.php';
                 <?php
                     if(!isset($_SESSION['InstagiftTipoLogin'])){
                 ?>
-                        <li><a href="login.php" class="last <?php echo $menuClass[1]; ?>"><span>Login</span></a></li>
+                        <li><a href="login.php" class="last <?php echo $menuClass[3]; ?>"><span>Login</span></a></li>
                 <?php
                     }
                 ?>

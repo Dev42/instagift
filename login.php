@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['LogadoInstagift'])){
 	header("Location: perfil.php");
 }else{
-$menuClass = array("","","");
+$menuClass = array("","","","active");
 $title = "Cadastre-se";
 include("inc/header_site.php");
 ?>
