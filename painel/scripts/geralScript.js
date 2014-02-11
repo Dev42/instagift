@@ -46,7 +46,7 @@ $(document).ready(function(){
         if(confirm("Deseja deletar a foto?")) {
             $.ajax({
                 type: "POST",
-                url: "http://instagift.com.br/instagift/painel/modules/produto/action/ajaxProduto.php",
+                url: "http://fotu.net.br/site/painel/modules/produto/action/ajaxProduto.php",
                 data: {photoId : $(this).attr("id")},
                 success: function(data){
                     alert("Imagem deletada com sucesso!");

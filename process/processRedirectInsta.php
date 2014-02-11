@@ -16,13 +16,13 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") 
 	$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
 	$clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
 	$clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
-	$redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
+	$redirectUrlInsta = "http://localhost/site/process/processRedirectInsta.php";
 }else{
 	$appIdFace = "619446894748617";
 	$appSecretFace = "e36eb608b47d070353394814c9541b10";
 	$clientIdInsta = "fc50d2f7eb9b49f384280a3cc32af0d6";
 	$clientSecretInsta = "8a7f1b5af57040ee97f89092cf63b21b";
-	$redirectUrlInsta = "http://instagift.com.br/instagift/process/processRedirectInsta.php";
+	$redirectUrlInsta = "http://fotu.net.br/site/process/processRedirectInsta.php";
 }
 
 include("../WebServer/Instagram/Instagram.php");

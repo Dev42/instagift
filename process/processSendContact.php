@@ -5,7 +5,7 @@
 	$telefone = $_POST['telefone'];
 	$mensagem = $_POST['mensagem'];
 	
-	$destinatario = 'contato@instagift.com.br';
+	$destinatario = 'contato@fotu.net.br';
 	
 	$assuntoEmail = "Contato via site";
 	
@@ -34,16 +34,16 @@
 	// Define os dados do servidor e tipo de conexão
 	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	$mail->IsSMTP(); // Define que a mensagem será SMTP
-	$mail->Host = "mail.instagift.com.br"; // Endereço do servidor SMTP
+	$mail->Host = "mail.fotu.net.br"; // Endereço do servidor SMTP
 	$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
 	$mail->Port = 25;
-	$mail->Username = 'envio@instagift.com.br'; // Usuário do servidor SMTP
+	$mail->Username = 'envio@fotu.net.br'; // Usuário do servidor SMTP
 	$mail->Password = 'Envio2013'; // Senha do servidor SMTP
 	 
 	// Define o remetente
 	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	$mail->From = "envio@instagift.com.br"; // Seu e-mail
-	$mail->FromName = "Envio Instagift"; // Seu nome
+	$mail->From = "envio@fotu.net.br"; // Seu e-mail
+	$mail->FromName = "Envio Fotu"; // Seu nome
 	 
 	// Define os destinatário(s)
 	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

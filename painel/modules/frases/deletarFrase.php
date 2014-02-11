@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/header.php';
 
 if (isset($_GET['id']) && $_GET['id'] > 0){
     
@@ -17,10 +17,10 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 
 ?>
                 <div id="wrapper">
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/topbar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-				<?php $keyphrase = '7'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
+				<?php $keyphrase = '7'; include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/navigation.php';?>
                                     <div class="grid_16">
                                             <div class="indented round_all clearfix send_left">
                                                     <ul class="breadcrumb clearfix">
@@ -60,4 +60,4 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 			</div>
 		</div>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/closing_items.php' ?>

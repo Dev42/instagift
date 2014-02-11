@@ -79,7 +79,7 @@ class processaPagamento {
 			}
 		}
        
-        $paymentRequest->setRedirectUrl("http://www.instagift.com.br");
+        $paymentRequest->setRedirectUrl("http://www.fotu.net.br");
         
         try {
             $credentials = new PagSeguroAccountCredentials("giftinsta@gmail.com", "F5163FDBEEA34F01B6911BB1E642E73E");

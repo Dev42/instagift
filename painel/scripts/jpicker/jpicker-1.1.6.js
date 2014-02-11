@@ -1988,7 +1988,7 @@
         },
       images:
         {
-          clientPath: '/instagift/painel/scripts/jpicker/images/', /* Path to image files */
+          clientPath: '/site/painel/scripts/jpicker/images/', /* Path to image files */
           colorMap:
           {
             width: 256,

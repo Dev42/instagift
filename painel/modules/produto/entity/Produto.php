@@ -329,7 +329,7 @@ class Produto {
         // Gera um nome único para a imagem
         $nomeUnico = uniqid(time()) . "." . $ext[1];
 
-        $caminho = $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/modules/produto/images';
+        $caminho = $_SERVER['DOCUMENT_ROOT'].'/site/painel/modules/produto/images';
 
         $caminhoFoto = $caminho.$nomeUnico;
 

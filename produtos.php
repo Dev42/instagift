@@ -22,13 +22,13 @@ if (isset($_SESSION['InstagiftProdId'])) {
         $appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
         $clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
         $clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
-        $redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
+        $redirectUrlInsta = "http://localhost/site/process/processRedirectInsta.php";
     } else {
         $appIdFace = "619446894748617";
         $appSecretFace = "e36eb608b47d070353394814c9541b10";
         $clientIdInsta = "fc50d2f7eb9b49f384280a3cc32af0d6";
         $clientSecretInsta = "8a7f1b5af57040ee97f89092cf63b21b";
-        $redirectUrlInsta = "http://instagift.com.br/instagift/process/processRedirectInsta.php";
+        $redirectUrlInsta = "http://fotu.net.br/site/process/processRedirectInsta.php";
     }
 
     $prdList = $prdFront->listAction($idProd, "produto_12_active = 1");
@@ -83,10 +83,10 @@ if (isset($_SESSION['InstagiftProdId'])) {
 }
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
-    $geralUrl = "http://localhost/instagift/";
+    $geralUrl = "http://localhost/site/";
     $geralUrl2 = "http://localhost/instagift";
 } else {
-    $geralUrl = "http://instagift.com.br/instagift/";
+    $geralUrl = "http://fotu.net.br/site/";
     $geralUrl2 = "http://localhost/instagift";
 }
 
@@ -450,7 +450,7 @@ if ($idProd) {
         $boxBanner .= '<div class="span4">';
         $boxBanner .= '<div class="fechar" onClick="hideBox(' . $v->getId() . ')"></div>';
         $boxBanner .= '<div class="txtbox">';
-        $boxBanner .= '<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Instagift para selecionar suas fotos.</span>';
+        $boxBanner .= '<span>Agora é só escolher suas fotos! Basta clicar no link do Instagram, Facebook ou no Upload para subir suas próprias fotos e autorizar o Fotu para selecionar suas fotos.</span>';
         $boxBanner .= '</div>';
         $boxBanner .= '<div class="comprar">';
         $boxBanner .= '<a href="process/processRedirectUser.php?id=' . $v->getId() . '" class="loginUser"><img src="images/site/ico-upload.png" alt="Login"></a>';

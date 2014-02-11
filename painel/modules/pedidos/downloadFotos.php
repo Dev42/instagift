@@ -1,7 +1,7 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/conf/connection.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/conf/classLoader.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/conf/connection.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/conf/classLoader.php';
 
 /* Foto Getter */
 

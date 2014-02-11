@@ -1,8 +1,8 @@
 <?php 
 if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
-    $urlGeral = "http://localhost/instagift/painel";
+    $urlGeral = "http://localhost/site/painel";
 }else {
-    $urlGeral = "http://instagift.com.br/instagift/painel";
+    $urlGeral = "http://fotu.net.br/site/painel";
 }
 session_start();
 include 'includes/header.php';
@@ -16,7 +16,7 @@ include 'includes/header.php';
 								<div class="section">
 									<div class="alert dismissible alert_light">
 										<img width="24" height="24" src="images/icons/small/grey/locked.png">
-										<strong>Bem-vindo ao Instagift.</strong> Por favor informe suas credencias para acesso.
+										<strong>Bem-vindo ao Fotu.</strong> Por favor informe suas credencias para acesso.
 									</div>
 								</div>	
                                                             <form action="<?php echo $urlGeral; ?>/conf/security.php" class="validate_form" method="post">

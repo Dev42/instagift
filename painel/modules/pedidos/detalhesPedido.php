@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/header.php';
 
 if (isset($_GET['id']) && $_GET['id'] > 0){
 	$pedidoController = new PedidosController();
@@ -43,10 +43,10 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 
 ?>
                 <div id="wrapper">
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/topbar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-				<?php $keyphrase = '4'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
+				<?php $keyphrase = '4'; include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/navigation.php';?>
 					<div class="flat_area grid_16">
 						<h2>Detalhes do pedido - <?php echo $pedido[1]["ped_10_id"]; ?></h2>
 					</div>
@@ -210,4 +210,4 @@ if (isset($_GET['id']) && $_GET['id'] > 0){
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/adminica/adminica_datatables.js"></script>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/closing_items.php' ?>

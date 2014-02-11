@@ -13,10 +13,10 @@ if ($_SERVER['SERVER_ADDR'] == "127.0.0.1"){
     $pass = "instaDB";
     
 }else {
-    $dataBase = "instagift";
-    $host = "mysql.instagift.com.br";
-    $user = "instagift";
-    $pass = "instaDB";
+    $dataBase = "fotu_net_br";
+    $host = "mysql.fotu.net.br";
+    $user = "fotu_live";
+    $pass = "N2-EH^jh";
 	
 }
 

@@ -315,7 +315,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_10_id`, `user_30_nome`, `user_30_contato`, `user_30_doc1`, `user_30_doc2`, `user_10_tel_ddd`, `user_10_tel`, `user_30_endereco`, `user_30_obs`, `user_30_username`, `user_30_password`, `user_30_email`, `user_12_type`, `user_12_active`) VALUES
-(1, 'Admin Instagift', 'Admin', '', '', 11, 11111111, '', '', 'admin', 'MjEyMzJmMjk3YTU3YTVhNzQzODk0YTBlNGE4MDFmYzM=', 'admin@instagift.com.br', 1, 1),
+(1, 'Admin Fotu', 'Admin', '', '', 11, 11111111, '', '', 'admin', 'MjEyMzJmMjk3YTU3YTVhNzQzODk0YTBlNGE4MDFmYzM=', 'admin@fotu.net.br', 1, 1),
 (10, 'Empresa de venda', 'Contato', '', '', 11, 22223333, 'Rua VoluntÃ¡rios da PÃ¡tria, 2820, sala 58', 'observaÃ§Ã£o', 'fornecedor1', 'YWJiOGU4OTBiZjZiMTMwMWU0YTIxMDZkNGM1NDhmNzM=', 'andre.simoes@quup.com.br', 3, 1),
 (17, 'Fornecedor teste 2', 'Fornecedor', '', '', 22, 22222222, 'Teste', 'Teste obs', 'fornecedor', 'YWNlZjk2NDJlYTgzYjRmYjM3OTRmMGIyMjhkZTNlNzc=', 'fornecedor@teste.com.br', 3, 1),
 (18, 'Giovanni Giannichi', '', '', '', 0, 0, '', '', 'giogiannichi', 'YTBlMTVhNTk5ZTEyMzA1NmRjZjY4YTcxMzVhNjU4M2Y=', 'giogiannichi@gmail.com', 2, 1);

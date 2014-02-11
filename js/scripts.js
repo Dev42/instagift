@@ -517,10 +517,10 @@ function compartilharInstaFb(){
 	FB.ui(
 	  {
 		method: 'feed',
-		link: 'http://instagift.com.br',
+		link: 'http://fotu.net.br',
 		image: '<?php echo $imageInsta ?>',
-		name: 'Instagift',
-		caption: 'Instagift',
+		name: 'Fotu',
+		caption: 'Fotu',
 		description: 'Suas fotos viram presentes'
 	  },
 	  function(response) {

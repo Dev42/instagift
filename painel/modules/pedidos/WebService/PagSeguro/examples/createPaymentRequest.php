@@ -49,7 +49,7 @@ class createPaymentRequest {
 		// Sets your customer information.
 		$paymentRequest->setSender('Jo�o Comprador', 'comprador@uol.com.br', '11', '56273440');
 		
-		$paymentRequest->setRedirectUrl("http://www.instagift.com.br");
+		$paymentRequest->setRedirectUrl("http://www.fotu.net.br");
 		
 		try {
 			

@@ -1,16 +1,16 @@
 <?php
 
 if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){ 
-    $dataBase = "insta892_instagift";
+    $dataBase = "fotu_net_br";
     $host = "localhost";
-    $user = "instagift";
-    $pass = "instaDB";
+    $user = "fotu_live";
+    $pass = "N2-EH^jh";
 	
 }else {
-    $dataBase = "insta892_instagift";
-    $host = "localhost";
-    $user = "insta892_insta";
-    $pass = "instaDB13";
+    $dataBase = "fotu_net_br";
+    $host = "mysql.fotu.net.br";
+    $user = "fotu_live";
+    $pass = "N2-EH^jh";
 }
 
 $conn = mysql_connect($host, $user, $pass);

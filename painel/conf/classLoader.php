@@ -1,11 +1,11 @@
 <?php
 
 if ($_SERVER['SERVER_ADDR'] == "127.0.0.1"){ 
-    $geralClass = "/instagift/painel/modules";
+    $geralClass = "/site/painel/modules";
 }else if($_SERVER['SERVER_ADDR'] == "::1"){ //Fix para IP v6 que o MAMP usa
-	$geralClass = "/instagift/painel/modules";
+	$geralClass = "/site/painel/modules";
 }else {
-    $geralClass = "/instagift/painel/modules";
+    $geralClass = "/site/painel/modules";
 }
 
 // Configuração dos módulos

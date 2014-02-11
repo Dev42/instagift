@@ -1,13 +1,13 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/header.php';
 
 $userController = new UserController();
 ?>
                 <div id="wrapper">
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/topbar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-				<?php $keyphrase = '6'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
+				<?php $keyphrase = '6'; include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/navigation.php';?>
 					<div class="flat_area grid_16">
 						<h2>Adicionar Cupom</h2>
 						<p>Crie um cupom de desconto para um cliente.</p>
@@ -49,4 +49,4 @@ $userController = new UserController();
 		</div>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/closing_items.php' ?>

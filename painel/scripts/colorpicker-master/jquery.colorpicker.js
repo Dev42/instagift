@@ -1811,7 +1811,7 @@
 			altProperties:		'background-color',	// comma separated list of any of 'background-color', 'color', 'border-color', 'outline-color'
 			autoOpen:			false,		// Open dialog automatically upon creation
 			buttonColorize:		false,
-			buttonImage:		'/instagift/painel/scripts/colorpicker-master/images/ui-colorpicker.png',
+			buttonImage:		'/site/painel/scripts/colorpicker-master/images/ui-colorpicker.png',
 			buttonImageOnly:	false,
 			buttonText:			null,		// Text on the button and/or title of button image.
 			closeOnEscape:		true,		// Close the dialog when the escape key is pressed.

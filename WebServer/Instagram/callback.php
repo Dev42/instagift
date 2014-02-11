@@ -25,7 +25,7 @@ $config = array(
         'client_id' => '6dee7c0ead4a4ddab8d7575228ae619c', // Your client id
         'client_secret' => '8268b1b5d8034ae6aba4ff733a4307e3', // Your client secret
         'grant_type' => 'authorization_code',
-        'redirect_uri' => 'http://instagift.com.br/index.php', // The redirect URI you provided when signed up for the service
+        'redirect_uri' => 'http://fotu.net.br/index.php', // The redirect URI you provided when signed up for the service
      );
 
 // Instantiate the API handler object

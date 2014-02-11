@@ -1,13 +1,13 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/header.php';
 
 $userController = new UserController();
 ?>
                 <div id="wrapper">
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/topbar.php' ?>
-			<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/sidebar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/topbar.php' ?>
+			<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/sidebar.php' ?>
 				<div id="main_container" class="main_container container_16 clearfix">
-				<?php $keyphrase = '7'; include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/navigation.php';?>
+				<?php $keyphrase = '7'; include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/navigation.php';?>
 					<div class="flat_area grid_16">
 						<h2>Adicionar Frase</h2>
 						<p>Adicione uma imagem para as Frases Cool.</p>
@@ -48,4 +48,4 @@ $userController = new UserController();
 		</div>
 
 <script type="text/javascript" src="<?php echo $urlGeral; ?>/scripts/geralScript.js"></script>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/instagift/painel/includes/closing_items.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/site/painel/includes/closing_items.php' ?>

@@ -11,10 +11,10 @@ include("inc/header_site.php");
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
 	$appIdFace = "379620018818263";
-	$imageInsta = "http://localhost/instagift/images/site/logo-header.png";
+	$imageInsta = "http://localhost/site/images/site/logo-header.png";
 }else{
 	$appIdFace = "619446894748617";
-	$imageInsta = "http://instagift.com.br/instagift/images/site/logo-header.png";
+	$imageInsta = "http://fotu.net.br/site/images/site/logo-header.png";
 }
 ?>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
@@ -24,7 +24,7 @@ jQuery(function($){
 
    FB.init({
       appId      : '<?php echo $appIdFace ?>',           // App ID from the app dashboard
-      channelUrl : 'http://instagift.com.br', 			 // Channel file for x-domain comms
+      channelUrl : 'http://fotu.net.br', 			 // Channel file for x-domain comms
       status     : true,                                 // Check Facebook Login status
       xfbml      : true                                  // Look for social plugins on the page
     });

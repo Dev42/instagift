@@ -2,8 +2,8 @@
 
 session_start();
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/config.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/conf/connection.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/site/painel/conf/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/site/painel/conf/connection.php';
 
 if ((isset($_POST['username']) && $_POST['username'] != "" && isset($_POST['password']) && $_POST['password'] != "")) {
     $userName = $_POST['username'];

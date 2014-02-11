@@ -4,7 +4,7 @@ error_reporting(E_ERROR);
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
     $geralUrl = "http://localhost/instagift";
 } else {
-    $geralUrl = "http://instagift.com.br/instagift/";
+    $geralUrl = "http://fotu.net.br/site/";
 }
 if (isset($_SESSION['LogadoInstagift'])){
 	$menuClass = array("","","");
@@ -16,7 +16,7 @@ if (isset($_SESSION['LogadoInstagift'])){
 			'client_id'                =>     'fc50d2f7eb9b49f384280a3cc32af0d6', //'097713367ef9406db262c4b7592b43bc',
 			'client_secret'            =>     '8a7f1b5af57040ee97f89092cf63b21b', //'171763c7c85e456e82b23f42ac3682f1',
 			'grant_type'               =>     'authorization_code',
-			'redirect_uri'             =>     'http://instagift.com.br/instagift/perfilInsta.php'
+			'redirect_uri'             =>     'http://fotu.net.br/site/perfilInsta.php'
 	);
 		
 	if (isset($_SESSION['instaAccess'])){
@@ -69,7 +69,7 @@ $fotosUser = $usrFoto->listAction($_SESSION['IdInstagift']);
                                             <a href="perfilInsta.php?action=logout">Sair</a>
                                         </div>';
                             }else{
-                                echo '<a href="https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://instagift.com.br/instagift/perfilInsta.php&response_type=code">Conectar ao Instagram</a>';
+                                echo '<a href="https://api.instagram.com/oauth/authorize/?client_id=fc50d2f7eb9b49f384280a3cc32af0d6&redirect_uri=http://fotu.net.br/site/perfilInsta.php&response_type=code">Conectar ao Instagram</a>';
                             }
                         ?>
                     </div>

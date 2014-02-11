@@ -156,7 +156,7 @@ class UserFoto {
         // Gera um nome único para a imagem
         $nomeUnico = uniqid(time()) . "." . $ext[1];
 
-        $caminho = $_SERVER['DOCUMENT_ROOT'].'/instagift/painel/modules/produto/user';
+        $caminho = $_SERVER['DOCUMENT_ROOT'].'/site/painel/modules/produto/user';
 
         $caminhoFoto = $caminho.$nomeUnico;
 
