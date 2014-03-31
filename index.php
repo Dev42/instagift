@@ -43,6 +43,7 @@ include("inc/header_site.php");
         	<div class="span12">
 				<div id="slides">
                     <div class="slides_container">
+                        <a href="produtos.php"><img src="images/site/bannerProdutos.jpg" width="960" height="338" alt="Produtos Fotu"></a>
                     	<?php
                     		foreach ($prdList as $k => $v){
 								$uploadPathBanner = $uploadPath."produtos/banners/".$v->getBanner(true);
