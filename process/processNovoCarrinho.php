@@ -10,7 +10,7 @@ $chtController = new ChartController();
 $ped = new Pedidos();
 $pedController = new PedidosController();
 
-$ped->setNome($_POST['nome']);
+$ped->setNome($_POST['nome']." ".$_POST['sobrenome']);
 $ped->setEmail($_POST['email']);
 $ped->setDdd($_POST['ddd']);
 $ped->setTelefone($_POST['telefone']);

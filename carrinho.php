@@ -11,7 +11,7 @@ include("inc/header_site.php");
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
 	$appIdFace = "379620018818263";
-	$imageInsta = "http://localhost/site/images/site/logo-header.png";
+	$imageInsta = "http://localhost/instagift/images/site/logo-header.png";
 }else{
 	$appIdFace = "619446894748617";
 	$imageInsta = "http://fotu.net.br/site/images/site/logo-header.png";

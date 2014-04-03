@@ -9,7 +9,7 @@ function hideBox(idProduto){
 function adicionarFotoCaixa(urlExibicao, urlImpressao, tipodiv, margin){
 	var nrFotosTampa = $('#nrFotosTampa').val();
 	fotosEscolhidasTampa = verificaNrFotosEscolhidas('tampa');
-	
+
 	if(fotosEscolhidasTampa < parseInt(nrFotosTampa)){
 		adicionarFoto(urlExibicao, urlImpressao, 'tampa', tipodiv, margin);
 	}else{
@@ -28,10 +28,10 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv,margin){
 	if(tipo == 'tampa'){
 		nrFotosTampa = $('#nrFotosTampa').val();
 		fotosEscolhidasTampa = verificaNrFotosEscolhidas('tampa');
-		
+
 		nrFotos = $('#nrFotos').val();
 		fotosEscolhidas = verificaNrFotosEscolhidas('padrao');
-		
+
 		inputFotos = document.getElementById('urlFotosTampa');
 		if(fotosEscolhidasTampa == 0){
 			inputFotos.value = urlImpressao;
@@ -39,17 +39,17 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv,margin){
 			inputFotos.value = inputFotos.value+";"+urlImpressao;
 		}
 		var idFoto = new Date().getTime();
-		
+
 		$('#selecaoFotosTampa').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" style="margin-left:-'+margin+'px" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'tampa\')" id="foto_'+idFoto+'"></div>');
-		
+
 		$("#selecaoFotosTampa .spaceFoto:first").remove()
-		
+
 		$('#countTampa').html(fotosEscolhidasTampa+1);
-		
+
 		if(fotosEscolhidas == parseInt(nrFotos) && fotosEscolhidasTampa+1 == parseInt(nrFotosTampa)){
 			$('#btn-comprar').show();
 		}
-	
+
 	}else{
 		nrFotos = $('#nrFotos').val();
 		fotosEscolhidas = verificaNrFotosEscolhidas('padrao');
@@ -65,14 +65,14 @@ function adicionarFoto(urlExibicao, urlImpressao, tipo, tipodiv,margin){
 			$('#selecaoFotos').prepend(divcontainer+'<img src="'+urlExibicao+'" alt="" style="margin-left:-'+margin+'px" onclick="removerFoto(\''+idFoto+'\',\''+urlImpressao+'\',\'padrao\')" id="foto_'+idFoto+'"></div>');
 
 			$("#selecaoFotos .spaceFoto:first").remove();
-			
+
 			$('#count').html(fotosEscolhidas+1);
-			
+
 			if(fotosEscolhidas+1 == parseInt(nrFotos)){
 				$('#btn-comprar').show();
 				$('#frasesCool').show();
 			}
-			
+
 		}else{
 			alert("Número máximo de fotos para este produto já foi atingido");
 		}
@@ -83,7 +83,7 @@ function removerFoto(idFoto, urlImpressao, tipo){
 	if(tipo == 'tampa'){
 		fotosEscolhidas = verificaNrFotosEscolhidas('tampa');
 		inputFotos = document.getElementById('urlFotosTampa');
-		
+
 		if(fotosEscolhidas == 1){
 			inputFotos.value = '';
 		}else{
@@ -102,7 +102,7 @@ function removerFoto(idFoto, urlImpressao, tipo){
 	}else{
 		fotosEscolhidas = verificaNrFotosEscolhidas('padrao');
 		inputFotos = document.getElementById('urlFotos');
-		
+
 		if(fotosEscolhidas == 1){
 			inputFotos.value = '';
 		}else{
@@ -129,7 +129,7 @@ function verificaNrFotosEscolhidas(tipo){
 	}else{
 		fotos = $('#urlFotos').val();
 	}
-	
+
 	if(fotos == ''){
 		totFotos = 0;
 	}else{
@@ -154,12 +154,12 @@ function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
 	$('.contOpcaoModelo').removeClass('active');
 	elemento.className += " active";
 	nrFotosAtual = parseInt($('#nrFotos').val());
-	
+
 	if(nrFotosAtual < nrFotosEscolhido){
 		$('#selModelo').val(idEscolhido);
 		$('#nrFotos').val(nrFotosEscolhido);
 		$('#txtNrFotos').html(nrFotosEscolhido);
-		
+
 		diferencaFotos = nrFotosEscolhido - nrFotosAtual;
 		for(i=1;i<=diferencaFotos;i++){
 			$('#selecaoFotos').append("<div class='spaceFoto'></div>");
@@ -171,7 +171,7 @@ function selecionaOpcaoCompra(elemento,idEscolhido,nrFotosEscolhido){
 		$('#nrFotos').val(nrFotosEscolhido);
 		$('#txtNrFotos').html(nrFotosEscolhido);
 		$('#count').html('0');
-		
+
 		$('#selecaoFotos').empty();
 		for(i=1;i<=nrFotosEscolhido;i++){
 			$('#selecaoFotos').append("<div class='spaceFoto'></div>");
@@ -196,7 +196,7 @@ function selecionaNrFotosTampa(elemento,opcaoEscolhida){
                 $('.boxNrFotosTampa').removeClass('active');
                 elemento.className += " active";
                 $('#nrFotosTampa').val(opcaoEscolhida);
-                
+
                 $('#btn-comprar').hide();
         }
 }
@@ -216,16 +216,16 @@ function alteraQtde(idItem,action){
 				$("#quantidade_"+idItem).val(retorno[1]);
 				$("#valor_"+idItem).html("R$ "+retorno[2]);
 			}else {
-				alert("Ocorreu um erro");    
+				alert("Ocorreu um erro");
 			}
         });
-    }    
+    }
 }
 
 function calcularCep(){
 	cep = $("#cepCliente").val();
 	ssnRegExp = /^\d{5}-\d{3}$/;
-	
+
     if(!ssnRegExp.test(cep)){
         alert("Preencha o CEP corretamente");
 	}else{
@@ -247,7 +247,7 @@ function calcularCep(){
 				$("#loadingCep").html("");
 				$("#opcoesFrete").show();
 				$("#opcoesFrete").html("-");
-				alert("Ocorreu um erro");    
+				alert("Ocorreu um erro");
 			}
         });
     }
@@ -268,7 +268,7 @@ function verificarCupom(metodo){
 			$("#resultadoCupom").html("<span>"+retorno[1]+"% de desconto</span>");
 		}else {
 			$("#loadingCupom").html("");
-			$("#resultadoCupom").html("<span>Cupom inválido</span>"); 
+			$("#resultadoCupom").html("<span>Cupom inválido</span>");
 		}
 	});
 }
@@ -276,16 +276,16 @@ function verificarCupom(metodo){
 function validaCarrinho(){
 	cep = $("#cepCliente").val();
 	ssnRegExp = /^\d{5}-\d{3}$/;
-	
+
 	radios = document.getElementsByName('optFrete');
 	freteEscolhido = false;
-	
+
 	for (var i = 0, length = radios.length; i < length; i++) {
 		if (radios[i].checked) {
 			freteEscolhido = true
 		}
 	}
-	
+
     if(!ssnRegExp.test(cep)){
         alert("Preencha o CEP corretamente");
 		return false;
@@ -302,8 +302,12 @@ function validaFormPedido(){
 		alert("Preencha o nome");
 		return false;
 	}
-	if($("#email").val() == ''){
-		alert("Preencha o e-mail");
+	if($("#sobrenome").val() == ''){
+		alert("Preencha o sobrenome");
+		return false;
+	}
+	if(!isValidEmailAddress($("#email").val())){
+		alert("Preencha o e-mail corretamente");
 		return false;
 	}
 	if($("#ddd").val() == ''){
@@ -368,10 +372,10 @@ function iniciaFrasesCool(){
 	$(".modeloFraseCool").removeClass('active');
 	$('#blockAction').remove();
 	$('#selecaoFotos').fadeTo('slow',1);
-	
+
 	$("#fotosFrasesCool").html($("#selecaoFotos").html().replace(/removerFoto\(/g,"selFotoFrasesCool(this,"));
 	verificarFraseFeita();
-	
+
 	$('#selecaoFotos').fadeTo('slow',.6);
 	$('#selecaoFotos').append('<div id="blockAction" style="position: relative;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
 	$("#headerPasso1").show(0);
@@ -440,10 +444,10 @@ function avancaPasso3FraseCool(){
 function adicionaFraseCool(id, url){
 	$(".modeloFraseCool").removeClass('active');
 	$("#modeloFrase_"+id+".modeloFraseCool").addClass('active');
-	
+
 	$("#fraseCoolEditada").remove();
 	$("#fotoCool").append("<div id='fraseCoolEditada' style='cursor:move; display:inline-block; border:1px dashed #ffffff;'><img src='images/uploads/frases/"+url+"' id='imagemFraseCool' style='width:280px;'></div>");
-	
+
 	$("#fraseCoolEditada").draggable({ containment: "#fotoCool", drag: function( event, ui ){atualizaPosDimFraseCool()} });
 	$("#imagemFraseCool").resizable({ containment: "#fotoCool", aspectRatio: true, resize: function( event, ui ){atualizaPosDimFraseCool()} });
 	$("#urlFraseCool").val(url);
@@ -456,7 +460,7 @@ function atualizaPosDimFraseCool(){
 	var dimensao = parseInt($("#imagemFraseCool").css('width').replace('px',''));
 	var posicaoLeft = parseInt($("#fraseCoolEditada").css('left').replace('px','')) - 117;
 	var posicaoTop = parseInt($("#fraseCoolEditada").css('top').replace('px','')) - 2;
-	
+
 	$("#posFraseCool").val(posicaoLeft+","+posicaoTop);
 	$("#dimFraseCool").val(dimensao);
 }
@@ -467,9 +471,9 @@ function finalizarFrase(){
 	var urlFraseCool = $("#urlFraseCool").val();
 	var posFraseCool = $("#posFraseCool").val();
 	var dimFraseCool = $("#dimFraseCool").val();
-	
+
 	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+urlFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
-	
+
 	$('#frasesCoolModal').modal('hide');
 }
 
@@ -479,11 +483,11 @@ function salvarNovaFraseCool(){
 	var urlFraseCool = $("#urlFraseCool").val();
 	var posFraseCool = $("#posFraseCool").val();
 	var dimFraseCool = $("#dimFraseCool").val();
-	
+
 	$('#frasesCool').append('<input type="hidden" id="fotoCool_'+idFotoCool+'" name="fotosCool[]" value="'+idFotoCool+';'+urlFotoCool+';'+urlFraseCool+';'+posFraseCool+';'+dimFraseCool+'" />');
-	
+
 	verificarFraseFeita();
-	
+
 	$(".modeloFraseCool").removeClass('active');
 	$("#headerPasso1").show(0);
 	$("#headerPasso2").hide(0);
@@ -501,7 +505,7 @@ function verificarFraseFeita(){
 		valuesInput = $(this).val().split(';');
 		idsFotosUsadas.push(valuesInput[0]);
 	});
-	
+
 	$("#fotosFrasesCool img").each(function (){
 		idFotoCru = $(this).attr('id');
 		idFoto = idFotoCru.replace('foto_','');
@@ -527,8 +531,13 @@ function compartilharInstaFb(){
 		if (response && response.post_id) {
 		  verificarCupom('fb');
 		} else {
-		  
+
 		}
 	  }
 	);
 }
+
+function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+    return pattern.test(emailAddress);
+};

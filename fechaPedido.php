@@ -25,8 +25,33 @@ if($sucesso == 1){
 ?>
 <script type="text/javascript">
 jQuery(function($){
-   $("#ddd").mask("99");
-   $("#telefone").mask("99999999");
+   var specialKeys = new Array();
+    specialKeys.push(8);
+    $(function () {
+        $("#telefone").bind("keypress", function (e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            return ret;
+        });
+        $("#telefone").bind("paste", function (e) {
+            return false;
+        });
+        $("#telefone").bind("drop", function (e) {
+            return false;
+        });
+
+        $("#ddd").bind("keypress", function (e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            return ret;
+        });
+        $("#ddd").bind("paste", function (e) {
+            return false;
+        });
+        $("#ddd").bind("drop", function (e) {
+            return false;
+        });
+    });
 });
 </script>
 <div class="clearfix"></div>
@@ -35,17 +60,21 @@ jQuery(function($){
             <div class="span12"><h1 style="text-transform:uppercase;">Dados pessoais</h1></div>
     		<div class="span11 dados">
             	<div class="field">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" name="nome" id="nome"/>
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" style="width: 180px;"/>
+                </div>
+                <div class="field">
+                    <label for="nome">Sobrenome</label>
+                    <input type="text" name="sobrenome" id="sobrenome" style="width: 180px;"/>
                 </div>
                 <div class="field">
 	                <label for="email">E-mail</label>
-               		<input type="text" name="email" id="email"/>
+               		<input type="text" name="email" id="email" style="width: 180px;"/>
                 </div>
                 <div class="field">
                     <label for="telefone">Telefone</label>
                     <input type="text" name="ddd" id="ddd" style="width: 30px;"/>
-                    <input type="text" name="telefone" id="telefone" style="width: 214px;" />
+                    <input type="text" name="telefone" id="telefone" style="width: 150px;" />
                 </div>
              </div>
              <div class="span12"><h1 style="text-transform:uppercase;">Endereço de entrega</h1></div>

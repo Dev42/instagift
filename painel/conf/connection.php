@@ -2,7 +2,7 @@
 
 if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || $_SERVER['SERVER_ADDR'] == "::1"){
     $dataBase = "fotu_net_br";
-    $host = "mysql.fotu.net.br";
+    $host = "localhost";
     $user = "fotu_live";
     $pass = "N2-EH^jh";
 }else {

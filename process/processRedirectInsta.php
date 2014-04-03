@@ -16,7 +16,7 @@ if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") 
 	$appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
 	$clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
 	$clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
-	$redirectUrlInsta = "http://localhost/site/process/processRedirectInsta.php";
+	$redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
 }else{
 	$appIdFace = "619446894748617";
 	$appSecretFace = "e36eb608b47d070353394814c9541b10";
@@ -33,7 +33,7 @@ $facebook = new Facebook(array(
 		'appId'  => $appIdFace,
 		'secret' => $appSecretFace
 ));
- 
+
 $o_user = $facebook->getUser();
 
 //Se existir login com o Facebook, finalizar para abrir com o Instagram
@@ -53,16 +53,16 @@ $access_token_parameters = array(
 		'client_id'                =>     $clientIdInsta,
 		'client_secret'            =>     $clientSecretInsta,
 		'grant_type'               =>     'authorization_code',
-		'redirect_uri'             =>     $redirectUrlInsta 
+		'redirect_uri'             =>     $redirectUrlInsta
 );
 
 if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
 	$code = $_GET['code'];
-		
+
 	$url = "https://api.instagram.com/oauth/access_token";
 
 	$access_token_parameters['code'] = $code;
-	
+
 	$curl = curl_init($url);    // we init curl by passing the url
 	curl_setopt($curl,CURLOPT_POST,true);   // to send a POST request
 	curl_setopt($curl,CURLOPT_POSTFIELDS,$access_token_parameters);   // indicate the data to send
@@ -71,7 +71,7 @@ if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
 	curl_close($curl);   // to close the curl session
 
 	$arr = json_decode($result,true);
-	
+
 	if (!isset($arr['OAuthException'])){
 		$_SESSION['instaAccess'] = $arr;
 	}
@@ -79,20 +79,20 @@ if(isset($_GET['code']) && !isset($_SESSION['instaAccess'])){
 }else if(isset($_SESSION['instaAccess'])){
 	$Instagram = new Instagram($access_token_parameters);
 	$Instagram->setAccessToken($_SESSION["instaAccess"]["access_token"]);
-	
+
 	$userInfo = $Instagram->getUser($_SESSION["instaAccess"]["user"]["id"]);
-	
+
 	$response = json_decode($userInfo, true);
-	
+
 	$fotosUser = $Instagram->getUserRecent($_SESSION['instaAccess']['user']['id']);
 	$instaPhotos = json_decode($fotosUser, true);
-	
+
 	$_SESSION['InstagiftTipoLogin'] = 'Insta';
 	$_SESSION['InstagiftDadosInsta'] = $response;
 	$_SESSION['InstagiftNrFotos'] = count($instaPhotos['data']);
-	
+
 	header("Location: ../produtos.php");
-	
+
 }else{
 	header("Location:https://api.instagram.com/oauth/authorize/?client_id=".$clientIdInsta."&redirect_uri=".$redirectUrlInsta."&response_type=code");
 }

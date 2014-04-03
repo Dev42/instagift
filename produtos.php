@@ -22,7 +22,7 @@ if (isset($_SESSION['InstagiftProdId'])) {
         $appSecretFace = "b7e7ea23e55394341ac1fb051382a248";
         $clientIdInsta = "e6aeb2b57bef44c997107d92d234d695";
         $clientSecretInsta = "cbf5bdff67cd4de6bc493830bbdeeb3b";
-        $redirectUrlInsta = "http://localhost/site/process/processRedirectInsta.php";
+        $redirectUrlInsta = "http://localhost/instagift/process/processRedirectInsta.php";
     } else {
         $appIdFace = "619446894748617";
         $appSecretFace = "e36eb608b47d070353394814c9541b10";
@@ -83,11 +83,11 @@ if (isset($_SESSION['InstagiftProdId'])) {
 }
 
 if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1" || $_SERVER["REMOTE_ADDR"] == "::1") {
-    $geralUrl = "http://localhost/site/";
+    $geralUrl = "http://localhost/instagift/";
     $geralUrl2 = "http://localhost/instagift";
 } else {
     $geralUrl = "http://fotu.net.br/site/";
-    $geralUrl2 = "http://localhost/instagift";
+    $geralUrl2 = "http://fotu.net.br/site";
 }
 
 $uploadPath = $geralUrl . "images/uploads/";
