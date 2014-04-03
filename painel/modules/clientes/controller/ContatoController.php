@@ -13,7 +13,7 @@ class ContatoController {
                 $fields = implode("`, `", array_keys($contatoAr));
                 $values = implode("', '", $contatoAr);
 
-                $strQuery = "INSERT INTO `insta892_instagift`.`" . $contato->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+                $strQuery = "INSERT INTO `fotu_net_br`.`" . $contato->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
                 mysql_query($strQuery);
 
@@ -32,7 +32,7 @@ class ContatoController {
             if ($contato->getNome() != "" && ($contato->getEmail() != "" || $contato->getTel() != "")) {
 
                 $contatoAr = $contato->assocEntity();
-            
+
                 $setQuery = array();
                 foreach ($contatoAr as $k => $v){
                     if ($v != ""){
@@ -42,10 +42,10 @@ class ContatoController {
 
                 $setQuery = implode($setQuery, ", ");
 
-                $sqlQuery = "UPDATE `insta892_instagift`.`".$contato->tableName()."` SET $setQuery WHERE `cnt_10_id` = ". $contato->getId();
+                $sqlQuery = "UPDATE `fotu_net_br`.`".$contato->tableName()."` SET $setQuery WHERE `cnt_10_id` = ". $contato->getId();
 
                 echo $sqlQuery;
-                
+
                 mysql_query($sqlQuery);
 
                 return true;
@@ -64,7 +64,7 @@ class ContatoController {
 
         if ($contato->getId() != "") {
 
-            $sqlQuery = "DELETE FROM `insta892_instagift`.`" . $contato->tableName() . "` WHERE `cnt_10_id` = " . $contato->getId();
+            $sqlQuery = "DELETE FROM `fotu_net_br`.`" . $contato->tableName() . "` WHERE `cnt_10_id` = " . $contato->getId();
             mysql_query($sqlQuery);
 
             return true;
@@ -72,8 +72,8 @@ class ContatoController {
             return false;
         }
     }
-    
-    
+
+
 
     public function listAction($id = false, $cliId = false) {
 
@@ -81,14 +81,14 @@ class ContatoController {
         $whereQuery[] = (!$cliId) ? "1 = 1" : "cli_10_id = " . $cliId;
 
         $strQuery = "SELECT * FROM contato WHERE ".  implode(" AND ", $whereQuery);
-        
+
         $result = mysql_query($strQuery);
 
         $retArr = array();
         $i = 1;
 
         $contato = new Contato();
-        
+
         if (mysql_num_rows($result) > 0) {
 
             while ($row = mysql_fetch_assoc($result)) {

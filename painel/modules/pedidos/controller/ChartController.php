@@ -3,18 +3,18 @@
 class ChartController {
 
     public function insertAction(Chart $chart) {
-        
+
         if ($chart->getPrdId() != "" && $chart->getNome() != "" && $chart->getValor() != "" && $chart->getNrFotos() != "" && $chart->getPeso() != "" && $chart->getUrlFotos() != "" && $chart->getQuantidade() != "" && $chart->getCor() != ""){
-            
-            $chartAr = $chart->assocEntity(); 
-			
+
+            $chartAr = $chart->assocEntity();
+
             $fields = implode("`, `", array_keys($chartAr));
             $values = implode("', '", $chartAr);
 
             $strQuery = "INSERT INTO " . $chart->tableName() . " (`" . $fields . "`) VALUES('" . $values . "');";
-			
+
             mysql_query($strQuery);
-			
+
             $chartId = mysql_insert_id();
 
             return $chartId;
@@ -24,45 +24,45 @@ class ChartController {
     }
 
     public function editAction(Chart $chart){
-        
+
         if ($chart->getPrdId() != "" && $chart->getPedId() != "" && $chart->getNome() != "" && $chart->getValor() != "" && $chart->getNrFotos() != "" && $chart->getPeso() != "" && $chart->getUrlFotos() != "" && $chart->getQuantidade() != "" && $chart->getCor() != ""){
-            
+
             $chartAr = $chart->assocEntity();
-            
+
             $setQuery = array();
             foreach ($chartAr as $k => $v){
                 if ($v != ""){
                     $setQuery[] = "`".$k."` = '".$v."'";
                 }
             }
-            
+
             $setQuery = implode($setQuery, ", ");
-            
-            $sqlQuery = "UPDATE `insta892_instagift`.`".$chart->tableName()."` SET $setQuery WHERE `cht_10_id` = ". $chart->getId();
+
+            $sqlQuery = "UPDATE `fotu_net_br`.`".$chart->tableName()."` SET $setQuery WHERE `cht_10_id` = ". $chart->getId();
             mysql_query($sqlQuery);
             return true;
         }else {
             return false;
-            
+
         }
-        
+
     }
 
     public function deleteAction(Chart $chart){
-        
+
         if ($chart->getId() != "") {
-            
+
             $sqlQuery = "DELETE FROM ".$chart->tableName()." WHERE `cht_10_id` = ". $chart->getId();
             mysql_query($sqlQuery);
-            
+
             return true;
-            
+
         }else {
             return false;
         }
-        
+
     }
-    
+
     public function listAction($id = false) {
 
         $whereQuery[] = (!$id) ? "1 = 1" : "cht_10_id = " . $id;
@@ -82,7 +82,7 @@ class ChartController {
 
         return $retArr;
     }
-    
+
     public function listActionChart($userName = false, $origem = false, $status = false, $idChart=false) {
 
         $whereQuery[] = (!$userName) ? "1 = 1" : "cht_30_username = '" . $userName."'";
@@ -110,7 +110,7 @@ class ChartController {
 
         $field = addslashes($field);
         $value = addslashes($value);
-        
+
         $strQuery = "SELECT * FROM pedidos_chart WHERE ".$field . " = '" . $value."'";
         $result = mysql_query($strQuery);
 
@@ -146,7 +146,7 @@ class ChartController {
 
         return $retArr;
     }
-    
+
 }
 
 ?>

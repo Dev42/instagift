@@ -13,7 +13,7 @@ class EnderecoController {
                 $fields = implode("`, `", array_keys($enderecoAr));
                 $values = implode("', '", $enderecoAr);
 
-                $strQuery = "INSERT INTO `insta892_instagift`.`" . $endereco->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+                $strQuery = "INSERT INTO `fotu_net_br`.`" . $endereco->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
                 mysql_query($strQuery);
 
                 return true;
@@ -26,13 +26,13 @@ class EnderecoController {
     }
 
     public function editAction(Endereco $endereco){
-        
+
         if ($endereco->getClienteId() != "" && $endereco->getClienteId() != 0) {
 
             if ($endereco->getEndereco() != "" || $endereco->getCep() != "") {
 
                 $enderecoAr = $endereco->assocEntity();
-            
+
                 $setQuery = array();
                 foreach ($enderecoAr as $k => $v){
                     if ($v != ""){
@@ -42,7 +42,7 @@ class EnderecoController {
 
                 $setQuery = implode($setQuery, ", ");
 
-                $sqlQuery = "UPDATE `insta892_instagift`.`".$endereco->tableName()."` SET $setQuery WHERE `end_10_id` = ". $endereco->getId();
+                $sqlQuery = "UPDATE `fotu_net_br`.`".$endereco->tableName()."` SET $setQuery WHERE `end_10_id` = ". $endereco->getId();
 
                 mysql_query($sqlQuery);
 
@@ -56,31 +56,31 @@ class EnderecoController {
         } else {
             return false;
         }
-        
+
     }
 
     public function deleteAction(Endereco $endereco){
-        
+
         if ($endereco->getId() != "") {
-            
-            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$endereco->tableName()."` WHERE `end_10_id` = ". $endereco->getId();
+
+            $sqlQuery = "DELETE FROM `fotu_net_br`.`".$endereco->tableName()."` WHERE `end_10_id` = ". $endereco->getId();
             mysql_query($sqlQuery);
-            
+
             return true;
-            
+
         }else {
             return false;
         }
-        
+
     }
-    
+
     public function listAction($id = false, $cliId = false) {
 
         $whereQuery[] = (!$id) ? "1 = 1" : "end_10_id = " . $id;
         $whereQuery[] = (!$cliId) ? "1 = 1" : "cli_10_id = " . $cliId;
 
         $strQuery = "SELECT * FROM endereco WHERE ".  implode(" AND ", $whereQuery);
-        
+
         $result = mysql_query($strQuery);
 
         $retArr = array();

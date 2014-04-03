@@ -3,7 +3,7 @@
 class FotoProdutoController {
 
     public function insertAction(FotoProduto $fotoProduto) {
-			
+
         if ($fotoProduto->getIdProduto() != "" && $fotoProduto->getUrl() != ""){
 
             $fotoProdutoAr = $fotoProduto->assocEntity();
@@ -11,7 +11,7 @@ class FotoProdutoController {
             $fields = implode("`, `", array_keys($fotoProdutoAr));
             $values = implode("', '", $fotoProdutoAr);
 
-            $strQuery = "INSERT INTO `insta892_instagift`.`" . $fotoProduto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
+            $strQuery = "INSERT INTO `fotu_net_br`.`" . $fotoProduto->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
 
             mysql_query($strQuery);
 
@@ -22,48 +22,48 @@ class FotoProdutoController {
     }
 
     public function editAction(FotoProduto $fotoProduto){
-        
+
         if ($fotoProduto->getIdProduto() != "" && $fotoProduto->getUrl() != ""){
-            
+
 			$fotoProdutoAr = $fotoProduto->assocEntity();
-            
+
             $setQuery = array();
             foreach ($fotoProdutoAr as $k => $v){
                 if ($v != ""){
                     $setQuery[] = "`".$k."` = '".$v."'";
                 }
             }
-            
+
             $setQuery = implode($setQuery, ", ");
-            
-            $sqlQuery = "UPDATE `insta892_instagift`.`".$fotoProduto->tableName()."` SET $setQuery WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
+
+            $sqlQuery = "UPDATE `fotu_net_br`.`".$fotoProduto->tableName()."` SET $setQuery WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
             mysql_query($sqlQuery);
-            
+
             return true;
-            
+
         }else {
-            
+
             return false;
-            
+
         }
-        
+
     }
 
     public function deleteAction(FotoProduto $fotoProduto){
-        
+
         if ($fotoProduto->getId() != "") {
-            
-            $sqlQuery = "DELETE FROM `insta892_instagift`.`".$fotoProduto->tableName()."` WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
+
+            $sqlQuery = "DELETE FROM `fotu_net_br`.`".$fotoProduto->tableName()."` WHERE `foto_produto_10_id` = ". $fotoProduto->getId();
             mysql_query($sqlQuery);
-            
+
             return true;
-            
+
         }else {
             return false;
         }
-        
+
     }
-    
+
     public function listAction($id = false, $prdId = false) {
 
         $whereQuery[] = (!$id) ? "1 = 1" : "foto_produto_10_id = " . $id;
@@ -89,7 +89,7 @@ class FotoProdutoController {
 
         $field = addslashes($field);
         $value = addslashes($value);
-        
+
         $strQuery = "SELECT * FROM foto_produto WHERE ".$field . " = '" . $value."'";
         $result = mysql_query($strQuery);
 
@@ -107,8 +107,8 @@ class FotoProdutoController {
         return $retArr;
     }
 
-    
-    
+
+
 }
 
 ?>
